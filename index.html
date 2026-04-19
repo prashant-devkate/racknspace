@@ -87,16 +87,14 @@
   .sidebar-up:hover { background:var(--red-hover); }
 
   /* ═══════════════════════ VIDEO CAROUSEL (HERO) ═══════════════════════ */
-  .hero-slider { position:relative; height:calc(100vh - 72px); min-height:540px; overflow:hidden; background:#111; }
+  .hero-slider { position:relative; height:calc(100vh - 72px); min-height:540px; overflow:hidden; background:#000; }
   .hero-slide { position:absolute; inset:0; opacity:0; transition:opacity 0.8s ease; display:flex; align-items:center; z-index:1; }
   .hero-slide.active { opacity:1; z-index:2; }
   
-  /* Original Hero Backgrounds repurposed for slides */
-  .hero-bg { position:absolute; inset:0; background:linear-gradient(135deg,#2a1a0a 0%,#5c3a10 40%,#8b6020 70%,#6b4a15 100%); }
-  .hero-bg.vid { background:linear-gradient(135deg,#1a3a6b 0%,#2a5aab 50%,#0f2a55 100%); } /* Placeholder for Video slide */
+  /* Added absolute positioning for background video */
+  .hero-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; opacity:0.6; }
   
-  .hero-shelves { position:absolute; inset:0; background-image:repeating-linear-gradient(90deg, rgba(30,80,160,.3) 0,rgba(30,80,160,.3) 6px, transparent 6px, transparent 80px), repeating-linear-gradient(180deg, rgba(200,140,0,.2) 0,rgba(200,140,0,.2) 4px, transparent 4px, transparent 60px); opacity:.6; }
-  .hero-overlay { position:absolute; inset:0; background:rgba(0,0,0,.38); }
+  .hero-overlay { position:absolute; inset:0; background:rgba(0,0,0,.45); z-index:1; }
   .hero-content { position:relative; z-index:3; padding:0 80px; max-width:760px; }
   .hero-content h1 { font-family:'Barlow Condensed',sans-serif; font-size:clamp(52px,7vw,88px); font-weight:900; color:var(--white); line-height:1.0; margin-bottom:18px; text-shadow:0 2px 12px rgba(0,0,0,.5); }
   .hero-content p { font-size:18px; font-weight:600; color:rgba(255,255,255,.88); margin-bottom:36px; }
@@ -303,30 +301,24 @@
 </div>
 
 <section class="hero-slider">
+  
   <div class="hero-slide active" id="slide-0">
-    <div class="hero-bg"></div>
-    <div class="hero-shelves"></div>
+    <video autoplay muted loop playsinline class="hero-video">
+      <source src="436719135.mp4" type="video/mp4">
+    </video>
     <div class="hero-overlay"></div>
-    <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.25" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice">
-      <g stroke="#4488cc" stroke-width="2" fill="none">
-        <line x1="400" y1="0" x2="400" y2="700"/><line x1="460" y1="0" x2="460" y2="700"/><line x1="560" y1="0" x2="560" y2="700"/><line x1="620" y1="0" x2="620" y2="700"/><line x1="720" y1="0" x2="720" y2="700"/><line x1="780" y1="0" x2="780" y2="700"/><line x1="880" y1="0" x2="880" y2="700"/><line x1="940" y1="0" x2="940" y2="700"/><line x1="1040" y1="0" x2="1040" y2="700"/><line x1="1100" y1="0" x2="1100" y2="700"/>
-        <line x1="380" y1="100" x2="1120" y2="100"/><line x1="380" y1="200" x2="1120" y2="200"/><line x1="380" y1="300" x2="1120" y2="300"/><line x1="380" y1="400" x2="1120" y2="400"/><line x1="380" y1="500" x2="1120" y2="500"/><line x1="380" y1="600" x2="1120" y2="600"/>
-      </g>
-      <g fill="rgba(200,140,20,.4)">
-        <rect x="405" y="110" width="48" height="80"/><rect x="465" y="110" width="88" height="80"/><rect x="565" y="110" width="48" height="80"/><rect x="625" y="110" width="88" height="80"/><rect x="725" y="210" width="48" height="80"/><rect x="785" y="210" width="88" height="80"/><rect x="405" y="310" width="88" height="80"/><rect x="725" y="110" width="48" height="80"/><rect x="885" y="110" width="48" height="80"/><rect x="945" y="210" width="88" height="80"/><rect x="1045" y="310" width="48" height="80"/>
-      </g>
-      <line x1="380" y1="660" x2="1120" y2="660" stroke="#888" stroke-width="6"/>
-      <rect x="690" y="550" width="60" height="100" fill="rgba(200,60,0,.5)" stroke="#cc4400" stroke-width="1"/>
-    </svg>
     <div class="hero-content">
       <h1>AS/RS Overall<br>Solution</h1>
-      <p>Optimize warehouse space, reduce errors, and improve throughput</p>
+      <p>Optimize warehouse space, reduce errors, and improve throughput.</p>
       <a class="hero-cta" href="products.html">Explore solutions that are suitable for you</a>
     </div>
   </div>
 
   <div class="hero-slide" id="slide-1">
-    <div class="hero-bg vid"></div> <div class="hero-overlay"></div>
+    <video autoplay muted loop playsinline class="hero-video">
+      <source src="208160.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
     <div class="hero-content">
       <h1>Intelligent Flow &<br>Capacity</h1>
       <p>Under the background of the new round of technological and industrial changes.</p>
@@ -335,8 +327,8 @@
   </div>
 
   <div class="hero-controls">
-    <div class="hero-dot active" onclick="switchHero(0)"></div>
-    <div class="hero-dot" onclick="switchHero(1)"></div>
+    <div class="hero-dot active" onclick="switchHero(0, true)"></div>
+    <div class="hero-dot" onclick="switchHero(1, true)"></div>
   </div>
 </section>
 
@@ -350,30 +342,30 @@
   </div>
 
   <div class="ind-bottom">
-    <button class="ind-nav-btn">❮</button>
+    <button class="ind-nav-btn" onclick="prevIndustry(true)">❮</button>
     <div class="ind-tabs-wrapper">
-      <div class="ind-tab" onclick="switchIndustry('appliance', this)">
+      <div class="ind-tab" id="ind-tab-appliance" onclick="switchIndustry('appliance', true)">
         <svg fill="currentColor" viewBox="0 0 28 28"><rect x="2" y="8" width="24" height="14" rx="1" opacity=".6"/><rect x="8" y="4" width="12" height="6" rx="1"/><rect x="10" y="12" width="8" height="6" rx="1" fill="rgba(255,255,255,.5)"/></svg>
         <span>Home Appliance</span>
       </div>
-      <div class="ind-tab" onclick="switchIndustry('cold', this)">
+      <div class="ind-tab" id="ind-tab-cold" onclick="switchIndustry('cold', true)">
         <svg fill="currentColor" viewBox="0 0 28 28"><circle cx="14" cy="14" r="8" opacity=".6"/><path d="M14 6v4M14 18v4M6 14h4M18 14h4" stroke="currentColor" stroke-width="2" fill="none"/></svg>
         <span>Cold Chain</span>
       </div>
-      <div class="ind-tab active" onclick="switchIndustry('energy', this)">
+      <div class="ind-tab active" id="ind-tab-energy" onclick="switchIndustry('energy', true)">
         <svg fill="currentColor" viewBox="0 0 28 28"><path d="M4 22l5-8h4l5-8h6" stroke="currentColor" stroke-width="2" fill="none" opacity=".8"/><circle cx="20" cy="8" r="3" opacity=".6"/></svg>
         <span>New Energy</span>
       </div>
-      <div class="ind-tab" onclick="switchIndustry('chemical', this)">
+      <div class="ind-tab" id="ind-tab-chemical" onclick="switchIndustry('chemical', true)">
         <svg fill="currentColor" viewBox="0 0 28 28"><rect x="8" y="2" width="12" height="20" rx="1" opacity=".5"/><circle cx="14" cy="10" r="3"/><rect x="11" y="16" width="6" height="6" rx="1" opacity=".6"/></svg>
         <span>Chemical</span>
       </div>
-      <div class="ind-tab" onclick="switchIndustry('pharma', this)">
+      <div class="ind-tab" id="ind-tab-pharma" onclick="switchIndustry('pharma', true)">
         <svg fill="currentColor" viewBox="0 0 28 28"><rect x="2" y="16" width="24" height="8" rx="1" opacity=".5"/><rect x="6" y="10" width="16" height="8" rx="1" opacity=".6"/><rect x="10" y="4" width="8" height="8" rx="1" opacity=".7"/></svg>
         <span>Pharmaceutical</span>
       </div>
     </div>
-    <button class="ind-nav-btn">❯</button>
+    <button class="ind-nav-btn" onclick="nextIndustry(true)">❯</button>
   </div>
 </section>
 
@@ -553,7 +545,7 @@
 </footer>
 
 <script>
-  /* Dropdown Logic */
+  /* ====== Dropdown Logic ====== */
   let openDd = null;
   function toggleDropdown(name) {
     const panel = document.getElementById('dd-' + name);
@@ -577,15 +569,39 @@
     openDd = null;
   }
 
-  /* Video Hero Carousel Logic */
-  function switchHero(index) {
+  /* ====== Hero Video Carousel Logic (Auto-play included) ====== */
+  let currentHeroIndex = 0;
+  const totalHeroSlides = 2;
+  
+  function switchHero(index, isManual = false) {
     document.querySelectorAll('.hero-slide').forEach(s => s.classList.remove('active'));
     document.querySelectorAll('.hero-dot').forEach(d => d.classList.remove('active'));
+    
     document.getElementById('slide-' + index).classList.add('active');
     document.querySelectorAll('.hero-dot')[index].classList.add('active');
+    currentHeroIndex = index;
+
+    if (isManual) {
+      resetHeroInterval();
+    }
   }
 
-  /* Industry Image Carousel Logic */
+  function nextHero() {
+    let nextIndex = (currentHeroIndex + 1) % totalHeroSlides;
+    switchHero(nextIndex, false);
+  }
+
+  let heroInterval = setInterval(nextHero, 6000); // Change every 6 seconds
+
+  function resetHeroInterval() {
+    clearInterval(heroInterval);
+    heroInterval = setInterval(nextHero, 6000);
+  }
+
+  /* ====== Industry Image Carousel Logic (Auto-play included) ====== */
+  const industryKeys = ['appliance', 'cold', 'energy', 'chemical', 'pharma'];
+  let currentIndIndex = 2; // Default is 'energy'
+
   const indImages = {
     'appliance': 'https://images.unsplash.com/photo-1558384515-32213d8d641d?auto=format&fit=crop&q=80',
     'cold': 'https://images.unsplash.com/photo-1582216584281-b54199f381f3?auto=format&fit=crop&q=80',
@@ -594,10 +610,33 @@
     'pharma': 'https://images.unsplash.com/photo-1585435557343-3b092031a831?auto=format&fit=crop&q=80'
   };
 
-  function switchIndustry(key, element) {
+  function switchIndustry(key, isManual = false) {
     document.querySelectorAll('.ind-tab').forEach(t => t.classList.remove('active'));
-    element.classList.add('active');
+    document.getElementById('ind-tab-' + key).classList.add('active');
     document.getElementById('industry-bg').style.backgroundImage = `url('${indImages[key]}')`;
+    
+    currentIndIndex = industryKeys.indexOf(key);
+
+    if (isManual) {
+      resetIndInterval();
+    }
+  }
+
+  function nextIndustry(isManual = false) {
+    let nextIndex = (currentIndIndex + 1) % industryKeys.length;
+    switchIndustry(industryKeys[nextIndex], isManual);
+  }
+
+  function prevIndustry(isManual = false) {
+    let prevIndex = (currentIndIndex - 1 + industryKeys.length) % industryKeys.length;
+    switchIndustry(industryKeys[prevIndex], isManual);
+  }
+
+  let indInterval = setInterval(() => { nextIndustry(false); }, 4000); // Change every 4 seconds
+
+  function resetIndInterval() {
+    clearInterval(indInterval);
+    indInterval = setInterval(() => { nextIndustry(false); }, 4000);
   }
 </script>
 </body>
