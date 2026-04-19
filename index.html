@@ -83,24 +83,43 @@
   .sidebar { position:fixed; right:0; top:50%; transform:translateY(-50%); z-index:1000; display:flex; flex-direction:column; gap:0; }
   .sidebar-btn { width:48px; height:48px; background:var(--red); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--white); font-size:18px; border-radius:2px 0 0 2px; margin-bottom:3px; transition:background .2s; }
   .sidebar-btn:hover { background:var(--red-hover); }
-  .sidebar-up { width:40px; height:40px; background:var(--red); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--white); font-size:16px; border-radius:50%; margin-top:12px; transition:background .2s; }
-  .sidebar-up:hover { background:var(--red-hover); }
+  
+  /* UPDATED: SCROLL TO TOP BUTTON */
+  .scroll-to-top {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 56px;
+    height: 56px;
+    background: var(--red);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 24px;
+    border-radius: 50%;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: background .2s, transform .2s;
+  }
+  .scroll-to-top:hover {
+    background: var(--red-hover);
+    transform: translateY(-4px);
+  }
 
   /* ═══════════════════════ VIDEO CAROUSEL (HERO) ═══════════════════════ */
   .hero-slider { position:relative; height:calc(100vh - 72px); min-height:540px; overflow:hidden; background:#000; }
   .hero-slide { position:absolute; inset:0; opacity:0; transition:opacity 0.8s ease; display:flex; align-items:center; z-index:1; }
   .hero-slide.active { opacity:1; z-index:2; }
-  
-  /* Added absolute positioning for background video */
   .hero-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; opacity:0.6; }
-  
   .hero-overlay { position:absolute; inset:0; background:rgba(0,0,0,.45); z-index:1; }
   .hero-content { position:relative; z-index:3; padding:0 80px; max-width:760px; }
   .hero-content h1 { font-family:'Barlow Condensed',sans-serif; font-size:clamp(52px,7vw,88px); font-weight:900; color:var(--white); line-height:1.0; margin-bottom:18px; text-shadow:0 2px 12px rgba(0,0,0,.5); }
   .hero-content p { font-size:18px; font-weight:600; color:rgba(255,255,255,.88); margin-bottom:36px; }
   .hero-cta { display:inline-block; background:var(--red); color:var(--white); padding:16px 32px; font-size:15px; font-weight:700; border:none; cursor:pointer; text-decoration:none; transition:background .2s; letter-spacing:.3px; }
   .hero-cta:hover { background:var(--red-hover); }
-
   .hero-controls { position:absolute; bottom:40px; left:80px; z-index:4; display:flex; gap:12px; }
   .hero-dot { width:40px; height:4px; background:rgba(255,255,255,.3); cursor:pointer; transition:background .3s; border-radius:2px; }
   .hero-dot.active { background:var(--red); }
@@ -109,20 +128,16 @@
   .industry-carousel { position:relative; height:700px; overflow:hidden; display:flex; flex-direction:column; justify-content:space-between; }
   .ind-bg { position:absolute; inset:0; background-size:cover; background-position:center; transition:background-image 0.5s ease-in-out; }
   .ind-overlay { position:absolute; inset:0; background:linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.8) 100%); }
-  
   .ind-header { position:relative; z-index:2; text-align:center; padding:60px 80px 0; color:var(--white); }
   .ind-header h2 { font-family:'Barlow Condensed',sans-serif; font-size:48px; font-weight:900; margin-bottom:16px; }
   .ind-header p { font-size:15px; max-width:900px; margin:0 auto; color:rgba(255,255,255,.8); line-height:1.6; }
-
   .ind-bottom { position:relative; z-index:2; display:flex; align-items:flex-end; padding:0 40px; height:200px; }
   .ind-nav-btn { background:rgba(255,255,255,0.9); border:none; width:40px; height:40px; border-radius:50%; font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; margin-bottom:30px; transition:background 0.2s; color:var(--dark); }
   .ind-nav-btn:hover { background:var(--white); }
-  
   .ind-tabs-wrapper { flex:1; display:flex; align-items:flex-end; overflow:hidden; margin:0 20px; }
   .ind-tab { flex:1; min-width:140px; height:100px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; color:rgba(255,255,255,.7); cursor:pointer; transition:all 0.3s; background:rgba(0,0,0,0.4); border-bottom:3px solid transparent; backdrop-filter:blur(5px); }
   .ind-tab svg { width:32px; height:32px; }
   .ind-tab span { font-size:14px; font-weight:700; }
-  
   .ind-tab:hover { color:var(--white); background:rgba(0,0,0,0.6); }
   .ind-tab.active { background:var(--red); color:var(--white); height:140px; border-bottom:none; box-shadow:0 -5px 15px rgba(204,0,0,0.3); }
 
@@ -130,19 +145,29 @@
   .section-title { text-align:center; font-family:'Barlow Condensed',sans-serif; font-size:clamp(32px,4vw,48px); font-weight:900; color:var(--dark); margin-bottom:12px; }
   .section-sub { text-align:center; font-size:15px; color:var(--mid); margin-bottom:48px; }
 
-  /* EXACT ORIGINAL CSS PRESERVED FOR REST OF HOMEPAGE */
+  /* ═══════════════════════ AS/RS SECTION ═══════════════════════ */
   .asrs-section { padding:80px 80px 0; text-align:center; background:var(--white); }
   .asrs-visual { position:relative; height:500px; background:linear-gradient(180deg,#f0f0f0 0%,#e0e0e0 100%); display:flex; align-items:center; justify-content:center; overflow:hidden; }
   .asrs-diagram { width:70%; height:80%; background:linear-gradient(145deg,#c8c8c8,#b0b0b0); border-radius:4px; position:relative; display:flex; align-items:center; justify-content:center; }
   .rack { position:absolute; top:10%; left:20%; right:20%; bottom:10%; }
   .rack-col { position:absolute; top:0; bottom:0; width:28px; background:linear-gradient(180deg,#e8b44a,#c8942a); border-radius:2px; }
-  .asrs-popup { position:absolute; right:8%; top:30%; background:rgba(255,255,255,.92); border-radius:8px; padding:20px 28px; text-align:left; box-shadow:0 4px 24px rgba(0,0,0,.15); }
-  .asrs-popup h3 { font-size:18px; font-weight:800; margin-bottom:6px; }
-  .asrs-popup-btn { display:flex; align-items:center; gap:8px; font-size:14px; font-weight:700; color:var(--red); background:none; border:none; cursor:pointer; margin-top:8px; }
-  .asrs-popup-btn span { width:26px; height:26px; background:var(--red); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--white); font-size:13px; }
+  
+  /* UPDATED AS/RS POPUPS */
+  .asrs-popup { position:absolute; background:rgba(255,255,255,.92); border-radius:8px; padding:16px 20px; text-align:left; box-shadow:0 4px 24px rgba(0,0,0,.15); transition: transform 0.2s; z-index: 5; }
+  .asrs-popup:hover { transform: translateY(-4px); }
+  .asrs-popup h3 { font-size:16px; font-weight:800; margin-bottom:4px; }
+  .asrs-popup-btn { display:flex; align-items:center; gap:8px; font-size:13px; font-weight:700; color:var(--red); background:none; border:none; cursor:pointer; margin-top:6px; }
+  .asrs-popup-btn span { width:22px; height:22px; background:var(--red); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--white); font-size:11px; }
+
+  /* ═══════════════════════ CASES SECTION ═══════════════════════ */
   .cases-section { padding:80px 80px; background:var(--white); }
   .cases-grid { display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-top:48px; }
-  .case-card { cursor:pointer; overflow:hidden; }
+  
+  /* UPDATED CASES CAROUSEL CSS */
+  .cases-carousel-wrap { overflow: hidden; position: relative; margin-top: 48px; width: 100%; }
+  .cases-track { display: flex; gap: 32px; transition: transform 0.6s ease-in-out; width: 100%; }
+  .case-card { flex: 0 0 calc(50% - 16px); cursor:pointer; overflow:hidden; min-width: 0; }
+
   .case-img { height:280px; position:relative; overflow:hidden; background:linear-gradient(135deg,#1a3a6b 0%,#2a5aab 50%,#e8a020 100%); }
   .case-img-inner { width:100%; height:100%; display:grid; grid-template-columns:repeat(8,1fr); gap:2px; padding:8px; }
   .shelf-unit { background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.2); border-radius:1px; height:100%; }
@@ -150,6 +175,8 @@
   .case-label { position:absolute; bottom:0; left:0; right:0; background:rgba(0,0,0,.5); padding:8px 12px; }
   .case-title { font-size:15px; font-weight:700; color:var(--red); margin-top:12px; }
   .case-desc { font-size:13px; color:var(--mid); margin-top:6px; line-height:1.5; }
+
+  /* EXACT ORIGINAL CSS PRESERVED FOR REST OF HOMEPAGE */
   .about-section { padding:80px; background:var(--light); display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
   .about-section h2 { font-family:'Barlow Condensed',sans-serif; font-size:42px; font-weight:900; margin-bottom:24px; }
   .about-section p { font-size:15px; color:var(--mid); line-height:1.8; }
@@ -188,7 +215,6 @@
   .footer-contact p { font-size:14px; margin-bottom:10px; line-height:1.6; }
   .footer-contact strong { color:var(--white); }
   .footer-bottom { border-top:1px solid rgba(255,255,255,.1); padding-top:24px; display:flex; justify-content:space-between; font-size:13px; color:rgba(255,255,255,.4); }
-  
   
   .about-video {
   display: block;
@@ -324,8 +350,9 @@
   <button class="sidebar-btn">📱</button>
   <button class="sidebar-btn">📞</button>
   <button class="sidebar-btn">💬</button>
-  <button class="sidebar-up" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 </div>
+
+<button class="scroll-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <section class="hero-slider">
   
@@ -427,8 +454,24 @@
       <circle cx="60" cy="480" r="10" fill="#333"/>
       <circle cx="150" cy="480" r="10" fill="#333"/>
     </svg>
-    <div class="asrs-popup">
-      <h3>Automated Warehousing</h3>
+
+    <div class="asrs-popup" style="top: 15%; left: 8%;">
+      <h3>Racking Structure</h3>
+      <button class="asrs-popup-btn">Click to view <span>▶</span></button>
+    </div>
+    
+    <div class="asrs-popup" style="top: 40%; left: 35%;">
+      <h3>Stacker Crane</h3>
+      <button class="asrs-popup-btn">Click to view <span>▶</span></button>
+    </div>
+    
+    <div class="asrs-popup" style="bottom: 12%; right: 18%;">
+      <h3>Conveyor System</h3>
+      <button class="asrs-popup-btn">Click to view <span>▶</span></button>
+    </div>
+
+    <div class="asrs-popup" style="top: 22%; right: 8%;">
+      <h3>WMS Dashboard</h3>
       <button class="asrs-popup-btn">Click to view <span>▶</span></button>
     </div>
   </div>
@@ -436,34 +479,63 @@
 
 <section class="cases-section">
   <h2 class="section-title">Success Case</h2>
-  <div class="cases-grid">
-    <div class="case-card">
-      <div class="case-img">
-        <div class="case-img-inner">
-          <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
-          <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
-          <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
-          <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+  
+  <div class="cases-carousel-wrap">
+    <div class="cases-track" id="cases-track">
+      <div class="case-card">
+        <div class="case-img">
+          <div class="case-img-inner">
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+          </div>
+          <div style="position:absolute;left:8px;top:20%;width:6px;height:60%;background:#e8a020;border-radius:2px;"></div>
+          <div style="position:absolute;left:20%;top:0;bottom:0;width:3px;background:rgba(204,0,0,.7);"></div>
+          <div style="position:absolute;right:20%;top:0;bottom:0;width:3px;background:rgba(204,0,0,.7);"></div>
         </div>
-        <div style="position:absolute;left:8px;top:20%;width:6px;height:60%;background:#e8a020;border-radius:2px;"></div>
-        <div style="position:absolute;left:20%;top:0;bottom:0;width:3px;background:rgba(204,0,0,.7);"></div>
-        <div style="position:absolute;right:20%;top:0;bottom:0;width:3px;background:rgba(204,0,0,.7);"></div>
+        <div class="case-title">Unit-load Crane &amp; Tote Four-Way Shuttle AS/RS</div>
+        <div class="case-desc">Raw material and finished goods warehouse — automated end-to-end with crane and shuttle integration.</div>
       </div>
-      <div class="case-title">Unit-load Crane &amp; Tote Four-Way Shuttle AS/RS</div>
-      <div class="case-desc">Raw material and finished goods warehouse — automated end-to-end with crane and shuttle integration.</div>
-    </div>
-    <div class="case-card">
-      <div class="case-img" style="background:linear-gradient(135deg,#c06010,#e8a020,#1a3a6b);">
-        <div class="case-img-inner">
-          <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
-          <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
-          <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
-          <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+      <div class="case-card">
+        <div class="case-img" style="background:linear-gradient(135deg,#c06010,#e8a020,#1a3a6b);">
+          <div class="case-img-inner">
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+          </div>
+          <div style="position:absolute;bottom:16px;left:16px;background:#222;color:#ff0;font-size:10px;padding:4px 8px;">■ SYSTEM RUNNING</div>
         </div>
-        <div style="position:absolute;bottom:16px;left:16px;background:#222;color:#ff0;font-size:10px;padding:4px 8px;">■ SYSTEM RUNNING</div>
+        <div class="case-title">Unit-load Crane AS/RS</div>
+        <div class="case-desc">A well-known pharmaceutical enterprise. Material goods warehouse customized fully automated solution.</div>
       </div>
-      <div class="case-title">Unit-load Crane AS/RS</div>
-      <div class="case-desc">A well-known pharmaceutical enterprise. Material goods warehouse customized fully automated solution.</div>
+      <div class="case-card">
+        <div class="case-img" style="background:linear-gradient(135deg,#1a4a2b,#2a8a4b);">
+          <div class="case-img-inner">
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+          </div>
+          <div style="position:absolute;left:40%;top:0;bottom:0;width:4px;background:rgba(255,255,255,.6);"></div>
+        </div>
+        <div class="case-title">Four-Way Shuttle AS/RS Integration</div>
+        <div class="case-desc">High-density E-commerce fulfillment center processing up to 10,000 order lines per hour continuously.</div>
+      </div>
+      <div class="case-card">
+        <div class="case-img" style="background:linear-gradient(135deg,#3a1a6b,#6a3aab);">
+          <div class="case-img-inner">
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+          </div>
+          <div style="position:absolute;bottom:16px;right:16px;background:rgba(0,100,200,.8);color:#fff;font-size:10px;padding:4px 8px;">-25°C ZONE</div>
+        </div>
+        <div class="case-title">Cold Chain Automated Pallet Network</div>
+        <div class="case-desc">Food and beverage freezer facility providing zero-touch logistics for frozen foods across multiple zones.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -566,7 +638,7 @@
       <p>E-mail: <strong>info@racknspace.com</strong></p>
       <p>Tel: <strong>+86 15895413511</strong></p>
       <p>Whatsapp: <strong>+86 18695887189</strong></p>
-      <p>Address: <strong>Room 602, Building G2, Artificial Intelligence Industrial Park, No.88 Jinjihu Avenue, Suzhou Industrial Park, Suzhou City, China</strong></p>
+      <p>Address: <strong>C/17, Maharashtra Industrial Development Corporation Area, Midc, Baramati, Bandalwadi, Maharashtra. 413133</strong></p>
     </div>
   </div>
   <div class="footer-bottom">
@@ -669,6 +741,33 @@
     clearInterval(indInterval);
     indInterval = setInterval(() => { nextIndustry(false); }, 4000);
   }
+
+  /* ====== NEW: Cases Section Auto-Slider Logic ====== */
+  let caseIndex = 0;
+  function slideCases() {
+    const track = document.getElementById('cases-track');
+    const card = track.children[0];
+    if (!card) return;
+    
+    // total length is 4 cards. displaying 2 at a time.
+    // max shift index is 2 (so we see cards [2,3])
+    const maxCaseIndex = track.children.length - 2; 
+    
+    caseIndex++;
+    if (caseIndex > maxCaseIndex) {
+      caseIndex = 0;
+    }
+    
+    // Calculate distance to move based on card width + 32px gap
+    const cardWidth = card.offsetWidth;
+    const gap = 32; 
+    const translateAmount = caseIndex * (cardWidth + gap);
+    
+    track.style.transform = `translateX(-${translateAmount}px)`;
+  }
+  
+  // Auto-slide cases every 5 seconds
+  setInterval(slideCases, 5000);
 </script>
 </body>
 </html>
