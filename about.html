@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RACK N SPACE – About Us</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="icon" href="rns.png" type="image/png">
 <style>
-  :root { --red: #cc0000; --red-hover: #aa0000; --dark: #1a1a1a; --dark2: #222222; --mid: #555555; --light: #f5f5f5; --white: #ffffff; --border: #e0e0e0; --stat-red: #c9697a; }
+  :root { --red: #cc0000; --red-hover: #aa0000; --dark: #0F2A44; --dark2: #222222; --mid: #555555; --light: #f5f5f5; --white: #ffffff; --border: #e0e0e0; --stat-red: #c9697a; }
   * { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior:smooth; }
   body { font-family:'Barlow',sans-serif; color:var(--dark); overflow-x:hidden; }
@@ -48,11 +49,34 @@
   .sidebar { position:fixed; right:0; top:50%; transform:translateY(-50%); z-index:1000; display:flex; flex-direction:column; gap:0; }
   .sidebar-btn { width:48px; height:48px; background:var(--red); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--white); font-size:18px; border-radius:2px 0 0 2px; margin-bottom:3px; transition:background .2s; }
   .sidebar-btn:hover { background:var(--red-hover); }
-  .sidebar-up { width:40px; height:40px; background:var(--red); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--white); font-size:16px; border-radius:50%; margin-top:12px; transition:background .2s; }
-  .sidebar-up:hover { background:var(--red-hover); }
+
+  /* ── SCROLL TO TOP BUTTON ── */
+  .scroll-to-top {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 56px;
+    height: 56px;
+    background: var(--red);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 24px;
+    border-radius: 50%;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: background .2s, transform .2s;
+  }
+  .scroll-to-top:hover {
+    background: var(--red-hover);
+    transform: translateY(-4px);
+  }
 
   /* ═══════════════════════ ABOUT PAGE CSS ═══════════════════════ */
-  .page-hero { height:320px; background:linear-gradient(135deg,#1a1a1a,#333); display:flex; align-items:center; padding:0 80px; position:relative; overflow:hidden; }
+  .page-hero { height:320px; background:linear-gradient(135deg,#0F2A44,#333); display:flex; align-items:center; padding:0 80px; position:relative; overflow:hidden; }
   .page-hero::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(45deg,rgba(204,0,0,.05) 0,rgba(204,0,0,.05) 1px,transparent 1px,transparent 40px); }
   .page-hero h1 { font-family:'Barlow Condensed',sans-serif; font-size:56px; font-weight:900; color:var(--white); position:relative; }
   .page-hero p { font-size:18px; color:rgba(255,255,255,.6); margin-top:12px; position:relative; }
@@ -75,7 +99,7 @@
   .stat-icon { font-size:20px; color:rgba(255,255,255,.5); margin-bottom:8px; }
 
   /* ── FOOTER ── */
-  footer { background:#1a1a1a; color:rgba(255,255,255,.7); padding:64px 80px 32px; }
+  footer { background:#0F2A44; color:rgba(255,255,255,.7); padding:64px 80px 32px; }
   .footer-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:48px; margin-bottom:48px; }
   footer h4 { font-size:16px; font-weight:800; color:var(--white); margin-bottom:20px; }
   footer ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
@@ -188,8 +212,9 @@
   <button class="sidebar-btn">📱</button>
   <button class="sidebar-btn">📞</button>
   <button class="sidebar-btn">💬</button>
-  <button class="sidebar-up" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 </div>
+
+<button class="scroll-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <div class="page-hero">
   <div>
