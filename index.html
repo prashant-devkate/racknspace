@@ -188,6 +188,33 @@
   .footer-contact p { font-size:14px; margin-bottom:10px; line-height:1.6; }
   .footer-contact strong { color:var(--white); }
   .footer-bottom { border-top:1px solid rgba(255,255,255,.1); padding-top:24px; display:flex; justify-content:space-between; font-size:13px; color:rgba(255,255,255,.4); }
+  
+  
+  .about-video {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background: url('https://img.youtube.com/vi/R3GfuzLMPkA/maxresdefault.jpg') center/cover no-repeat;
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.play-btn {
+  font-size: 40px;
+  color: white;
+}
 </style>
 </head>
 <body>
@@ -448,11 +475,15 @@
     <p style="margin-top:16px">Currently, RACK N SPACE has established a robust global service network, including its headquarters, three R&D centers, three manufacturing bases, three overseas support centers and national wide after-sales service centers. With over 1,000 clients benefiting from RACK N SPACE's logistics solutions and products.</p>
   </div>
   <div class="about-video">
-    <div class="video-overlay">
-      <div style="font-size:11px;color:rgba(255,255,255,.4);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;">MICRO FULFILLMENT CENTER</div>
-      <div class="play-btn">▶</div>
-      <div class="video-label">Watch our story</div>
+    <a href="https://www.youtube.com/watch?v=R3GfuzLMPkA" target="_blank" class="about-video">
+  <div class="video-overlay">
+    <div style="font-size:11px;color:rgba(255,255,255,.4);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;">
+      MICRO FULFILLMENT CENTER
     </div>
+    <div class="play-btn">▶</div>
+    <div class="video-label">Watch our story</div>
+  </div>
+</a>
   </div>
 </section>
 
