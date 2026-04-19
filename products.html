@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RACK N SPACE – Products</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #cc0000;
+    --red-hover: #aa0000;
+    --dark: #1a1a1a;
+    --dark2: #222222;
+    --mid: #555555;
+    --light: #f5f5f5;
+    --white: #ffffff;
+    --border: #e0e0e0;
+    --stat-red: #c9697a;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Barlow',sans-serif; color:var(--dark); overflow-x:hidden; }
+
+  /* ── NAVBAR ── */
+  #navbar {
+    position:sticky; top:0; z-index:1000;
+    background:var(--white);
+    border-bottom:1px solid var(--border);
+    height:72px; display:flex; align-items:center;
+    padding:0 48px;
+    justify-content:space-between;
+    box-shadow:0 2px 8px rgba(0,0,0,.07);
+  }
+  .logo { display:flex; align-items:center; gap:8px; text-decoration:none; cursor:pointer;}
+  .logo-icon { width:36px; height:28px; }
+  .logo-text { font-size:22px; font-weight:800; letter-spacing:-.5px; }
+  .logo-text span:first-child { color:#e05a00; }
+  .logo-text span:last-child { color:var(--red); }
+
+  nav { display:flex; align-items:center; gap:0; }
+  .nav-item {
+    position:relative; padding:0 20px; height:72px;
+    display:flex; align-items:center; gap:4px;
+    font-size:15px; font-weight:600; color:var(--dark);
+    cursor:pointer; text-decoration:none; white-space:nowrap;
+    border-bottom:3px solid transparent;
+    transition:color .2s;
+  }
+  .nav-item.active { color:var(--red); border-bottom-color:var(--red); }
+  .nav-item:hover { color:var(--red); }
+  .nav-item .arrow { font-size:11px; margin-top:1px; transition:transform .2s; }
+  .nav-item.open .arrow { transform:rotate(180deg); }
+  .nav-contact { color:var(--red)!important; }
+
+  .nav-right { display:flex; align-items:center; gap:16px; }
+  .lang-btn {
+    display:flex; align-items:center; gap:6px;
+    border:1px solid var(--border); border-radius:4px;
+    padding:6px 12px; font-size:14px; font-weight:600; cursor:pointer;
+    background:var(--white);
+  }
+  .search-btn { background:none; border:none; cursor:pointer; font-size:20px; color:var(--dark); padding:4px; }
+
+  /* ── MEGA DROPDOWN ── */
+  .dropdown-overlay {
+    display:none; position:fixed; top:72px; left:0; right:0; bottom:0;
+    background:rgba(0,0,0,.45); z-index:900;
+  }
+  .dropdown-overlay.open { display:block; }
+  .dropdown-panel {
+    display:none; position:fixed; top:72px; left:0; right:0;
+    background:rgba(40,40,40,.97); z-index:901; padding:48px 80px 56px;
+    color:var(--white); box-shadow:0 8px 32px rgba(0,0,0,.3);
+  }
+  .dropdown-panel.open { display:flex; gap:0; }
+  .dropdown-close { position:absolute; top:20px; right:32px; background:none; border:none; color:var(--white); font-size:28px; cursor:pointer; line-height:1; }
+  .dropdown-left { width:320px; padding-right:48px; flex-shrink:0; }
+  .dropdown-left img { width:240px; margin-bottom:20px; opacity:.9; }
+  .dropdown-left h3 { font-size:18px; font-weight:800; margin-bottom:10px; }
+  .dropdown-left p { font-size:13px; color:#aaa; line-height:1.6; }
+  .dropdown-divider { width:1px; background:#444; flex-shrink:0; }
+  .dropdown-right { flex:1; padding-left:56px; }
+  .dropdown-right h4 { font-size:11px; font-weight:700; letter-spacing:2px; color:#888; margin-bottom:24px; text-transform:uppercase; }
+  .dropdown-links { display:flex; flex-direction:column; gap:16px; }
+  .dropdown-link { font-size:16px; font-weight:500; color:var(--white); text-decoration:none; cursor:pointer; transition:color .15s; }
+  .dropdown-link:hover { color:var(--red); }
+
+  /* ── FLOATING SIDEBAR ── */
+  .sidebar { position:fixed; right:0; top:50%; transform:translateY(-50%); z-index:1000; display:flex; flex-direction:column; gap:0; }
+  .sidebar-btn { width:48px; height:48px; background:var(--red); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--white); font-size:18px; border-radius:2px 0 0 2px; margin-bottom:3px; transition:background .2s; }
+  .sidebar-btn:hover { background:var(--red-hover); }
+  .sidebar-up { width:40px; height:40px; background:var(--red); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--white); font-size:16px; border-radius:50%; margin-top:12px; transition:background .2s; }
+  .sidebar-up:hover { background:var(--red-hover); }
+
+  /* ═══════════════════════ PRODUCTS PAGE CSS ═══════════════════════ */
+  .page-hero { height:320px; background:linear-gradient(135deg,#1a1a1a,#333); display:flex; align-items:center; padding:0 80px; position:relative; overflow:hidden; }
+  .page-hero::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(45deg,rgba(204,0,0,.05) 0,rgba(204,0,0,.05) 1px,transparent 1px,transparent 40px); }
+  .page-hero h1 { font-family:'Barlow Condensed',sans-serif; font-size:56px; font-weight:900; color:var(--white); position:relative; }
+  .page-hero p { font-size:18px; color:rgba(255,255,255,.6); margin-top:12px; position:relative; }
+  .section-title { text-align:center; font-family:'Barlow Condensed',sans-serif; font-size:clamp(32px,4vw,48px); font-weight:900; color:var(--dark); margin-bottom:12px; }
+
+  .products-container { padding:64px 80px; background:var(--white); }
+  .products-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:48px; }
+  .product-card { border:1px solid var(--border); overflow:hidden; cursor:pointer; transition:box-shadow .2s; }
+  .product-card:hover { box-shadow:0 8px 32px rgba(0,0,0,.12); }
+  .product-img { height:200px; background:linear-gradient(135deg,#1a3a6b,#4a7aab); display:flex; align-items:center; justify-content:center; font-size:48px; position:relative; overflow:hidden; }
+  .product-img-grid { position:absolute; inset:0; display:grid; grid-template-columns:repeat(6,1fr); grid-template-rows:repeat(4,1fr); gap:2px; padding:8px; opacity:.4; }
+  .product-img-cell { background:rgba(255,255,255,.3); border-radius:1px; }
+  .product-body { padding:20px; }
+  .product-tag { display:inline-block; background:var(--light); font-size:11px; font-weight:700; color:var(--mid); padding:3px 10px; border-radius:2px; margin-bottom:10px; letter-spacing:.5px; }
+  .product-name { font-size:17px; font-weight:800; color:var(--dark); margin-bottom:8px; }
+  .product-desc { font-size:13px; color:var(--mid); line-height:1.6; }
+  .product-link { display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:700; color:var(--red); margin-top:14px; text-decoration:none; cursor:pointer; }
+
+  /* ═══════════════════════ FOOTER CSS ═══════════════════════ */
+  footer { background:#1a1a1a; color:rgba(255,255,255,.7); padding:64px 80px 32px; }
+  .footer-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:48px; margin-bottom:48px; }
+  footer h4 { font-size:16px; font-weight:800; color:var(--white); margin-bottom:20px; }
+  footer ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+  footer ul li { font-size:14px; cursor:pointer; transition:color .15s; }
+  footer ul li a { color:inherit; text-decoration:none; }
+  footer ul li:hover { color:var(--white); }
+  .footer-contact p { font-size:14px; margin-bottom:10px; line-height:1.6; }
+  .footer-contact strong { color:var(--white); }
+  .footer-bottom { border-top:1px solid rgba(255,255,255,.1); padding-top:24px; display:flex; justify-content:space-between; font-size:13px; color:rgba(255,255,255,.4); }
+</style>
+</head>
+<body>
+
+<header id="navbar">
+  <a class="logo" href="index.html">
+    <svg class="logo-icon" viewBox="0 0 36 28" fill="none">
+      <rect y="3" width="36" height="5" rx="1" fill="#e05a00"/>
+      <rect y="11" width="26" height="5" rx="1" fill="#e05a00"/>
+      <rect y="19" width="36" height="5" rx="1" fill="#e05a00"/>
+    </svg>
+    <span class="logo-text"><span>RACK</span><span>N</span>SPACE</span>
+  </a>
+
+  <nav>
+    <a class="nav-item" href="index.html" id="nav-home">Home</a>
+    <div class="nav-item" id="nav-industries" onclick="toggleDropdown('industries')">Industries <span class="arrow">▾</span></div>
+    <div class="nav-item active" id="nav-products" onclick="toggleDropdown('products')">Products <span class="arrow">▾</span></div>
+    <div class="nav-item" id="nav-services" onclick="toggleDropdown('services')">Services <span class="arrow">▾</span></div>
+    <div class="nav-item" id="nav-about" onclick="toggleDropdown('about-dd')">About Us <span class="arrow">▾</span></div>
+    <a class="nav-item nav-contact" href="contact.html" id="nav-contact">Contact Us</a>
+  </nav>
+
+  <div class="nav-right">
+    <button class="search-btn">🔍</button>
+  </div>
+</header>
+
+<div class="dropdown-overlay" id="dropdown-overlay" onclick="closeDropdown()"></div>
+
+<div class="dropdown-panel" id="dd-industries">
+  <button class="dropdown-close" onclick="closeDropdown()">✕</button>
+  <div class="dropdown-left">
+    <div style="width:240px;height:160px;background:linear-gradient(135deg,#888,#555);border-radius:4px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;color:#ccc;font-size:13px;">⬛ 3D Warehouse Illustration</div>
+    <h3>ASRS (Automated Storage and Retrieval System) Expert</h3>
+    <p>Solutions and Consulting: With decades of experience, RACK N SPACE provides intelligent warehousing & logistics solutions and consulting services for clients across a wide range of industries.</p>
+  </div>
+  <div class="dropdown-divider"></div>
+  <div class="dropdown-right">
+    <h4>Industries</h4>
+    <div class="dropdown-links">
+      <a class="dropdown-link" href="industries.html">New Energy</a>
+      <a class="dropdown-link" href="industries.html">Chemical</a>
+      <a class="dropdown-link" href="industries.html">Pharmaceutical</a>
+      <a class="dropdown-link" href="industries.html">Food & Beverage</a>
+      <a class="dropdown-link" href="industries.html">Cold Chain</a>
+    </div>
+  </div>
+</div>
+
+<div class="dropdown-panel" id="dd-products">
+  <button class="dropdown-close" onclick="closeDropdown()">✕</button>
+  <div class="dropdown-left">
+    <div style="width:240px;height:160px;background:linear-gradient(135deg,#444,#222);border-radius:4px;margin-bottom:20px;"></div>
+    <h3>Complete AS/RS Product Range</h3>
+    <p>From unit-load cranes to shuttle systems, conveying equipment and intelligent software — all engineered for precision.</p>
+  </div>
+  <div class="dropdown-divider"></div>
+  <div class="dropdown-right">
+    <h4>Products</h4>
+    <div class="dropdown-links">
+      <a class="dropdown-link" href="products.html">ASRS Equipment</a>
+      <a class="dropdown-link" href="products.html">Conveying Equipment</a>
+      <a class="dropdown-link" href="products.html">Software</a>
+    </div>
+  </div>
+</div>
+
+<div class="dropdown-panel" id="dd-services">
+  <button class="dropdown-close" onclick="closeDropdown()">✕</button>
+  <div class="dropdown-left">
+    <div style="width:240px;height:160px;background:linear-gradient(135deg,#333,#111);border-radius:4px;margin-bottom:20px;"></div>
+    <h3>End-to-End Service Excellence</h3>
+    <p>From initial planning to after-sales maintenance — RACK N SPACE supports every phase of your automation journey.</p>
+  </div>
+  <div class="dropdown-divider"></div>
+  <div class="dropdown-right">
+    <h4>Services</h4>
+    <div class="dropdown-links">
+      <a class="dropdown-link" href="#">R&D & Planning</a>
+      <a class="dropdown-link" href="#">Equipment Integration</a>
+      <a class="dropdown-link" href="#">Installation & Commissioning</a>
+      <a class="dropdown-link" href="#">After-Sales Maintenance</a>
+      <a class="dropdown-link" href="#">Remote Support (7×24)</a>
+    </div>
+  </div>
+</div>
+
+<div class="dropdown-panel" id="dd-about-dd">
+  <button class="dropdown-close" onclick="closeDropdown()">✕</button>
+  <div class="dropdown-left">
+    <div style="width:240px;height:160px;background:linear-gradient(135deg,#2a1a0a,#5c3a10);border-radius:4px;margin-bottom:20px;"></div>
+    <h3>RACK N SPACE Intelligent Logistics Technology</h3>
+    <p>Smart warehousing integrator dedicated to intelligent manufacturing and smart logistics since foundation.</p>
+  </div>
+  <div class="dropdown-divider"></div>
+  <div class="dropdown-right">
+    <h4>About Us</h4>
+    <div class="dropdown-links">
+      <a class="dropdown-link" href="about.html">RACK N SPACE Group</a>
+      <a class="dropdown-link" href="about.html">R&D</a>
+      <a class="dropdown-link" href="about.html">Join Us</a>
+    </div>
+  </div>
+</div>
+
+<div class="sidebar">
+  <button class="sidebar-btn">✉</button>
+  <button class="sidebar-btn">📱</button>
+  <button class="sidebar-btn">📞</button>
+  <button class="sidebar-btn">💬</button>
+  <button class="sidebar-up" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+</div>
+
+<div class="page-hero">
+  <div>
+    <h1>Products</h1>
+    <p>Complete AS/RS equipment, conveying systems and intelligent software</p>
+  </div>
+</div>
+
+<div class="products-container">
+  <h2 class="section-title">ASRS Equipment</h2>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-img">
+        <div class="product-img-grid"><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div></div>
+        <div style="position:absolute;width:8px;height:80%;background:#cc0000;border-radius:2px;"></div>
+      </div>
+      <div class="product-body">
+        <div class="product-tag">ASRS EQUIPMENT</div>
+        <div class="product-name">Unit-load Crane AS/RS</div>
+        <div class="product-desc">High-bay automated warehouse with stacker cranes. Ideal for pallet-level storage with heights up to 45m.</div>
+        <a class="product-link">Learn More →</a>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img" style="background:linear-gradient(135deg,#1a4a2b,#2a8a4b)">
+        <div class="product-img-grid"><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div></div>
+      </div>
+      <div class="product-body">
+        <div class="product-tag">ASRS EQUIPMENT</div>
+        <div class="product-name">Unit-load Crane & Four-way Shuttle AS/RS</div>
+        <div class="product-desc">Combines stacker crane with four-way shuttle for ultra-dense pallet storage and flexible retrieval.</div>
+        <a class="product-link">Learn More →</a>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img" style="background:linear-gradient(135deg,#3a1a6b,#6a3aab)">
+        <div class="product-img-grid"><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div><div class="product-img-cell"></div></div>
+      </div>
+      <div class="product-body">
+        <div class="product-tag">ASRS EQUIPMENT</div>
+        <div class="product-name">Tote Four-Way Shuttle AS/RS</div>
+        <div class="product-desc">High-density tote-based storage with four-directional shuttles for rapid goods-to-person fulfilment.</div>
+        <a class="product-link">Learn More →</a>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title" style="margin-top:64px">Conveying Equipment</h2>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-img" style="background:linear-gradient(135deg,#4a3010,#8a5020)"></div>
+      <div class="product-body">
+        <div class="product-tag">CONVEYING</div>
+        <div class="product-name">Roller Conveyor System</div>
+        <div class="product-desc">Heavy-duty roller conveyors for pallet and unit-load transport within the warehouse.</div>
+        <a class="product-link">Learn More →</a>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img" style="background:linear-gradient(135deg,#1a3a4b,#2a5a6b)"></div>
+      <div class="product-body">
+        <div class="product-tag">CONVEYING</div>
+        <div class="product-name">Belt & Chain Conveyor</div>
+        <div class="product-desc">Versatile belt and chain conveyor solutions for multi-directional routing and sorting.</div>
+        <a class="product-link">Learn More →</a>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img" style="background:linear-gradient(135deg,#2a1a1a,#6a2a2a)"></div>
+      <div class="product-body">
+        <div class="product-tag">SOFTWARE</div>
+        <div class="product-name">WMS / WCS Platform</div>
+        <div class="product-desc">Intelligent warehouse management and control software with real-time monitoring and analytics dashboards.</div>
+        <a class="product-link">Learn More →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h4>About Us</h4>
+      <ul><li><a href="about.html">RACK N SPACE Group</a></li><li><a href="about.html">R&D</a></li><li><a href="about.html">Events & Activities</a></li></ul>
+    </div>
+    <div>
+      <h4>Case</h4>
+      <ul><li>Unit-load Crane AS/RS</li><li>Four-way Shuttle AS/RS</li></ul>
+    </div>
+    <div>
+      <h4>Products</h4>
+      <ul><li><a href="products.html">ASRS Equipment</a></li><li><a href="products.html">Conveying Equipment</a></li><li><a href="products.html">Software</a></li></ul>
+    </div>
+    <div class="footer-contact">
+      <h4>Contact Us</h4>
+      <p>E-mail: <strong>info@racknspace.com</strong></p>
+      <p>Tel: <strong>+86 15895413511</strong></p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>Copyright © 2026 RACK N SPACE INTELLIGENT LOGISTICS TECHNOLOGY CO., LTD.</span>
+  </div>
+</footer>
+
+<script>
+  /* Dropdown Logic */
+  let openDd = null;
+  function toggleDropdown(name) {
+    const panel = document.getElementById('dd-' + name);
+    const overlay = document.getElementById('dropdown-overlay');
+    const navItem = document.getElementById('nav-' + name.replace('-dd',''));
+    if (openDd === name) { closeDropdown(); return; }
+    closeDropdown();
+    openDd = name;
+    panel.classList.add('open');
+    overlay.classList.add('open');
+    if (navItem) navItem.classList.add('open');
+  }
+  function closeDropdown() {
+    if (openDd) {
+      const panel = document.getElementById('dd-' + openDd);
+      if (panel) panel.classList.remove('open');
+      const navItem = document.getElementById('nav-' + openDd.replace('-dd',''));
+      if (navItem) { navItem.classList.remove('open'); }
+    }
+    document.getElementById('dropdown-overlay').classList.remove('open');
+    openDd = null;
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RackNSpace – AS/RS Overall Solution</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #cc0000;
+    --red-hover: #aa0000;
+    --dark: #1a1a1a;
+    --dark2: #222222;
+    --mid: #555555;
+    --light: #f5f5f5;
+    --white: #ffffff;
+    --border: #e0e0e0;
+    --stat-red: #c9697a;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Barlow',sans-serif; color:var(--dark); overflow-x:hidden; }
+
+  /* ── NAVBAR ── */
+  #navbar {
+    position:sticky; top:0; z-index:1000;
+    background:var(--white);
+    border-bottom:1px solid var(--border);
+    height:72px; display:flex; align-items:center;
+    padding:0 48px;
+    justify-content:space-between;
+    box-shadow:0 2px 8px rgba(0,0,0,.07);
+  }
+  .logo { display:flex; align-items:center; gap:8px; text-decoration:none; cursor:pointer;}
+  .logo-icon { width:36px; height:28px; }
+  .logo-text { font-size:22px; font-weight:800; letter-spacing:-.5px; }
+  .logo-text span:first-child { color:#e05a00; }
+  .logo-text span:last-child { color:var(--red); }
+
+  nav { display:flex; align-items:center; gap:0; }
+  .nav-item {
+    position:relative; padding:0 20px; height:72px;
+    display:flex; align-items:center; gap:4px;
+    font-size:15px; font-weight:600; color:var(--dark);
+    cursor:pointer; text-decoration:none; white-space:nowrap;
+    border-bottom:3px solid transparent;
+    transition:color .2s;
+  }
+  .nav-item.active { color:var(--red); border-bottom-color:var(--red); }
+  .nav-item:hover { color:var(--red); }
+  .nav-item .arrow { font-size:11px; margin-top:1px; transition:transform .2s; }
+  .nav-item.open .arrow { transform:rotate(180deg); }
+  .nav-contact { color:var(--red)!important; }
+
+  .nav-right { display:flex; align-items:center; gap:16px; }
+  .lang-btn {
+    display:flex; align-items:center; gap:6px;
+    border:1px solid var(--border); border-radius:4px;
+    padding:6px 12px; font-size:14px; font-weight:600; cursor:pointer;
+    background:var(--white);
+  }
+  .search-btn { background:none; border:none; cursor:pointer; font-size:20px; color:var(--dark); padding:4px; }
+
+  /* ── MEGA DROPDOWN ── */
+  .dropdown-overlay { display:none; position:fixed; top:72px; left:0; right:0; bottom:0; background:rgba(0,0,0,.45); z-index:900; }
+  .dropdown-overlay.open { display:block; }
+  .dropdown-panel { display:none; position:fixed; top:72px; left:0; right:0; background:rgba(40,40,40,.97); z-index:901; padding:48px 80px 56px; color:var(--white); box-shadow:0 8px 32px rgba(0,0,0,.3); }
+  .dropdown-panel.open { display:flex; gap:0; }
+  .dropdown-close { position:absolute; top:20px; right:32px; background:none; border:none; color:var(--white); font-size:28px; cursor:pointer; line-height:1; }
+  .dropdown-left { width:320px; padding-right:48px; flex-shrink:0; }
+  .dropdown-left img { width:240px; margin-bottom:20px; opacity:.9; }
+  .dropdown-left h3 { font-size:18px; font-weight:800; margin-bottom:10px; }
+  .dropdown-left p { font-size:13px; color:#aaa; line-height:1.6; }
+  .dropdown-divider { width:1px; background:#444; flex-shrink:0; }
+  .dropdown-right { flex:1; padding-left:56px; }
+  .dropdown-right h4 { font-size:11px; font-weight:700; letter-spacing:2px; color:#888; margin-bottom:24px; text-transform:uppercase; }
+  .dropdown-links { display:flex; flex-direction:column; gap:16px; }
+  .dropdown-link { font-size:16px; font-weight:500; color:var(--white); text-decoration:none; cursor:pointer; transition:color .15s; }
+  .dropdown-link:hover { color:var(--red); }
+
+  /* ── FLOATING SIDEBAR ── */
+  .sidebar { position:fixed; right:0; top:50%; transform:translateY(-50%); z-index:1000; display:flex; flex-direction:column; gap:0; }
+  .sidebar-btn { width:48px; height:48px; background:var(--red); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--white); font-size:18px; border-radius:2px 0 0 2px; margin-bottom:3px; transition:background .2s; }
+  .sidebar-btn:hover { background:var(--red-hover); }
+  .sidebar-up { width:40px; height:40px; background:var(--red); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--white); font-size:16px; border-radius:50%; margin-top:12px; transition:background .2s; }
+  .sidebar-up:hover { background:var(--red-hover); }
+
+  /* ═══════════════════════ VIDEO CAROUSEL (HERO) ═══════════════════════ */
+  .hero-slider { position:relative; height:calc(100vh - 72px); min-height:540px; overflow:hidden; background:#111; }
+  .hero-slide { position:absolute; inset:0; opacity:0; transition:opacity 0.8s ease; display:flex; align-items:center; z-index:1; }
+  .hero-slide.active { opacity:1; z-index:2; }
+  
+  /* Original Hero Backgrounds repurposed for slides */
+  .hero-bg { position:absolute; inset:0; background:linear-gradient(135deg,#2a1a0a 0%,#5c3a10 40%,#8b6020 70%,#6b4a15 100%); }
+  .hero-bg.vid { background:linear-gradient(135deg,#1a3a6b 0%,#2a5aab 50%,#0f2a55 100%); } /* Placeholder for Video slide */
+  
+  .hero-shelves { position:absolute; inset:0; background-image:repeating-linear-gradient(90deg, rgba(30,80,160,.3) 0,rgba(30,80,160,.3) 6px, transparent 6px, transparent 80px), repeating-linear-gradient(180deg, rgba(200,140,0,.2) 0,rgba(200,140,0,.2) 4px, transparent 4px, transparent 60px); opacity:.6; }
+  .hero-overlay { position:absolute; inset:0; background:rgba(0,0,0,.38); }
+  .hero-content { position:relative; z-index:3; padding:0 80px; max-width:760px; }
+  .hero-content h1 { font-family:'Barlow Condensed',sans-serif; font-size:clamp(52px,7vw,88px); font-weight:900; color:var(--white); line-height:1.0; margin-bottom:18px; text-shadow:0 2px 12px rgba(0,0,0,.5); }
+  .hero-content p { font-size:18px; font-weight:600; color:rgba(255,255,255,.88); margin-bottom:36px; }
+  .hero-cta { display:inline-block; background:var(--red); color:var(--white); padding:16px 32px; font-size:15px; font-weight:700; border:none; cursor:pointer; text-decoration:none; transition:background .2s; letter-spacing:.3px; }
+  .hero-cta:hover { background:var(--red-hover); }
+
+  .hero-controls { position:absolute; bottom:40px; left:80px; z-index:4; display:flex; gap:12px; }
+  .hero-dot { width:40px; height:4px; background:rgba(255,255,255,.3); cursor:pointer; transition:background .3s; border-radius:2px; }
+  .hero-dot.active { background:var(--red); }
+
+  /* ═══════════════════════ IMAGE CAROUSEL (INDUSTRIES) ═══════════════════════ */
+  .industry-carousel { position:relative; height:700px; overflow:hidden; display:flex; flex-direction:column; justify-content:space-between; }
+  .ind-bg { position:absolute; inset:0; background-size:cover; background-position:center; transition:background-image 0.5s ease-in-out; }
+  .ind-overlay { position:absolute; inset:0; background:linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.8) 100%); }
+  
+  .ind-header { position:relative; z-index:2; text-align:center; padding:60px 80px 0; color:var(--white); }
+  .ind-header h2 { font-family:'Barlow Condensed',sans-serif; font-size:48px; font-weight:900; margin-bottom:16px; }
+  .ind-header p { font-size:15px; max-width:900px; margin:0 auto; color:rgba(255,255,255,.8); line-height:1.6; }
+
+  .ind-bottom { position:relative; z-index:2; display:flex; align-items:flex-end; padding:0 40px; height:200px; }
+  .ind-nav-btn { background:rgba(255,255,255,0.9); border:none; width:40px; height:40px; border-radius:50%; font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; margin-bottom:30px; transition:background 0.2s; color:var(--dark); }
+  .ind-nav-btn:hover { background:var(--white); }
+  
+  .ind-tabs-wrapper { flex:1; display:flex; align-items:flex-end; overflow:hidden; margin:0 20px; }
+  .ind-tab { flex:1; min-width:140px; height:100px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; color:rgba(255,255,255,.7); cursor:pointer; transition:all 0.3s; background:rgba(0,0,0,0.4); border-bottom:3px solid transparent; backdrop-filter:blur(5px); }
+  .ind-tab svg { width:32px; height:32px; }
+  .ind-tab span { font-size:14px; font-weight:700; }
+  
+  .ind-tab:hover { color:var(--white); background:rgba(0,0,0,0.6); }
+  .ind-tab.active { background:var(--red); color:var(--white); height:140px; border-bottom:none; box-shadow:0 -5px 15px rgba(204,0,0,0.3); }
+
+  /* Section titles */
+  .section-title { text-align:center; font-family:'Barlow Condensed',sans-serif; font-size:clamp(32px,4vw,48px); font-weight:900; color:var(--dark); margin-bottom:12px; }
+  .section-sub { text-align:center; font-size:15px; color:var(--mid); margin-bottom:48px; }
+
+  /* EXACT ORIGINAL CSS PRESERVED FOR REST OF HOMEPAGE */
+  .asrs-section { padding:80px 80px 0; text-align:center; background:var(--white); }
+  .asrs-visual { position:relative; height:500px; background:linear-gradient(180deg,#f0f0f0 0%,#e0e0e0 100%); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  .asrs-diagram { width:70%; height:80%; background:linear-gradient(145deg,#c8c8c8,#b0b0b0); border-radius:4px; position:relative; display:flex; align-items:center; justify-content:center; }
+  .rack { position:absolute; top:10%; left:20%; right:20%; bottom:10%; }
+  .rack-col { position:absolute; top:0; bottom:0; width:28px; background:linear-gradient(180deg,#e8b44a,#c8942a); border-radius:2px; }
+  .asrs-popup { position:absolute; right:8%; top:30%; background:rgba(255,255,255,.92); border-radius:8px; padding:20px 28px; text-align:left; box-shadow:0 4px 24px rgba(0,0,0,.15); }
+  .asrs-popup h3 { font-size:18px; font-weight:800; margin-bottom:6px; }
+  .asrs-popup-btn { display:flex; align-items:center; gap:8px; font-size:14px; font-weight:700; color:var(--red); background:none; border:none; cursor:pointer; margin-top:8px; }
+  .asrs-popup-btn span { width:26px; height:26px; background:var(--red); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--white); font-size:13px; }
+  .cases-section { padding:80px 80px; background:var(--white); }
+  .cases-grid { display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-top:48px; }
+  .case-card { cursor:pointer; overflow:hidden; }
+  .case-img { height:280px; position:relative; overflow:hidden; background:linear-gradient(135deg,#1a3a6b 0%,#2a5aab 50%,#e8a020 100%); }
+  .case-img-inner { width:100%; height:100%; display:grid; grid-template-columns:repeat(8,1fr); gap:2px; padding:8px; }
+  .shelf-unit { background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.2); border-radius:1px; height:100%; }
+  .shelf-unit:nth-child(odd) { background:rgba(255,200,0,.2); }
+  .case-label { position:absolute; bottom:0; left:0; right:0; background:rgba(0,0,0,.5); padding:8px 12px; }
+  .case-title { font-size:15px; font-weight:700; color:var(--red); margin-top:12px; }
+  .case-desc { font-size:13px; color:var(--mid); margin-top:6px; line-height:1.5; }
+  .about-section { padding:80px; background:var(--light); display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
+  .about-section h2 { font-family:'Barlow Condensed',sans-serif; font-size:42px; font-weight:900; margin-bottom:24px; }
+  .about-section p { font-size:15px; color:var(--mid); line-height:1.8; }
+  .about-video { aspect-ratio:16/9; background:#111; border-radius:4px; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative; }
+  .video-overlay { position:absolute; inset:0; background:linear-gradient(135deg,rgba(0,40,80,.8),rgba(20,20,20,.9)); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; }
+  .play-btn { width:64px; height:64px; background:rgba(255,255,255,.15); border:2px solid rgba(255,255,255,.5); border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:22px; color:var(--white); transition:all .2s; backdrop-filter:blur(4px); }
+  .play-btn:hover { background:rgba(255,255,255,.3); }
+  .video-label { font-size:12px; color:rgba(255,255,255,.6); letter-spacing:2px; text-transform:uppercase; }
+  .stats-section { display:grid; grid-template-columns:repeat(4,1fr); }
+  .stat-box { padding:40px 32px; border-right:1px solid var(--border); }
+  .stat-box:first-child { background:var(--stat-red); }
+  .stat-box:first-child .stat-num, .stat-box:first-child .stat-label { color:var(--white); }
+  .stat-num { font-family:'Barlow Condensed',sans-serif; font-size:52px; font-weight:900; color:var(--dark); line-height:1; margin-bottom:10px; }
+  .stat-label { font-size:14px; color:var(--mid); line-height:1.4; font-weight:500; }
+  .stat-icon { font-size:20px; color:rgba(255,255,255,.5); margin-bottom:8px; }
+  .news-section { padding:80px; background:var(--light); }
+  .news-layout { display:grid; grid-template-columns:1fr 1fr; gap:48px; margin-top:0; }
+  .news-featured { background:linear-gradient(135deg,#1a3a6b,#2a5aab); padding:32px; border-radius:2px; color:var(--white); display:flex; flex-direction:column; justify-content:flex-end; min-height:280px; position:relative; overflow:hidden; }
+  .news-featured-badge { position:absolute; top:24px; left:24px; background:var(--red); padding:4px 14px; font-size:12px; font-weight:700; color:var(--white); letter-spacing:1px; }
+  .news-featured h3 { font-size:22px; font-weight:800; margin-bottom:8px; }
+  .news-featured p { font-size:13px; color:rgba(255,255,255,.7); }
+  .news-list { display:flex; flex-direction:column; gap:0; }
+  .news-item { display:flex; gap:20px; padding:20px 0; border-bottom:1px solid var(--border); cursor:pointer; }
+  .news-item:hover .news-item-title { color:var(--red); }
+  .news-date { font-size:28px; font-weight:900; color:var(--red); line-height:1; min-width:40px; }
+  .news-date-year { font-size:12px; color:var(--mid); font-weight:500; }
+  .news-item-title { font-size:15px; font-weight:700; color:var(--dark); margin-bottom:6px; }
+  .news-item-tags { font-size:12px; color:var(--mid); }
+  footer { background:#1a1a1a; color:rgba(255,255,255,.7); padding:64px 80px 32px; }
+  .footer-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:48px; margin-bottom:48px; }
+  footer h4 { font-size:16px; font-weight:800; color:var(--white); margin-bottom:20px; }
+  footer ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+  footer ul li { font-size:14px; cursor:pointer; transition:color .15s; }
+  footer ul li a { color:inherit; text-decoration:none; }
+  footer ul li:hover { color:var(--white); }
+  .footer-contact p { font-size:14px; margin-bottom:10px; line-height:1.6; }
+  .footer-contact strong { color:var(--white); }
+  .footer-bottom { border-top:1px solid rgba(255,255,255,.1); padding-top:24px; display:flex; justify-content:space-between; font-size:13px; color:rgba(255,255,255,.4); }
+</style>
+</head>
+<body>
+
+<header id="navbar">
+  <a class="logo" href="index.html">
+    <svg class="logo-icon" viewBox="0 0 36 28" fill="none">
+      <rect y="3" width="36" height="5" rx="1" fill="#e05a00"/>
+      <rect y="11" width="26" height="5" rx="1" fill="#e05a00"/>
+      <rect y="19" width="36" height="5" rx="1" fill="#e05a00"/>
+    </svg>
+    <span class="logo-text"><span>Rack</span><span>N</span>Space</span>
+  </a>
+
+  <nav>
+    <a class="nav-item active" href="index.html" id="nav-home">Home</a>
+    <div class="nav-item" id="nav-industries" onclick="toggleDropdown('industries')">Industries <span class="arrow">▾</span></div>
+    <div class="nav-item" id="nav-products" onclick="toggleDropdown('products')">Products <span class="arrow">▾</span></div>
+    <div class="nav-item" id="nav-services" onclick="toggleDropdown('services')">Services <span class="arrow">▾</span></div>
+    <div class="nav-item" id="nav-about" onclick="toggleDropdown('about-dd')">About Us <span class="arrow">▾</span></div>
+    <a class="nav-item nav-contact" href="contact.html" id="nav-contact">Contact Us</a>
+  </nav>
+
+  <div class="nav-right">
+    <button class="search-btn">🔍</button>
+  </div>
+</header>
+
+<div class="dropdown-overlay" id="dropdown-overlay" onclick="closeDropdown()"></div>
+
+<div class="dropdown-panel" id="dd-industries">
+  <button class="dropdown-close" onclick="closeDropdown()">✕</button>
+  <div class="dropdown-left">
+    <div style="width:240px;height:160px;background:linear-gradient(135deg,#888,#555);border-radius:4px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;color:#ccc;font-size:13px;">⬛ 3D Warehouse Illustration</div>
+    <h3>ASRS (Automated Storage and Retrieval System) Expert</h3>
+    <p>Solutions and Consulting: With decades of experience, RackNSpace provides intelligent warehousing & logistics solutions and consulting services for clients across a wide range of industries.</p>
+  </div>
+  <div class="dropdown-divider"></div>
+  <div class="dropdown-right">
+    <h4>Industries</h4>
+    <div class="dropdown-links">
+      <a class="dropdown-link" href="industries.html">New Energy</a>
+      <a class="dropdown-link" href="industries.html">Chemical</a>
+      <a class="dropdown-link" href="industries.html">Pharmaceutical</a>
+      <a class="dropdown-link" href="industries.html">Food & Beverage</a>
+      <a class="dropdown-link" href="industries.html">Cold Chain</a>
+    </div>
+  </div>
+</div>
+
+<div class="dropdown-panel" id="dd-products">
+  <button class="dropdown-close" onclick="closeDropdown()">✕</button>
+  <div class="dropdown-left">
+    <div style="width:240px;height:160px;background:linear-gradient(135deg,#444,#222);border-radius:4px;margin-bottom:20px;"></div>
+    <h3>Complete AS/RS Product Range</h3>
+    <p>From unit-load cranes to shuttle systems, conveying equipment and intelligent software — all engineered for precision.</p>
+  </div>
+  <div class="dropdown-divider"></div>
+  <div class="dropdown-right">
+    <h4>Products</h4>
+    <div class="dropdown-links">
+      <a class="dropdown-link" href="products.html">ASRS Equipment</a>
+      <a class="dropdown-link" href="products.html">Conveying Equipment</a>
+      <a class="dropdown-link" href="products.html">Software</a>
+    </div>
+  </div>
+</div>
+
+<div class="dropdown-panel" id="dd-services">
+  <button class="dropdown-close" onclick="closeDropdown()">✕</button>
+  <div class="dropdown-left">
+    <div style="width:240px;height:160px;background:linear-gradient(135deg,#333,#111);border-radius:4px;margin-bottom:20px;"></div>
+    <h3>End-to-End Service Excellence</h3>
+    <p>From initial planning to after-sales maintenance — RackNSpace supports every phase of your automation journey.</p>
+  </div>
+  <div class="dropdown-divider"></div>
+  <div class="dropdown-right">
+    <h4>Services</h4>
+    <div class="dropdown-links">
+      <a class="dropdown-link" href="#">R&D & Planning</a>
+      <a class="dropdown-link" href="#">Equipment Integration</a>
+      <a class="dropdown-link" href="#">Remote Support (7×24)</a>
+    </div>
+  </div>
+</div>
+
+<div class="dropdown-panel" id="dd-about-dd">
+  <button class="dropdown-close" onclick="closeDropdown()">✕</button>
+  <div class="dropdown-left">
+    <div style="width:240px;height:160px;background:linear-gradient(135deg,#2a1a0a,#5c3a10);border-radius:4px;margin-bottom:20px;"></div>
+    <h3>RACK N SPACE Intelligent Logistics Technology</h3>
+    <p>Smart warehousing integrator dedicated to intelligent manufacturing and smart logistics since foundation.</p>
+  </div>
+  <div class="dropdown-divider"></div>
+  <div class="dropdown-right">
+    <h4>About Us</h4>
+    <div class="dropdown-links">
+      <a class="dropdown-link" href="about.html">RackNSpace Group</a>
+      <a class="dropdown-link" href="about.html">R&D</a>
+      <a class="dropdown-link" href="about.html">Join Us</a>
+    </div>
+  </div>
+</div>
+
+<div class="sidebar">
+  <button class="sidebar-btn">✉</button>
+  <button class="sidebar-btn">📱</button>
+  <button class="sidebar-btn">📞</button>
+  <button class="sidebar-btn">💬</button>
+  <button class="sidebar-up" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+</div>
+
+<section class="hero-slider">
+  <div class="hero-slide active" id="slide-0">
+    <div class="hero-bg"></div>
+    <div class="hero-shelves"></div>
+    <div class="hero-overlay"></div>
+    <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.25" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice">
+      <g stroke="#4488cc" stroke-width="2" fill="none">
+        <line x1="400" y1="0" x2="400" y2="700"/><line x1="460" y1="0" x2="460" y2="700"/><line x1="560" y1="0" x2="560" y2="700"/><line x1="620" y1="0" x2="620" y2="700"/><line x1="720" y1="0" x2="720" y2="700"/><line x1="780" y1="0" x2="780" y2="700"/><line x1="880" y1="0" x2="880" y2="700"/><line x1="940" y1="0" x2="940" y2="700"/><line x1="1040" y1="0" x2="1040" y2="700"/><line x1="1100" y1="0" x2="1100" y2="700"/>
+        <line x1="380" y1="100" x2="1120" y2="100"/><line x1="380" y1="200" x2="1120" y2="200"/><line x1="380" y1="300" x2="1120" y2="300"/><line x1="380" y1="400" x2="1120" y2="400"/><line x1="380" y1="500" x2="1120" y2="500"/><line x1="380" y1="600" x2="1120" y2="600"/>
+      </g>
+      <g fill="rgba(200,140,20,.4)">
+        <rect x="405" y="110" width="48" height="80"/><rect x="465" y="110" width="88" height="80"/><rect x="565" y="110" width="48" height="80"/><rect x="625" y="110" width="88" height="80"/><rect x="725" y="210" width="48" height="80"/><rect x="785" y="210" width="88" height="80"/><rect x="405" y="310" width="88" height="80"/><rect x="725" y="110" width="48" height="80"/><rect x="885" y="110" width="48" height="80"/><rect x="945" y="210" width="88" height="80"/><rect x="1045" y="310" width="48" height="80"/>
+      </g>
+      <line x1="380" y1="660" x2="1120" y2="660" stroke="#888" stroke-width="6"/>
+      <rect x="690" y="550" width="60" height="100" fill="rgba(200,60,0,.5)" stroke="#cc4400" stroke-width="1"/>
+    </svg>
+    <div class="hero-content">
+      <h1>AS/RS Overall<br>Solution</h1>
+      <p>Optimize warehouse space, reduce errors, and improve throughput</p>
+      <a class="hero-cta" href="products.html">Explore solutions that are suitable for you</a>
+    </div>
+  </div>
+
+  <div class="hero-slide" id="slide-1">
+    <div class="hero-bg vid"></div> <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Intelligent Flow &<br>Capacity</h1>
+      <p>Under the background of the new round of technological and industrial changes.</p>
+      <a class="hero-cta" href="industries.html">View Industry Applications</a>
+    </div>
+  </div>
+
+  <div class="hero-controls">
+    <div class="hero-dot active" onclick="switchHero(0)"></div>
+    <div class="hero-dot" onclick="switchHero(1)"></div>
+  </div>
+</section>
+
+<section class="industry-carousel">
+  <div class="ind-bg" id="industry-bg" style="background-image: url('https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&q=80');"></div>
+  <div class="ind-overlay"></div>
+
+  <div class="ind-header">
+    <h2>Industries</h2>
+    <p>Boosting Your Operational Flow and Capacity. Under the background of the new round of technological and industrial changes, new energy materials will continue to be upgraded, and market demand will also increase significantly.</p>
+  </div>
+
+  <div class="ind-bottom">
+    <button class="ind-nav-btn">❮</button>
+    <div class="ind-tabs-wrapper">
+      <div class="ind-tab" onclick="switchIndustry('appliance', this)">
+        <svg fill="currentColor" viewBox="0 0 28 28"><rect x="2" y="8" width="24" height="14" rx="1" opacity=".6"/><rect x="8" y="4" width="12" height="6" rx="1"/><rect x="10" y="12" width="8" height="6" rx="1" fill="rgba(255,255,255,.5)"/></svg>
+        <span>Home Appliance</span>
+      </div>
+      <div class="ind-tab" onclick="switchIndustry('cold', this)">
+        <svg fill="currentColor" viewBox="0 0 28 28"><circle cx="14" cy="14" r="8" opacity=".6"/><path d="M14 6v4M14 18v4M6 14h4M18 14h4" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+        <span>Cold Chain</span>
+      </div>
+      <div class="ind-tab active" onclick="switchIndustry('energy', this)">
+        <svg fill="currentColor" viewBox="0 0 28 28"><path d="M4 22l5-8h4l5-8h6" stroke="currentColor" stroke-width="2" fill="none" opacity=".8"/><circle cx="20" cy="8" r="3" opacity=".6"/></svg>
+        <span>New Energy</span>
+      </div>
+      <div class="ind-tab" onclick="switchIndustry('chemical', this)">
+        <svg fill="currentColor" viewBox="0 0 28 28"><rect x="8" y="2" width="12" height="20" rx="1" opacity=".5"/><circle cx="14" cy="10" r="3"/><rect x="11" y="16" width="6" height="6" rx="1" opacity=".6"/></svg>
+        <span>Chemical</span>
+      </div>
+      <div class="ind-tab" onclick="switchIndustry('pharma', this)">
+        <svg fill="currentColor" viewBox="0 0 28 28"><rect x="2" y="16" width="24" height="8" rx="1" opacity=".5"/><rect x="6" y="10" width="16" height="8" rx="1" opacity=".6"/><rect x="10" y="4" width="8" height="8" rx="1" opacity=".7"/></svg>
+        <span>Pharmaceutical</span>
+      </div>
+    </div>
+    <button class="ind-nav-btn">❯</button>
+  </div>
+</section>
+
+<section class="asrs-section">
+  <h2 class="section-title">Automated Storage &amp; Retrieval Systems (AS/RS)</h2>
+  <p class="section-sub">From warehouse automation to intelligent software control</p>
+  <div class="asrs-visual">
+    <svg style="width:65%;height:85%;opacity:.85" viewBox="0 0 900 500" fill="none">
+      <rect x="200" y="30" width="500" height="420" fill="rgba(200,200,200,.12)" stroke="#aaa" stroke-width="1.5"/>
+      <g fill="#e8a020" opacity=".9">
+        <rect x="220" y="40" width="18" height="410"/><rect x="300" y="40" width="18" height="410"/><rect x="380" y="40" width="18" height="410"/><rect x="460" y="40" width="18" height="410"/><rect x="540" y="40" width="18" height="410"/><rect x="620" y="40" width="18" height="410"/><rect x="680" y="40" width="18" height="410"/>
+      </g>
+      <g stroke="#ccc" stroke-width="1.2" opacity=".7">
+        <line x1="200" y1="120" x2="700" y2="120"/><line x1="200" y1="200" x2="700" y2="200"/><line x1="200" y1="280" x2="700" y2="280"/><line x1="200" y1="360" x2="700" y2="360"/>
+      </g>
+      <rect x="390" y="40" width="20" height="420" fill="#cc0000" opacity=".7"/>
+      <rect x="370" y="230" width="60" height="40" fill="#cc0000" opacity=".9" rx="2"/>
+      <rect x="180" y="445" width="540" height="8" fill="#888" rx="2"/>
+      <rect x="100" y="453" width="200" height="16" fill="#555" rx="2"/>
+      <rect x="600" y="453" width="200" height="16" fill="#555" rx="2"/>
+      <g fill="rgba(200,140,30,.55)">
+        <rect x="238" y="130" width="55" height="60"/><rect x="318" y="130" width="55" height="60"/><rect x="478" y="130" width="55" height="60"/><rect x="558" y="130" width="55" height="60"/><rect x="238" y="210" width="55" height="60"/><rect x="398" y="210" width="55" height="60"/><rect x="558" y="210" width="55" height="60"/><rect x="318" y="290" width="55" height="60"/><rect x="478" y="290" width="55" height="60"/><rect x="638" y="290" width="40" height="60"/><rect x="238" y="370" width="55" height="60"/><rect x="478" y="370" width="55" height="60"/>
+      </g>
+      <rect x="30" y="120" width="140" height="100" fill="#222" rx="4"/>
+      <rect x="40" y="130" width="120" height="80" fill="#1a3a5a" rx="2"/>
+      <text x="100" y="155" text-anchor="middle" fill="#4af" font-size="9">DASHBOARD</text>
+      <rect x="48" y="163" width="50" height="8" fill="#4af" rx="2" opacity=".5"/>
+      <rect x="48" y="177" width="70" height="8" fill="#fa4" rx="2" opacity=".5"/>
+      <rect x="48" y="191" width="40" height="8" fill="#4f4" rx="2" opacity=".5"/>
+      <rect x="30" y="430" width="120" height="50" fill="#888" rx="4"/>
+      <rect x="130" y="440" width="50" height="40" fill="#666" rx="2"/>
+      <circle cx="60" cy="480" r="10" fill="#333"/>
+      <circle cx="150" cy="480" r="10" fill="#333"/>
+    </svg>
+    <div class="asrs-popup">
+      <h3>Automated Warehousing</h3>
+      <button class="asrs-popup-btn">Click to view <span>▶</span></button>
+    </div>
+  </div>
+</section>
+
+<section class="cases-section">
+  <h2 class="section-title">Success Case</h2>
+  <div class="cases-grid">
+    <div class="case-card">
+      <div class="case-img">
+        <div class="case-img-inner">
+          <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+          <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+          <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+          <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+        </div>
+        <div style="position:absolute;left:8px;top:20%;width:6px;height:60%;background:#e8a020;border-radius:2px;"></div>
+        <div style="position:absolute;left:20%;top:0;bottom:0;width:3px;background:rgba(204,0,0,.7);"></div>
+        <div style="position:absolute;right:20%;top:0;bottom:0;width:3px;background:rgba(204,0,0,.7);"></div>
+      </div>
+      <div class="case-title">Unit-load Crane &amp; Tote Four-Way Shuttle AS/RS</div>
+      <div class="case-desc">Raw material and finished goods warehouse — automated end-to-end with crane and shuttle integration.</div>
+    </div>
+    <div class="case-card">
+      <div class="case-img" style="background:linear-gradient(135deg,#c06010,#e8a020,#1a3a6b);">
+        <div class="case-img-inner">
+          <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+          <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+          <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+          <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+        </div>
+        <div style="position:absolute;bottom:16px;left:16px;background:#222;color:#ff0;font-size:10px;padding:4px 8px;">■ SYSTEM RUNNING</div>
+      </div>
+      <div class="case-title">Unit-load Crane AS/RS</div>
+      <div class="case-desc">A well-known pharmaceutical enterprise. Material goods warehouse customized fully automated solution.</div>
+    </div>
+  </div>
+</section>
+
+<section class="about-section">
+  <div>
+    <h2>About Us</h2>
+    <p>RACK N SPACE Group is a smart warehousing logistics system and equipment integrator that is dedicated in the field of intelligent manufacturing and smart logistics. The company focuses on the R&D, planning & design, equipment integration, installation & commissioning, after-sales maintenance and other services of intralogistics system.</p>
+    <p style="margin-top:16px">Currently, RACK N SPACE has established a robust global service network, including its headquarters, three R&D centers, three manufacturing bases, three overseas support centers and national wide after-sales service centers. With over 1,000 clients benefiting from RACK N SPACE's logistics solutions and products.</p>
+  </div>
+  <div class="about-video">
+    <div class="video-overlay">
+      <div style="font-size:11px;color:rgba(255,255,255,.4);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;">MICRO FULFILLMENT CENTER</div>
+      <div class="play-btn">▶</div>
+      <div class="video-label">Watch our story</div>
+    </div>
+  </div>
+</section>
+
+<section class="stats-section">
+  <div class="stat-box">
+    <div class="stat-icon">👤</div>
+    <div class="stat-num">1000+</div>
+    <div class="stat-label">Serving over 1000 clients</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-icon" style="color:var(--mid)">👤</div>
+    <div class="stat-num">100%</div>
+    <div class="stat-label">100% project acceptance and delivery rate</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-icon" style="color:var(--mid)">👤</div>
+    <div class="stat-num">80%</div>
+    <div class="stat-label">Automatic Storage and Retrieval System (AS/RS)</div>
+  </div>
+  <div class="stat-box" style="border-right:none">
+    <div class="stat-icon" style="color:var(--mid)">👤</div>
+    <div class="stat-num">7*24</div>
+    <div class="stat-label">2-hour quick response, 7 × 24-hour remote support</div>
+  </div>
+</section>
+
+<section class="news-section">
+  <h2 class="section-title">Latest News</h2>
+  <div class="news-layout" style="margin-top:40px">
+    <div class="news-featured">
+      <div class="news-featured-badge">MODEX 2026</div>
+      <div style="position:absolute;inset:0;background:linear-gradient(135deg,#1a3a8b,#3a6adb);opacity:.7;"></div>
+      <div style="position:relative">
+        <h3>RackNSpace @ MODEX 2026</h3>
+        <p>Georgia World Congress Center, Atlanta · April 13–16, 2026<br>Pallt Shuttle · Tote Shuttle · Mini-FlyBox — Unlock higher density, Higher efficiency, Scalable automation</p>
+      </div>
+    </div>
+    <div class="news-list">
+      <div class="news-item">
+        <div><div class="news-date">08</div><div class="news-date-year">2026-04</div></div>
+        <div>
+          <div class="news-item-title">How Automated Warehouses Are Transforming Manufacturing Logistics</div>
+          <div class="news-item-tags">Warehouse Solutions, Automated Storage, AS/RS Solutions, Warehouse Efficiency, Logistics Automation</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div><div class="news-date">01</div><div class="news-date-year">2026-04</div></div>
+        <div>
+          <div class="news-item-title">Key Reasons Businesses Are Adopting Automated Warehouse Systems</div>
+          <div class="news-item-tags">Automation, Warehouse Technology, Smart Logistics</div>
+        </div>
+      </div>
+      <div class="news-item">
+        <div><div class="news-date">25</div><div class="news-date-year">2026-03</div></div>
+        <div>
+          <div class="news-item-title">RackNSpace Launches Next-Generation Tote Shuttle System</div>
+          <div class="news-item-tags">Product Launch, Tote Shuttle, Cold Chain, E-Commerce</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h4>About Us</h4>
+      <ul><li><a href="about.html">RackNSpace Group</a></li><li><a href="about.html">R&D</a></li><li><a href="about.html">Events & Activities</a></li><li><a href="about.html">Sustainability</a></li><li><a href="about.html">Culture</a></li><li><a href="about.html">Join us</a></li><li><a href="about.html">Partnership Opportunities</a></li></ul>
+    </div>
+    <div>
+      <h4>Case</h4>
+      <ul><li>Unit-load Crane AS/RS</li><li>Unit-load Crane & Four-way Shuttle AS/RS</li><li>Unit-load Crane & Tote Four-Way Shuttle AS/RS</li><li>Unit-load Crane AS/RS</li><li>Unit-load Crane & Four-way Shuttle AS/RS</li><li>Unit-load Crane AS/RS</li></ul>
+    </div>
+    <div>
+      <h4>Products</h4>
+      <ul><li><a href="products.html">ASRS Equipment</a></li><li><a href="products.html">Conveying Equipment</a></li><li><a href="products.html">Software</a></li></ul>
+    </div>
+    <div class="footer-contact">
+      <h4>Contact Us</h4>
+      <p>E-mail: <strong>info@racknspace.com</strong></p>
+      <p>Tel: <strong>+86 15895413511</strong></p>
+      <p>Whatsapp: <strong>+86 18695887189</strong></p>
+      <p>Address: <strong>Room 602, Building G2, Artificial Intelligence Industrial Park, No.88 Jinjihu Avenue, Suzhou Industrial Park, Suzhou City, China</strong></p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>Copyright © 2025 RACK N SPACE INTELLIGENT LOGISTICS TECHNOLOGY CO., LTD. Privacy Policy</span>
+    <span>Website</span>
+  </div>
+</footer>
+
+<script>
+  /* Dropdown Logic */
+  let openDd = null;
+  function toggleDropdown(name) {
+    const panel = document.getElementById('dd-' + name);
+    const overlay = document.getElementById('dropdown-overlay');
+    const navItem = document.getElementById('nav-' + name.replace('-dd',''));
+    if (openDd === name) { closeDropdown(); return; }
+    closeDropdown();
+    openDd = name;
+    panel.classList.add('open');
+    overlay.classList.add('open');
+    if (navItem) navItem.classList.add('open');
+  }
+  function closeDropdown() {
+    if (openDd) {
+      const panel = document.getElementById('dd-' + openDd);
+      if (panel) panel.classList.remove('open');
+      const navItem = document.getElementById('nav-' + openDd.replace('-dd',''));
+      if (navItem) { navItem.classList.remove('open'); }
+    }
+    document.getElementById('dropdown-overlay').classList.remove('open');
+    openDd = null;
+  }
+
+  /* Video Hero Carousel Logic */
+  function switchHero(index) {
+    document.querySelectorAll('.hero-slide').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.hero-dot').forEach(d => d.classList.remove('active'));
+    document.getElementById('slide-' + index).classList.add('active');
+    document.querySelectorAll('.hero-dot')[index].classList.add('active');
+  }
+
+  /* Industry Image Carousel Logic */
+  const indImages = {
+    'appliance': 'https://images.unsplash.com/photo-1558384515-32213d8d641d?auto=format&fit=crop&q=80',
+    'cold': 'https://images.unsplash.com/photo-1582216584281-b54199f381f3?auto=format&fit=crop&q=80',
+    'energy': 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&q=80',
+    'chemical': 'https://images.unsplash.com/photo-1532187643603-c11fce54117b?auto=format&fit=crop&q=80',
+    'pharma': 'https://images.unsplash.com/photo-1585435557343-3b092031a831?auto=format&fit=crop&q=80'
+  };
+
+  function switchIndustry(key, element) {
+    document.querySelectorAll('.ind-tab').forEach(t => t.classList.remove('active'));
+    element.classList.add('active');
+    document.getElementById('industry-bg').style.backgroundImage = `url('${indImages[key]}')`;
+  }
+</script>
+</body>
+</html>
