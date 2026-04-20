@@ -85,7 +85,7 @@
   .sidebar-btn { width:48px; height:48px; background:var(--red); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--white); font-size:18px; border-radius:2px 0 0 2px; margin-bottom:3px; transition:background .2s; }
   .sidebar-btn:hover { background:var(--red-hover); }
   
-  /* UPDATED: SCROLL TO TOP BUTTON */
+  /* ── SCROLL TO TOP BUTTON ── */
   .scroll-to-top {
     position: fixed;
     bottom: 40px;
@@ -114,13 +114,16 @@
   .hero-slider { position:relative; height:calc(100vh - 72px); min-height:540px; overflow:hidden; background:#000; }
   .hero-slide { position:absolute; inset:0; opacity:0; transition:opacity 0.8s ease; display:flex; align-items:center; z-index:1; }
   .hero-slide.active { opacity:1; z-index:2; }
+  
   .hero-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; opacity:0.6; }
+  
   .hero-overlay { position:absolute; inset:0; background:rgba(0,0,0,.45); z-index:1; }
   .hero-content { position:relative; z-index:3; padding:0 80px; max-width:760px; }
   .hero-content h1 { font-family:'Barlow Condensed',sans-serif; font-size:clamp(52px,7vw,88px); font-weight:900; color:var(--white); line-height:1.0; margin-bottom:18px; text-shadow:0 2px 12px rgba(0,0,0,.5); }
   .hero-content p { font-size:18px; font-weight:600; color:rgba(255,255,255,.88); margin-bottom:36px; }
   .hero-cta { display:inline-block; background:var(--red); color:var(--white); padding:16px 32px; font-size:15px; font-weight:700; border:none; cursor:pointer; text-decoration:none; transition:background .2s; letter-spacing:.3px; }
   .hero-cta:hover { background:var(--red-hover); }
+
   .hero-controls { position:absolute; bottom:40px; left:80px; z-index:4; display:flex; gap:12px; }
   .hero-dot { width:40px; height:4px; background:rgba(255,255,255,.3); cursor:pointer; transition:background .3s; border-radius:2px; }
   .hero-dot.active { background:var(--red); }
@@ -129,16 +132,20 @@
   .industry-carousel { position:relative; height:700px; overflow:hidden; display:flex; flex-direction:column; justify-content:space-between; }
   .ind-bg { position:absolute; inset:0; background-size:cover; background-position:center; transition:background-image 0.5s ease-in-out; }
   .ind-overlay { position:absolute; inset:0; background:linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.8) 100%); }
+  
   .ind-header { position:relative; z-index:2; text-align:center; padding:60px 80px 0; color:var(--white); }
   .ind-header h2 { font-family:'Barlow Condensed',sans-serif; font-size:48px; font-weight:900; margin-bottom:16px; }
   .ind-header p { font-size:15px; max-width:900px; margin:0 auto; color:rgba(255,255,255,.8); line-height:1.6; }
+
   .ind-bottom { position:relative; z-index:2; display:flex; align-items:flex-end; padding:0 40px; height:200px; }
   .ind-nav-btn { background:rgba(255,255,255,0.9); border:none; width:40px; height:40px; border-radius:50%; font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; margin-bottom:30px; transition:background 0.2s; color:var(--dark); }
   .ind-nav-btn:hover { background:var(--white); }
+  
   .ind-tabs-wrapper { flex:1; display:flex; align-items:flex-end; overflow:hidden; margin:0 20px; }
   .ind-tab { flex:1; min-width:140px; height:100px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; color:rgba(255,255,255,.7); cursor:pointer; transition:all 0.3s; background:rgba(0,0,0,0.4); border-bottom:3px solid transparent; backdrop-filter:blur(5px); }
   .ind-tab svg { width:32px; height:32px; }
   .ind-tab span { font-size:14px; font-weight:700; }
+  
   .ind-tab:hover { color:var(--white); background:rgba(0,0,0,0.6); }
   .ind-tab.active { background:var(--red); color:var(--white); height:140px; border-bottom:none; box-shadow:0 -5px 15px rgba(204,0,0,0.3); }
 
@@ -146,25 +153,248 @@
   .section-title { text-align:center; font-family:'Barlow Condensed',sans-serif; font-size:clamp(32px,4vw,48px); font-weight:900; color:var(--dark); margin-bottom:12px; }
   .section-sub { text-align:center; font-size:15px; color:var(--mid); margin-bottom:48px; }
 
-  /* ═══════════════════════ AS/RS SECTION ═══════════════════════ */
+  /* ═══════════════════════ AS/RS SECTION (HOTSPOTS) ═══════════════════════ */
   .asrs-section { padding:80px 80px 0; text-align:center; background:var(--white); }
-  .asrs-visual { position:relative; height:500px; background:linear-gradient(180deg,#f0f0f0 0%,#e0e0e0 100%); display:flex; align-items:center; justify-content:center; overflow:hidden; }
-  .asrs-diagram { width:70%; height:80%; background:linear-gradient(145deg,#c8c8c8,#b0b0b0); border-radius:4px; position:relative; display:flex; align-items:center; justify-content:center; }
-  .rack { position:absolute; top:10%; left:20%; right:20%; bottom:10%; }
-  .rack-col { position:absolute; top:0; bottom:0; width:28px; background:linear-gradient(180deg,#e8b44a,#c8942a); border-radius:2px; }
   
-  /* UPDATED AS/RS POPUPS */
-  .asrs-popup { position:absolute; background:rgba(255,255,255,.92); border-radius:8px; padding:16px 20px; text-align:left; box-shadow:0 4px 24px rgba(0,0,0,.15); transition: transform 0.2s; z-index: 5; }
-  .asrs-popup:hover { transform: translateY(-4px); }
-  .asrs-popup h3 { font-size:16px; font-weight:800; margin-bottom:4px; }
-  .asrs-popup-btn { display:flex; align-items:center; gap:8px; font-size:13px; font-weight:700; color:var(--red); background:none; border:none; cursor:pointer; margin-top:6px; }
-  .asrs-popup-btn span { width:22px; height:22px; background:var(--red); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--white); font-size:11px; }
+  .asrs-visual { position:relative; height:500px; display:flex; align-items:center; justify-content:center; overflow:hidden; border-radius:4px; }
+  
+  /* ── HOTSPOT FIX ──
+     Root cause: the popup was offset 40px away from the dot with no hover bridge,
+     so the mouse left .asrs-hotspot-container while crossing the gap, dismissing it.
+     Fix: switch to click-toggle (JS below), add a generous transparent padding zone
+     on the container so accidental mouse-leave doesn't fire, and position the popup
+     flush against the dot with a small gap via margin only. */
+
+  .asrs-hotspot-container {
+    position: absolute;
+    /* large transparent hit area so the container stays "hovered" while
+       the cursor travels between dot and popup */
+    padding: 20px;
+    margin: -20px;
+    cursor: pointer;
+  }
+
+  .asrs-hotspot-dot {
+    width: 24px;
+    height: 24px;
+    background: var(--red);
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    animation: pulseRed 2s infinite;
+    /* make sure the dot itself is on top */
+    z-index: 2;
+  }
+
+  @keyframes pulseRed {
+    0%   { box-shadow: 0 0 0 0   rgba(204, 0, 0, 0.7); }
+    70%  { box-shadow: 0 0 0 15px rgba(204, 0, 0, 0);   }
+    100% { box-shadow: 0 0 0 0   rgba(204, 0, 0, 0);    }
+  }
+
+  /* Popup — hidden by default, shown via .visible class toggled by JS */
+  .asrs-popup {
+    position: absolute;
+    /* default: open to the RIGHT of the dot */
+    top: 50%;
+    left: calc(100% + 8px);   /* flush right of the dot + 8px gap */
+    transform: translateY(-50%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    background: rgba(255,255,255,.97);
+    border-radius: 8px;
+    padding: 16px 20px;
+    text-align: left;
+    box-shadow: 0 4px 24px rgba(0,0,0,.18);
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    min-width: max-content;
+    white-space: nowrap;
+    z-index: 10;
+  }
+
+  /* Variant: open to the LEFT (for hotspots near the right edge) */
+  .asrs-popup.left-side {
+    left: auto;
+    right: calc(100% + 8px);
+    transform: translateY(-50%);
+  }
+
+  /* Active state — toggled by JS click */
+  .asrs-popup.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .asrs-popup h3 { font-size:16px; font-weight:800; margin-bottom:4px; color: var(--dark); }
+  .asrs-popup-btn {
+    display:flex; align-items:center; gap:8px;
+    font-size:13px; font-weight:700; color:var(--red);
+    background:none; border:none; cursor:pointer; margin-top:6px; padding:0;
+  }
+  .asrs-popup-btn span {
+    width:22px; height:22px; background:var(--red); border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--white); font-size:11px;
+  }
+
+  /* ═══════════════════════ DETAIL MODAL ═══════════════════════ */
+  .modal-backdrop {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.65);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    backdrop-filter: blur(3px);
+  }
+  .modal-backdrop.open {
+    display: flex;
+    animation: backdropIn 0.25s ease;
+  }
+  @keyframes backdropIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  .modal-box {
+    background: var(--white);
+    border-radius: 6px;
+    width: 100%;
+    max-width: 780px;
+    max-height: 88vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.35);
+    animation: modalIn 0.28s cubic-bezier(.22,.68,0,1.2);
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(24px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0)    scale(1);    }
+  }
+
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 32px 20px;
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0;
+    background: var(--white);
+    z-index: 1;
+  }
+  .modal-header-left { display: flex; align-items: center; gap: 14px; }
+  .modal-badge {
+    background: var(--red);
+    color: var(--white);
+    font-size: 11px; font-weight: 800;
+    letter-spacing: 1.2px; text-transform: uppercase;
+    padding: 4px 12px; border-radius: 2px;
+  }
+  .modal-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 26px; font-weight: 900;
+    color: var(--dark); line-height: 1.1;
+  }
+  .modal-close {
+    width: 36px; height: 36px;
+    background: var(--light); border: none; border-radius: 50%;
+    font-size: 18px; cursor: pointer; color: var(--dark);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s, color 0.2s;
+  }
+  .modal-close:hover { background: var(--red); color: var(--white); }
+
+  .modal-hero {
+    height: 220px;
+    background: linear-gradient(135deg, #1a2a44 0%, #0F2A44 100%);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; position: relative;
+  }
+  .modal-hero svg { opacity: 0.55; }
+  .modal-hero-label {
+    position: absolute; bottom: 18px; left: 32px;
+    font-size: 12px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: rgba(255,255,255,0.5);
+  }
+
+  .modal-body { padding: 32px; }
+
+  .modal-section-title {
+    font-size: 11px; font-weight: 800; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--red);
+    margin-bottom: 14px; margin-top: 28px;
+  }
+  .modal-section-title:first-child { margin-top: 0; }
+
+  .modal-desc {
+    font-size: 15px; color: var(--mid);
+    line-height: 1.8; margin-bottom: 0;
+  }
+
+  .modal-specs {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 12px; margin-top: 4px;
+  }
+  .modal-spec {
+    background: var(--light);
+    border-left: 3px solid var(--red);
+    padding: 12px 16px;
+    border-radius: 0 4px 4px 0;
+  }
+  .modal-spec-label {
+    font-size: 11px; font-weight: 700; color: var(--mid);
+    text-transform: uppercase; letter-spacing: .8px; margin-bottom: 4px;
+  }
+  .modal-spec-value {
+    font-size: 15px; font-weight: 800; color: var(--dark);
+  }
+
+  .modal-features {
+    list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 4px;
+  }
+  .modal-features li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 14px; color: var(--mid); line-height: 1.5;
+  }
+  .modal-features li::before {
+    content: '';
+    width: 7px; height: 7px;
+    background: var(--red); border-radius: 50%;
+    flex-shrink: 0; margin-top: 5px;
+  }
+
+  .modal-footer {
+    padding: 20px 32px 28px;
+    display: flex; gap: 12px; justify-content: flex-end;
+    border-top: 1px solid var(--border);
+  }
+  .modal-btn-primary {
+    background: var(--red); color: var(--white);
+    border: none; padding: 12px 28px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px; font-weight: 700;
+    cursor: pointer; transition: background 0.2s;
+    border-radius: 2px;
+  }
+  .modal-btn-primary:hover { background: var(--red-hover); }
+  .modal-btn-secondary {
+    background: none; color: var(--dark);
+    border: 1px solid var(--border); padding: 12px 24px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px; font-weight: 600;
+    cursor: pointer; transition: border-color 0.2s, color 0.2s;
+    border-radius: 2px;
+  }
+  .modal-btn-secondary:hover { border-color: var(--dark); }
 
   /* ═══════════════════════ CASES SECTION ═══════════════════════ */
   .cases-section { padding:80px 80px; background:var(--white); }
   .cases-grid { display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-top:48px; }
   
-  /* UPDATED CASES CAROUSEL CSS */
   .cases-carousel-wrap { overflow: hidden; position: relative; margin-top: 48px; width: 100%; }
   .cases-track { display: flex; gap: 32px; transition: transform 0.6s ease-in-out; width: 100%; }
   .case-card { flex: 0 0 calc(50% - 16px); cursor:pointer; overflow:hidden; min-width: 0; }
@@ -177,15 +407,16 @@
   .case-title { font-size:15px; font-weight:700; color:var(--red); margin-top:12px; }
   .case-desc { font-size:13px; color:var(--mid); margin-top:6px; line-height:1.5; }
 
-  /* EXACT ORIGINAL CSS PRESERVED FOR REST OF HOMEPAGE */
+  /* ═══════════════════════ ABOUT, STATS & NEWS ═══════════════════════ */
   .about-section { padding:80px; background:var(--light); display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
   .about-section h2 { font-family:'Barlow Condensed',sans-serif; font-size:42px; font-weight:900; margin-bottom:24px; }
   .about-section p { font-size:15px; color:var(--mid); line-height:1.8; }
-  .about-video { aspect-ratio:16/9; background:#111; border-radius:4px; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative; }
-  .video-overlay { position:absolute; inset:0; background:linear-gradient(135deg,rgba(0,40,80,.8),rgba(20,20,20,.9)); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; }
-  .play-btn { width:64px; height:64px; background:rgba(255,255,255,.15); border:2px solid rgba(255,255,255,.5); border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:22px; color:var(--white); transition:all .2s; backdrop-filter:blur(4px); }
-  .play-btn:hover { background:rgba(255,255,255,.3); }
-  .video-label { font-size:12px; color:rgba(255,255,255,.6); letter-spacing:2px; text-transform:uppercase; }
+  
+  .about-video { display: block; position: relative; width: 100%; height: 300px; background: url('https://img.youtube.com/vi/R3GfuzLMPkA/maxresdefault.jpg') center/cover no-repeat; border-radius: 12px; overflow: hidden; text-decoration: none; }
+  .video-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .play-btn { font-size: 40px; color: white; }
+  .video-label { font-size:12px; color:rgba(255,255,255,.6); letter-spacing:2px; text-transform:uppercase; margin-top:12px; }
+
   .stats-section { display:grid; grid-template-columns:repeat(4,1fr); }
   .stat-box { padding:40px 32px; border-right:1px solid var(--border); }
   .stat-box:first-child { background:var(--stat-red); }
@@ -193,6 +424,7 @@
   .stat-num { font-family:'Barlow Condensed',sans-serif; font-size:52px; font-weight:900; color:var(--dark); line-height:1; margin-bottom:10px; }
   .stat-label { font-size:14px; color:var(--mid); line-height:1.4; font-weight:500; }
   .stat-icon { font-size:20px; color:rgba(255,255,255,.5); margin-bottom:8px; }
+  
   .news-section { padding:80px; background:var(--light); }
   .news-layout { display:grid; grid-template-columns:1fr 1fr; gap:48px; margin-top:0; }
   .news-featured { background:linear-gradient(135deg,#1a3a6b,#2a5aab); padding:32px; border-radius:2px; color:var(--white); display:flex; flex-direction:column; justify-content:flex-end; min-height:280px; position:relative; overflow:hidden; }
@@ -206,6 +438,8 @@
   .news-date-year { font-size:12px; color:var(--mid); font-weight:500; }
   .news-item-title { font-size:15px; font-weight:700; color:var(--dark); margin-bottom:6px; }
   .news-item-tags { font-size:12px; color:var(--mid); }
+
+  /* ── FOOTER ── */
   footer { background:#0F2A44; color:rgba(255,255,255,.7); padding:64px 80px 32px; }
   .footer-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:48px; margin-bottom:48px; }
   footer h4 { font-size:16px; font-weight:800; color:var(--white); margin-bottom:20px; }
@@ -216,32 +450,6 @@
   .footer-contact p { font-size:14px; margin-bottom:10px; line-height:1.6; }
   .footer-contact strong { color:var(--white); }
   .footer-bottom { border-top:1px solid rgba(255,255,255,.1); padding-top:24px; display:flex; justify-content:space-between; font-size:13px; color:rgba(255,255,255,.4); }
-  
-  .about-video {
-  display: block;
-  position: relative;
-  width: 100%;
-  height: 300px;
-  background: url('https://img.youtube.com/vi/R3GfuzLMPkA/maxresdefault.jpg') center/cover no-repeat;
-  border-radius: 12px;
-  overflow: hidden;
-  text-decoration: none;
-}
-
-.video-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.4);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.play-btn {
-  font-size: 40px;
-  color: white;
-}
 </style>
 </head>
 <body>
@@ -356,7 +564,6 @@
 <button class="scroll-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <section class="hero-slider">
-  
   <div class="hero-slide active" id="slide-0">
     <video autoplay muted loop playsinline class="hero-video">
       <source src="267363.mp4" type="video/mp4">
@@ -427,54 +634,45 @@
 <section class="asrs-section">
   <h2 class="section-title">Automated Storage &amp; Retrieval Systems (AS/RS)</h2>
   <p class="section-sub">From warehouse automation to intelligent software control</p>
-  <div class="asrs-visual">
-    <svg style="width:65%;height:85%;opacity:.85" viewBox="0 0 900 500" fill="none">
-      <rect x="200" y="30" width="500" height="420" fill="rgba(200,200,200,.12)" stroke="#aaa" stroke-width="1.5"/>
-      <g fill="#e8a020" opacity=".9">
-        <rect x="220" y="40" width="18" height="410"/><rect x="300" y="40" width="18" height="410"/><rect x="380" y="40" width="18" height="410"/><rect x="460" y="40" width="18" height="410"/><rect x="540" y="40" width="18" height="410"/><rect x="620" y="40" width="18" height="410"/><rect x="680" y="40" width="18" height="410"/>
-      </g>
-      <g stroke="#ccc" stroke-width="1.2" opacity=".7">
-        <line x1="200" y1="120" x2="700" y2="120"/><line x1="200" y1="200" x2="700" y2="200"/><line x1="200" y1="280" x2="700" y2="280"/><line x1="200" y1="360" x2="700" y2="360"/>
-      </g>
-      <rect x="390" y="40" width="20" height="420" fill="#cc0000" opacity=".7"/>
-      <rect x="370" y="230" width="60" height="40" fill="#cc0000" opacity=".9" rx="2"/>
-      <rect x="180" y="445" width="540" height="8" fill="#888" rx="2"/>
-      <rect x="100" y="453" width="200" height="16" fill="#555" rx="2"/>
-      <rect x="600" y="453" width="200" height="16" fill="#555" rx="2"/>
-      <g fill="rgba(200,140,30,.55)">
-        <rect x="238" y="130" width="55" height="60"/><rect x="318" y="130" width="55" height="60"/><rect x="478" y="130" width="55" height="60"/><rect x="558" y="130" width="55" height="60"/><rect x="238" y="210" width="55" height="60"/><rect x="398" y="210" width="55" height="60"/><rect x="558" y="210" width="55" height="60"/><rect x="318" y="290" width="55" height="60"/><rect x="478" y="290" width="55" height="60"/><rect x="638" y="290" width="40" height="60"/><rect x="238" y="370" width="55" height="60"/><rect x="478" y="370" width="55" height="60"/>
-      </g>
-      <rect x="30" y="120" width="140" height="100" fill="#222" rx="4"/>
-      <rect x="40" y="130" width="120" height="80" fill="#1a3a5a" rx="2"/>
-      <text x="100" y="155" text-anchor="middle" fill="#4af" font-size="9">DASHBOARD</text>
-      <rect x="48" y="163" width="50" height="8" fill="#4af" rx="2" opacity=".5"/>
-      <rect x="48" y="177" width="70" height="8" fill="#fa4" rx="2" opacity=".5"/>
-      <rect x="48" y="191" width="40" height="8" fill="#4f4" rx="2" opacity=".5"/>
-      <rect x="30" y="430" width="120" height="50" fill="#888" rx="4"/>
-      <rect x="130" y="440" width="50" height="40" fill="#666" rx="2"/>
-      <circle cx="60" cy="480" r="10" fill="#333"/>
-      <circle cx="150" cy="480" r="10" fill="#333"/>
-    </svg>
-
-    <div class="asrs-popup" style="top: 15%; left: 8%;">
-      <h3>Racking Structure</h3>
-      <button class="asrs-popup-btn">Click to view <span>▶</span></button>
+  
+  <div class="asrs-visual" style="background: url('warehouse.png') center/cover no-repeat;">
+    
+    <!-- Hotspot 1: Racking Structure — opens RIGHT -->
+    <div class="asrs-hotspot-container" style="top: 25%; left: 20%;" data-modal="racking">
+      <div class="asrs-hotspot-dot"></div>
+      <div class="asrs-popup">
+        <h3>Racking Structure</h3>
+        <button class="asrs-popup-btn">Click to view <span>▶</span></button>
+      </div>
     </div>
     
-    <div class="asrs-popup" style="top: 40%; left: 35%;">
-      <h3>Stacker Crane</h3>
-      <button class="asrs-popup-btn">Click to view <span>▶</span></button>
+    <!-- Hotspot 2: Stacker Crane — opens RIGHT -->
+    <div class="asrs-hotspot-container" style="top: 50%; left: 45%;" data-modal="crane">
+      <div class="asrs-hotspot-dot"></div>
+      <div class="asrs-popup">
+        <h3>Stacker Crane</h3>
+        <button class="asrs-popup-btn">Click to view <span>▶</span></button>
+      </div>
     </div>
     
-    <div class="asrs-popup" style="bottom: 12%; right: 18%;">
-      <h3>Conveyor System</h3>
-      <button class="asrs-popup-btn">Click to view <span>▶</span></button>
+    <!-- Hotspot 3: Conveyor System — opens LEFT (near right edge) -->
+    <div class="asrs-hotspot-container" style="bottom: 20%; right: 30%;" data-modal="conveyor">
+      <div class="asrs-hotspot-dot"></div>
+      <div class="asrs-popup left-side">
+        <h3>Conveyor System</h3>
+        <button class="asrs-popup-btn">Click to view <span>▶</span></button>
+      </div>
     </div>
 
-    <div class="asrs-popup" style="top: 22%; right: 8%;">
-      <h3>WMS Dashboard</h3>
-      <button class="asrs-popup-btn">Click to view <span>▶</span></button>
+    <!-- Hotspot 4: WMS Dashboard — opens LEFT (near right edge) -->
+    <div class="asrs-hotspot-container" style="top: 30%; right: 15%;" data-modal="wms">
+      <div class="asrs-hotspot-dot"></div>
+      <div class="asrs-popup left-side">
+        <h3>WMS Dashboard</h3>
+        <button class="asrs-popup-btn">Click to view <span>▶</span></button>
+      </div>
     </div>
+    
   </div>
 </section>
 
@@ -647,6 +845,42 @@
   </div>
 </footer>
 
+<!-- ═══════════════════════ DETAIL MODAL ═══════════════════════ -->
+<div class="modal-backdrop" id="detailModal" onclick="closeModal(event)">
+  <div class="modal-box" id="modalBox">
+
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <span class="modal-badge" id="modalBadge">AS/RS</span>
+        <h2 class="modal-title" id="modalTitle">Component Detail</h2>
+      </div>
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+    </div>
+
+    <div class="modal-hero" id="modalHero">
+      <!-- SVG illustration injected by JS -->
+      <span class="modal-hero-label" id="modalHeroLabel"></span>
+    </div>
+
+    <div class="modal-body">
+      <div class="modal-section-title">Overview</div>
+      <p class="modal-desc" id="modalDesc"></p>
+
+      <div class="modal-section-title">Key Specifications</div>
+      <div class="modal-specs" id="modalSpecs"></div>
+
+      <div class="modal-section-title">Features & Benefits</div>
+      <ul class="modal-features" id="modalFeatures"></ul>
+    </div>
+
+    <div class="modal-footer">
+      <button class="modal-btn-secondary" onclick="closeModal()">Close</button>
+      <button class="modal-btn-primary" onclick="window.location.href='contact.html'">Request a Quote</button>
+    </div>
+
+  </div>
+</div>
+
 <script>
   /* ====== Dropdown Logic ====== */
   let openDd = null;
@@ -679,14 +913,10 @@
   function switchHero(index, isManual = false) {
     document.querySelectorAll('.hero-slide').forEach(s => s.classList.remove('active'));
     document.querySelectorAll('.hero-dot').forEach(d => d.classList.remove('active'));
-    
     document.getElementById('slide-' + index).classList.add('active');
     document.querySelectorAll('.hero-dot')[index].classList.add('active');
     currentHeroIndex = index;
-
-    if (isManual) {
-      resetHeroInterval();
-    }
+    if (isManual) { resetHeroInterval(); }
   }
 
   function nextHero() {
@@ -694,7 +924,7 @@
     switchHero(nextIndex, false);
   }
 
-  let heroInterval = setInterval(nextHero, 6000); // Change every 6 seconds
+  let heroInterval = setInterval(nextHero, 6000);
 
   function resetHeroInterval() {
     clearInterval(heroInterval);
@@ -703,7 +933,7 @@
 
   /* ====== Industry Image Carousel Logic (Auto-play included) ====== */
   const industryKeys = ['appliance', 'cold', 'energy', 'chemical', 'pharma'];
-  let currentIndIndex = 2; // Default is 'energy'
+  let currentIndIndex = 2;
 
   const indImages = {
     'appliance': 'Appliances.jpg',
@@ -717,12 +947,8 @@
     document.querySelectorAll('.ind-tab').forEach(t => t.classList.remove('active'));
     document.getElementById('ind-tab-' + key).classList.add('active');
     document.getElementById('industry-bg').style.backgroundImage = `url('${indImages[key]}')`;
-    
     currentIndIndex = industryKeys.indexOf(key);
-
-    if (isManual) {
-      resetIndInterval();
-    }
+    if (isManual) { resetIndInterval(); }
   }
 
   function nextIndustry(isManual = false) {
@@ -735,39 +961,223 @@
     switchIndustry(industryKeys[prevIndex], isManual);
   }
 
-  let indInterval = setInterval(() => { nextIndustry(false); }, 4000); // Change every 4 seconds
+  let indInterval = setInterval(() => { nextIndustry(false); }, 4000);
 
   function resetIndInterval() {
     clearInterval(indInterval);
     indInterval = setInterval(() => { nextIndustry(false); }, 4000);
   }
 
-  /* ====== NEW: Cases Section Auto-Slider Logic ====== */
+  /* ====== Cases Section Auto-Slider Logic ====== */
   let caseIndex = 0;
   function slideCases() {
     const track = document.getElementById('cases-track');
     const card = track.children[0];
     if (!card) return;
-    
-    // total length is 4 cards. displaying 2 at a time.
-    // max shift index is 2 (so we see cards [2,3])
-    const maxCaseIndex = track.children.length - 2; 
-    
+    const maxCaseIndex = track.children.length - 2;
     caseIndex++;
-    if (caseIndex > maxCaseIndex) {
-      caseIndex = 0;
-    }
-    
-    // Calculate distance to move based on card width + 32px gap
+    if (caseIndex > maxCaseIndex) { caseIndex = 0; }
     const cardWidth = card.offsetWidth;
-    const gap = 32; 
+    const gap = 32;
     const translateAmount = caseIndex * (cardWidth + gap);
-    
     track.style.transform = `translateX(-${translateAmount}px)`;
   }
-  
-  // Auto-slide cases every 5 seconds
   setInterval(slideCases, 5000);
+
+  /* ====== Hotspot Click-Toggle Logic ======
+     Clicking a dot opens its popup; clicking again (or clicking elsewhere) closes it.
+     This is intentionally click-based rather than hover-based to eliminate
+     the "disappears while moving to the button" problem entirely. */
+  document.querySelectorAll('.asrs-hotspot-dot').forEach(function(dot) {
+    dot.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var container = this.closest('.asrs-hotspot-container');
+      var popup = container.querySelector('.asrs-popup');
+      var isAlreadyOpen = popup.classList.contains('visible');
+
+      // Close all popups first
+      document.querySelectorAll('.asrs-popup.visible').forEach(function(p) {
+        p.classList.remove('visible');
+      });
+
+      // If it wasn't open, open it now
+      if (!isAlreadyOpen) {
+        popup.classList.add('visible');
+      }
+    });
+  });
+
+  // Clicking the "Click to view" button inside the popup — open detail modal
+  document.querySelectorAll('.asrs-popup-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      // Close the small popup first
+      document.querySelectorAll('.asrs-popup.visible').forEach(function(p) {
+        p.classList.remove('visible');
+      });
+      // Find which hotspot this belongs to
+      var container = this.closest('.asrs-hotspot-container');
+      var key = container.getAttribute('data-modal');
+      openModal(key);
+    });
+  });
+
+  // Clicking anywhere else on the page closes all popups
+  document.addEventListener('click', function() {
+    document.querySelectorAll('.asrs-popup.visible').forEach(function(p) {
+      p.classList.remove('visible');
+    });
+  });
+
+  /* ====== Modal Data ====== */
+  var modalData = {
+    racking: {
+      badge: 'RACKING',
+      title: 'Racking Structure',
+      heroLabel: 'HIGH-BAY AUTOMATED RACKING',
+      heroGradient: 'linear-gradient(135deg,#1a3a6b,#2a5aab)',
+      heroSvg: '<svg width="100%" height="100%" viewBox="0 0 700 220" fill="none"><g fill="#e8a020" opacity=".7"><rect x="40" y="0" width="12" height="220"/><rect x="140" y="0" width="12" height="220"/><rect x="240" y="0" width="12" height="220"/><rect x="340" y="0" width="12" height="220"/><rect x="440" y="0" width="12" height="220"/><rect x="540" y="0" width="12" height="220"/><rect x="640" y="0" width="12" height="220"/></g><g stroke="rgba(255,255,255,.25)" stroke-width="1"><line x1="30" y1="55" x2="660" y2="55"/><line x1="30" y1="110" x2="660" y2="110"/><line x1="30" y1="165" x2="660" y2="165"/></g><g fill="rgba(200,140,30,.5)"><rect x="55" y="62" width="80" height="40"/><rect x="155" y="62" width="80" height="40"/><rect x="355" y="62" width="80" height="40"/><rect x="455" y="117" width="80" height="40"/><rect x="255" y="117" width="80" height="40"/><rect x="555" y="62" width="80" height="40"/></g></svg>',
+      desc: 'Our high-bay racking structures are engineered for maximum storage density and structural integrity. Built from high-grade steel with precision tolerances, each rack system is designed to work seamlessly with automated stacker cranes and shuttle systems, supporting heights from 10m up to 45m.',
+      specs: [
+        { label: 'Max Height', value: 'Up to 45 m' },
+        { label: 'Bay Width', value: '1,000 – 1,200 mm' },
+        { label: 'Load per Level', value: 'Up to 2,000 kg' },
+        { label: 'Material', value: 'High-grade structural steel' },
+        { label: 'Surface Finish', value: 'Powder coated / Hot-dip galvanized' },
+        { label: 'Seismic Rating', value: 'Zone I – IV compliant' }
+      ],
+      features: [
+        'Precision-welded upright frames with tolerance ±1 mm for crane alignment',
+        'Modular design allows phased expansion without system shutdown',
+        'Compatible with all RackNSpace stacker crane models',
+        'Optional cold-store grade versions for temperatures down to -30°C',
+        'Integrated aisle lighting and safety netting options',
+        'Compliant with FEM 10.2.02 and EN 15629 racking standards'
+      ]
+    },
+    crane: {
+      badge: 'STACKER CRANE',
+      title: 'Stacker Crane',
+      heroLabel: 'UNIT-LOAD STACKER CRANE',
+      heroGradient: 'linear-gradient(135deg,#2a1010,#8a2020)',
+      heroSvg: '<svg width="100%" height="100%" viewBox="0 0 700 220" fill="none"><g fill="#e8a020" opacity=".5"><rect x="60" y="0" width="10" height="220"/><rect x="160" y="0" width="10" height="220"/><rect x="260" y="0" width="10" height="220"/><rect x="360" y="0" width="10" height="220"/><rect x="460" y="0" width="10" height="220"/><rect x="560" y="0" width="10" height="220"/></g><g stroke="rgba(255,255,255,.2)" stroke-width="1"><line x1="50" y1="55" x2="580" y2="55"/><line x1="50" y1="110" x2="580" y2="110"/><line x1="50" y1="165" x2="580" y2="165"/></g><rect x="318" y="0" width="14" height="220" fill="rgba(204,0,0,.75)"/><rect x="295" y="90" width="60" height="40" fill="rgba(180,0,0,.9)" rx="2"/><rect x="50" y="208" width="560" height="10" fill="#555" rx="3"/><g fill="rgba(200,140,30,.45)"><rect x="72" y="62" width="82" height="40"/><rect x="172" y="117" width="82" height="40"/><rect x="372" y="62" width="82" height="40"/><rect x="472" y="117" width="82" height="40"/></g></svg>',
+      desc: 'The RackNSpace unit-load stacker crane is the core of our AS/RS solution. Combining a high-speed mast carriage with precision servo drives, it delivers reliable pallet storage and retrieval at throughputs of up to 200 cycles/hour — 24 hours a day, 365 days a year.',
+      specs: [
+        { label: 'Max Height', value: 'Up to 45 m' },
+        { label: 'Horizontal Speed', value: 'Up to 200 m/min' },
+        { label: 'Vertical Speed', value: 'Up to 60 m/min' },
+        { label: 'Load Capacity', value: 'Up to 1,500 kg' },
+        { label: 'Throughput', value: 'Up to 200 cycles/hr' },
+        { label: 'Positioning Accuracy', value: '±2 mm' }
+      ],
+      features: [
+        'Dual-mast design for loads up to 1,500 kg with anti-sway technology',
+        'Energy recovery braking reduces power consumption by up to 30%',
+        'Integrated laser distance measurement for precise positioning',
+        'Automatic pallet dimension verification at I/O points',
+        'Full WCS integration via industrial Ethernet (PROFINET / EtherNet/IP)',
+        'Available in single-deep, double-deep and multi-deep variants'
+      ]
+    },
+    conveyor: {
+      badge: 'CONVEYING',
+      title: 'Conveyor System',
+      heroLabel: 'PALLET CONVEYOR NETWORK',
+      heroGradient: 'linear-gradient(135deg,#1a3a28,#2a6a48)',
+      heroSvg: '<svg width="100%" height="100%" viewBox="0 0 700 220" fill="none"><rect x="40" y="95" width="620" height="30" fill="rgba(100,200,120,.2)" rx="3"/><g fill="rgba(100,200,120,.35)"><rect x="80" y="100" width="50" height="20" rx="2"/><rect x="160" y="100" width="50" height="20" rx="2"/><rect x="240" y="100" width="50" height="20" rx="2"/><rect x="320" y="100" width="50" height="20" rx="2"/><rect x="400" y="100" width="50" height="20" rx="2"/><rect x="480" y="100" width="50" height="20" rx="2"/><rect x="560" y="100" width="50" height="20" rx="2"/></g><circle cx="60" cy="110" r="16" fill="rgba(100,200,120,.3)" stroke="rgba(100,200,120,.5)" stroke-width="1.5"/><circle cx="640" cy="110" r="16" fill="rgba(100,200,120,.3)" stroke="rgba(100,200,120,.5)" stroke-width="1.5"/><g fill="rgba(200,140,30,.55)"><rect x="110" y="55" width="80" height="40" rx="2"/><rect x="280" y="55" width="80" height="40" rx="2"/><rect x="450" y="55" width="80" height="40" rx="2"/></g><path d="M390 125 Q430 80 470 125" fill="none" stroke="rgba(255,200,50,.5)" stroke-width="2" stroke-dasharray="5 3"/></svg>',
+      desc: 'Our pallet conveyor systems form the logistics backbone of every AS/RS installation — linking inbound receiving, the automated warehouse, picking stations and outbound dispatch in a smooth, fully-automated flow. Every conveyor loop is engineered for your exact throughput and floor layout.',
+      specs: [
+        { label: 'Max Pallet Load', value: 'Up to 2,000 kg' },
+        { label: 'Conveyor Speed', value: 'Up to 60 m/min' },
+        { label: 'Pallet Types', value: 'EUR, ISO, custom' },
+        { label: 'Transfer', value: 'Chain, roller, belt, lift' },
+        { label: 'Controls', value: 'PLC / WCS integrated' },
+        { label: 'Temperature Range', value: '-30°C to +50°C' }
+      ],
+      features: [
+        'Modular sections for easy installation, maintenance and future expansion',
+        'Integrated pallet inspection: dimensions, weight and barcode / RFID scan',
+        'Energy-efficient motor drives with auto-standby mode',
+        'Accumulation zones prevent back-pressure on fragile loads',
+        'Available in cold-store grade for frozen warehouse environments',
+        'Full integration with RackNSpace WMS/WCS for real-time tracking'
+      ]
+    },
+    wms: {
+      badge: 'SOFTWARE',
+      title: 'WMS Dashboard',
+      heroLabel: 'WAREHOUSE MANAGEMENT SYSTEM',
+      heroGradient: 'linear-gradient(135deg,#0a1020,#1a2850)',
+      heroSvg: '<svg width="100%" height="100%" viewBox="0 0 700 220" fill="none"><rect x="40" y="20" width="620" height="180" rx="4" fill="rgba(100,160,255,.06)" stroke="rgba(100,160,255,.2)" stroke-width="1"/><g fill="rgba(100,160,255,.25)"><rect x="60" y="40" width="180" height="80" rx="2"/><rect x="260" y="40" width="120" height="36" rx="2"/><rect x="260" y="84" width="120" height="36" rx="2"/><rect x="400" y="40" width="120" height="80" rx="2"/><rect x="540" y="40" width="100" height="80" rx="2"/></g><g fill="rgba(0,200,150,.5)"><rect x="70" y="60" width="20" height="50"/><rect x="98" y="50" width="20" height="60"/><rect x="126" y="65" width="20" height="45"/><rect x="154" y="45" width="20" height="65"/><rect x="182" y="55" width="20" height="55"/><rect x="210" y="70" width="20" height="40"/></g><g fill="rgba(100,160,255,.4)"><rect x="60" y="135" width="580" height="8" rx="1" opacity=".5"/><rect x="60" y="152" width="460" height="8" rx="1" opacity=".4"/><rect x="60" y="169" width="520" height="8" rx="1" opacity=".3"/><rect x="60" y="186" width="380" height="8" rx="1" opacity=".4"/></g></svg>',
+      desc: 'The RackNSpace WMS (Warehouse Management System) and WCS (Warehouse Control System) provide a unified, real-time intelligence layer over your entire automated warehouse. From inventory visibility and order management to crane command dispatching and KPI dashboards — everything in one platform.',
+      specs: [
+        { label: 'Platform', value: 'Web-based, browser-agnostic' },
+        { label: 'Integrations', value: 'SAP, Oracle, custom ERP/MES' },
+        { label: 'Command Cycle', value: 'Sub-second WCS response' },
+        { label: 'Concurrent Users', value: 'Unlimited' },
+        { label: 'Uptime SLA', value: '99.9% guaranteed' },
+        { label: 'Data Retention', value: 'Configurable, up to 10 years' }
+      ],
+      features: [
+        'Real-time 3D warehouse map with live crane and shuttle positions',
+        'Automated storage location optimisation by frequency and weight',
+        'Full order lifecycle management: receiving → storage → picking → dispatch',
+        'Role-based dashboards for operators, supervisors and management',
+        'Predictive maintenance alerts based on equipment sensor data',
+        'REST API and EDI connectivity for seamless ERP integration'
+      ]
+    }
+  };
+
+  /* ====== Open / Close Modal ====== */
+  function openModal(key) {
+    var data = modalData[key];
+    if (!data) return;
+
+    document.getElementById('modalBadge').textContent = data.badge;
+    document.getElementById('modalTitle').textContent = data.title;
+    document.getElementById('modalHeroLabel').textContent = data.heroLabel;
+    document.getElementById('modalDesc').textContent = data.desc;
+
+    var hero = document.getElementById('modalHero');
+    hero.style.background = data.heroGradient;
+    // Remove old SVG if any, inject new one
+    var oldSvg = hero.querySelector('svg');
+    if (oldSvg) oldSvg.remove();
+    var tmp = document.createElement('div');
+    tmp.innerHTML = data.heroSvg;
+    hero.insertBefore(tmp.firstChild, hero.firstChild);
+
+    // Specs
+    var specsEl = document.getElementById('modalSpecs');
+    specsEl.innerHTML = data.specs.map(function(s) {
+      return '<div class="modal-spec"><div class="modal-spec-label">' + s.label + '</div><div class="modal-spec-value">' + s.value + '</div></div>';
+    }).join('');
+
+    // Features
+    var featuresEl = document.getElementById('modalFeatures');
+    featuresEl.innerHTML = data.features.map(function(f) {
+      return '<li>' + f + '</li>';
+    }).join('');
+
+    document.getElementById('detailModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(event) {
+    // If called from backdrop click, only close when clicking the backdrop itself
+    if (event && event.target !== document.getElementById('detailModal')) return;
+    document.getElementById('detailModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // ESC key closes modal
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.getElementById('detailModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
 </script>
 </body>
 </html>
