@@ -3,99 +3,141 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RACK N SPACE – Contact Us</title>
+<title>RackNSpace – Contact Us</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/neuropol" rel="stylesheet">
 <link rel="icon" href="rns.png" type="image/png">
 <style>
-  :root { --red: #cc0000; --red-hover: #aa0000; --dark: #0F2A44; --dark2: #222222; --mid: #555555; --light: #f5f5f5; --white: #ffffff; --border: #e0e0e0; --stat-red: #c9697a; }
+  :root {
+    --red: #fe5e00;
+    --red-hover: #e05300;
+    --gold: #FFD700;
+    --blue: #1565C0;
+    --dark: #0F2A44;
+    --dark2: #222222;
+    --mid: #555555;
+    --light: #f5f5f5;
+    --white: #ffffff;
+    --border: #e0e0e0;
+    --leaf: #168a3e;
+  }
+
   * { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior:smooth; }
   body { font-family:'Barlow',sans-serif; color:var(--dark); overflow-x:hidden; }
 
-  /* ── NAVBAR & DROPDOWNS ── */
-  #navbar { position:sticky; top:0; z-index:1000; background:var(--white); border-bottom:1px solid var(--border); height:72px; display:flex; align-items:center; padding:0 48px; justify-content:space-between; box-shadow:0 2px 8px rgba(0,0,0,.07); }
-  .logo { display:flex; align-items:center; gap:8px; text-decoration:none; cursor:pointer;}
-  .logo-icon { width:36px; height:28px; }
-  .logo-text { font-size:22px; font-weight:800; letter-spacing:-.5px; }
-  .logo-text span:first-child { color:#e05a00; }
-  .logo-text span:last-child { color:var(--red); }
-  nav { display:flex; align-items:center; gap:0; }
-  .nav-item { position:relative; padding:0 20px; height:72px; display:flex; align-items:center; gap:4px; font-size:15px; font-weight:600; color:var(--dark); cursor:pointer; text-decoration:none; white-space:nowrap; border-bottom:3px solid transparent; transition:color .2s; }
+  /* ── NAVBAR & MOBILE ── */
+  #navbar {
+    position:sticky; top:0; z-index:1000;
+    background:var(--white);
+    border-bottom:1px solid var(--border);
+    height:90px; display:flex; align-items:center;
+    padding:0 48px;
+    justify-content:space-between;
+    box-shadow:0 2px 16px rgba(0,0,0,.05);
+  }
+
+  .logo { display:flex; align-items:center; gap:0; text-decoration:none; cursor:pointer; }
+  .logo-icon { height: 72px; width: auto; object-fit: contain; margin-right: 14px; }
+  .logo-text {
+    font-family: 'Neuropol', 'Barlow Condensed', sans-serif;
+    font-size: 32px; letter-spacing: 1px;
+    border-bottom: 3px solid var(--leaf);
+    padding-bottom: 5px; display: inline-block;
+  }
+  .logo-rack { color: var(--red); font-weight: 900; }
+  .logo-n { color: var(--gold); font-weight: 900; margin: 0 4px; }
+  .logo-space { color: var(--blue); font-weight: 900; }
+
+  nav { display:flex; align-items:center; gap:0; height: 100%; }
+  .nav-item {
+    position:relative; padding:0 20px; height:100%;
+    display:flex; align-items:center; gap:8px;
+    font-size:16px; font-weight:600; color:var(--dark);
+    cursor:pointer; text-decoration:none; white-space:nowrap;
+    border-bottom:3px solid transparent;
+    transition:color .2s, border-color .2s;
+  }
+  .nav-item svg { width: 18px; height: 18px; }
   .nav-item.active { color:var(--red); border-bottom-color:var(--red); }
   .nav-item:hover { color:var(--red); }
   .nav-item .arrow { font-size:11px; margin-top:1px; transition:transform .2s; }
-  .nav-item.open .arrow { transform:rotate(180deg); }
   .nav-contact { color:var(--red)!important; }
-  .nav-right { display:flex; align-items:center; gap:16px; }
-  .lang-btn { display:flex; align-items:center; gap:6px; border:1px solid var(--border); border-radius:4px; padding:6px 12px; font-size:14px; font-weight:600; cursor:pointer; background:var(--white); }
-  .search-btn { background:none; border:none; cursor:pointer; font-size:20px; color:var(--dark); padding:4px; }
-  .dropdown-overlay { display:none; position:fixed; top:72px; left:0; right:0; bottom:0; background:rgba(0,0,0,.45); z-index:900; }
+  .menu-toggle { display:none; font-size:30px; cursor:pointer; color:var(--dark); }
+
+  /* ── MEGA DROPDOWNS ── */
+  .dropdown-overlay { display:none; position:fixed; top:90px; left:0; right:0; bottom:0; background:rgba(0,0,0,.45); z-index:900; }
   .dropdown-overlay.open { display:block; }
-  .dropdown-panel { display:none; position:fixed; top:72px; left:0; right:0; background:rgba(40,40,40,.97); z-index:901; padding:48px 80px 56px; color:var(--white); box-shadow:0 8px 32px rgba(0,0,0,.3); }
-  .dropdown-panel.open { display:flex; gap:0; }
-  .dropdown-close { position:absolute; top:20px; right:32px; background:none; border:none; color:var(--white); font-size:28px; cursor:pointer; line-height:1; }
-  .dropdown-left { width:320px; padding-right:48px; flex-shrink:0; }
-  .dropdown-left img { width:240px; margin-bottom:20px; opacity:.9; }
-  .dropdown-left h3 { font-size:18px; font-weight:800; margin-bottom:10px; }
-  .dropdown-left p { font-size:13px; color:#aaa; line-height:1.6; }
-  .dropdown-divider { width:1px; background:#444; flex-shrink:0; }
-  .dropdown-right { flex:1; padding-left:56px; }
-  .dropdown-right h4 { font-size:11px; font-weight:700; letter-spacing:2px; color:#888; margin-bottom:24px; text-transform:uppercase; }
-  .dropdown-links { display:flex; flex-direction:column; gap:16px; }
-  .dropdown-link { font-size:16px; font-weight:500; color:var(--white); text-decoration:none; cursor:pointer; transition:color .15s; }
-  .dropdown-link:hover { color:var(--red); }
+  .dropdown-panel {
+    display:none; position:fixed; top:90px; left:0; right:0;
+    background:#ffffff; z-index:901;
+    padding:40px 80px 60px;
+    box-shadow:0 12px 30px rgba(0,0,0,.12);
+    border-top: 1px solid var(--border);
+  }
+  .dropdown-panel.open { display:block; }
+  .wdx-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:32px; max-width:1400px; margin:0 auto; }
+  .wdx-card { display:flex; flex-direction:column; gap:16px; cursor:pointer; text-decoration:none; }
+  .wdx-img { width:100%; height:160px; background-color:#f0f0f0; background-size:cover; background-position:center; border-radius:4px; transition:transform 0.3s ease; }
+  .wdx-card:hover .wdx-img { transform:scale(1.02); }
+  .wdx-title { font-size:18px; font-weight:700; color:var(--dark); transition:color 0.2s; }
+  .wdx-card:hover .wdx-title { color:var(--red); }
 
   /* ── FLOATING SIDEBAR ── */
   .sidebar { position:fixed; right:0; top:50%; transform:translateY(-50%); z-index:1000; display:flex; flex-direction:column; gap:0; }
-  .sidebar-btn { width:48px; height:48px; background:var(--red); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--white); font-size:18px; border-radius:2px 0 0 2px; margin-bottom:3px; transition:background .2s; }
-  .sidebar-btn:hover { background:var(--red-hover); }
+  .sidebar-btn {
+    width:48px; height:48px; border:none; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--white); font-size:20px; border-radius:2px 0 0 2px; margin-bottom:3px;
+    transition:filter .2s, transform .2s;
+  }
+  .sidebar-btn:nth-child(1) { background: #0F2A44; }
+  .sidebar-btn:nth-child(2) { background: #1565C0; }
+  .sidebar-btn:nth-child(3) { background: var(--leaf); }
+  .sidebar-btn:hover { filter: brightness(1.18); transform: translateX(-3px); }
 
-  /* ── SCROLL TO TOP BUTTON ── */
+  /* Contact Detail Box */
+  .contact-box {
+    position: fixed; right: 60px; top: 50%; transform: translateY(-50%);
+    background: var(--white); padding: 20px; border-radius: 4px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15); z-index: 1001;
+    border-left: 4px solid var(--red); min-width: 220px;
+  }
+  .close-btn { position:absolute; top:8px; right:10px; cursor:pointer; color:var(--mid); font-size:12px; }
+
+  /* ── SCROLL TO TOP ── */
   .scroll-to-top {
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-    width: 56px;
-    height: 56px;
-    background: var(--red);
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--white);
-    font-size: 24px;
-    border-radius: 50%;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-    z-index: 1000;
-    transition: background .2s, transform .2s;
+    position:fixed; bottom:40px; right:40px; width:56px; height:56px;
+    background:var(--red); border:none; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--white); font-size:24px; border-radius:50%;
+    box-shadow:0 4px 16px rgba(254,94,0,0.4); z-index:1000;
+    transition:background .2s, transform .2s;
   }
-  .scroll-to-top:hover {
-    background: var(--red-hover);
-    transform: translateY(-4px);
-  }
+  .scroll-to-top:hover { background:var(--red-hover); transform:translateY(-4px); }
 
-  /* ═══════════════════════ CONTACT PAGE CSS ═══════════════════════ */
-  .page-hero { height:320px; background:linear-gradient(135deg,#0F2A44,#333); display:flex; align-items:center; padding:0 80px; position:relative; overflow:hidden; }
-  .page-hero::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(45deg,rgba(204,0,0,.05) 0,rgba(204,0,0,.05) 1px,transparent 1px,transparent 40px); }
-  .page-hero h1 { font-family:'Barlow Condensed',sans-serif; font-size:56px; font-weight:900; color:var(--white); position:relative; }
-  .page-hero p { font-size:18px; color:rgba(255,255,255,.6); margin-top:12px; position:relative; }
+  /* ═══════════════════════ CONTACT PAGE CONTENT ═══════════════════════ */
+  .page-hero { height:320px; background:linear-gradient(135deg,#0F2A44,#1a2a44); display:flex; align-items:center; padding:0 80px; position:relative; overflow:hidden; }
+  .page-hero::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(45deg,rgba(254,94,0,.05) 0,rgba(254,94,0,.05) 1px,transparent 1px,transparent 40px); }
+  .page-hero h1 { font-family:'Barlow Condensed',sans-serif; font-size:56px; font-weight:900; color:var(--white); position:relative; z-index:2; }
+  .page-hero p { font-size:18px; color:rgba(255,255,255,.6); margin-top:12px; position:relative; z-index:2; }
 
   .contact-container { padding:80px; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
   .contact-info h2 { font-family:'Barlow Condensed',sans-serif; font-size:42px; font-weight:900; margin-bottom:32px; }
   .contact-detail { display:flex; gap:16px; margin-bottom:24px; align-items:flex-start; }
   .contact-icon { font-size:20px; color:var(--red); margin-top:2px; flex-shrink:0; }
   .contact-detail-text h4 { font-size:14px; font-weight:700; margin-bottom:4px; }
-  .contact-detail-text p { font-size:14px; color:var(--mid); }
-  .contact-form { background:var(--light); padding:40px; }
+  .contact-detail-text p { font-size:14px; color:var(--mid); line-height:1.5; margin-bottom:8px; }
+  
+  .contact-form { background:var(--light); padding:40px; border-radius:4px; }
   .contact-form h3 { font-size:22px; font-weight:800; margin-bottom:28px; }
   .form-group { margin-bottom:20px; }
   .form-group label { display:block; font-size:13px; font-weight:700; color:var(--mid); margin-bottom:6px; text-transform:uppercase; letter-spacing:.5px; }
-  .form-group input, .form-group textarea, .form-group select { width:100%; padding:12px 16px; border:1px solid var(--border); font-family:'Barlow',sans-serif; font-size:14px; color:var(--dark); background:var(--white); outline:none; transition:border .2s; }
-  .form-group input:focus, .form-group textarea:focus { border-color:var(--red); }
-  .form-group textarea { resize:vertical; min-height:100px; }
+  .form-group input, .form-group textarea, .form-group select { width:100%; padding:12px 16px; border:1px solid var(--border); font-family:'Barlow',sans-serif; font-size:14px; color:var(--dark); background:var(--white); outline:none; transition:border .2s; border-radius:2px; }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color:var(--red); }
+  .form-group textarea { resize:vertical; min-height:120px; }
   .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-  .submit-btn { width:100%; background:var(--red); color:var(--white); border:none; padding:16px; font-size:15px; font-weight:700; cursor:pointer; font-family:'Barlow',sans-serif; transition:background .2s; letter-spacing:.3px; }
+  .submit-btn { width:100%; background:var(--red); color:var(--white); border:none; padding:16px; font-size:15px; font-weight:700; cursor:pointer; font-family:'Barlow',sans-serif; transition:background .2s; letter-spacing:.3px; border-radius:2px; }
   .submit-btn:hover { background:var(--red-hover); }
 
   /* ── FOOTER ── */
@@ -105,113 +147,133 @@
   footer ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
   footer ul li { font-size:14px; cursor:pointer; transition:color .15s; }
   footer ul li a { color:inherit; text-decoration:none; }
-  footer ul li:hover { color:var(--white); }
+  footer ul li:hover { color:var(--gold); }
   .footer-contact p { font-size:14px; margin-bottom:10px; line-height:1.6; }
   .footer-contact strong { color:var(--white); }
   .footer-bottom { border-top:1px solid rgba(255,255,255,.1); padding-top:24px; display:flex; justify-content:space-between; font-size:13px; color:rgba(255,255,255,.4); }
+
+  /* ── RESPONSIVE DESIGN ── */
+  @media (max-width: 992px) {
+    .menu-toggle { display:block; }
+    nav { display:none; position:absolute; top:90px; left:0; width:100%; background:var(--white); flex-direction:column; padding:20px 0; border-top:1px solid var(--border); box-shadow:0 10px 20px rgba(0,0,0,0.1); height:auto; }
+    nav.open { display:flex; }
+    .nav-item { width:100%; padding:15px 20px; justify-content:center; }
+    .wdx-grid, .footer-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+  @media (max-width: 768px) {
+    #navbar { padding:0 20px; }
+    .page-hero { padding: 0 20px; height: 260px; }
+    .page-hero h1 { font-size: 42px; }
+    .contact-container { grid-template-columns: 1fr; padding: 40px 20px; gap: 40px; }
+    .form-row { grid-template-columns: 1fr; }
+    .wdx-grid, .footer-grid { grid-template-columns: 1fr !important; }
+    footer { padding: 40px 20px 20px; }
+  }
 </style>
 </head>
 <body>
 
 <header id="navbar">
   <a class="logo" href="index.html">
-    <svg class="logo-icon" viewBox="0 0 36 28" fill="none"><rect y="3" width="36" height="5" rx="1" fill="#e05a00"/><rect y="11" width="26" height="5" rx="1" fill="#e05a00"/><rect y="19" width="36" height="5" rx="1" fill="#e05a00"/></svg>
-    <span class="logo-text"><span>RACK</span><span>N</span>SPACE</span>
+    <img src="racknspace.png" alt="RackNSpace Logo" class="logo-icon">
+    <span class="logo-text">
+      <span class="logo-rack">Rack </span>
+      <span class="logo-n">N </span>
+      <span class="logo-space">Space</span>
+    </span>
   </a>
+
+  <div class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('open')">☰</div>
+
   <nav>
-    <a class="nav-item" href="index.html" id="nav-home">Home</a>
-    <div class="nav-item" id="nav-industries" onclick="toggleDropdown('industries')">Industries <span class="arrow">▾</span></div>
-    <div class="nav-item" id="nav-products" onclick="toggleDropdown('products')">Products <span class="arrow">▾</span></div>
-    <div class="nav-item" id="nav-services" onclick="toggleDropdown('services')">Services <span class="arrow">▾</span></div>
-    <div class="nav-item" id="nav-about" onclick="toggleDropdown('about-dd')">About Us <span class="arrow">▾</span></div>
-    <a class="nav-item nav-contact active" href="contact.html" id="nav-contact">Contact Us</a>
+    <a class="nav-item" href="index.html" id="nav-home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+      Home
+    </a>
+    <div class="nav-item" id="nav-industries" onmouseenter="openDdHover('industries')" onmouseleave="closeDdHover()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+      Industries <span class="arrow">▾</span>
+    </div>
+    <div class="nav-item" id="nav-products" onmouseenter="openDdHover('products')" onmouseleave="closeDdHover()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+      Products <span class="arrow">▾</span>
+    </div>
+    <div class="nav-item" id="nav-services" onmouseenter="openDdHover('services')" onmouseleave="closeDdHover()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+      Services <span class="arrow">▾</span>
+    </div>
+    <div class="nav-item" id="nav-expertise" onmouseenter="openDdHover('expertise')" onmouseleave="closeDdHover()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+      Our Expertise <span class="arrow">▾</span>
+    </div>
+    <div class="nav-item" id="nav-about" onmouseenter="openDdHover('about')" onmouseleave="closeDdHover()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      About Us <span class="arrow">▾</span>
+    </div>
+    <a class="nav-item nav-contact active" href="contact.html" id="nav-contact">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+      Contact Us
+    </a>
   </nav>
-  <div class="nav-right">
-    <button class="search-btn">🔍</button>
-  </div>
 </header>
 
-<div class="dropdown-overlay" id="dropdown-overlay" onclick="closeDropdown()"></div>
+<div class="dropdown-overlay" id="dropdown-overlay"></div>
 
-<div class="dropdown-panel" id="dd-industries">
-  <button class="dropdown-close" onclick="closeDropdown()">✕</button>
-  <div class="dropdown-left">
-    <div style="width:240px;height:160px;background:linear-gradient(135deg,#888,#555);border-radius:4px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;color:#ccc;font-size:13px;">⬛ 3D Warehouse Illustration</div>
-    <h3>ASRS (Automated Storage and Retrieval System) Expert</h3>
-    <p>Solutions and Consulting: With decades of experience, RACK N SPACE provides intelligent warehousing & logistics solutions and consulting services for clients across a wide range of industries.</p>
-  </div>
-  <div class="dropdown-divider"></div>
-  <div class="dropdown-right">
-    <h4>Industries</h4>
-    <div class="dropdown-links">
-      <a class="dropdown-link" href="industries.html">New Energy</a>
-      <a class="dropdown-link" href="industries.html">Chemical</a>
-      <a class="dropdown-link" href="industries.html">Pharmaceutical</a>
-      <a class="dropdown-link" href="industries.html">Food & Beverage</a>
-      <a class="dropdown-link" href="industries.html">Cold Chain</a>
-    </div>
+<div class="dropdown-panel" id="dd-industries" onmouseenter="clearHoverTimeout()" onmouseleave="closeDdHover()">
+  <div class="wdx-grid">
+    <a href="industries.html" class="wdx-card"><div class="wdx-img" style="background-image:url('https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=400&q=80');"></div><span class="wdx-title">New Energy</span></a>
+    <a href="industries.html" class="wdx-card"><div class="wdx-img" style="background-image:url('https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=400&q=80');"></div><span class="wdx-title">Chemical</span></a>
+    <a href="industries.html" class="wdx-card"><div class="wdx-img" style="background-image:url('https://images.unsplash.com/photo-1586528116311-ad8ed7c83a7f?auto=format&fit=crop&w=400&q=80');"></div><span class="wdx-title">Pharmaceutical</span></a>
+    <a href="industries.html" class="wdx-card"><div class="wdx-img" style="background-image:url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=400&q=80');"></div><span class="wdx-title">Food & Beverage</span></a>
   </div>
 </div>
-
-<div class="dropdown-panel" id="dd-products">
-  <button class="dropdown-close" onclick="closeDropdown()">✕</button>
-  <div class="dropdown-left">
-    <div style="width:240px;height:160px;background:linear-gradient(135deg,#444,#222);border-radius:4px;margin-bottom:20px;"></div>
-    <h3>Complete AS/RS Product Range</h3>
-    <p>From unit-load cranes to shuttle systems, conveying equipment and intelligent software — all engineered for precision.</p>
-  </div>
-  <div class="dropdown-divider"></div>
-  <div class="dropdown-right">
-    <h4>Products</h4>
-    <div class="dropdown-links">
-      <a class="dropdown-link" href="products.html">ASRS Equipment</a>
-      <a class="dropdown-link" href="products.html">Conveying Equipment</a>
-      <a class="dropdown-link" href="products.html">Software</a>
-    </div>
+<div class="dropdown-panel" id="dd-products" onmouseenter="clearHoverTimeout()" onmouseleave="closeDdHover()">
+  <div class="wdx-grid">
+    <a href="products.html" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#1a2a44,#3a5a84);"></div><span class="wdx-title">ASRS Equipment</span></a>
+    <a href="products.html" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#2a1010,#8a2020);"></div><span class="wdx-title">Conveying Equipment</span></a>
+    <a href="products.html" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#1a3a28,#2a6a48);"></div><span class="wdx-title">Automated Shuttles</span></a>
+    <a href="products.html" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#0a1020,#1a2850);"></div><span class="wdx-title">Software (WMS/WCS)</span></a>
   </div>
 </div>
-
-<div class="dropdown-panel" id="dd-services">
-  <button class="dropdown-close" onclick="closeDropdown()">✕</button>
-  <div class="dropdown-left">
-    <div style="width:240px;height:160px;background:linear-gradient(135deg,#333,#111);border-radius:4px;margin-bottom:20px;"></div>
-    <h3>End-to-End Service Excellence</h3>
-    <p>From initial planning to after-sales maintenance — RACK N SPACE supports every phase of your automation journey.</p>
-  </div>
-  <div class="dropdown-divider"></div>
-  <div class="dropdown-right">
-    <h4>Services</h4>
-    <div class="dropdown-links">
-      <a class="dropdown-link" href="#">R&D & Planning</a>
-      <a class="dropdown-link" href="#">Equipment Integration</a>
-      <a class="dropdown-link" href="#">Remote Support (7×24)</a>
-    </div>
+<div class="dropdown-panel" id="dd-services" onmouseenter="clearHoverTimeout()" onmouseleave="closeDdHover()">
+  <div class="wdx-grid">
+    <a href="#" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(45deg,#333,#555);"></div><span class="wdx-title">R&D & Planning</span></a>
+    <a href="#" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(45deg,#444,#666);"></div><span class="wdx-title">Equipment Integration</span></a>
+    <a href="#" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(45deg,#555,#777);"></div><span class="wdx-title">Installation & Setup</span></a>
+    <a href="#" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(45deg,#666,#888);"></div><span class="wdx-title">Remote Support (7×24)</span></a>
   </div>
 </div>
-
-<div class="dropdown-panel" id="dd-about-dd">
-  <button class="dropdown-close" onclick="closeDropdown()">✕</button>
-  <div class="dropdown-left">
-    <div style="width:240px;height:160px;background:linear-gradient(135deg,#2a1a0a,#5c3a10);border-radius:4px;margin-bottom:20px;"></div>
-    <h3>RACK N SPACE Intelligent Logistics Technology</h3>
-    <p>Smart warehousing integrator dedicated to intelligent manufacturing and smart logistics since foundation.</p>
+<div class="dropdown-panel" id="dd-expertise" onmouseenter="clearHoverTimeout()" onmouseleave="closeDdHover()">
+  <div class="wdx-grid">
+    <a href="#" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#168a3e,#2e9a55);"></div><span class="wdx-title">Smart Logistics Planning</span></a>
+    <a href="#" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#168a3e,#3aa866);"></div><span class="wdx-title">Equipment Engineering</span></a>
+    <a href="#" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#168a3e,#54b882);"></div><span class="wdx-title">System Integration</span></a>
+    <a href="#" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#168a3e,#72c89f);"></div><span class="wdx-title">24/7 Remote Tech Support</span></a>
   </div>
-  <div class="dropdown-divider"></div>
-  <div class="dropdown-right">
-    <h4>About Us</h4>
-    <div class="dropdown-links">
-      <a class="dropdown-link" href="about.html">RACK N SPACE Group</a>
-      <a class="dropdown-link" href="about.html">R&D</a>
-      <a class="dropdown-link" href="about.html">Join Us</a>
-    </div>
+</div>
+<div class="dropdown-panel" id="dd-about" onmouseenter="clearHoverTimeout()" onmouseleave="closeDdHover()">
+  <div class="wdx-grid">
+    <a href="about.html" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#fe5e00,#ff8c42);"></div><span class="wdx-title">RackNSpace Group</span></a>
+    <a href="about.html" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#e05300,#ff7b25);"></div><span class="wdx-title">R&D Facilities</span></a>
+    <a href="about.html" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#d44d00,#fc6e14);"></div><span class="wdx-title">Partnership</span></a>
+    <a href="about.html" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#c74700,#ee6107);"></div><span class="wdx-title">Join Us</span></a>
   </div>
 </div>
 
 <div class="sidebar">
-  <button class="sidebar-btn">✉</button>
-  <button class="sidebar-btn">📱</button>
-  <button class="sidebar-btn">📞</button>
-  <button class="sidebar-btn">💬</button>
+  <button class="sidebar-btn" onclick="showContact('email')" title="Email">✉</button>
+  <button class="sidebar-btn" onclick="showContact('phone')" title="Phone">📞</button>
+  <button class="sidebar-btn" onclick="showContact('whatsapp')" title="WhatsApp">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+    </svg>
+  </button>
+</div>
+
+<div id="contact-display" class="contact-box" style="display:none;">
+  <span class="close-btn" onclick="this.parentElement.style.display='none'">✕</span>
+  <h4 id="contact-title" style="font-family:'Barlow Condensed', sans-serif; font-size:18px; margin-bottom:10px; border-bottom:1px solid #eee; padding-bottom:5px;">Contact</h4>
+  <p id="contact-info" style="font-size:14px; font-weight:600;"></p>
 </div>
 
 <button class="scroll-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
@@ -230,28 +292,27 @@
       <div class="contact-icon">✉</div>
       <div class="contact-detail-text">
         <h4>Email</h4>
-        <p>info@racknspace.com</p>
+        <p>racknspace@gmail.com</p>
       </div>
     </div>
     <div class="contact-detail">
       <div class="contact-icon">📞</div>
       <div class="contact-detail-text">
-        <h4>Telephone</h4>
-        <p>+91 XXXXXXXXXX</p>
-      </div>
-    </div>
-    <div class="contact-detail">
-      <div class="contact-icon">📱</div>
-      <div class="contact-detail-text">
-        <h4>WhatsApp</h4>
+        <h4>Telephone / WhatsApp</h4>
         <p>+91 XXXXXXXXXX</p>
       </div>
     </div>
     <div class="contact-detail">
       <div class="contact-icon">📍</div>
       <div class="contact-detail-text">
-        <h4>Address</h4>
-        <p>C/17, Maharashtra Industrial Development Corporation Area, Midc, Baramati, Bandalwadi, Maharashtra. 413133</p>
+        <h4>Unit 1</h4>
+        <p>C-17, MIDC Baramati, Dist. Pune - Maharashtra (INDIA) - 413133</p>
+        
+        <h4 style="margin-top:12px;">Unit 2</h4>
+        <p>G-90, MIDC Baramati, Dist. Pune - Maharashtra (INDIA) - 413133</p>
+        
+        <h4 style="margin-top:12px;">Branch Office</h4>
+        <p>B2 - 202, Nandanvan Condominiums, New D P Road, Vishal Nagar,<br>Pimple Nilakh, Pune - Maharashtra (INDIA) - 411027</p>
       </div>
     </div>
   </div>
@@ -268,13 +329,26 @@
       <label>Industry</label>
       <select>
         <option>Select your industry</option>
-        <option>New Energy</option>
-        <option>Pharmaceutical</option>
-        <option>Food & Beverage</option>
-        <option>E-Commerce</option>
-        <option>Cold Chain</option>
+        <option>AutoMobile</option>
+        <option>Pharma</option>
         <option>Chemical</option>
-        <option>Other</option>
+        <option>Fertilizers</option>
+        <option>Beverages</option>
+        <option>Cold Warehouses</option>
+        <option>Defense</option>
+        <option>Textile</option>
+        <option>Food & Dairy Products</option>
+        <option>Energy & Power</option>
+        <option>E-Commerce</option>
+        <option>Precision Manufacturing</option>
+        <option>FMCG</option>
+        <option>Engineering</option>
+        <option>Infrastructure</option>
+        <option>Liquor</option>
+        <option>Mushroom Cultivation</option>
+        <option>Cement</option>
+        <option>Railways</option>
+        <option>Document Storage</option>
       </select>
     </div>
     <div class="form-group"><label>Message</label><textarea placeholder="Tell us about your warehousing challenge…"></textarea></div>
@@ -284,35 +358,80 @@
 
 <footer>
   <div class="footer-grid">
-    <div><h4>About Us</h4><ul><li><a href="about.html">RACK N SPACE Group</a></li><li><a href="about.html">R&D</a></li></ul></div>
-    <div><h4>Case</h4><ul><li>Unit-load Crane AS/RS</li></ul></div>
-    <div><h4>Products</h4><ul><li><a href="products.html">ASRS Equipment</a></li><li><a href="products.html">Software</a></li></ul></div>
-    <div class="footer-contact"><h4>Contact Us</h4><p>E-mail: <strong>info@racknspace.com</strong></p></div>
+    <div>
+      <h4>About Us</h4>
+      <ul>
+        <li><a href="about.html">RackNSpace Group</a></li><li><a href="about.html">R&D</a></li>
+        <li><a href="about.html">Events & Activities</a></li><li><a href="about.html">Sustainability</a></li>
+        <li><a href="about.html">Culture</a></li><li><a href="about.html">Join us</a></li>
+        <li><a href="about.html">Partnership Opportunities</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Case</h4>
+      <ul>
+        <li>Unit-load Crane AS/RS</li><li>Unit-load Crane & Four-way Shuttle AS/RS</li>
+        <li>Unit-load Crane & Tote Four-Way Shuttle AS/RS</li><li>Unit-load Crane AS/RS</li>
+        <li>Unit-load Crane & Four-way Shuttle AS/RS</li><li>Unit-load Crane AS/RS</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Products</h4>
+      <ul>
+        <li><a href="products.html">ASRS Equipment</a></li>
+        <li><a href="products.html">Conveying Equipment</a></li>
+        <li><a href="products.html">Software</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact">
+      <h4>Contact Us</h4>
+      <p>E-mail: <strong>racknspace@gmail.com</strong></p>
+      <p>Tel: <strong>+91 XXXXXXXXXX</strong></p>
+      <p>Unit 1 : <strong>C-17, MIDC Baramati, Dist. Pune - Maharashtra (INDIA) - 413133</strong></p>
+      <p>Unit 2 : <strong>G-90, MIDC Baramati, Dist. Pune - Maharashtra (INDIA) - 413133</strong></p>
+      <p>Branch Office : <strong>B2 - 202, Nandanvan Condominiums, New D P Road, Vishal Nagar,<br>Pimple Nilakh, Pune - Maharashtra (INDIA) - 411027</strong></p>
+    </div>
   </div>
-  <div class="footer-bottom"><span>Copyright © 2026 RACK N SPACE INTELLIGENT LOGISTICS TECHNOLOGY CO., LTD.</span></div>
+  <div class="footer-bottom">
+    <span>Copyright © 2026 RACK N SPACE INTELLIGENT LOGISTICS TECHNOLOGY CO., LTD. Privacy Policy</span>
+  </div>
 </footer>
 
 <script>
-  let openDd = null;
-  function toggleDropdown(name) {
-    const panel = document.getElementById('dd-' + name);
-    const overlay = document.getElementById('dropdown-overlay');
-    const navItem = document.getElementById('nav-' + name.replace('-dd',''));
-    if (openDd === name) { closeDropdown(); return; }
-    closeDropdown();
-    openDd = name;
-    panel.classList.add('open'); overlay.classList.add('open');
-    if (navItem) navItem.classList.add('open');
+  /* Dropdown Hover Logic */
+  let ddHoverTimeout;
+  function openDdHover(name){
+    clearTimeout(ddHoverTimeout); closeAllDropdowns();
+    var p = document.getElementById('dd-'+name), n = document.getElementById('nav-'+name);
+    if(p) p.classList.add('open');
+    if(n) n.classList.add('active');
+    document.getElementById('dropdown-overlay').classList.add('open');
   }
-  function closeDropdown() {
-    if (openDd) {
-      const panel = document.getElementById('dd-' + openDd);
-      if (panel) panel.classList.remove('open');
-      const navItem = document.getElementById('nav-' + openDd.replace('-dd',''));
-      if (navItem) { navItem.classList.remove('open'); }
-    }
+  function closeDdHover(){ ddHoverTimeout = setTimeout(()=>{ closeAllDropdowns(); }, 200); }
+  function clearHoverTimeout(){ clearTimeout(ddHoverTimeout); }
+  function closeAllDropdowns(){
+    document.querySelectorAll('.dropdown-panel').forEach(p => p.classList.remove('open'));
+    document.querySelectorAll('.nav-item').forEach(n => { if(n.id !== 'nav-contact') n.classList.remove('active'); });
     document.getElementById('dropdown-overlay').classList.remove('open');
-    openDd = null;
+  }
+
+  /* Show Contact Sidebar Logic */
+  function showContact(type) {
+    const displayBox = document.getElementById('contact-display');
+    const title = document.getElementById('contact-title');
+    const info = document.getElementById('contact-info');
+    
+    const data = {
+      email: { title: "Email Us", val: "racknspace@gmail.com" },
+      phone: { title: "Office Phone", val: "+91 XXXXXXXXXX" },
+      whatsapp: { title: "WhatsApp", val: "+91 XXXXXXXXXX" }
+    };
+
+    if (data[type]) {
+      title.innerText = data[type].title;
+      info.innerText = data[type].val;
+      displayBox.style.display = 'block';
+    }
   }
 </script>
 </body>
