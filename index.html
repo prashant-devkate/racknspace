@@ -243,52 +243,57 @@
   .video-label { font-size:12px; color:rgba(255,255,255,.6); letter-spacing:2px; text-transform:uppercase; margin-bottom:16px; margin-top:12px; }
 
   /* ═══════════════════════ STATS ═══════════════════════ */
-  .stats-section { display:grid; grid-template-columns:repeat(3,1fr); }
-
-  /* Box 1 – deep navy, white text, red accent number */
-  .stat-box { padding:48px 36px; border-right:1px solid rgba(255,255,255,.08); position:relative; overflow:hidden; }
-  .stat-box::before { content:''; position:absolute; inset:0; opacity:.06; pointer-events:none; }
-
-  .stat-box:nth-child(1) {
-    background: linear-gradient(135deg, #0a1e36 0%, #0F2A44 60%, #163860 100%);
+  .stats-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    padding: 80px 48px;
+    background: var(--light);
   }
-  .stat-box:nth-child(1)::before {
-    background: radial-gradient(circle at 80% 20%, rgba(254,94,0,0.25) 0%, transparent 60%);
-    opacity: 1;
-  }
-  .stat-box:nth-child(1) .stat-num  { color: var(--red); }
-  .stat-box:nth-child(1) .stat-label { color: rgba(255,255,255,.72); }
-  .stat-box:nth-child(1) .stat-icon  { color: rgba(254,94,0,.55); }
 
-  /* Box 2 – rich amber/gold */
-  .stat-box:nth-child(2) {
-    background: linear-gradient(135deg, #2a1a00 0%, #3d2600 60%, #5a3a00 100%);
+  .stat-box {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid var(--border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
-  .stat-box:nth-child(2)::before {
-    background: radial-gradient(circle at 20% 80%, rgba(255,215,0,0.2) 0%, transparent 60%);
-    opacity: 1;
+  
+  .stat-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
   }
-  .stat-box:nth-child(2) .stat-num  { color: #FFD700; }
-  .stat-box:nth-child(2) .stat-label { color: rgba(255,255,255,.68); }
-  .stat-box:nth-child(2) .stat-icon  { color: rgba(255,215,0,.5); }
 
-  /* Box 3 – deep steel blue */
-  .stat-box:nth-child(3) {
-    background: linear-gradient(135deg, #0a1a36 0%, #103060 60%, #1565C0 100%);
-    border-right: none;
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 56px;
+    font-weight: 900;
+    line-height: 1;
+    margin: 15px 0;
+    color: var(--dark);
   }
-  .stat-box:nth-child(3)::before {
-    background: radial-gradient(circle at 75% 75%, rgba(21,101,192,0.35) 0%, transparent 65%);
-    opacity: 1;
+  
+  .stat-box:nth-child(1) .stat-num { color: var(--red); }
+  .stat-box:nth-child(2) .stat-num { color: var(--leaf); }
+  .stat-box:nth-child(3) .stat-num { color: var(--blue); }
+  
+  .stat-label {
+    font-size: 15px;
+    color: var(--mid);
+    font-weight: 600;
   }
-  .stat-box:nth-child(3) .stat-num  { color: #60aeff; }
-  .stat-box:nth-child(3) .stat-label { color: rgba(255,255,255,.68); }
-  .stat-box:nth-child(3) .stat-icon  { color: rgba(96,174,255,.5); }
 
-  .stat-num { font-family:'Barlow Condensed',sans-serif; font-size:64px; font-weight:900; line-height:1; margin-bottom:10px; }
-  .stat-label { font-size:14px; line-height:1.5; font-weight:500; }
-  .stat-icon { font-size:22px; margin-bottom:10px; }
+  .stat-icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
 
+  /* Mobile adjustment */
+  @media (max-width: 768px) {
+    .stats-section { grid-template-columns: 1fr; padding: 40px 20px; }
+  }
+  
   /* ═══════════════════════ NEWS ═══════════════════════ */
   .news-section { padding:80px; background:var(--light); }
   .news-layout { display:grid; grid-template-columns:1fr 1fr; gap:48px; margin-top:0; }
@@ -357,6 +362,21 @@
   transition: opacity 0.5s ease-in-out, background-image 0.5s ease-in-out;
   opacity: 1;
 }
+
+.contact-box {
+  position: fixed;
+  right: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--white);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  z-index: 1001;
+  border-left: 5px solid var(--red);
+  min-width: 200px;
+}
+.close-btn { position:absolute; top:5px; right:10px; cursor:pointer; font-weight:bold; }
 </style>
 </head>
 <body>
@@ -435,10 +455,18 @@
 </div>
 
 <div class="sidebar">
-  <button class="sidebar-btn" title="Email">✉</button>
-  <button class="sidebar-btn" title="Mobile">📱</button>
-  <button class="sidebar-btn" title="Phone">📞</button>
-  <button class="sidebar-btn" title="WhatsApp">💬</button>
+  <button class="sidebar-btn" onclick="showContact('email')">✉</button>
+  <button class="sidebar-btn" onclick="showContact('mobile')">📱</button>
+  <button class="sidebar-btn" onclick="showContact('phone')">📞</button>
+  <button class="sidebar-btn" onclick="showContact('whatsapp')">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:24px;height:24px;filter:brightness(0) invert(1);">
+  </button>
+</div>
+
+<div id="contact-display" class="contact-box" style="display:none;">
+  <span class="close-btn" onclick="this.parentElement.style.display='none'">✕</span>
+  <h4 id="contact-title">Contact</h4>
+  <p id="contact-info"></p>
 </div>
 
 <button class="scroll-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
@@ -698,7 +726,7 @@
   </div>
 </section>
 
-<!-- ═══════════════════════ STATS – DARK THEMED ═══════════════════════ -->
+<!-- ═══════════════════════ STATS ═══════════════════════ -->
 <section class="stats-section">
   <div class="stat-box">
     <div class="stat-icon">🏭</div>
@@ -708,12 +736,12 @@
   <div class="stat-box">
     <div class="stat-icon">✔</div>
     <div class="stat-num">100%</div>
-    <div class="stat-label">Success Ratio and Delivery Rate</div>
+    <div class="stat-label">Success Ratio & Delivery Rate</div>
   </div>
   <div class="stat-box">
     <div class="stat-icon">⚙</div>
     <div class="stat-num">80%</div>
-    <div class="stat-label">Automated Storage &amp; Retrieval System (AS/RS) and Racked Systems</div>
+    <div class="stat-label">AS/RS & Racked Systems</div>
   </div>
 </section>
 
@@ -908,6 +936,26 @@
   function tickNews(){var ticker=document.getElementById('news-ticker');if(!ticker||!ticker.children.length)return;var first=ticker.firstElementChild,h=first.offsetHeight;ticker.style.transition='transform 0.6s ease-in-out';ticker.style.transform=`translateY(-${h}px)`;setTimeout(()=>{ticker.style.transition='none';ticker.style.transform='translateY(0)';ticker.appendChild(first);},600);}
   setInterval(tickNews,3500);
 
+  /* Show Contact Info */
+  function showContact(type) {
+  const displayBox = document.getElementById('contact-display');
+  const title = document.getElementById('contact-title');
+  const info = document.getElementById('contact-info');
+  
+  const data = {
+    email: { title: "Email Us", val: "racknspace@gmail.com" },
+    mobile: { title: "Mobile", val: "+91 XXXXXXXXXX" },
+    phone: { title: "Office Phone", val: "+91 XXXXXXXXXX" },
+    whatsapp: { title: "WhatsApp", val: "+91 XXXXXXXXXX" }
+  };
+
+  if (data[type]) {
+    title.innerText = data[type].title;
+    info.innerText = data[type].val;
+    displayBox.style.display = 'block';
+  }
+}
+  
   /* Hotspots */
   document.querySelectorAll('.asrs-hotspot-dot').forEach(dot=>{dot.addEventListener('click',function(e){e.stopPropagation();var c=this.closest('.asrs-hotspot-container'),p=c.querySelector('.asrs-popup'),already=p.classList.contains('visible');document.querySelectorAll('.asrs-popup.visible').forEach(x=>x.classList.remove('visible'));if(!already)p.classList.add('visible');});});
   document.querySelectorAll('.asrs-popup-btn').forEach(btn=>{btn.addEventListener('click',function(e){e.stopPropagation();document.querySelectorAll('.asrs-popup.visible').forEach(x=>x.classList.remove('visible'));openModal(this.closest('.asrs-hotspot-container').getAttribute('data-modal'));});});
