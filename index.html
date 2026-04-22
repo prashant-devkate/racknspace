@@ -836,7 +836,13 @@
   function resetHeroInterval(){ clearInterval(heroInterval); heroInterval = setInterval(nextHero, 6000); }
 
   /* Industries */
-  const industryKeys=['appliance','cold','energy','chemical','pharma','auto','ecomm','retail','fmcg','electronics','apparel','cosmetics','aero','defense','agri','plastics','paper','metals','furniture','hardware'];
+  const industryKeys = [ 
+  'automobile','pharma','chemical','fertilizers','beverages',
+  'cold_warehouses','defense','textile','food_dairy','energy_power',
+  'e_commerce','precision_manufacturing','fmcg','engineering','infrastructure',
+  'liquor','mushroom_cultivation','cement','railways','document_storage'
+  ];
+  
   let currentIndIndex=2;
   const indImages={appliance:'Appliances.jpg',cold:'Cold-Room-scaled.jpg',energy:'new energy.jpg',chemical:'Chemical.jpg',pharma:'Pharma.jpg',auto:'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&q=80',ecomm:'https://images.unsplash.com/photo-1586528116311-ad8ed7c83a7f?auto=format&fit=crop&q=80',retail:'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80',fmcg:'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&q=80',electronics:'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80',apparel:'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&q=80',cosmetics:'https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80',aero:'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80',defense:'https://images.unsplash.com/photo-1596404984260-29c88fb7c8ed?auto=format&fit=crop&q=80',agri:'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&q=80',plastics:'https://images.unsplash.com/photo-1530587191344-934d402b1f86?auto=format&fit=crop&q=80',paper:'https://images.unsplash.com/photo-1603484477859-abe6a73f9366?auto=format&fit=crop&q=80',metals:'https://images.unsplash.com/photo-1565814636199-ae8133055c1c?auto=format&fit=crop&q=80',furniture:'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&q=80',hardware:'https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&q=80'};
   let imageChangeTimeout;
