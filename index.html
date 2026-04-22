@@ -5,18 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RackNSpace – AS/RS Overall Solution</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/neuropol-x" rel="stylesheet">
 <link rel="icon" href="rns.png" type="image/png">
 <style>
   :root {
-    --red: #cc0000;
-    --red-hover: #aa0000;
+    --red: #fe5e00;
+    --red-hover: #e05300;
     --dark: #0F2A44;
     --dark2: #222222;
     --mid: #555555;
     --light: #f5f5f5;
     --white: #ffffff;
     --border: #e0e0e0;
-    --stat-red: #c9697a;
+    --stat-red: #ff8c42;
   }
 
   * { margin:0; padding:0; box-sizing:border-box; }
@@ -28,26 +29,27 @@
     position:sticky; top:0; z-index:1000;
     background:var(--white);
     border-bottom:1px solid var(--border);
-    height:72px; display:flex; align-items:center;
+    height:90px; display:flex; align-items:center;
     padding:0 48px;
     justify-content:space-between;
     box-shadow:0 2px 8px rgba(0,0,0,.07);
   }
   .logo { display:flex; align-items:center; gap:8px; text-decoration:none; cursor:pointer;}
-  .logo-icon { width:36px; height:28px; }
-  .logo-text { font-size:22px; font-weight:800; letter-spacing:-.5px; }
-  .logo-text span:first-child { color:#e05a00; }
+  .logo-icon { width:42px; height:32px; }
+  .logo-text { font-family: 'Neuropol X', 'Neuropol', sans-serif; font-size:26px; letter-spacing: 1px; }
+  .logo-text span:first-child { color:var(--dark); }
   .logo-text span:last-child { color:var(--red); }
 
   nav { display:flex; align-items:center; gap:0; }
   .nav-item {
-    position:relative; padding:0 20px; height:72px;
-    display:flex; align-items:center; gap:4px;
-    font-size:15px; font-weight:600; color:var(--dark);
+    position:relative; padding:0 20px; height:90px;
+    display:flex; align-items:center; gap:8px;
+    font-size:16px; font-weight:600; color:var(--dark);
     cursor:pointer; text-decoration:none; white-space:nowrap;
     border-bottom:3px solid transparent;
     transition:color .2s;
   }
+  .nav-item svg { width: 18px; height: 18px; }
   .nav-item.active { color:var(--red); border-bottom-color:var(--red); }
   .nav-item:hover { color:var(--red); }
   .nav-item .arrow { font-size:11px; margin-top:1px; transition:transform .2s; }
@@ -64,20 +66,21 @@
   .search-btn { background:none; border:none; cursor:pointer; font-size:20px; color:var(--dark); padding:4px; }
 
   /* ── MEGA DROPDOWN ── */
-  .dropdown-overlay { display:none; position:fixed; top:72px; left:0; right:0; bottom:0; background:rgba(0,0,0,.45); z-index:900; }
+  .dropdown-overlay { display:none; position:fixed; top:90px; left:0; right:0; bottom:0; background:rgba(0,0,0,.45); z-index:900; }
   .dropdown-overlay.open { display:block; }
-  .dropdown-panel { display:none; position:fixed; top:72px; left:0; right:0; background:rgba(40,40,40,.97); z-index:901; padding:48px 80px 56px; color:var(--white); box-shadow:0 8px 32px rgba(0,0,0,.3); }
+  .dropdown-panel { display:none; position:fixed; top:90px; left:0; right:0; background:#f8f9fa; z-index:901; padding:48px 80px 56px; color:var(--dark); box-shadow:0 8px 32px rgba(0,0,0,.1); }
   .dropdown-panel.open { display:flex; gap:0; }
-  .dropdown-close { position:absolute; top:20px; right:32px; background:none; border:none; color:var(--white); font-size:28px; cursor:pointer; line-height:1; }
+  .dropdown-close { position:absolute; top:20px; right:32px; background:none; border:none; color:var(--dark); font-size:28px; cursor:pointer; line-height:1; opacity: 0.5; transition: opacity 0.2s;}
+  .dropdown-close:hover { opacity: 1; color: var(--red); }
   .dropdown-left { width:320px; padding-right:48px; flex-shrink:0; }
   .dropdown-left img { width:240px; margin-bottom:20px; opacity:.9; }
-  .dropdown-left h3 { font-size:18px; font-weight:800; margin-bottom:10px; }
-  .dropdown-left p { font-size:13px; color:#aaa; line-height:1.6; }
-  .dropdown-divider { width:1px; background:#444; flex-shrink:0; }
+  .dropdown-left h3 { font-size:18px; font-weight:800; margin-bottom:10px; color:var(--dark); }
+  .dropdown-left p { font-size:13px; color:var(--mid); line-height:1.6; }
+  .dropdown-divider { width:1px; background:#e0e0e0; flex-shrink:0; }
   .dropdown-right { flex:1; padding-left:56px; }
   .dropdown-right h4 { font-size:11px; font-weight:700; letter-spacing:2px; color:#888; margin-bottom:24px; text-transform:uppercase; }
   .dropdown-links { display:flex; flex-direction:column; gap:16px; }
-  .dropdown-link { font-size:16px; font-weight:500; color:var(--white); text-decoration:none; cursor:pointer; transition:color .15s; }
+  .dropdown-link { font-size:16px; font-weight:500; color:var(--dark2); text-decoration:none; cursor:pointer; transition:color .15s; }
   .dropdown-link:hover { color:var(--red); }
 
   /* ── FLOATING SIDEBAR ── */
@@ -111,7 +114,7 @@
   }
 
   /* ═══════════════════════ VIDEO CAROUSEL (HERO) ═══════════════════════ */
-  .hero-slider { position:relative; height:calc(100vh - 72px); min-height:540px; overflow:hidden; background:#000; }
+  .hero-slider { position:relative; height:calc(100vh - 90px); min-height:540px; overflow:hidden; background:#000; }
   .hero-slide { position:absolute; inset:0; opacity:0; transition:opacity 0.8s ease; display:flex; align-items:center; z-index:1; }
   .hero-slide.active { opacity:1; z-index:2; }
   
@@ -129,25 +132,25 @@
   .hero-dot.active { background:var(--red); }
 
   /* ═══════════════════════ IMAGE CAROUSEL (INDUSTRIES) ═══════════════════════ */
-  .industry-carousel { position:relative; height:700px; overflow:hidden; display:flex; flex-direction:column; justify-content:space-between; }
-  .ind-bg { position:absolute; inset:0; background-size:cover; background-position:center; transition:background-image 0.5s ease-in-out; }
-  .ind-overlay { position:absolute; inset:0; background:linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.8) 100%); }
+  .industry-carousel { position:relative; min-height:850px; height:auto; overflow:hidden; display:flex; flex-direction:column; justify-content:space-between; padding-bottom: 30px; }
+  .ind-bg { position:absolute; inset:0; background-size:cover; background-position:center; transition:background-image 0.5s ease-in-out; background-color: #222; }
+  .ind-overlay { position:absolute; inset:0; background:linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.9) 100%); }
   
-  .ind-header { position:relative; z-index:2; text-align:center; padding:60px 80px 0; color:var(--white); }
+  .ind-header { position:relative; z-index:2; text-align:center; padding:60px 80px 40px; color:var(--white); }
   .ind-header h2 { font-family:'Barlow Condensed',sans-serif; font-size:48px; font-weight:900; margin-bottom:16px; }
   .ind-header p { font-size:15px; max-width:900px; margin:0 auto; color:rgba(255,255,255,.8); line-height:1.6; }
 
-  .ind-bottom { position:relative; z-index:2; display:flex; align-items:flex-end; padding:0 40px; height:200px; }
-  .ind-nav-btn { background:rgba(255,255,255,0.9); border:none; width:40px; height:40px; border-radius:50%; font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; margin-bottom:30px; transition:background 0.2s; color:var(--dark); }
+  .ind-bottom { position:relative; z-index:2; display:flex; align-items:center; padding:20px 40px; height:auto; }
+  .ind-nav-btn { background:rgba(255,255,255,0.9); border:none; width:40px; height:40px; border-radius:50%; font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background 0.2s; color:var(--dark); flex-shrink: 0; }
   .ind-nav-btn:hover { background:var(--white); }
   
-  .ind-tabs-wrapper { flex:1; display:flex; align-items:flex-end; overflow:hidden; margin:0 20px; }
-  .ind-tab { flex:1; min-width:140px; height:100px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; color:rgba(255,255,255,.7); cursor:pointer; transition:all 0.3s; background:rgba(0,0,0,0.4); border-bottom:3px solid transparent; backdrop-filter:blur(5px); }
-  .ind-tab svg { width:32px; height:32px; }
-  .ind-tab span { font-size:14px; font-weight:700; }
+  .ind-tabs-wrapper { flex:1; display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:8px; margin:0 20px; }
+  .ind-tab { flex: 0 0 calc(10% - 8px); min-width:85px; height:90px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; color:rgba(255,255,255,.7); cursor:pointer; transition:all 0.3s; background:rgba(0,0,0,0.5); border-bottom:3px solid transparent; backdrop-filter:blur(5px); }
+  .ind-tab svg { width:24px; height:24px; }
+  .ind-tab span { font-size:11px; font-weight:700; text-align: center; line-height: 1.1; padding: 0 4px; }
   
-  .ind-tab:hover { color:var(--white); background:rgba(0,0,0,0.6); }
-  .ind-tab.active { background:var(--red); color:var(--white); height:140px; border-bottom:none; box-shadow:0 -5px 15px rgba(204,0,0,0.3); }
+  .ind-tab:hover { color:var(--white); background:rgba(0,0,0,0.7); }
+  .ind-tab.active { background:var(--red); color:var(--white); height:100px; border-bottom:none; box-shadow:0 -5px 15px rgba(254,94,0,0.3); }
 
   /* Section titles */
   .section-title { text-align:center; font-family:'Barlow Condensed',sans-serif; font-size:clamp(32px,4vw,48px); font-weight:900; color:var(--dark); margin-bottom:12px; }
@@ -158,17 +161,8 @@
   
   .asrs-visual { position:relative; height:500px; display:flex; align-items:center; justify-content:center; overflow:hidden; border-radius:4px; }
   
-  /* ── HOTSPOT FIX ──
-     Root cause: the popup was offset 40px away from the dot with no hover bridge,
-     so the mouse left .asrs-hotspot-container while crossing the gap, dismissing it.
-     Fix: switch to click-toggle (JS below), add a generous transparent padding zone
-     on the container so accidental mouse-leave doesn't fire, and position the popup
-     flush against the dot with a small gap via margin only. */
-
   .asrs-hotspot-container {
     position: absolute;
-    /* large transparent hit area so the container stays "hovered" while
-       the cursor travels between dot and popup */
     padding: 20px;
     margin: -20px;
     cursor: pointer;
@@ -182,22 +176,19 @@
     cursor: pointer;
     position: relative;
     animation: pulseRed 2s infinite;
-    /* make sure the dot itself is on top */
     z-index: 2;
   }
 
   @keyframes pulseRed {
-    0%   { box-shadow: 0 0 0 0   rgba(204, 0, 0, 0.7); }
-    70%  { box-shadow: 0 0 0 15px rgba(204, 0, 0, 0);   }
-    100% { box-shadow: 0 0 0 0   rgba(204, 0, 0, 0);    }
+    0%   { box-shadow: 0 0 0 0   rgba(254, 94, 0, 0.7); }
+    70%  { box-shadow: 0 0 0 15px rgba(254, 94, 0, 0);   }
+    100% { box-shadow: 0 0 0 0   rgba(254, 94, 0, 0);    }
   }
 
-  /* Popup — hidden by default, shown via .visible class toggled by JS */
   .asrs-popup {
     position: absolute;
-    /* default: open to the RIGHT of the dot */
     top: 50%;
-    left: calc(100% + 8px);   /* flush right of the dot + 8px gap */
+    left: calc(100% + 8px);
     transform: translateY(-50%);
     opacity: 0;
     visibility: hidden;
@@ -213,14 +204,12 @@
     z-index: 10;
   }
 
-  /* Variant: open to the LEFT (for hotspots near the right edge) */
   .asrs-popup.left-side {
     left: auto;
     right: calc(100% + 8px);
     transform: translateY(-50%);
   }
 
-  /* Active state — toggled by JS click */
   .asrs-popup.visible {
     opacity: 1;
     visibility: visible;
@@ -417,7 +406,7 @@
   .play-btn { font-size: 40px; color: white; }
   .video-label { font-size:12px; color:rgba(255,255,255,.6); letter-spacing:2px; text-transform:uppercase; margin-top:12px; }
 
-  .stats-section { display:grid; grid-template-columns:repeat(4,1fr); }
+  .stats-section { display:grid; grid-template-columns:repeat(3,1fr); }
   .stat-box { padding:40px 32px; border-right:1px solid var(--border); }
   .stat-box:first-child { background:var(--stat-red); }
   .stat-box:first-child .stat-num, .stat-box:first-child .stat-label { color:var(--white); }
@@ -457,25 +446,39 @@
 <header id="navbar">
   <a class="logo" href="index.html">
     <svg class="logo-icon" viewBox="0 0 36 28" fill="none">
-      <rect y="3" width="36" height="5" rx="1" fill="#e05a00"/>
-      <rect y="11" width="26" height="5" rx="1" fill="#e05a00"/>
-      <rect y="19" width="36" height="5" rx="1" fill="#e05a00"/>
+      <rect y="3" width="36" height="5" rx="1" fill="var(--red)"/>
+      <rect y="11" width="26" height="5" rx="1" fill="var(--red)"/>
+      <rect y="19" width="36" height="5" rx="1" fill="var(--red)"/>
     </svg>
     <span class="logo-text"><span>RACK</span><span>N</span>SPACE</span>
   </a>
 
   <nav>
-    <a class="nav-item active" href="index.html" id="nav-home">Home</a>
-    <div class="nav-item" id="nav-industries" onclick="toggleDropdown('industries')">Industries <span class="arrow">▾</span></div>
-    <div class="nav-item" id="nav-products" onclick="toggleDropdown('products')">Products <span class="arrow">▾</span></div>
-    <div class="nav-item" id="nav-services" onclick="toggleDropdown('services')">Services <span class="arrow">▾</span></div>
-    <div class="nav-item" id="nav-about" onclick="toggleDropdown('about-dd')">About Us <span class="arrow">▾</span></div>
-    <a class="nav-item nav-contact" href="contact.html" id="nav-contact">Contact Us</a>
+    <a class="nav-item active" href="index.html" id="nav-home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+      Home
+    </a>
+    <div class="nav-item" id="nav-industries" onclick="toggleDropdown('industries')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+      Industries <span class="arrow">▾</span>
+    </div>
+    <div class="nav-item" id="nav-products" onclick="toggleDropdown('products')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+      Products <span class="arrow">▾</span>
+    </div>
+    <div class="nav-item" id="nav-services" onclick="toggleDropdown('services')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+      Services <span class="arrow">▾</span>
+    </div>
+    <div class="nav-item" id="nav-about" onclick="toggleDropdown('about-dd')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      About Us <span class="arrow">▾</span>
+    </div>
+    <a class="nav-item nav-contact" href="contact.html" id="nav-contact">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+      Contact Us
+    </a>
   </nav>
-
-  <div class="nav-right">
-    <button class="search-btn">🔍</button>
-  </div>
 </header>
 
 <div class="dropdown-overlay" id="dropdown-overlay" onclick="closeDropdown()"></div>
@@ -606,26 +609,29 @@
   <div class="ind-bottom">
     <button class="ind-nav-btn" onclick="prevIndustry(true)">❮</button>
     <div class="ind-tabs-wrapper">
-      <div class="ind-tab" id="ind-tab-appliance" onclick="switchIndustry('appliance', true)">
-        <svg fill="currentColor" viewBox="0 0 28 28"><rect x="2" y="8" width="24" height="14" rx="1" opacity=".6"/><rect x="8" y="4" width="12" height="6" rx="1"/><rect x="10" y="12" width="8" height="6" rx="1" fill="rgba(255,255,255,.5)"/></svg>
-        <span>Home Appliance</span>
-      </div>
-      <div class="ind-tab" id="ind-tab-cold" onclick="switchIndustry('cold', true)">
-        <svg fill="currentColor" viewBox="0 0 28 28"><circle cx="14" cy="14" r="8" opacity=".6"/><path d="M14 6v4M14 18v4M6 14h4M18 14h4" stroke="currentColor" stroke-width="2" fill="none"/></svg>
-        <span>Cold Chain</span>
-      </div>
-      <div class="ind-tab active" id="ind-tab-energy" onclick="switchIndustry('energy', true)">
-        <svg fill="currentColor" viewBox="0 0 28 28"><path d="M4 22l5-8h4l5-8h6" stroke="currentColor" stroke-width="2" fill="none" opacity=".8"/><circle cx="20" cy="8" r="3" opacity=".6"/></svg>
-        <span>New Energy</span>
-      </div>
-      <div class="ind-tab" id="ind-tab-chemical" onclick="switchIndustry('chemical', true)">
-        <svg fill="currentColor" viewBox="0 0 28 28"><rect x="8" y="2" width="12" height="20" rx="1" opacity=".5"/><circle cx="14" cy="10" r="3"/><rect x="11" y="16" width="6" height="6" rx="1" opacity=".6"/></svg>
-        <span>Chemical</span>
-      </div>
-      <div class="ind-tab" id="ind-tab-pharma" onclick="switchIndustry('pharma', true)">
-        <svg fill="currentColor" viewBox="0 0 28 28"><rect x="2" y="16" width="24" height="8" rx="1" opacity=".5"/><rect x="6" y="10" width="16" height="8" rx="1" opacity=".6"/><rect x="10" y="4" width="8" height="8" rx="1" opacity=".7"/></svg>
-        <span>Pharmaceutical</span>
-      </div>
+      <div class="ind-tab" id="ind-tab-appliance" onclick="switchIndustry('appliance', true)"><svg fill="currentColor" viewBox="0 0 28 28"><rect x="2" y="8" width="24" height="14" rx="1" opacity=".6"/><rect x="8" y="4" width="12" height="6" rx="1"/></svg><span>Home<br>Appliance</span></div>
+      <div class="ind-tab" id="ind-tab-cold" onclick="switchIndustry('cold', true)"><svg fill="currentColor" viewBox="0 0 28 28"><circle cx="14" cy="14" r="8" opacity=".6"/></svg><span>Cold<br>Chain</span></div>
+      <div class="ind-tab active" id="ind-tab-energy" onclick="switchIndustry('energy', true)"><svg fill="currentColor" viewBox="0 0 28 28"><path d="M4 22l5-8h4l5-8h6" stroke="currentColor" stroke-width="2" fill="none" opacity=".8"/></svg><span>New<br>Energy</span></div>
+      <div class="ind-tab" id="ind-tab-chemical" onclick="switchIndustry('chemical', true)"><svg fill="currentColor" viewBox="0 0 28 28"><rect x="8" y="2" width="12" height="20" rx="1" opacity=".5"/></svg><span>Chemical</span></div>
+      <div class="ind-tab" id="ind-tab-pharma" onclick="switchIndustry('pharma', true)"><svg fill="currentColor" viewBox="0 0 28 28"><rect x="2" y="16" width="24" height="8" rx="1" opacity=".5"/></svg><span>Pharma</span></div>
+      
+      <div class="ind-tab" id="ind-tab-auto" onclick="switchIndustry('auto', true)"><svg fill="currentColor" viewBox="0 0 28 28"><rect x="4" y="10" width="20" height="10" rx="2" opacity=".5"/></svg><span>Automotive</span></div>
+      <div class="ind-tab" id="ind-tab-ecomm" onclick="switchIndustry('ecomm', true)"><svg fill="currentColor" viewBox="0 0 28 28"><circle cx="10" cy="14" r="4" opacity=".5"/><circle cx="18" cy="14" r="4" opacity=".5"/></svg><span>E-Commerce</span></div>
+      <div class="ind-tab" id="ind-tab-retail" onclick="switchIndustry('retail', true)"><svg fill="currentColor" viewBox="0 0 28 28"><rect x="6" y="6" width="16" height="16" opacity=".5"/></svg><span>Retail</span></div>
+      <div class="ind-tab" id="ind-tab-fmcg" onclick="switchIndustry('fmcg', true)"><svg fill="currentColor" viewBox="0 0 28 28"><path d="M2 14h24" stroke="currentColor" stroke-width="2" opacity=".5"/></svg><span>FMCG</span></div>
+      <div class="ind-tab" id="ind-tab-electronics" onclick="switchIndustry('electronics', true)"><svg fill="currentColor" viewBox="0 0 28 28"><rect x="8" y="8" width="12" height="12" rx="1" opacity=".5"/></svg><span>Electronics</span></div>
+      
+      <div class="ind-tab" id="ind-tab-apparel" onclick="switchIndustry('apparel', true)"><svg fill="currentColor" viewBox="0 0 28 28"><path d="M6 10l8-4 8 4v10H6z" opacity=".5"/></svg><span>Apparel</span></div>
+      <div class="ind-tab" id="ind-tab-cosmetics" onclick="switchIndustry('cosmetics', true)"><svg fill="currentColor" viewBox="0 0 28 28"><rect x="10" y="6" width="8" height="16" rx="4" opacity=".5"/></svg><span>Cosmetics</span></div>
+      <div class="ind-tab" id="ind-tab-aero" onclick="switchIndustry('aero', true)"><svg fill="currentColor" viewBox="0 0 28 28"><path d="M14 2l10 10-4 4-6-6-6 6-4-4z" opacity=".5"/></svg><span>Aerospace</span></div>
+      <div class="ind-tab" id="ind-tab-defense" onclick="switchIndustry('defense', true)"><svg fill="currentColor" viewBox="0 0 28 28"><circle cx="14" cy="14" r="10" opacity=".5"/></svg><span>Defense</span></div>
+      <div class="ind-tab" id="ind-tab-agri" onclick="switchIndustry('agri', true)"><svg fill="currentColor" viewBox="0 0 28 28"><path d="M14 22V6" stroke="currentColor" stroke-width="4" opacity=".5"/></svg><span>Agriculture</span></div>
+      
+      <div class="ind-tab" id="ind-tab-plastics" onclick="switchIndustry('plastics', true)"><svg fill="currentColor" viewBox="0 0 28 28"><rect x="4" y="4" width="8" height="8" opacity=".5"/><rect x="16" y="16" width="8" height="8" opacity=".5"/></svg><span>Plastics</span></div>
+      <div class="ind-tab" id="ind-tab-paper" onclick="switchIndustry('paper', true)"><svg fill="currentColor" viewBox="0 0 28 28"><rect x="6" y="2" width="16" height="24" rx="1" opacity=".5"/></svg><span>Paper</span></div>
+      <div class="ind-tab" id="ind-tab-metals" onclick="switchIndustry('metals', true)"><svg fill="currentColor" viewBox="0 0 28 28"><path d="M4 14l10-10 10 10-10 10z" opacity=".5"/></svg><span>Metals</span></div>
+      <div class="ind-tab" id="ind-tab-furniture" onclick="switchIndustry('furniture', true)"><svg fill="currentColor" viewBox="0 0 28 28"><rect x="6" y="10" width="16" height="4" opacity=".5"/></svg><span>Furniture</span></div>
+      <div class="ind-tab" id="ind-tab-hardware" onclick="switchIndustry('hardware', true)"><svg fill="currentColor" viewBox="0 0 28 28"><circle cx="10" cy="10" r="4" opacity=".5"/><path d="M12 12l8 8" stroke="currentColor" stroke-width="3" opacity=".5"/></svg><span>Hardware</span></div>
     </div>
     <button class="ind-nav-btn" onclick="nextIndustry(true)">❯</button>
   </div>
@@ -635,9 +641,8 @@
   <h2 class="section-title">Automated Storage &amp; Retrieval Systems (AS/RS)</h2>
   <p class="section-sub">From warehouse automation to intelligent software control</p>
   
-  <div class="asrs-visual" style="background: url('warehouse.png') center/cover no-repeat;">
+  <div class="asrs-visual" style="background: url('warehouse.png') center/cover no-repeat; background-color: #f0f0f0;">
     
-    <!-- Hotspot 1: Racking Structure — opens RIGHT -->
     <div class="asrs-hotspot-container" style="top: 25%; left: 20%;" data-modal="racking">
       <div class="asrs-hotspot-dot"></div>
       <div class="asrs-popup">
@@ -646,7 +651,6 @@
       </div>
     </div>
     
-    <!-- Hotspot 2: Stacker Crane — opens RIGHT -->
     <div class="asrs-hotspot-container" style="top: 50%; left: 45%;" data-modal="crane">
       <div class="asrs-hotspot-dot"></div>
       <div class="asrs-popup">
@@ -655,7 +659,6 @@
       </div>
     </div>
     
-    <!-- Hotspot 3: Conveyor System — opens LEFT (near right edge) -->
     <div class="asrs-hotspot-container" style="bottom: 20%; right: 30%;" data-modal="conveyor">
       <div class="asrs-hotspot-dot"></div>
       <div class="asrs-popup left-side">
@@ -664,7 +667,6 @@
       </div>
     </div>
 
-    <!-- Hotspot 4: WMS Dashboard — opens LEFT (near right edge) -->
     <div class="asrs-hotspot-container" style="top: 30%; right: 15%;" data-modal="wms">
       <div class="asrs-hotspot-dot"></div>
       <div class="asrs-popup left-side">
@@ -690,8 +692,8 @@
             <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
           </div>
           <div style="position:absolute;left:8px;top:20%;width:6px;height:60%;background:#e8a020;border-radius:2px;"></div>
-          <div style="position:absolute;left:20%;top:0;bottom:0;width:3px;background:rgba(204,0,0,.7);"></div>
-          <div style="position:absolute;right:20%;top:0;bottom:0;width:3px;background:rgba(204,0,0,.7);"></div>
+          <div style="position:absolute;left:20%;top:0;bottom:0;width:3px;background:rgba(254,94,0,.7);"></div>
+          <div style="position:absolute;right:20%;top:0;bottom:0;width:3px;background:rgba(254,94,0,.7);"></div>
         </div>
         <div class="case-title">Unit-load Crane &amp; Tote Four-Way Shuttle AS/RS</div>
         <div class="case-desc">Raw material and finished goods warehouse — automated end-to-end with crane and shuttle integration.</div>
@@ -761,23 +763,18 @@
 <section class="stats-section">
   <div class="stat-box">
     <div class="stat-icon">👤</div>
-    <div class="stat-num">1000+</div>
-    <div class="stat-label">Serving over 1000 clients</div>
+    <div class="stat-num">500+</div>
+    <div class="stat-label">Systems installed</div>
   </div>
   <div class="stat-box">
     <div class="stat-icon" style="color:var(--mid)">👤</div>
     <div class="stat-num">100%</div>
-    <div class="stat-label">100% project acceptance and delivery rate</div>
+    <div class="stat-label">100% success ratio and delivery rate</div>
   </div>
   <div class="stat-box">
     <div class="stat-icon" style="color:var(--mid)">👤</div>
     <div class="stat-num">80%</div>
-    <div class="stat-label">Automatic Storage and Retrieval System (AS/RS)</div>
-  </div>
-  <div class="stat-box" style="border-right:none">
-    <div class="stat-icon" style="color:var(--mid)">👤</div>
-    <div class="stat-num">7*24</div>
-    <div class="stat-label">2-hour quick response, 7 × 24-hour remote support</div>
+    <div class="stat-label">Automatic Storage & Retrieval System (AS/RS), and Racklad Systems</div>
   </div>
 </section>
 
@@ -845,7 +842,6 @@
   </div>
 </footer>
 
-<!-- ═══════════════════════ DETAIL MODAL ═══════════════════════ -->
 <div class="modal-backdrop" id="detailModal" onclick="closeModal(event)">
   <div class="modal-box" id="modalBox">
 
@@ -858,7 +854,6 @@
     </div>
 
     <div class="modal-hero" id="modalHero">
-      <!-- SVG illustration injected by JS -->
       <span class="modal-hero-label" id="modalHeroLabel"></span>
     </div>
 
@@ -931,22 +926,55 @@
     heroInterval = setInterval(nextHero, 6000);
   }
 
-  /* ====== Industry Image Carousel Logic (Auto-play included) ====== */
-  const industryKeys = ['appliance', 'cold', 'energy', 'chemical', 'pharma'];
+  /* ====== Industry Image Carousel Logic ====== */
+  const industryKeys = [
+    'appliance', 'cold', 'energy', 'chemical', 'pharma',
+    'auto', 'ecomm', 'retail', 'fmcg', 'electronics',
+    'apparel', 'cosmetics', 'aero', 'defense', 'agri',
+    'plastics', 'paper', 'metals', 'furniture', 'hardware'
+  ];
   let currentIndIndex = 2;
 
+  // Added defaults for missing images so nothing breaks. 
+  // 1-second delay ensures the image buffers cleanly.
   const indImages = {
     'appliance': 'Appliances.jpg',
     'cold': 'Cold-Room-scaled.jpg',
     'energy': 'new energy.jpg',
     'chemical': 'Chemical.jpg',
-    'pharma': 'Pharma.jpg'
+    'pharma': 'Pharma.jpg',
+    'auto': 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&q=80',
+    'ecomm': 'https://images.unsplash.com/photo-1586528116311-ad8ed7c83a7f?auto=format&fit=crop&q=80',
+    'retail': 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80',
+    'fmcg': 'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&q=80',
+    'electronics': 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80',
+    'apparel': 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&q=80',
+    'cosmetics': 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80',
+    'aero': 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80',
+    'defense': 'https://images.unsplash.com/photo-1596404984260-29c88fb7c8ed?auto=format&fit=crop&q=80',
+    'agri': 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&q=80',
+    'plastics': 'https://images.unsplash.com/photo-1530587191344-934d402b1f86?auto=format&fit=crop&q=80',
+    'paper': 'https://images.unsplash.com/photo-1603484477859-abe6a73f9366?auto=format&fit=crop&q=80',
+    'metals': 'https://images.unsplash.com/photo-1565814636199-ae8133055c1c?auto=format&fit=crop&q=80',
+    'furniture': 'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&q=80',
+    'hardware': 'https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&q=80'
   };
+
+  let imageChangeTimeout;
 
   function switchIndustry(key, isManual = false) {
     document.querySelectorAll('.ind-tab').forEach(t => t.classList.remove('active'));
     document.getElementById('ind-tab-' + key).classList.add('active');
-    document.getElementById('industry-bg').style.backgroundImage = `url('${indImages[key]}')`;
+
+    // Preload image to avoid black screen and apply a 1-second delay
+    const img = new Image();
+    img.src = indImages[key];
+
+    clearTimeout(imageChangeTimeout);
+    imageChangeTimeout = setTimeout(() => {
+      document.getElementById('industry-bg').style.backgroundImage = `url('${img.src}')`;
+    }, 1000);
+
     currentIndIndex = industryKeys.indexOf(key);
     if (isManual) { resetIndInterval(); }
   }
@@ -984,10 +1012,7 @@
   }
   setInterval(slideCases, 5000);
 
-  /* ====== Hotspot Click-Toggle Logic ======
-     Clicking a dot opens its popup; clicking again (or clicking elsewhere) closes it.
-     This is intentionally click-based rather than hover-based to eliminate
-     the "disappears while moving to the button" problem entirely. */
+  /* ====== Hotspot Click-Toggle Logic ====== */
   document.querySelectorAll('.asrs-hotspot-dot').forEach(function(dot) {
     dot.addEventListener('click', function(e) {
       e.stopPropagation();
@@ -995,34 +1020,28 @@
       var popup = container.querySelector('.asrs-popup');
       var isAlreadyOpen = popup.classList.contains('visible');
 
-      // Close all popups first
       document.querySelectorAll('.asrs-popup.visible').forEach(function(p) {
         p.classList.remove('visible');
       });
 
-      // If it wasn't open, open it now
       if (!isAlreadyOpen) {
         popup.classList.add('visible');
       }
     });
   });
 
-  // Clicking the "Click to view" button inside the popup — open detail modal
   document.querySelectorAll('.asrs-popup-btn').forEach(function(btn) {
     btn.addEventListener('click', function(e) {
       e.stopPropagation();
-      // Close the small popup first
       document.querySelectorAll('.asrs-popup.visible').forEach(function(p) {
         p.classList.remove('visible');
       });
-      // Find which hotspot this belongs to
       var container = this.closest('.asrs-hotspot-container');
       var key = container.getAttribute('data-modal');
       openModal(key);
     });
   });
 
-  // Clicking anywhere else on the page closes all popups
   document.addEventListener('click', function() {
     document.querySelectorAll('.asrs-popup.visible').forEach(function(p) {
       p.classList.remove('visible');
@@ -1036,7 +1055,7 @@
       title: 'Racking Structure',
       heroLabel: 'HIGH-BAY AUTOMATED RACKING',
       heroGradient: 'linear-gradient(135deg,#1a3a6b,#2a5aab)',
-      heroSvg: '<svg width="100%" height="100%" viewBox="0 0 700 220" fill="none"><g fill="#e8a020" opacity=".7"><rect x="40" y="0" width="12" height="220"/><rect x="140" y="0" width="12" height="220"/><rect x="240" y="0" width="12" height="220"/><rect x="340" y="0" width="12" height="220"/><rect x="440" y="0" width="12" height="220"/><rect x="540" y="0" width="12" height="220"/><rect x="640" y="0" width="12" height="220"/></g><g stroke="rgba(255,255,255,.25)" stroke-width="1"><line x1="30" y1="55" x2="660" y2="55"/><line x1="30" y1="110" x2="660" y2="110"/><line x1="30" y1="165" x2="660" y2="165"/></g><g fill="rgba(200,140,30,.5)"><rect x="55" y="62" width="80" height="40"/><rect x="155" y="62" width="80" height="40"/><rect x="355" y="62" width="80" height="40"/><rect x="455" y="117" width="80" height="40"/><rect x="255" y="117" width="80" height="40"/><rect x="555" y="62" width="80" height="40"/></g></svg>',
+      heroSvg: '<svg width="100%" height="100%" viewBox="0 0 700 220" fill="none"><g fill="#fe5e00" opacity=".7"><rect x="40" y="0" width="12" height="220"/><rect x="140" y="0" width="12" height="220"/><rect x="240" y="0" width="12" height="220"/><rect x="340" y="0" width="12" height="220"/><rect x="440" y="0" width="12" height="220"/><rect x="540" y="0" width="12" height="220"/><rect x="640" y="0" width="12" height="220"/></g><g stroke="rgba(255,255,255,.25)" stroke-width="1"><line x1="30" y1="55" x2="660" y2="55"/><line x1="30" y1="110" x2="660" y2="110"/><line x1="30" y1="165" x2="660" y2="165"/></g><g fill="rgba(254,94,0,.5)"><rect x="55" y="62" width="80" height="40"/><rect x="155" y="62" width="80" height="40"/><rect x="355" y="62" width="80" height="40"/><rect x="455" y="117" width="80" height="40"/><rect x="255" y="117" width="80" height="40"/><rect x="555" y="62" width="80" height="40"/></g></svg>',
       desc: 'Our high-bay racking structures are engineered for maximum storage density and structural integrity. Built from high-grade steel with precision tolerances, each rack system is designed to work seamlessly with automated stacker cranes and shuttle systems, supporting heights from 10m up to 45m.',
       specs: [
         { label: 'Max Height', value: 'Up to 45 m' },
@@ -1060,7 +1079,7 @@
       title: 'Stacker Crane',
       heroLabel: 'UNIT-LOAD STACKER CRANE',
       heroGradient: 'linear-gradient(135deg,#2a1010,#8a2020)',
-      heroSvg: '<svg width="100%" height="100%" viewBox="0 0 700 220" fill="none"><g fill="#e8a020" opacity=".5"><rect x="60" y="0" width="10" height="220"/><rect x="160" y="0" width="10" height="220"/><rect x="260" y="0" width="10" height="220"/><rect x="360" y="0" width="10" height="220"/><rect x="460" y="0" width="10" height="220"/><rect x="560" y="0" width="10" height="220"/></g><g stroke="rgba(255,255,255,.2)" stroke-width="1"><line x1="50" y1="55" x2="580" y2="55"/><line x1="50" y1="110" x2="580" y2="110"/><line x1="50" y1="165" x2="580" y2="165"/></g><rect x="318" y="0" width="14" height="220" fill="rgba(204,0,0,.75)"/><rect x="295" y="90" width="60" height="40" fill="rgba(180,0,0,.9)" rx="2"/><rect x="50" y="208" width="560" height="10" fill="#555" rx="3"/><g fill="rgba(200,140,30,.45)"><rect x="72" y="62" width="82" height="40"/><rect x="172" y="117" width="82" height="40"/><rect x="372" y="62" width="82" height="40"/><rect x="472" y="117" width="82" height="40"/></g></svg>',
+      heroSvg: '<svg width="100%" height="100%" viewBox="0 0 700 220" fill="none"><g fill="#fe5e00" opacity=".5"><rect x="60" y="0" width="10" height="220"/><rect x="160" y="0" width="10" height="220"/><rect x="260" y="0" width="10" height="220"/><rect x="360" y="0" width="10" height="220"/><rect x="460" y="0" width="10" height="220"/><rect x="560" y="0" width="10" height="220"/></g><g stroke="rgba(255,255,255,.2)" stroke-width="1"><line x1="50" y1="55" x2="580" y2="55"/><line x1="50" y1="110" x2="580" y2="110"/><line x1="50" y1="165" x2="580" y2="165"/></g><rect x="318" y="0" width="14" height="220" fill="rgba(254,94,0,.75)"/><rect x="295" y="90" width="60" height="40" fill="rgba(224,83,0,.9)" rx="2"/><rect x="50" y="208" width="560" height="10" fill="#555" rx="3"/><g fill="rgba(254,94,0,.45)"><rect x="72" y="62" width="82" height="40"/><rect x="172" y="117" width="82" height="40"/><rect x="372" y="62" width="82" height="40"/><rect x="472" y="117" width="82" height="40"/></g></svg>',
       desc: 'The RackNSpace unit-load stacker crane is the core of our AS/RS solution. Combining a high-speed mast carriage with precision servo drives, it delivers reliable pallet storage and retrieval at throughputs of up to 200 cycles/hour — 24 hours a day, 365 days a year.',
       specs: [
         { label: 'Max Height', value: 'Up to 45 m' },
@@ -1084,7 +1103,7 @@
       title: 'Conveyor System',
       heroLabel: 'PALLET CONVEYOR NETWORK',
       heroGradient: 'linear-gradient(135deg,#1a3a28,#2a6a48)',
-      heroSvg: '<svg width="100%" height="100%" viewBox="0 0 700 220" fill="none"><rect x="40" y="95" width="620" height="30" fill="rgba(100,200,120,.2)" rx="3"/><g fill="rgba(100,200,120,.35)"><rect x="80" y="100" width="50" height="20" rx="2"/><rect x="160" y="100" width="50" height="20" rx="2"/><rect x="240" y="100" width="50" height="20" rx="2"/><rect x="320" y="100" width="50" height="20" rx="2"/><rect x="400" y="100" width="50" height="20" rx="2"/><rect x="480" y="100" width="50" height="20" rx="2"/><rect x="560" y="100" width="50" height="20" rx="2"/></g><circle cx="60" cy="110" r="16" fill="rgba(100,200,120,.3)" stroke="rgba(100,200,120,.5)" stroke-width="1.5"/><circle cx="640" cy="110" r="16" fill="rgba(100,200,120,.3)" stroke="rgba(100,200,120,.5)" stroke-width="1.5"/><g fill="rgba(200,140,30,.55)"><rect x="110" y="55" width="80" height="40" rx="2"/><rect x="280" y="55" width="80" height="40" rx="2"/><rect x="450" y="55" width="80" height="40" rx="2"/></g><path d="M390 125 Q430 80 470 125" fill="none" stroke="rgba(255,200,50,.5)" stroke-width="2" stroke-dasharray="5 3"/></svg>',
+      heroSvg: '<svg width="100%" height="100%" viewBox="0 0 700 220" fill="none"><rect x="40" y="95" width="620" height="30" fill="rgba(100,200,120,.2)" rx="3"/><g fill="rgba(100,200,120,.35)"><rect x="80" y="100" width="50" height="20" rx="2"/><rect x="160" y="100" width="50" height="20" rx="2"/><rect x="240" y="100" width="50" height="20" rx="2"/><rect x="320" y="100" width="50" height="20" rx="2"/><rect x="400" y="100" width="50" height="20" rx="2"/><rect x="480" y="100" width="50" height="20" rx="2"/><rect x="560" y="100" width="50" height="20" rx="2"/></g><circle cx="60" cy="110" r="16" fill="rgba(100,200,120,.3)" stroke="rgba(100,200,120,.5)" stroke-width="1.5"/><circle cx="640" cy="110" r="16" fill="rgba(100,200,120,.3)" stroke="rgba(100,200,120,.5)" stroke-width="1.5"/><g fill="rgba(254,94,0,.55)"><rect x="110" y="55" width="80" height="40" rx="2"/><rect x="280" y="55" width="80" height="40" rx="2"/><rect x="450" y="55" width="80" height="40" rx="2"/></g><path d="M390 125 Q430 80 470 125" fill="none" stroke="rgba(254,94,0,.5)" stroke-width="2" stroke-dasharray="5 3"/></svg>',
       desc: 'Our pallet conveyor systems form the logistics backbone of every AS/RS installation — linking inbound receiving, the automated warehouse, picking stations and outbound dispatch in a smooth, fully-automated flow. Every conveyor loop is engineered for your exact throughput and floor layout.',
       specs: [
         { label: 'Max Pallet Load', value: 'Up to 2,000 kg' },
@@ -1108,7 +1127,7 @@
       title: 'WMS Dashboard',
       heroLabel: 'WAREHOUSE MANAGEMENT SYSTEM',
       heroGradient: 'linear-gradient(135deg,#0a1020,#1a2850)',
-      heroSvg: '<svg width="100%" height="100%" viewBox="0 0 700 220" fill="none"><rect x="40" y="20" width="620" height="180" rx="4" fill="rgba(100,160,255,.06)" stroke="rgba(100,160,255,.2)" stroke-width="1"/><g fill="rgba(100,160,255,.25)"><rect x="60" y="40" width="180" height="80" rx="2"/><rect x="260" y="40" width="120" height="36" rx="2"/><rect x="260" y="84" width="120" height="36" rx="2"/><rect x="400" y="40" width="120" height="80" rx="2"/><rect x="540" y="40" width="100" height="80" rx="2"/></g><g fill="rgba(0,200,150,.5)"><rect x="70" y="60" width="20" height="50"/><rect x="98" y="50" width="20" height="60"/><rect x="126" y="65" width="20" height="45"/><rect x="154" y="45" width="20" height="65"/><rect x="182" y="55" width="20" height="55"/><rect x="210" y="70" width="20" height="40"/></g><g fill="rgba(100,160,255,.4)"><rect x="60" y="135" width="580" height="8" rx="1" opacity=".5"/><rect x="60" y="152" width="460" height="8" rx="1" opacity=".4"/><rect x="60" y="169" width="520" height="8" rx="1" opacity=".3"/><rect x="60" y="186" width="380" height="8" rx="1" opacity=".4"/></g></svg>',
+      heroSvg: '<svg width="100%" height="100%" viewBox="0 0 700 220" fill="none"><rect x="40" y="20" width="620" height="180" rx="4" fill="rgba(100,160,255,.06)" stroke="rgba(100,160,255,.2)" stroke-width="1"/><g fill="rgba(100,160,255,.25)"><rect x="60" y="40" width="180" height="80" rx="2"/><rect x="260" y="40" width="120" height="36" rx="2"/><rect x="260" y="84" width="120" height="36" rx="2"/><rect x="400" y="40" width="120" height="80" rx="2"/><rect x="540" y="40" width="100" height="80" rx="2"/></g><g fill="rgba(254,94,0,.5)"><rect x="70" y="60" width="20" height="50"/><rect x="98" y="50" width="20" height="60"/><rect x="126" y="65" width="20" height="45"/><rect x="154" y="45" width="20" height="65"/><rect x="182" y="55" width="20" height="55"/><rect x="210" y="70" width="20" height="40"/></g><g fill="rgba(100,160,255,.4)"><rect x="60" y="135" width="580" height="8" rx="1" opacity=".5"/><rect x="60" y="152" width="460" height="8" rx="1" opacity=".4"/><rect x="60" y="169" width="520" height="8" rx="1" opacity=".3"/><rect x="60" y="186" width="380" height="8" rx="1" opacity=".4"/></g></svg>',
       desc: 'The RackNSpace WMS (Warehouse Management System) and WCS (Warehouse Control System) provide a unified, real-time intelligence layer over your entire automated warehouse. From inventory visibility and order management to crane command dispatching and KPI dashboards — everything in one platform.',
       specs: [
         { label: 'Platform', value: 'Web-based, browser-agnostic' },
@@ -1141,20 +1160,17 @@
 
     var hero = document.getElementById('modalHero');
     hero.style.background = data.heroGradient;
-    // Remove old SVG if any, inject new one
     var oldSvg = hero.querySelector('svg');
     if (oldSvg) oldSvg.remove();
     var tmp = document.createElement('div');
     tmp.innerHTML = data.heroSvg;
     hero.insertBefore(tmp.firstChild, hero.firstChild);
 
-    // Specs
     var specsEl = document.getElementById('modalSpecs');
     specsEl.innerHTML = data.specs.map(function(s) {
       return '<div class="modal-spec"><div class="modal-spec-label">' + s.label + '</div><div class="modal-spec-value">' + s.value + '</div></div>';
     }).join('');
 
-    // Features
     var featuresEl = document.getElementById('modalFeatures');
     featuresEl.innerHTML = data.features.map(function(f) {
       return '<li>' + f + '</li>';
@@ -1165,13 +1181,11 @@
   }
 
   function closeModal(event) {
-    // If called from backdrop click, only close when clicking the backdrop itself
     if (event && event.target !== document.getElementById('detailModal')) return;
     document.getElementById('detailModal').classList.remove('open');
     document.body.style.overflow = '';
   }
 
-  // ESC key closes modal
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
       document.getElementById('detailModal').classList.remove('open');
