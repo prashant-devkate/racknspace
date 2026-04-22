@@ -48,7 +48,6 @@
     margin-right: 14px;
   }
 
-  /* Sharp brand name with bold fresh-leaf green underline */
   .logo-text {
     font-family: 'Neuropol', 'Barlow Condensed', sans-serif;
     font-size: 32px;
@@ -77,6 +76,74 @@
   .nav-item .arrow { font-size:11px; margin-top:1px; transition:transform .2s; }
   .nav-item.open .arrow { transform:rotate(180deg); }
   .nav-contact { color:var(--red)!important; }
+
+  /* ── HAMBURGER MENU ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 8px;
+    border: none;
+    background: none;
+    z-index: 1100;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--dark);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ── MOBILE NAV DRAWER ── */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--white);
+    z-index: 1050;
+    overflow-y: auto;
+    padding: 100px 0 40px;
+    flex-direction: column;
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 24px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+  }
+  .mobile-nav-item svg { width: 20px; height: 20px; flex-shrink: 0; }
+  .mobile-nav-item:hover, .mobile-nav-item.active { color: var(--red); }
+  .mobile-nav-item.contact { color: var(--red); }
+  .mobile-nav-sub {
+    display: none;
+    background: var(--light);
+    flex-direction: column;
+  }
+  .mobile-nav-sub.open { display: flex; }
+  .mobile-nav-sub a {
+    padding: 12px 24px 12px 48px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--mid);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .mobile-nav-sub a:hover { color: var(--red); }
+  .mobile-nav-item .mob-arrow { margin-left: auto; font-size: 12px; transition: transform 0.2s; }
+  .mobile-nav-item.open .mob-arrow { transform: rotate(180deg); }
 
   /* ── MEGA DROPDOWN ── */
   .dropdown-overlay { display:none; position:fixed; top:90px; left:0; right:0; bottom:0; background:rgba(0,0,0,.45); z-index:900; }
@@ -289,11 +356,6 @@
     margin-bottom: 10px;
   }
 
-  /* Mobile adjustment */
-  @media (max-width: 768px) {
-    .stats-section { grid-template-columns: 1fr; padding: 40px 20px; }
-  }
-  
   /* ═══════════════════════ NEWS ═══════════════════════ */
   .news-section { padding:80px; background:var(--light); }
   .news-layout { display:grid; grid-template-columns:1fr 1fr; gap:48px; margin-top:0; }
@@ -358,25 +420,203 @@
   .modal-btn-primary:hover { background:var(--red-hover); }
   .modal-btn-secondary { background:none; color:var(--dark); border:1px solid var(--border); padding:12px 24px; font-family:'Barlow',sans-serif; font-size:14px; font-weight:600; cursor:pointer; transition:border-color 0.2s, color 0.2s; border-radius:2px; }
   .modal-btn-secondary:hover { border-color:var(--dark); }
-  #industry-bg {
-  transition: opacity 0.5s ease-in-out, background-image 0.5s ease-in-out;
-  opacity: 1;
-}
 
-.contact-box {
-  position: fixed;
-  right: 60px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: var(--white);
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-  z-index: 1001;
-  border-left: 5px solid var(--red);
-  min-width: 200px;
-}
-.close-btn { position:absolute; top:5px; right:10px; cursor:pointer; font-weight:bold; }
+  #industry-bg {
+    transition: opacity 0.5s ease-in-out, background-image 0.5s ease-in-out;
+    opacity: 1;
+  }
+
+  .contact-box {
+    position: fixed;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    z-index: 1001;
+    border-left: 5px solid var(--red);
+    min-width: 200px;
+  }
+  .close-btn { position:absolute; top:5px; right:10px; cursor:pointer; font-weight:bold; }
+
+  /* ═══════════════════════════════════════════════════════════
+     MOBILE RESPONSIVE STYLES
+  ═══════════════════════════════════════════════════════════ */
+
+  /* Tablet: 768px and below */
+  @media (max-width: 1024px) {
+    #navbar { padding: 0 24px; height: 70px; }
+    .logo-icon { height: 52px; margin-right: 10px; }
+    .logo-text { font-size: 24px; }
+
+    nav { display: none; }
+    .hamburger { display: flex; }
+
+    .dropdown-overlay, .dropdown-panel { display: none !important; }
+
+    .hero-content { padding: 0 40px; }
+    .hero-controls { left: 40px; }
+    .hero-dot { width: 28px; }
+
+    .ind-header { padding: 40px 40px 30px; }
+    .ind-header h2 { font-size: 36px; }
+    .ind-bottom { padding: 16px 20px; }
+
+    .asrs-section { padding: 60px 40px 0; }
+    .asrs-visual { height: 360px; }
+
+    .cases-section { padding: 60px 40px; }
+    .case-card { flex: 0 0 calc(80% - 16px); }
+
+    .about-section { padding: 60px 40px; gap: 40px; }
+
+    .stats-section { padding: 60px 32px; gap: 16px; }
+    .stat-box { padding: 28px 20px; }
+    .stat-num { font-size: 44px; }
+
+    .news-section { padding: 60px 40px; }
+
+    footer { padding: 48px 40px 24px; }
+    .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+
+    .sidebar-btn { width: 40px; height: 40px; font-size: 16px; }
+
+    .scroll-to-top { width: 46px; height: 46px; font-size: 20px; bottom: 24px; right: 24px; }
+  }
+
+  /* Mobile: 768px and below */
+  @media (max-width: 768px) {
+    #navbar { padding: 0 16px; height: 64px; }
+    .logo-icon { height: 44px; margin-right: 8px; }
+    .logo-text { font-size: 20px; }
+
+    /* Hero */
+    .hero-slider { height: calc(100vh - 64px); min-height: 420px; }
+    .hero-content { padding: 0 20px; max-width: 100%; }
+    .hero-content h1 { font-size: clamp(32px, 9vw, 52px); margin-bottom: 12px; }
+    .hero-content p { font-size: 14px; margin-bottom: 24px; }
+    .hero-cta { padding: 12px 24px; font-size: 14px; }
+    .hero-controls { left: 20px; bottom: 24px; gap: 8px; }
+    .hero-dot { width: 24px; }
+
+    /* Industry */
+    .industry-carousel { min-height: 600px; }
+    .ind-header { padding: 32px 20px 24px; }
+    .ind-header h2 { font-size: 28px; }
+    .ind-header p { font-size: 13px; }
+    .ind-bottom { padding: 12px 8px; }
+    .ind-nav-btn { width: 32px; height: 32px; font-size: 14px; }
+    .ind-tabs-viewport { margin: 0 8px; }
+    .ind-tab { height: 72px; }
+    .ind-tab span { font-size: 10px; }
+    .ind-tab.active { height: 80px; }
+
+    /* AS/RS */
+    .asrs-section { padding: 48px 16px 0; }
+    .asrs-visual { height: 260px; }
+    .asrs-popup { white-space: normal; min-width: 140px; max-width: 160px; font-size: 12px; padding: 10px 12px; }
+    .asrs-popup h3 { font-size: 13px; }
+    /* On mobile, show popups above/below instead of left/right */
+    .asrs-popup,
+    .asrs-popup.left-side {
+      left: 50%;
+      right: auto;
+      top: auto;
+      bottom: calc(100% + 8px);
+      transform: translateX(-50%);
+    }
+
+    /* Cases */
+    .cases-section { padding: 48px 16px; }
+    .cases-track { gap: 16px; }
+    .case-card { flex: 0 0 calc(90% - 8px); }
+    .case-img { height: 200px; }
+    .case-img-inner { grid-template-columns: repeat(6, 1fr); }
+
+    /* About */
+    .about-section { padding: 48px 20px; grid-template-columns: 1fr; gap: 32px; }
+    .about-section h2 { font-size: 32px; }
+    .about-section p { font-size: 14px; }
+    .about-video { height: 220px; }
+
+    /* Stats */
+    .stats-section { grid-template-columns: 1fr; padding: 40px 16px; gap: 12px; }
+    .stat-box { padding: 24px 20px; }
+    .stat-num { font-size: 48px; }
+
+    /* News */
+    .news-section { padding: 48px 16px; }
+    .news-layout { grid-template-columns: 1fr; gap: 24px; }
+    .news-featured { min-height: 200px; padding: 24px; }
+    .news-featured h3 { font-size: 18px; }
+    .news-featured p { font-size: 12px; }
+    .news-ticker-container { height: auto; }
+    .news-item { padding: 14px 0; }
+    .news-date { font-size: 22px; }
+    .news-item-title { font-size: 13px; }
+
+    /* Footer */
+    footer { padding: 40px 16px 24px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+
+    /* Sidebar – smaller on mobile */
+    .sidebar-btn { width: 36px; height: 36px; font-size: 14px; }
+    .sidebar-btn img { width: 18px; height: 18px; }
+
+    /* Contact box */
+    .contact-box { right: 12px; left: 12px; transform: none; top: auto; bottom: 80px; min-width: unset; }
+
+    /* Scroll to top */
+    .scroll-to-top { width: 42px; height: 42px; font-size: 18px; bottom: 16px; right: 16px; }
+
+    /* Modal */
+    .modal-backdrop { padding: 12px; }
+    .modal-box { max-height: 92vh; }
+    .modal-header { padding: 16px 16px 14px; }
+    .modal-title { font-size: 20px; }
+    .modal-body { padding: 20px 16px; }
+    .modal-specs { grid-template-columns: 1fr; }
+    .modal-footer { padding: 14px 16px 20px; flex-wrap: wrap; }
+    .modal-btn-primary, .modal-btn-secondary { width: 100%; text-align: center; }
+  }
+
+  /* Small phones: 480px and below */
+  @media (max-width: 480px) {
+    .logo-text { font-size: 17px; }
+    .logo-icon { height: 38px; }
+
+    .hero-content h1 { font-size: 30px; }
+    .hero-content p { font-size: 13px; }
+
+    .section-title { font-size: 26px; }
+    .section-sub { font-size: 13px; margin-bottom: 32px; }
+
+    .ind-header h2 { font-size: 24px; }
+    .ind-nav-btn { width: 28px; height: 28px; font-size: 12px; }
+    .ind-tab { height: 64px; }
+    .ind-tab span { font-size: 9px; }
+
+    .asrs-visual { height: 220px; }
+    .asrs-hotspot-dot { width: 18px; height: 18px; }
+
+    .about-video { height: 190px; }
+
+    .news-featured h3 { font-size: 16px; }
+
+    footer h4 { font-size: 14px; }
+    footer ul li { font-size: 13px; }
+    .footer-contact p { font-size: 13px; }
+  }
+
+  /* Landscape mobile fix */
+  @media (max-width: 768px) and (orientation: landscape) {
+    .hero-slider { height: calc(100vh - 64px); min-height: 280px; }
+    .hero-content h1 { font-size: 28px; }
+    .industry-carousel { min-height: 450px; }
+  }
 </style>
 </head>
 <body>
@@ -417,7 +657,64 @@
       Contact Us
     </a>
   </nav>
+
+  <!-- Hamburger for mobile -->
+  <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </header>
+
+<!-- Mobile Navigation Drawer -->
+<div class="mobile-nav" id="mobile-nav">
+  <a class="mobile-nav-item active" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+    Home
+  </a>
+  <div class="mobile-nav-item" onclick="toggleMobileSub('mob-products')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+    Products <span class="mob-arrow">▾</span>
+  </div>
+  <div class="mobile-nav-sub" id="mob-products">
+    <a href="products.html">ASRS Equipment</a>
+    <a href="products.html">Conveying Equipment</a>
+    <a href="products.html">Automated Shuttles</a>
+    <a href="products.html">Software (WMS/WCS)</a>
+  </div>
+  <div class="mobile-nav-item" onclick="toggleMobileSub('mob-services')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+    Services <span class="mob-arrow">▾</span>
+  </div>
+  <div class="mobile-nav-sub" id="mob-services">
+    <a href="#">R&D & Planning</a>
+    <a href="#">Equipment Integration</a>
+    <a href="#">Installation & Setup</a>
+    <a href="#">Remote Support (7×24)</a>
+  </div>
+  <div class="mobile-nav-item" onclick="toggleMobileSub('mob-expertise')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>
+    Our Expertise <span class="mob-arrow">▾</span>
+  </div>
+  <div class="mobile-nav-sub" id="mob-expertise">
+    <a href="#">Smart Logistics Planning</a>
+    <a href="#">Equipment Engineering</a>
+    <a href="#">System Integration</a>
+    <a href="#">24/7 Remote Tech Support</a>
+  </div>
+  <div class="mobile-nav-item" onclick="toggleMobileSub('mob-about')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+    About Us <span class="mob-arrow">▾</span>
+  </div>
+  <div class="mobile-nav-sub" id="mob-about">
+    <a href="about.html">RackNSpace Group</a>
+    <a href="about.html">R&D Facilities</a>
+    <a href="about.html">Partnership</a>
+    <a href="about.html">Join Us</a>
+  </div>
+  <a class="mobile-nav-item contact" href="contact.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+    Contact Us
+  </a>
+</div>
 
 <div class="dropdown-overlay" id="dropdown-overlay"></div>
 
@@ -813,7 +1110,7 @@
       <p>Tel: <strong>+91 XXXXXXXXXX</strong></p>
 	  <p>Unit 1 : <strong>C-17, MIDC Baramati, Dist. Pune - Maharashtra (INDIA) - 413133</strong></p>
 	  <p>Unit 2 : <strong>G-90, MIDC Baramati, Dist. Pune - Maharashtra (INDIA) - 413133</strong></p>
-      <p>Branch Office : <strong>B2 - 202, Nandanvan Condominiums, New D P Road, Vishal Nagar,<br>Pimple Nilakh, Pune - Maharashtra (INDIA) - 411027
+      <p>Branch Office : <strong>B2 - 202, Nandanvan Condominiums, New D P Road, Vishal Nagar,<br>Pimple Nilakh, Pune - Maharashtra (INDIA) - 411027</strong></p>
     </div>
   </div>
   <div class="footer-bottom">
@@ -847,6 +1144,33 @@
 </div>
 
 <script>
+  /* ── MOBILE NAV ── */
+  function toggleMobileNav() {
+    var nav = document.getElementById('mobile-nav');
+    var burger = document.getElementById('hamburger');
+    nav.classList.toggle('open');
+    burger.classList.toggle('open');
+    document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+  }
+  function toggleMobileSub(id) {
+    var sub = document.getElementById(id);
+    var trigger = sub.previousElementSibling;
+    var isOpen = sub.classList.contains('open');
+    document.querySelectorAll('.mobile-nav-sub.open').forEach(s => s.classList.remove('open'));
+    document.querySelectorAll('.mobile-nav-item.open').forEach(t => t.classList.remove('open'));
+    if (!isOpen) { sub.classList.add('open'); trigger.classList.add('open'); }
+  }
+  // Close mobile nav when clicking outside
+  document.addEventListener('click', function(e) {
+    var nav = document.getElementById('mobile-nav');
+    var burger = document.getElementById('hamburger');
+    if (nav.classList.contains('open') && !nav.contains(e.target) && !burger.contains(e.target)) {
+      nav.classList.remove('open');
+      burger.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+
   /* Dropdown */
   let ddHoverTimeout;
   function openDdHover(name){clearTimeout(ddHoverTimeout);closeAllDropdowns();var p=document.getElementById('dd-'+name),n=document.getElementById('nav-'+name);if(p)p.classList.add('open');if(n)n.classList.add('active');document.getElementById('dropdown-overlay').classList.add('open');}
@@ -890,26 +1214,19 @@
   function resizeTabs(){var vp=document.querySelector('.ind-tabs-viewport'),track=document.getElementById('ind-tabs-track');if(vp&&track){var tw=(vp.clientWidth-(9*8))/10;Array.from(track.children).forEach(t=>{t.style.width=tw+'px';t.style.flex=`0 0 ${tw}px`;});updateTabScroll();}}
   
   function switchIndustry(key, m = false) {
-  // 1. Update active tab
   document.querySelectorAll('.ind-tab').forEach(t => t.classList.remove('active'));
   const selectedTab = document.getElementById('ind-tab-' + key);
   if (selectedTab) selectedTab.classList.add('active');
-
-  // 2. Update background image
   const imgElement = document.getElementById('industry-bg');
   if (indImages[key]) {
-    // Smooth transition
     imgElement.style.opacity = '0';
     setTimeout(() => {
       imgElement.style.backgroundImage = `url('${indImages[key]}')`;
       imgElement.style.opacity = '1';
     }, 300);
   }
-
-  // 3. Update index and scroll
   currentIndIndex = industryKeys.indexOf(key);
   updateTabScroll();
-  
   if (m) resetIndInterval();
 }
   
@@ -943,13 +1260,11 @@
   const displayBox = document.getElementById('contact-display');
   const title = document.getElementById('contact-title');
   const info = document.getElementById('contact-info');
-  
   const data = {
     email: { title: "Email Us", val: "racknspace@gmail.com" },
     phone: { title: "Office Phone", val: "+91 XXXXXXXXXX" },
     whatsapp: { title: "WhatsApp", val: "+91 XXXXXXXXXX" }
   };
-
   if (data[type]) {
     title.innerText = data[type].title;
     info.innerText = data[type].val;
