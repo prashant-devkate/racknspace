@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RackNSpace – AS/RS Overall Solution</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/neuropol" rel="stylesheet">
+<link rel="icon" href="rns.png"  type="image/png">
+<style>
+  :root {
+    --red: #fe5e00;
+    --red-hover: #e05300;
+    --dark: #0F2A44;
+    --dark2: #222222;
+    --mid: #555555;
+    --light: #f5f5f5;
+    --white: #ffffff;
+    --border: #e0e0e0;
+    --stat-red: #ff8c42;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Barlow',sans-serif; color:var(--dark); overflow-x:hidden; }
+
+  /* ── NAVBAR ── */
+  #navbar {
+    position:sticky; top:0; z-index:1000;
+    background:var(--white);
+    border-bottom:1px solid var(--border);
+    height:90px; display:flex; align-items:center;
+    padding:0 48px;
+    justify-content:space-between;
+    box-shadow:0 2px 8px rgba(0,0,0,.07);
+  }
+  .logo { display:flex; align-items:center; gap:8px; text-decoration:none; cursor:pointer;}
+  .logo-icon 
+  { 
+	height: 65px;
+    width: auto;
+    object-fit: contain; 
+    margin-right: 10px;
+  }
+  
+  .logo-icon { 
+    height: 65px;
+    width: auto;
+    object-fit: contain; 
+    margin-right: 12px;
+  }
+  
+  .logo-text { 
+    font-family: 'Neuropol', sans-serif;
+    font-size: 28px;
+    letter-spacing: 1px; 
+    border-bottom: 4px solid #168a3e;
+    padding-bottom: 6px;
+    display: inline-block; 
+  }
+
+  .logo-text span:first-child { color:var(--dark); }
+  .logo-text span:last-child { color:var(--red); }
+
+  nav { display:flex; align-items:center; gap:0; height: 100%; }
+  .nav-item {
+    position:relative; padding:0 20px; height:100%;
+    display:flex; align-items:center; gap:8px;
+    font-size:16px; font-weight:600; color:var(--dark);
+    cursor:pointer; text-decoration:none; white-space:nowrap;
+    border-bottom:3px solid transparent;
+    transition:color .2s;
+  }
+  .nav-item svg { width: 18px; height: 18px; }
+  .nav-item.active { color:var(--red); border-bottom-color:var(--red); }
+  .nav-item:hover { color:var(--red); }
+  .nav-item .arrow { font-size:11px; margin-top:1px; transition:transform .2s; }
+  .nav-item.open .arrow { transform:rotate(180deg); }
+  .nav-contact { color:var(--red)!important; }
+
+  .nav-right { display:flex; align-items:center; gap:16px; }
+  .lang-btn {
+    display:flex; align-items:center; gap:6px;
+    border:1px solid var(--border); border-radius:4px;
+    padding:6px 12px; font-size:14px; font-weight:600; cursor:pointer;
+    background:var(--white);
+  }
+  .search-btn { background:none; border:none; cursor:pointer; font-size:20px; color:var(--dark); padding:4px; }
+
+  /* ── MEGA DROPDOWN (WDX STYLE) ── */
+  .dropdown-overlay { display:none; position:fixed; top:90px; left:0; right:0; bottom:0; background:rgba(0,0,0,.45); z-index:900; }
+  .dropdown-overlay.open { display:block; }
+  
+  .dropdown-panel { 
+    display:none; 
+    position:fixed; 
+    top:90px; left:0; right:0; 
+    background:#ffffff; 
+    z-index:901; 
+    padding:40px 80px 60px; 
+    box-shadow:0 12px 30px rgba(0,0,0,.12); 
+    border-top: 1px solid var(--border);
+  }
+  .dropdown-panel.open { display:block; }
+
+  .wdx-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .wdx-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .wdx-img {
+    width: 100%;
+    height: 160px;
+    background-color: #f0f0f0;
+    background-size: cover;
+    background-position: center;
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+  }
+  .wdx-card:hover .wdx-img {
+    transform: scale(1.02);
+  }
+  .wdx-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark);
+    transition: color 0.2s;
+  }
+  .wdx-card:hover .wdx-title {
+    color: var(--red);
+  }
+  
+  /* ── FLOATING SIDEBAR ── */
+  .sidebar { position:fixed; right:0; top:50%; transform:translateY(-50%); z-index:1000; display:flex; flex-direction:column; gap:0; }
+  .sidebar-btn { width:48px; height:48px; background:var(--red); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--white); font-size:18px; border-radius:2px 0 0 2px; margin-bottom:3px; transition:background .2s; }
+  .sidebar-btn:hover { background:var(--red-hover); }
+  
+  /* ── SCROLL TO TOP BUTTON ── */
+  .scroll-to-top {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 56px;
+    height: 56px;
+    background: var(--red);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 24px;
+    border-radius: 50%;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: background .2s, transform .2s;
+  }
+  .scroll-to-top:hover {
+    background: var(--red-hover);
+    transform: translateY(-4px);
+  }
+
+  /* ═══════════════════════ VIDEO CAROUSEL (HERO) ═══════════════════════ */
+  .hero-slider { position:relative; height:calc(100vh - 90px); min-height:540px; overflow:hidden; background:#000; }
+  .hero-slide { position:absolute; inset:0; opacity:0; transition:opacity 0.8s ease; display:flex; align-items:center; z-index:1; }
+  .hero-slide.active { opacity:1; z-index:2; }
+  
+  .hero-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; opacity:0.6; }
+  
+  .hero-overlay { position:absolute; inset:0; background:rgba(0,0,0,.45); z-index:1; }
+  .hero-content { position:relative; z-index:3; padding:0 80px; max-width:760px; }
+  .hero-content h1 { font-family:'Barlow Condensed',sans-serif; font-size:clamp(52px,7vw,88px); font-weight:900; color:var(--white); line-height:1.0; margin-bottom:18px; text-shadow:0 2px 12px rgba(0,0,0,.5); }
+  .hero-content p { font-size:18px; font-weight:600; color:rgba(255,255,255,.88); margin-bottom:36px; }
+  .hero-cta { display:inline-block; background:var(--red); color:var(--white); padding:16px 32px; font-size:15px; font-weight:700; border:none; cursor:pointer; text-decoration:none; transition:background .2s; letter-spacing:.3px; }
+  .hero-cta:hover { background:var(--red-hover); }
+
+  .hero-controls { position:absolute; bottom:40px; left:80px; z-index:4; display:flex; gap:12px; }
+  .hero-dot { width:40px; height:4px; background:rgba(255,255,255,.3); cursor:pointer; transition:background .3s; border-radius:2px; }
+  .hero-dot.active { background:var(--red); }
+
+  /* ═══════════════════════ IMAGE CAROUSEL (INDUSTRIES) ═══════════════════════ */
+  .industry-carousel { position:relative; min-height:850px; height:auto; overflow:hidden; display:flex; flex-direction:column; justify-content:space-between; padding-bottom: 30px; }
+  .ind-bg { position:absolute; inset:0; background-size:cover; background-position:center; transition:background-image 0.5s ease-in-out; background-color: #222; }
+  .ind-overlay { position:absolute; inset:0; background:linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.9) 100%); }
+  
+  .ind-header { position:relative; z-index:2; text-align:center; padding:60px 80px 40px; color:var(--white); }
+  .ind-header h2 { font-family:'Barlow Condensed',sans-serif; font-size:48px; font-weight:900; margin-bottom:16px; }
+  .ind-header p { font-size:15px; max-width:900px; margin:0 auto; color:rgba(255,255,255,.8); line-height:1.6; }
+
+  .ind-bottom { position:relative; z-index:2; display:flex; align-items:center; padding:20px 40px; height:auto; }
+  .ind-nav-btn { background:rgba(255,255,255,0.9); border:none; width:40px; height:40px; border-radius:50%; font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background 0.2s; color:var(--dark); flex-shrink: 0; }
+  .ind-nav-btn:hover { background:var(--white); }
+  
+  /* Industry Tabs Viewport & Track */
+  .ind-tabs-viewport { flex:1; overflow:hidden; margin:0 20px; }
+  .ind-tabs-track { display:flex; gap:8px; transition:transform 0.4s ease-in-out; width: max-content; }
+  .ind-tab { height:90px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; color:rgba(255,255,255,.7); cursor:pointer; transition:all 0.3s; background:rgba(0,0,0,0.5); border-bottom:3px solid transparent; backdrop-filter:blur(5px); }
+  .ind-tab svg { width:24px; height:24px; }
+  .ind-tab span { font-size:11px; font-weight:700; text-align: center; line-height: 1.1; padding: 0 4px; }
+  
+  .ind-tab:hover { color:var(--white); background:rgba(0,0,0,0.7); }
+  .ind-tab.active { background:var(--red); color:var(--white); height:100px; border-bottom:none; box-shadow:0 -5px 15px rgba(254,94,0,0.3); }
+
+  /* Section titles */
+  .section-title { text-align:center; font-family:'Barlow Condensed',sans-serif; font-size:clamp(32px,4vw,48px); font-weight:900; color:var(--dark); margin-bottom:12px; }
+  .section-sub { text-align:center; font-size:15px; color:var(--mid); margin-bottom:48px; }
+
+  /* Success Tagline Animation */
+  .success-tagline {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-top: 0px; /* Provides a small, natural gap from the title */
+    margin-bottom: 48px;
+    animation: vanishingGlow 3.5s infinite;
+  }
+  @keyframes vanishingGlow {
+    0%   { opacity: 0; filter: blur(3px); letter-spacing: 1px; }
+    30%  { opacity: 1; filter: blur(0px); letter-spacing: 5px; }
+    70%  { opacity: 1; filter: blur(0px); letter-spacing: 5px; }
+    100% { opacity: 0; filter: blur(3px); letter-spacing: 9px; }
+  }
+
+  /* ═══════════════════════ AS/RS SECTION (HOTSPOTS) ═══════════════════════ */
+  .asrs-section { padding:80px 80px 0; text-align:center; background:var(--white); }
+  
+  .asrs-visual { position:relative; height:500px; display:flex; align-items:center; justify-content:center; overflow:hidden; border-radius:4px; }
+  
+  .asrs-hotspot-container { position: absolute; padding: 20px; margin: -20px; cursor: pointer; }
+
+  .asrs-hotspot-dot {
+    width: 24px; height: 24px; background: var(--red); border-radius: 50%;
+    cursor: pointer; position: relative; animation: pulseRed 2s infinite; z-index: 2;
+  }
+
+  @keyframes pulseRed {
+    0%   { box-shadow: 0 0 0 0   rgba(254, 94, 0, 0.7); }
+    70%  { box-shadow: 0 0 0 15px rgba(254, 94, 0, 0);   }
+    100% { box-shadow: 0 0 0 0   rgba(254, 94, 0, 0);    }
+  }
+
+  .asrs-popup {
+    position: absolute; top: 50%; left: calc(100% + 8px); transform: translateY(-50%);
+    opacity: 0; visibility: hidden; pointer-events: none;
+    background: rgba(255,255,255,.97); border-radius: 8px; padding: 16px 20px;
+    text-align: left; box-shadow: 0 4px 24px rgba(0,0,0,.18);
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    min-width: max-content; white-space: nowrap; z-index: 10;
+  }
+  .asrs-popup.left-side { left: auto; right: calc(100% + 8px); transform: translateY(-50%); }
+  .asrs-popup.visible { opacity: 1; visibility: visible; pointer-events: auto; }
+  .asrs-popup h3 { font-size:16px; font-weight:800; margin-bottom:4px; color: var(--dark); }
+  .asrs-popup-btn {
+    display:flex; align-items:center; gap:8px; font-size:13px; font-weight:700; color:var(--red);
+    background:none; border:none; cursor:pointer; margin-top:6px; padding:0;
+  }
+  .asrs-popup-btn span {
+    width:22px; height:22px; background:var(--red); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; color:var(--white); font-size:11px;
+  }
+
+  /* ═══════════════════════ CASES SECTION ═══════════════════════ */
+  .cases-section { padding:80px 80px; background:var(--white); }
+  .cases-grid { display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-top:48px; }
+  
+  .cases-carousel-wrap { overflow: hidden; position: relative; margin-top: 10px; width: 100%; }
+  .cases-track { display: flex; gap: 32px; transition: transform 0.6s ease-in-out; width: 100%; }
+  .case-card { flex: 0 0 calc(50% - 16px); cursor:pointer; overflow:hidden; min-width: 0; }
+
+  .case-img { height:280px; position:relative; overflow:hidden; background:linear-gradient(135deg,#1a3a6b 0%,#2a5aab 50%,#e8a020 100%); }
+  .case-img-inner { width:100%; height:100%; display:grid; grid-template-columns:repeat(8,1fr); gap:2px; padding:8px; }
+  .shelf-unit { background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.2); border-radius:1px; height:100%; }
+  .shelf-unit:nth-child(odd) { background:rgba(255,200,0,.2); }
+  .case-label { position:absolute; bottom:0; left:0; right:0; background:rgba(0,0,0,.5); padding:8px 12px; }
+  .case-title { font-size:15px; font-weight:700; color:var(--red); margin-top:12px; }
+  .case-desc { font-size:13px; color:var(--mid); margin-top:6px; line-height:1.5; }
+
+  /* ═══════════════════════ ABOUT, STATS & NEWS ═══════════════════════ */
+  .about-section { padding:80px; background:var(--light); display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
+  .about-section h2 { font-family:'Barlow Condensed',sans-serif; font-size:42px; font-weight:900; margin-bottom:24px; }
+  .about-section p { font-size:15px; color:var(--mid); line-height:1.8; }
+  
+  .about-video { display: block; position: relative; width: 100%; height: 300px; background: url('https://img.youtube.com/vi/R3GfuzLMPkA/maxresdefault.jpg') center/cover no-repeat; border-radius: 12px; overflow: hidden; text-decoration: none; }
+  .video-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .play-btn { font-size: 40px; color: white; }
+  .video-label { font-size:12px; color:rgba(255,255,255,.6); letter-spacing:2px; text-transform:uppercase; margin-bottom:16px; margin-top:12px; }
+
+  .stats-section { display:grid; grid-template-columns:repeat(3,1fr); }
+  .stat-box { padding:40px 32px; border-right:1px solid var(--border); }
+  .stat-box:first-child { background:var(--stat-red); }
+  .stat-box:first-child .stat-num, .stat-box:first-child .stat-label { color:var(--white); }
+  .stat-num { font-family:'Barlow Condensed',sans-serif; font-size:52px; font-weight:900; color:var(--dark); line-height:1; margin-bottom:10px; }
+  .stat-label { font-size:14px; color:var(--mid); line-height:1.4; font-weight:500; }
+  .stat-icon { font-size:20px; color:rgba(255,255,255,.5); margin-bottom:8px; }
+  
+  .news-section { padding:80px; background:var(--light); }
+  .news-layout { display:grid; grid-template-columns:1fr 1fr; gap:48px; margin-top:0; }
+  .news-featured { background:linear-gradient(135deg,#1a3a6b,#2a5aab); padding:32px; border-radius:2px; color:var(--white); display:flex; flex-direction:column; justify-content:flex-end; min-height:280px; position:relative; overflow:hidden; }
+  .news-featured-badge { position:absolute; top:24px; left:24px; background:var(--red); padding:4px 14px; font-size:12px; font-weight:700; color:var(--white); letter-spacing:1px; }
+  .news-featured h3 { font-size:22px; font-weight:800; margin-bottom:8px; }
+  .news-featured p { font-size:13px; color:rgba(255,255,255,.7); }
+  
+  /* Rotating News Ticker CSS */
+  .news-ticker-container { height: 280px; overflow: hidden; position: relative; }
+  .news-list { display:flex; flex-direction:column; gap:0; width: 100%; }
+  .news-item { display:flex; gap:20px; padding:20px 0; border-bottom:1px solid var(--border); cursor:pointer; }
+  .news-item:hover .news-item-title { color:var(--red); }
+  .news-date { font-size:28px; font-weight:900; color:var(--red); line-height:1; min-width:40px; }
+  .news-date-year { font-size:12px; color:var(--mid); font-weight:500; }
+  .news-item-title { font-size:15px; font-weight:700; color:var(--dark); margin-bottom:6px; }
+  .news-item-tags { font-size:12px; color:var(--mid); }
+
+  /* ── FOOTER ── */
+  footer { background:#0F2A44; color:rgba(255,255,255,.7); padding:64px 80px 32px; }
+  .footer-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:48px; margin-bottom:48px; }
+  footer h4 { font-size:16px; font-weight:800; color:var(--white); margin-bottom:20px; }
+  footer ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+  footer ul li { font-size:14px; cursor:pointer; transition:color .15s; }
+  footer ul li a { color:inherit; text-decoration:none; }
+  footer ul li:hover { color:var(--white); }
+  .footer-contact p { font-size:14px; margin-bottom:10px; line-height:1.6; }
+  .footer-contact strong { color:var(--white); }
+  .footer-bottom { border-top:1px solid rgba(255,255,255,.1); padding-top:24px; display:flex; justify-content:space-between; font-size:13px; color:rgba(255,255,255,.4); }
+  
+  /* Detail Modal CSS */
+  .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 2000; align-items: center; justify-content: center; padding: 24px; backdrop-filter: blur(3px); }
+  .modal-backdrop.open { display: flex; animation: backdropIn 0.25s ease; }
+  @keyframes backdropIn { from { opacity: 0; } to { opacity: 1; } }
+  .modal-box { background: var(--white); border-radius: 6px; width: 100%; max-width: 780px; max-height: 88vh; overflow-y: auto; position: relative; box-shadow: 0 24px 64px rgba(0,0,0,0.35); animation: modalIn 0.28s cubic-bezier(.22,.68,0,1.2); }
+  @keyframes modalIn { from { opacity: 0; transform: translateY(24px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+  .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 28px 32px 20px; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--white); z-index: 1; }
+  .modal-header-left { display: flex; align-items: center; gap: 14px; }
+  .modal-badge { background: var(--red); color: var(--white); font-size: 11px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; padding: 4px 12px; border-radius: 2px; }
+  .modal-title { font-family: 'Barlow Condensed', sans-serif; font-size: 26px; font-weight: 900; color: var(--dark); line-height: 1.1; }
+  .modal-close { width: 36px; height: 36px; background: var(--light); border: none; border-radius: 50%; font-size: 18px; cursor: pointer; color: var(--dark); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.2s, color 0.2s; }
+  .modal-close:hover { background: var(--red); color: var(--white); }
+  .modal-hero { height: 220px; background: linear-gradient(135deg, #1a2a44 0%, #0F2A44 100%); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
+  .modal-hero svg { opacity: 0.55; }
+  .modal-hero-label { position: absolute; bottom: 18px; left: 32px; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+  .modal-body { padding: 32px; }
+  .modal-section-title { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 14px; margin-top: 28px; }
+  .modal-section-title:first-child { margin-top: 0; }
+  .modal-desc { font-size: 15px; color: var(--mid); line-height: 1.8; margin-bottom: 0; }
+  .modal-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 4px; }
+  .modal-spec { background: var(--light); border-left: 3px solid var(--red); padding: 12px 16px; border-radius: 0 4px 4px 0; }
+  .modal-spec-label { font-size: 11px; font-weight: 700; color: var(--mid); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 4px; }
+  .modal-spec-value { font-size: 15px; font-weight: 800; color: var(--dark); }
+  .modal-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+  .modal-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--mid); line-height: 1.5; }
+  .modal-features li::before { content: ''; width: 7px; height: 7px; background: var(--red); border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+  .modal-footer { padding: 20px 32px 28px; display: flex; gap: 12px; justify-content: flex-end; border-top: 1px solid var(--border); }
+  .modal-btn-primary { background: var(--red); color: var(--white); border: none; padding: 12px 28px; font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; transition: background 0.2s; border-radius: 2px; }
+  .modal-btn-primary:hover { background: var(--red-hover); }
+  .modal-btn-secondary { background: none; color: var(--dark); border: 1px solid var(--border); padding: 12px 24px; font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: border-color 0.2s, color 0.2s; border-radius: 2px; }
+  .modal-btn-secondary:hover { border-color: var(--dark); }
+  
+  .logo-icon { 
+  width: 42px; 
+  height: 32px; 
+  object-fit: contain; /* Prevents the image from stretching out of proportion */
+}
+</style>
+</head>
+<body>
+
+<header id="navbar">  
+  <a class="logo" href="index.html">
+    <img src="racknspace.png" alt="RackNSpace Logo" class="logo-icon">
+    <span class="logo-text">
+      <span style="color: #fe5e00;">Rack</span>
+      <span style="color: #FFD700;">N</span>
+      <span style="color: #1565C0;">Space</span>
+    </span>
+  </a>
+
+  <nav>
+    <a class="nav-item active" href="index.html" id="nav-home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+      Home
+    </a>
+    <div class="nav-item" id="nav-industries" onmouseenter="openDdHover('industries')" onmouseleave="closeDdHover()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+      Industries <span class="arrow">▾</span>
+    </div>
+    <div class="nav-item" id="nav-products" onmouseenter="openDdHover('products')" onmouseleave="closeDdHover()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+      Products <span class="arrow">▾</span>
+    </div>
+    <div class="nav-item" id="nav-services" onmouseenter="openDdHover('services')" onmouseleave="closeDdHover()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+      Services <span class="arrow">▾</span>
+    </div>
+    <div class="nav-item" id="nav-about" onmouseenter="openDdHover('about')" onmouseleave="closeDdHover()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      About Us <span class="arrow">▾</span>
+    </div>
+    <a class="nav-item nav-contact" href="contact.html" id="nav-contact">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+      Contact Us
+    </a>
+  </nav>
+</header>
+
+<div class="dropdown-overlay" id="dropdown-overlay"></div>
+
+<div class="dropdown-panel" id="dd-industries" onmouseenter="clearHoverTimeout()" onmouseleave="closeDdHover()">
+  <div class="wdx-grid">
+    <a href="industries.html" class="wdx-card">
+      <div class="wdx-img" style="background-image: url('https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=400&q=80');"></div>
+      <span class="wdx-title">New Energy</span>
+    </a>
+    <a href="industries.html" class="wdx-card">
+      <div class="wdx-img" style="background-image: url('https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=400&q=80');"></div>
+      <span class="wdx-title">Chemical</span>
+    </a>
+    <a href="industries.html" class="wdx-card">
+      <div class="wdx-img" style="background-image: url('https://images.unsplash.com/photo-1586528116311-ad8ed7c83a7f?auto=format&fit=crop&w=400&q=80');"></div>
+      <span class="wdx-title">Pharmaceutical</span>
+    </a>
+    <a href="industries.html" class="wdx-card">
+      <div class="wdx-img" style="background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=400&q=80');"></div>
+      <span class="wdx-title">Food & Beverage</span>
+    </a>
+  </div>
+</div>
+
+<div class="dropdown-panel" id="dd-products" onmouseenter="clearHoverTimeout()" onmouseleave="closeDdHover()">
+  <div class="wdx-grid">
+    <a href="products.html" class="wdx-card">
+      <div class="wdx-img" style="background: linear-gradient(135deg, #1a2a44, #3a5a84);"></div>
+      <span class="wdx-title">ASRS Equipment</span>
+    </a>
+    <a href="products.html" class="wdx-card">
+      <div class="wdx-img" style="background: linear-gradient(135deg, #2a1010, #8a2020);"></div>
+      <span class="wdx-title">Conveying Equipment</span>
+    </a>
+    <a href="products.html" class="wdx-card">
+      <div class="wdx-img" style="background: linear-gradient(135deg, #1a3a28, #2a6a48);"></div>
+      <span class="wdx-title">Automated Shuttles</span>
+    </a>
+    <a href="products.html" class="wdx-card">
+      <div class="wdx-img" style="background: linear-gradient(135deg, #0a1020, #1a2850);"></div>
+      <span class="wdx-title">Software (WMS/WCS)</span>
+    </a>
+  </div>
+</div>
+
+<div class="dropdown-panel" id="dd-services" onmouseenter="clearHoverTimeout()" onmouseleave="closeDdHover()">
+  <div class="wdx-grid">
+    <a href="#" class="wdx-card">
+      <div class="wdx-img" style="background: linear-gradient(45deg, #333, #555);"></div>
+      <span class="wdx-title">R&D & Planning</span>
+    </a>
+    <a href="#" class="wdx-card">
+      <div class="wdx-img" style="background: linear-gradient(45deg, #444, #666);"></div>
+      <span class="wdx-title">Equipment Integration</span>
+    </a>
+    <a href="#" class="wdx-card">
+      <div class="wdx-img" style="background: linear-gradient(45deg, #555, #777);"></div>
+      <span class="wdx-title">Installation & Setup</span>
+    </a>
+    <a href="#" class="wdx-card">
+      <div class="wdx-img" style="background: linear-gradient(45deg, #666, #888);"></div>
+      <span class="wdx-title">Remote Support (7×24)</span>
+    </a>
+  </div>
+</div>
+
+<div class="dropdown-panel" id="dd-about" onmouseenter="clearHoverTimeout()" onmouseleave="closeDdHover()">
+  <div class="wdx-grid">
+    <a href="about.html" class="wdx-card">
+      <div class="wdx-img" style="background: linear-gradient(135deg, #fe5e00, #ff8c42);"></div>
+      <span class="wdx-title">RackNSpace Group</span>
+    </a>
+    <a href="about.html" class="wdx-card">
+      <div class="wdx-img" style="background: linear-gradient(135deg, #e05300, #ff7b25);"></div>
+      <span class="wdx-title">R&D Facilities</span>
+    </a>
+    <a href="about.html" class="wdx-card">
+      <div class="wdx-img" style="background: linear-gradient(135deg, #d44d00, #fc6e14);"></div>
+      <span class="wdx-title">Partnership</span>
+    </a>
+    <a href="about.html" class="wdx-card">
+      <div class="wdx-img" style="background: linear-gradient(135deg, #c74700, #ee6107);"></div>
+      <span class="wdx-title">Join Us</span>
+    </a>
+  </div>
+</div>
+
+<div class="sidebar">
+  <button class="sidebar-btn">✉</button>
+  <button class="sidebar-btn">📱</button>
+  <button class="sidebar-btn">📞</button>
+  <button class="sidebar-btn">💬</button>
+</div>
+
+<button class="scroll-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<section class="hero-slider">
+  <div class="hero-slide active" id="slide-0">
+    <video autoplay muted loop playsinline class="hero-video">
+      <source src="267363.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>AS/RS Overall<br>Solution</h1>
+      <p>Optimize warehouse space, reduce errors, and improve throughput.</p>
+      <a class="hero-cta" href="products.html">Explore solutions that are suitable for you</a>
+    </div>
+  </div>
+
+  <div class="hero-slide" id="slide-1">
+    <video autoplay muted loop playsinline class="hero-video">
+      <source src="208160.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Intelligent Flow &<br>Capacity</h1>
+      <p>Under the background of the new round of technological and industrial changes.</p>
+      <a class="hero-cta" href="industries.html">View Industry Applications</a>
+    </div>
+  </div>
+
+  <div class="hero-controls">
+    <div class="hero-dot active" onclick="switchHero(0, true)"></div>
+    <div class="hero-dot" onclick="switchHero(1, true)"></div>
+  </div>
+</section>
+
+<section class="industry-carousel">
+  <div class="ind-bg" id="industry-bg" style="background-image: url('https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&q=80');"></div>
+  <div class="ind-overlay"></div>
+
+  <div class="ind-header">
+    <h2>Industries</h2>
+    <p>Boosting Your Operational Flow and Capacity. Under the background of the new round of technological and industrial changes, new energy materials will continue to be upgraded, and market demand will also increase significantly.</p>
+  </div>
+
+  <div class="ind-bottom">
+    <button class="ind-nav-btn" onclick="prevIndustry(true)">❮</button>
+    <div class="ind-tabs-viewport">
+      <div class="ind-tabs-track" id="ind-tabs-track">
+        <div class="ind-tab" id="ind-tab-appliance" onclick="switchIndustry('appliance', true)"><svg fill="currentColor" viewBox="0 0 28 28"><rect x="2" y="8" width="24" height="14" rx="1" opacity=".6"/><rect x="8" y="4" width="12" height="6" rx="1"/></svg><span>Home<br>Appliance</span></div>
+        <div class="ind-tab" id="ind-tab-cold" onclick="switchIndustry('cold', true)"><svg fill="currentColor" viewBox="0 0 28 28"><circle cx="14" cy="14" r="8" opacity=".6"/></svg><span>Cold<br>Chain</span></div>
+        <div class="ind-tab active" id="ind-tab-energy" onclick="switchIndustry('energy', true)"><svg fill="currentColor" viewBox="0 0 28 28"><path d="M4 22l5-8h4l5-8h6" stroke="currentColor" stroke-width="2" fill="none" opacity=".8"/></svg><span>New<br>Energy</span></div>
+        <div class="ind-tab" id="ind-tab-chemical" onclick="switchIndustry('chemical', true)"><svg fill="currentColor" viewBox="0 0 28 28"><rect x="8" y="2" width="12" height="20" rx="1" opacity=".5"/></svg><span>Chemical</span></div>
+        <div class="ind-tab" id="ind-tab-pharma" onclick="switchIndustry('pharma', true)"><svg fill="currentColor" viewBox="0 0 28 28"><rect x="2" y="16" width="24" height="8" rx="1" opacity=".5"/></svg><span>Pharma</span></div>
+        
+        <div class="ind-tab" id="ind-tab-auto" onclick="switchIndustry('auto', true)"><svg fill="currentColor" viewBox="0 0 28 28"><rect x="4" y="10" width="20" height="10" rx="2" opacity=".5"/></svg><span>Automotive</span></div>
+        <div class="ind-tab" id="ind-tab-ecomm" onclick="switchIndustry('ecomm', true)"><svg fill="currentColor" viewBox="0 0 28 28"><circle cx="10" cy="14" r="4" opacity=".5"/><circle cx="18" cy="14" r="4" opacity=".5"/></svg><span>E-Commerce</span></div>
+        <div class="ind-tab" id="ind-tab-retail" onclick="switchIndustry('retail', true)"><svg fill="currentColor" viewBox="0 0 28 28"><rect x="6" y="6" width="16" height="16" opacity=".5"/></svg><span>Retail</span></div>
+        <div class="ind-tab" id="ind-tab-fmcg" onclick="switchIndustry('fmcg', true)"><svg fill="currentColor" viewBox="0 0 28 28"><path d="M2 14h24" stroke="currentColor" stroke-width="2" opacity=".5"/></svg><span>FMCG</span></div>
+        <div class="ind-tab" id="ind-tab-electronics" onclick="switchIndustry('electronics', true)"><svg fill="currentColor" viewBox="0 0 28 28"><rect x="8" y="8" width="12" height="12" rx="1" opacity=".5"/></svg><span>Electronics</span></div>
+        
+        <div class="ind-tab" id="ind-tab-apparel" onclick="switchIndustry('apparel', true)"><svg fill="currentColor" viewBox="0 0 28 28"><path d="M6 10l8-4 8 4v10H6z" opacity=".5"/></svg><span>Apparel</span></div>
+        <div class="ind-tab" id="ind-tab-cosmetics" onclick="switchIndustry('cosmetics', true)"><svg fill="currentColor" viewBox="0 0 28 28"><rect x="10" y="6" width="8" height="16" rx="4" opacity=".5"/></svg><span>Cosmetics</span></div>
+        <div class="ind-tab" id="ind-tab-aero" onclick="switchIndustry('aero', true)"><svg fill="currentColor" viewBox="0 0 28 28"><path d="M14 2l10 10-4 4-6-6-6 6-4-4z" opacity=".5"/></svg><span>Aerospace</span></div>
+        <div class="ind-tab" id="ind-tab-defense" onclick="switchIndustry('defense', true)"><svg fill="currentColor" viewBox="0 0 28 28"><circle cx="14" cy="14" r="10" opacity=".5"/></svg><span>Defense</span></div>
+        <div class="ind-tab" id="ind-tab-agri" onclick="switchIndustry('agri', true)"><svg fill="currentColor" viewBox="0 0 28 28"><path d="M14 22V6" stroke="currentColor" stroke-width="4" opacity=".5"/></svg><span>Agriculture</span></div>
+        
+        <div class="ind-tab" id="ind-tab-plastics" onclick="switchIndustry('plastics', true)"><svg fill="currentColor" viewBox="0 0 28 28"><rect x="4" y="4" width="8" height="8" opacity=".5"/><rect x="16" y="16" width="8" height="8" opacity=".5"/></svg><span>Plastics</span></div>
+        <div class="ind-tab" id="ind-tab-paper" onclick="switchIndustry('paper', true)"><svg fill="currentColor" viewBox="0 0 28 28"><rect x="6" y="2" width="16" height="24" rx="1" opacity=".5"/></svg><span>Paper</span></div>
+        <div class="ind-tab" id="ind-tab-metals" onclick="switchIndustry('metals', true)"><svg fill="currentColor" viewBox="0 0 28 28"><path d="M4 14l10-10 10 10-10 10z" opacity=".5"/></svg><span>Metals</span></div>
+        <div class="ind-tab" id="ind-tab-furniture" onclick="switchIndustry('furniture', true)"><svg fill="currentColor" viewBox="0 0 28 28"><rect x="6" y="10" width="16" height="4" opacity=".5"/></svg><span>Furniture</span></div>
+        <div class="ind-tab" id="ind-tab-hardware" onclick="switchIndustry('hardware', true)"><svg fill="currentColor" viewBox="0 0 28 28"><circle cx="10" cy="10" r="4" opacity=".5"/><path d="M12 12l8 8" stroke="currentColor" stroke-width="3" opacity=".5"/></svg><span>Hardware</span></div>
+      </div>
+    </div>
+    <button class="ind-nav-btn" onclick="nextIndustry(true)">❯</button>
+  </div>
+</section>
+
+<section class="asrs-section">
+  <h2 class="section-title">Automated Storage &amp; Retrieval Systems (AS/RS)</h2>
+  <p class="section-sub">From warehouse automation to intelligent software control</p>
+  
+  <div class="asrs-visual" style="background: url('warehouse.png') center/cover no-repeat; background-color: #f0f0f0;">
+    
+    <div class="asrs-hotspot-container" style="top: 25%; left: 20%;" data-modal="racking">
+      <div class="asrs-hotspot-dot"></div>
+      <div class="asrs-popup">
+        <h3>Racking Structure</h3>
+        <button class="asrs-popup-btn">Click to view <span>▶</span></button>
+      </div>
+    </div>
+    
+    <div class="asrs-hotspot-container" style="top: 50%; left: 45%;" data-modal="crane">
+      <div class="asrs-hotspot-dot"></div>
+      <div class="asrs-popup">
+        <h3>Stacker Crane</h3>
+        <button class="asrs-popup-btn">Click to view <span>▶</span></button>
+      </div>
+    </div>
+    
+    <div class="asrs-hotspot-container" style="bottom: 20%; right: 30%;" data-modal="conveyor">
+      <div class="asrs-hotspot-dot"></div>
+      <div class="asrs-popup left-side">
+        <h3>Conveyor System</h3>
+        <button class="asrs-popup-btn">Click to view <span>▶</span></button>
+      </div>
+    </div>
+
+    <div class="asrs-hotspot-container" style="top: 30%; right: 15%;" data-modal="wms">
+      <div class="asrs-hotspot-dot"></div>
+      <div class="asrs-popup left-side">
+        <h3>WMS Dashboard</h3>
+        <button class="asrs-popup-btn">Click to view <span>▶</span></button>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<section class="cases-section">
+  <h2 class="section-title">Success stories</h2>
+  <div class="success-tagline">first time right</div>
+  
+  <div class="cases-carousel-wrap">
+    <div class="cases-track" id="cases-track">
+      <div class="case-card">
+        <div class="case-img">
+          <div class="case-img-inner">
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+          </div>
+          <div style="position:absolute;left:8px;top:20%;width:6px;height:60%;background:#e8a020;border-radius:2px;"></div>
+          <div style="position:absolute;left:20%;top:0;bottom:0;width:3px;background:rgba(254,94,0,.7);"></div>
+          <div style="position:absolute;right:20%;top:0;bottom:0;width:3px;background:rgba(254,94,0,.7);"></div>
+        </div>
+        <div class="case-title">Unit-load Crane &amp; Tote Four-Way Shuttle AS/RS</div>
+        <div class="case-desc">Raw material and finished goods warehouse — automated end-to-end with crane and shuttle integration.</div>
+      </div>
+      <div class="case-card">
+        <div class="case-img" style="background:linear-gradient(135deg,#c06010,#e8a020,#1a3a6b);">
+          <div class="case-img-inner">
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+          </div>
+          <div style="position:absolute;bottom:16px;left:16px;background:#222;color:#ff0;font-size:10px;padding:4px 8px;">■ SYSTEM RUNNING</div>
+        </div>
+        <div class="case-title">Unit-load Crane AS/RS</div>
+        <div class="case-desc">A well-known pharmaceutical enterprise. Material goods warehouse customized fully automated solution.</div>
+      </div>
+      <div class="case-card">
+        <div class="case-img" style="background:linear-gradient(135deg,#1a4a2b,#2a8a4b);">
+          <div class="case-img-inner">
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+          </div>
+          <div style="position:absolute;left:40%;top:0;bottom:0;width:4px;background:rgba(255,255,255,.6);"></div>
+        </div>
+        <div class="case-title">Four-Way Shuttle AS/RS Integration</div>
+        <div class="case-desc">High-density E-commerce fulfillment center processing up to 10,000 order lines per hour continuously.</div>
+      </div>
+      <div class="case-card">
+        <div class="case-img" style="background:linear-gradient(135deg,#3a1a6b,#6a3aab);">
+          <div class="case-img-inner">
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+            <div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div><div class="shelf-unit"></div>
+          </div>
+          <div style="position:absolute;bottom:16px;right:16px;background:rgba(0,100,200,.8);color:#fff;font-size:10px;padding:4px 8px;">-25°C ZONE</div>
+        </div>
+        <div class="case-title">Cold Chain Automated Pallet Network</div>
+        <div class="case-desc">Food and beverage freezer facility providing zero-touch logistics for frozen foods across multiple zones.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-section">
+  <div>
+    <h2>About Us</h2>
+    <p>RACK N SPACE Group is a smart warehousing logistics system and equipment integrator that is dedicated in the field of intelligent manufacturing and smart logistics. The company focuses on the R&D, planning & design, equipment integration, installation & commissioning, after-sales maintenance and other services of intralogistics system.</p>
+    <p style="margin-top:16px">Currently, RACK N SPACE has established a robust global service network, including its headquarters, three R&D centers, three manufacturing bases, three overseas support centers and national wide after-sales service centers. With over 1,000 clients benefiting from RACK N SPACE's logistics solutions and products.</p>
+  </div>
+  <div class="about-video">
+    <a href="https://www.youtube.com/watch?v=R3GfuzLMPkA" target="_blank" class="about-video">
+  <div class="video-overlay">
+    <div style="font-size:11px;color:rgba(255,255,255,.4);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;">
+      MICRO FULFILLMENT CENTER
+    </div>
+    <div class="play-btn">▶</div>
+    <div class="video-label">Watch our story</div>
+  </div>
+</a>
+  </div>
+</section>
+
+<section class="stats-section">
+  <div class="stat-box">
+    <div class="stat-icon">👤</div>
+    <div class="stat-num">500+</div>
+    <div class="stat-label">Systems Installed</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-icon" style="color:var(--mid)">👤</div>
+    <div class="stat-num">100%</div>
+    <div class="stat-label">100% Success Ratio and Delivery Rate</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-icon" style="color:var(--mid)">👤</div>
+    <div class="stat-num">80%</div>
+    <div class="stat-label">Automatic Storage & Retrieval System (AS/RS), and Racklad Systems</div>
+  </div>
+</section>
+
+<section class="news-section">
+  <h2 class="section-title">Latest News</h2>
+  <div class="news-layout" style="margin-top:40px">
+    <div class="news-featured">
+      <div class="news-featured-badge">MODEX 2026</div>
+      <div style="position:absolute;inset:0;background:linear-gradient(135deg,#1a3a8b,#3a6adb);opacity:.7;"></div>
+      <div style="position:relative">
+        <h3>RackNSpace @ MODEX 2026</h3>
+        <p>Georgia World Congress Center, Atlanta · April 13–16, 2026<br>Pallt Shuttle · Tote Shuttle · Mini-FlyBox — Unlock higher density, Higher efficiency, Scalable automation</p>
+      </div>
+    </div>
+    
+    <div class="news-ticker-container">
+      <div class="news-list" id="news-ticker">
+        <div class="news-item">
+          <div><div class="news-date">08</div><div class="news-date-year">2026-04</div></div>
+          <div>
+            <div class="news-item-title">How Automated Warehouses Are Transforming Manufacturing Logistics</div>
+            <div class="news-item-tags">Warehouse Solutions, Automated Storage, AS/RS Solutions</div>
+          </div>
+        </div>
+        <div class="news-item">
+          <div><div class="news-date">01</div><div class="news-date-year">2026-04</div></div>
+          <div>
+            <div class="news-item-title">Key Reasons Businesses Are Adopting Automated Warehouse Systems</div>
+            <div class="news-item-tags">Automation, Warehouse Technology, Smart Logistics</div>
+          </div>
+        </div>
+        <div class="news-item">
+          <div><div class="news-date">25</div><div class="news-date-year">2026-03</div></div>
+          <div>
+            <div class="news-item-title">RackNSpace Launches Next-Generation Tote Shuttle System</div>
+            <div class="news-item-tags">Product Launch, Tote Shuttle, Cold Chain, E-Commerce</div>
+          </div>
+        </div>
+        <div class="news-item">
+          <div><div class="news-date">10</div><div class="news-date-year">2026-03</div></div>
+          <div>
+            <div class="news-item-title">Industry Standard Certifications Renewed Globally</div>
+            <div class="news-item-tags">Corporate News, ISO Certifications</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h4>About Us</h4>
+      <ul><li><a href="about.html">RackNSpace Group</a></li><li><a href="about.html">R&D</a></li><li><a href="about.html">Events & Activities</a></li><li><a href="about.html">Sustainability</a></li><li><a href="about.html">Culture</a></li><li><a href="about.html">Join us</a></li><li><a href="about.html">Partnership Opportunities</a></li></ul>
+    </div>
+    <div>
+      <h4>Case</h4>
+      <ul><li>Unit-load Crane AS/RS</li><li>Unit-load Crane & Four-way Shuttle AS/RS</li><li>Unit-load Crane & Tote Four-Way Shuttle AS/RS</li><li>Unit-load Crane AS/RS</li><li>Unit-load Crane & Four-way Shuttle AS/RS</li><li>Unit-load Crane AS/RS</li></ul>
+    </div>
+    <div>
+      <h4>Products</h4>
+      <ul><li><a href="products.html">ASRS Equipment</a></li><li><a href="products.html">Conveying Equipment</a></li><li><a href="products.html">Software</a></li></ul>
+    </div>
+    <div class="footer-contact">
+      <h4>Contact Us</h4>
+      <p>E-mail: <strong>info@racknspace.com</strong></p>
+      <p>Tel: <strong>+91 XXXXXXXXXX</strong></p>
+      <p>Whatsapp: <strong>+91 XXXXXXXXXX</strong></p>
+      <p>Address: <strong>C/17, Maharashtra Industrial Development Corporation Area, Midc, Baramati, Bandalwadi, Maharashtra. 413133</strong></p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>Copyright © 2025 RACK N SPACE INTELLIGENT LOGISTICS TECHNOLOGY CO., LTD. Privacy Policy</span>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="detailModal" onclick="closeModal(event)">
+  <div class="modal-box" id="modalBox">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <span class="modal-badge" id="modalBadge">AS/RS</span>
+        <h2 class="modal-title" id="modalTitle">Component Detail</h2>
+      </div>
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-hero" id="modalHero">
+      <span class="modal-hero-label" id="modalHeroLabel"></span>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section-title">Overview</div>
+      <p class="modal-desc" id="modalDesc"></p>
+      <div class="modal-section-title">Key Specifications</div>
+      <div class="modal-specs" id="modalSpecs"></div>
+      <div class="modal-section-title">Features & Benefits</div>
+      <ul class="modal-features" id="modalFeatures"></ul>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-btn-secondary" onclick="closeModal()">Close</button>
+      <button class="modal-btn-primary" onclick="window.location.href='contact.html'">Request a Quote</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ====== Hover Dropdown Logic (WDX Mega Menu Style) ====== */
+  let ddHoverTimeout;
+
+  function openDdHover(name) {
+    clearTimeout(ddHoverTimeout);
+    closeAllDropdowns();
+    
+    const panel = document.getElementById('dd-' + name);
+    const navItem = document.getElementById('nav-' + name);
+    
+    if (panel) panel.classList.add('open');
+    if (navItem) navItem.classList.add('active');
+    document.getElementById('dropdown-overlay').classList.add('open');
+  }
+
+  function closeDdHover() {
+    ddHoverTimeout = setTimeout(() => {
+      closeAllDropdowns();
+    }, 200);
+  }
+
+  function clearHoverTimeout() {
+    clearTimeout(ddHoverTimeout);
+  }
+
+  function closeAllDropdowns() {
+    document.querySelectorAll('.dropdown-panel').forEach(p => p.classList.remove('open'));
+    document.querySelectorAll('.nav-item').forEach(n => {
+      if(n.id !== 'nav-home') n.classList.remove('active');
+    });
+    document.getElementById('dropdown-overlay').classList.remove('open');
+  }
+
+  /* ====== Hero Video Carousel Logic ====== */
+  let currentHeroIndex = 0;
+  const totalHeroSlides = 2;
+  function switchHero(index, isManual = false) {
+    document.querySelectorAll('.hero-slide').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.hero-dot').forEach(d => d.classList.remove('active'));
+    document.getElementById('slide-' + index).classList.add('active');
+    document.querySelectorAll('.hero-dot')[index].classList.add('active');
+    currentHeroIndex = index;
+    if (isManual) { resetHeroInterval(); }
+  }
+  function nextHero() {
+    let nextIndex = (currentHeroIndex + 1) % totalHeroSlides;
+    switchHero(nextIndex, false);
+  }
+  let heroInterval = setInterval(nextHero, 6000);
+  function resetHeroInterval() {
+    clearInterval(heroInterval);
+    heroInterval = setInterval(nextHero, 6000);
+  }
+
+  /* ====== Industry Image Carousel & Tab Slider Logic ====== */
+  const industryKeys = [
+    'appliance', 'cold', 'energy', 'chemical', 'pharma',
+    'auto', 'ecomm', 'retail', 'fmcg', 'electronics',
+    'apparel', 'cosmetics', 'aero', 'defense', 'agri',
+    'plastics', 'paper', 'metals', 'furniture', 'hardware'
+  ];
+  let currentIndIndex = 2;
+  const indImages = {
+    'appliance': 'Appliances.jpg', 'cold': 'Cold-Room-scaled.jpg', 'energy': 'new energy.jpg',
+    'chemical': 'Chemical.jpg', 'pharma': 'Pharma.jpg',
+    'auto': 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&q=80',
+    'ecomm': 'https://images.unsplash.com/photo-1586528116311-ad8ed7c83a7f?auto=format&fit=crop&q=80',
+    'retail': 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80',
+    'fmcg': 'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&q=80',
+    'electronics': 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80',
+    'apparel': 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&q=80',
+    'cosmetics': 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80',
+    'aero': 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80',
+    'defense': 'https://images.unsplash.com/photo-1596404984260-29c88fb7c8ed?auto=format&fit=crop&q=80',
+    'agri': 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&q=80',
+    'plastics': 'https://images.unsplash.com/photo-1530587191344-934d402b1f86?auto=format&fit=crop&q=80',
+    'paper': 'https://images.unsplash.com/photo-1603484477859-abe6a73f9366?auto=format&fit=crop&q=80',
+    'metals': 'https://images.unsplash.com/photo-1565814636199-ae8133055c1c?auto=format&fit=crop&q=80',
+    'furniture': 'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&q=80',
+    'hardware': 'https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&q=80'
+  };
+
+  let imageChangeTimeout;
+
+  function updateTabScroll() {
+    const track = document.getElementById('ind-tabs-track');
+    if (!track || track.children.length === 0) return;
+    const tabWidth = track.children[0].offsetWidth;
+    const gap = 8;
+    const maxOffset = industryKeys.length - 10;
+    
+    // Attempt to roughly center the active item (offsetting by 4 places)
+    let offset = currentIndIndex - 4; 
+    if (offset < 0) offset = 0;
+    if (offset > maxOffset) offset = maxOffset;
+    
+    track.style.transform = `translateX(-${offset * (tabWidth + gap)}px)`;
+  }
+
+  function resizeTabs() {
+    const viewport = document.querySelector('.ind-tabs-viewport');
+    const track = document.getElementById('ind-tabs-track');
+    if (viewport && track) {
+      const vpWidth = viewport.clientWidth;
+      // Calculate exact pixel width for 10 tabs to fit perfectly (9 gaps of 8px)
+      const tabWidth = (vpWidth - (9 * 8)) / 10; 
+      Array.from(track.children).forEach(tab => {
+        tab.style.width = tabWidth + 'px';
+        tab.style.flex = `0 0 ${tabWidth}px`;
+      });
+      updateTabScroll();
+    }
+  }
+
+  function switchIndustry(key, isManual = false) {
+    document.querySelectorAll('.ind-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('ind-tab-' + key).classList.add('active');
+
+    const img = new Image();
+    img.src = indImages[key];
+
+    clearTimeout(imageChangeTimeout);
+    imageChangeTimeout = setTimeout(() => {
+      document.getElementById('industry-bg').style.backgroundImage = `url('${img.src}')`;
+    }, 1000);
+
+    currentIndIndex = industryKeys.indexOf(key);
+    
+    // Update the slider to keep active tab visible
+    updateTabScroll();
+
+    if (isManual) { resetIndInterval(); }
+  }
+
+  function nextIndustry(isManual = false) {
+    let nextIndex = (currentIndIndex + 1) % industryKeys.length;
+    switchIndustry(industryKeys[nextIndex], isManual);
+  }
+
+  function prevIndustry(isManual = false) {
+    let prevIndex = (currentIndIndex - 1 + industryKeys.length) % industryKeys.length;
+    switchIndustry(industryKeys[prevIndex], isManual);
+  }
+
+  let indInterval = setInterval(() => { nextIndustry(false); }, 4000);
+
+  function resetIndInterval() {
+    clearInterval(indInterval);
+    indInterval = setInterval(() => { nextIndustry(false); }, 4000);
+  }
+
+  // Handle resizing so the sliding tabs remain precisely perfectly calculated
+  window.addEventListener('resize', resizeTabs);
+  window.addEventListener('load', resizeTabs);
+  document.addEventListener('DOMContentLoaded', resizeTabs);
+
+  /* ====== Cases Section Auto-Slider Logic ====== */
+  let caseIndex = 0;
+  function slideCases() {
+    const track = document.getElementById('cases-track');
+    const card = track.children[0];
+    if (!card) return;
+    const maxCaseIndex = track.children.length - 2;
+    caseIndex++;
+    if (caseIndex > maxCaseIndex) { caseIndex = 0; }
+    const cardWidth = card.offsetWidth;
+    const gap = 32;
+    const translateAmount = caseIndex * (cardWidth + gap);
+    track.style.transform = `translateX(-${translateAmount}px)`;
+  }
+  setInterval(slideCases, 5000);
+
+  /* ====== News Ticker Slider Logic ====== */
+  function tickNews() {
+    const ticker = document.getElementById('news-ticker');
+    if (!ticker || ticker.children.length === 0) return;
+    const firstItem = ticker.firstElementChild;
+    const itemHeight = firstItem.offsetHeight;
+
+    ticker.style.transition = 'transform 0.6s ease-in-out';
+    ticker.style.transform = `translateY(-${itemHeight}px)`;
+
+    setTimeout(() => {
+      ticker.style.transition = 'none';
+      ticker.style.transform = 'translateY(0)';
+      ticker.appendChild(firstItem);
+    }, 600);
+  }
+  setInterval(tickNews, 3500);
+
+  /* ====== Hotspot Click-Toggle Logic ====== */
+  document.querySelectorAll('.asrs-hotspot-dot').forEach(function(dot) {
+    dot.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var container = this.closest('.asrs-hotspot-container');
+      var popup = container.querySelector('.asrs-popup');
+      var isAlreadyOpen = popup.classList.contains('visible');
+
+      document.querySelectorAll('.asrs-popup.visible').forEach(function(p) {
+        p.classList.remove('visible');
+      });
+      if (!isAlreadyOpen) { popup.classList.add('visible'); }
+    });
+  });
+
+  document.querySelectorAll('.asrs-popup-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      document.querySelectorAll('.asrs-popup.visible').forEach(function(p) {
+        p.classList.remove('visible');
+      });
+      var container = this.closest('.asrs-hotspot-container');
+      var key = container.getAttribute('data-modal');
+      openModal(key);
+    });
+  });
+
+  document.addEventListener('click', function() {
+    document.querySelectorAll('.asrs-popup.visible').forEach(function(p) {
+      p.classList.remove('visible');
+    });
+  });
+
+  /* ====== Modal Data & Functions ====== */
+  var modalData = {
+    racking: { badge: 'RACKING', title: 'Racking Structure', heroLabel: 'HIGH-BAY AUTOMATED RACKING', heroGradient: 'linear-gradient(135deg,#1a3a6b,#2a5aab)', heroSvg: '<svg width="100%" height="100%" viewBox="0 0 700 220" fill="none"><g fill="#fe5e00" opacity=".7"><rect x="40" y="0" width="12" height="220"/><rect x="140" y="0" width="12" height="220"/><rect x="240" y="0" width="12" height="220"/><rect x="340" y="0" width="12" height="220"/><rect x="440" y="0" width="12" height="220"/><rect x="540" y="0" width="12" height="220"/><rect x="640" y="0" width="12" height="220"/></g><g stroke="rgba(255,255,255,.25)" stroke-width="1"><line x1="30" y1="55" x2="660" y2="55"/><line x1="30" y1="110" x2="660" y2="110"/><line x1="30" y1="165" x2="660" y2="165"/></g></svg>', desc: 'Our high-bay racking structures are engineered for maximum storage density and structural integrity.', specs: [{ label: 'Max Height', value: 'Up to 45 m' }], features: ['Precision-welded upright frames with tolerance ±1 mm for crane alignment'] },
+    crane: { badge: 'STACKER CRANE', title: 'Stacker Crane', heroLabel: 'UNIT-LOAD STACKER CRANE', heroGradient: 'linear-gradient(135deg,#2a1010,#8a2020)', heroSvg: '<svg width="100%" height="100%" viewBox="0 0 700 220" fill="none"><rect x="318" y="0" width="14" height="220" fill="rgba(254,94,0,.75)"/></svg>', desc: 'The RackNSpace unit-load stacker crane is the core of our AS/RS solution.', specs: [{ label: 'Max Height', value: 'Up to 45 m' }], features: ['Dual-mast design for loads up to 1,500 kg'] },
+    conveyor: { badge: 'CONVEYING', title: 'Conveyor System', heroLabel: 'PALLET CONVEYOR NETWORK', heroGradient: 'linear-gradient(135deg,#1a3a28,#2a6a48)', heroSvg: '<svg width="100%" height="100%" viewBox="0 0 700 220" fill="none"><rect x="40" y="95" width="620" height="30" fill="rgba(100,200,120,.2)" rx="3"/></svg>', desc: 'Our pallet conveyor systems form the logistics backbone.', specs: [{ label: 'Max Pallet Load', value: 'Up to 2,000 kg' }], features: ['Modular sections for easy installation'] },
+    wms: { badge: 'SOFTWARE', title: 'WMS Dashboard', heroLabel: 'WAREHOUSE MANAGEMENT SYSTEM', heroGradient: 'linear-gradient(135deg,#0a1020,#1a2850)', heroSvg: '<svg width="100%" height="100%" viewBox="0 0 700 220" fill="none"><rect x="40" y="20" width="620" height="180" rx="4" fill="rgba(100,160,255,.06)" stroke="rgba(100,160,255,.2)" stroke-width="1"/></svg>', desc: 'The RackNSpace WMS and WCS provide a unified intelligence layer.', specs: [{ label: 'Platform', value: 'Web-based, browser-agnostic' }], features: ['Real-time 3D warehouse map'] }
+  };
+
+  function openModal(key) {
+    var data = modalData[key]; if (!data) return;
+    document.getElementById('modalBadge').textContent = data.badge;
+    document.getElementById('modalTitle').textContent = data.title;
+    document.getElementById('modalHeroLabel').textContent = data.heroLabel;
+    document.getElementById('modalDesc').textContent = data.desc;
+    var hero = document.getElementById('modalHero');
+    hero.style.background = data.heroGradient;
+    var oldSvg = hero.querySelector('svg'); if (oldSvg) oldSvg.remove();
+    var tmp = document.createElement('div'); tmp.innerHTML = data.heroSvg;
+    hero.insertBefore(tmp.firstChild, hero.firstChild);
+    document.getElementById('modalSpecs').innerHTML = data.specs.map(s => '<div class="modal-spec"><div class="modal-spec-label">' + s.label + '</div><div class="modal-spec-value">' + s.value + '</div></div>').join('');
+    document.getElementById('modalFeatures').innerHTML = data.features.map(f => '<li>' + f + '</li>').join('');
+    document.getElementById('detailModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(event) {
+    if (event && event.target !== document.getElementById('detailModal')) return;
+    document.getElementById('detailModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.getElementById('detailModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+</script>
+</body>
+</html>
