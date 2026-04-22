@@ -404,6 +404,10 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
       Services <span class="arrow">▾</span>
     </div>
+	<div class="nav-item" id="nav-expertise" onmouseenter="openDdHover('expertise')" onmouseleave="closeDdHover()">
+	  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+	  Our Expertise <span class="arrow">▾</span>
+	</div>
     <div class="nav-item" id="nav-about" onmouseenter="openDdHover('about')" onmouseleave="closeDdHover()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
       About Us <span class="arrow">▾</span>
@@ -433,6 +437,16 @@
     <a href="#" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(45deg,#666,#888);"></div><span class="wdx-title">Remote Support (7×24)</span></a>
   </div>
 </div>
+
+<div class="dropdown-panel" id="dd-expertise" onmouseenter="clearHoverTimeout()" onmouseleave="closeDdHover()">
+  <div class="wdx-grid">
+    <a href="#" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#168a3e,#2e9a55);"></div><span class="wdx-title">Smart Logistics Planning</span></a>
+    <a href="#" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#168a3e,#3aa866);"></div><span class="wdx-title">Equipment Engineering</span></a>
+    <a href="#" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#168a3e,#54b882);"></div><span class="wdx-title">System Integration</span></a>
+    <a href="#" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#168a3e,#72c89f);"></div><span class="wdx-title">24/7 Remote Tech Support</span></a>
+  </div>
+</div>
+
 <div class="dropdown-panel" id="dd-about" onmouseenter="clearHoverTimeout()" onmouseleave="closeDdHover()">
   <div class="wdx-grid">
     <a href="about.html" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#fe5e00,#ff8c42);"></div><span class="wdx-title">RackNSpace Group</span></a>
