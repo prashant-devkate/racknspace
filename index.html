@@ -41,7 +41,7 @@
   font-family: 'Neuropol', sans-serif;
   font-size:26px; 
   letter-spacing: 1px; 
-  border-bottom: 3px solid lightgreen;
+  border-bottom: 3px solid #90EE90;
   padding-bottom: 4px;
   display: inline-block; 
   }
@@ -350,17 +350,19 @@
   .modal-btn-primary:hover { background: var(--red-hover); }
   .modal-btn-secondary { background: none; color: var(--dark); border: 1px solid var(--border); padding: 12px 24px; font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: border-color 0.2s, color 0.2s; border-radius: 2px; }
   .modal-btn-secondary:hover { border-color: var(--dark); }
+  
+  .logo-icon { 
+  width: 42px; 
+  height: 32px; 
+  object-fit: contain; /* Prevents the image from stretching out of proportion */
+}
 </style>
 </head>
 <body>
 
 <header id="navbar">
   <a class="logo" href="index.html">
-    <svg class="logo-icon" viewBox="0 0 36 28" fill="none">
-      <rect y="3" width="36" height="5" rx="1" fill="var(--red)"/>
-      <rect y="11" width="26" height="5" rx="1" fill="var(--red)"/>
-      <rect y="19" width="36" height="5" rx="1" fill="var(--red)"/>
-    </svg>
+    <img src="racknspace.png" alt="RackNSpace Logo" class="logo-icon">
     <span class="logo-text">
 	<span style="color: #fe5e00;">Rack</span>
 	<span style="color: yellow;">N</span>
