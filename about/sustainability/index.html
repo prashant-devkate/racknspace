@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RackNSpace – About Us</title>
+<title>RackNSpace – Sustainability</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
 <link href="https://fonts.cdnfonts.com/css/neuropol" rel="stylesheet">
 <link rel="icon" href="rns.png" type="image/png">
@@ -38,7 +38,6 @@
     box-shadow:0 2px 16px rgba(0,0,0,.05);
   }
 
-  /* ── BRAND LOGO ── */
   .logo { display:flex; align-items:center; gap:0; text-decoration:none; cursor:pointer; }
   .logo-icon { height: 72px; width: auto; object-fit: contain; margin-right: 14px; }
   .logo-text {
@@ -155,28 +154,66 @@
   }
   .scroll-to-top:hover { background:var(--red-hover); transform:translateY(-4px); }
 
-  /* ═══════════════════════ ABOUT PAGE SPECIFIC CSS ═══════════════════════ */
-  .page-hero { height:320px; background:linear-gradient(135deg,#0F2A44,#1a2a44); display:flex; align-items:center; padding:0 80px; position:relative; overflow:hidden; }
-  .page-hero::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(45deg,rgba(254,94,0,.05) 0,rgba(254,94,0,.05) 1px,transparent 1px,transparent 40px); }
-  .page-hero h1 { font-family:'Barlow Condensed',sans-serif; font-size:clamp(42px, 5vw, 64px); font-weight:900; color:var(--white); position:relative; z-index:2; text-shadow:0 2px 12px rgba(0,0,0,.5); }
-  .page-hero p { font-size:18px; font-weight:600; color:rgba(255,255,255,.88); margin-top:12px; position:relative; z-index:2; }
-
-  .about-full { padding:80px; background:var(--white); }
-  .about-full-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
-  .about-full h2 { font-family:'Barlow Condensed',sans-serif; font-size:42px; font-weight:900; margin-bottom:24px; color:var(--dark); line-height:1.2; }
-  .about-full p { font-size:16px; color:var(--mid); line-height:1.8; margin-bottom:20px; }
+  /* ═══════════════════════ SUSTAINABILITY PAGE CSS ═══════════════════════ */
   
-  .about-highlights { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:12px; }
-  .highlight-box { background:var(--light); padding:32px 24px; border-left:4px solid var(--red); border-radius:4px; transition:transform 0.3s; }
-  .highlight-box:hover { transform:translateX(5px); }
-  .highlight-num { font-family:'Barlow Condensed',sans-serif; font-size:48px; font-weight:900; color:var(--red); line-height:1; }
-  .highlight-label { font-size:15px; font-weight:700; color:var(--dark); margin-top:8px; }
+  /* Hero Section */
+  .page-hero { 
+    height: 400px; 
+    background: url('https://images.unsplash.com/photo-1464938050520-ef2270bb8ce8?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; 
+    display: flex; align-items: center; position: relative; overflow: hidden; 
+  }
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(15, 42, 68, 0.75) 0%, rgba(22, 219, 90, 0.25) 100%); }
+  .hero-content { position: relative; z-index: 2; width: 100%; padding: 0 80px; }
+  .hero-content h1 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(48px, 6vw, 72px); font-weight: 900; color: var(--white); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 2px 12px rgba(0,0,0,0.4); }
+  .breadcrumb { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.8); display: flex; align-items: center; gap: 8px; }
+  .breadcrumb a { color: var(--white); text-decoration: none; transition: color 0.2s; }
+  .breadcrumb a:hover { color: var(--leaf); }
+  .breadcrumb svg { width: 14px; height: 14px; fill: var(--leaf); }
 
-  .stats-section { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; padding:0 80px 80px; background:var(--white); }
-  .stat-box { background:var(--light); padding:40px 32px; border-radius:8px; text-align:center; border:1px solid var(--border); transition:transform 0.3s, box-shadow 0.3s; }
-  .stat-box:hover { transform:translateY(-5px); box-shadow:0 10px 30px rgba(0,0,0,0.08); }
-  .stat-num { font-family:'Barlow Condensed',sans-serif; font-size:52px; font-weight:900; color:var(--red); line-height:1; margin-bottom:12px; }
-  .stat-label { font-size:16px; font-weight:700; color:var(--dark); }
+  /* Policy Intro Section */
+  .policy-intro { padding: 80px; text-align: center; background: var(--light); }
+  .policy-intro h2 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(36px, 4vw, 48px); font-weight: 900; color: var(--dark2); margin-bottom: 24px; }
+  .policy-intro p { font-size: 16px; color: var(--mid); max-width: 900px; margin: 0 auto; line-height: 1.8; font-weight: 500; }
+
+  /* 5 Pillars Image Section */
+  .pillars-section { 
+    position: relative; 
+    min-height: 450px; 
+    display: flex; align-items: stretch;
+    background: url('https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; 
+  }
+  .pillars-overlay { position: absolute; inset: 0; background: rgba(15, 42, 68, 0.65); backdrop-filter: blur(2px); }
+  
+  .pillars-grid { 
+    position: relative; z-index: 2; width: 100%; 
+    display: grid; grid-template-columns: repeat(5, 1fr); 
+  }
+  .pillar-card { 
+    padding: 60px 40px; 
+    display: flex; flex-direction: column; 
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
+    transition: background 0.3s ease;
+  }
+  .pillar-card:last-child { border-right: none; }
+  .pillar-card:hover { background: rgba(255, 255, 255, 0.05); }
+  
+  .pillar-icon { 
+    width: 64px; height: 64px; border-radius: 50%; 
+    background: rgba(255, 255, 255, 0.15); 
+    display: flex; align-items: center; justify-content: center; 
+    margin-bottom: 24px; color: var(--white);
+    backdrop-filter: blur(4px); transition: background 0.3s;
+  }
+  .pillar-icon.active { background: rgba(254, 94, 0, 0.85); box-shadow: 0 4px 15px rgba(254, 94, 0, 0.4); }
+  .pillar-icon svg { width: 30px; height: 30px; stroke-width: 1.5; stroke: currentColor; fill: none; }
+  
+  .pillar-card p { font-size: 14px; color: rgba(255,255,255,0.9); line-height: 1.8; font-weight: 500; }
+
+  /* Commitment Section */
+  .commitment-section { padding: 100px 80px; text-align: center; background: var(--white); }
+  .commitment-section h2 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(40px, 5vw, 56px); font-weight: 900; color: var(--dark2); margin-bottom: 20px; }
+  .commitment-section p { font-size: 18px; color: var(--mid); max-width: 800px; margin: 0 auto; line-height: 1.8; font-weight: 700; }
+  .commitment-section p span { color: var(--dark2); font-weight: 800; }
 
   /* ── FOOTER ── */
   footer { background:#0F2A44; color:rgba(255,255,255,.7); padding:64px 80px 32px; }
@@ -191,6 +228,13 @@
   .footer-bottom { border-top:1px solid rgba(255,255,255,.1); padding-top:24px; display:flex; justify-content:space-between; font-size:13px; color:rgba(255,255,255,.4); }
 
   /* ── RESPONSIVE STYLES ── */
+  @media (max-width: 1200px) {
+    .pillars-grid { grid-template-columns: repeat(3, 1fr); }
+    .pillar-card:nth-child(3) { border-right: none; }
+    .pillar-card:nth-child(n+4) { border-top: 1px solid rgba(255, 255, 255, 0.15); }
+    .pillar-card:nth-child(5) { border-right: none; }
+  }
+
   @media (max-width: 1024px) {
     #navbar { padding: 0 24px; height: 70px; }
     .logo-icon { height: 52px; margin-right: 10px; }
@@ -199,11 +243,10 @@
     .hamburger { display: flex; }
     .dropdown-overlay, .dropdown-panel { display: none !important; }
     
-    .page-hero { padding: 0 40px; }
-    .about-full { padding: 60px 40px; }
-    .about-full-grid { gap: 40px; }
-    .stats-section { padding: 0 40px 60px; grid-template-columns: repeat(2, 1fr); gap:20px; }
-
+    .hero-content { padding: 0 40px; }
+    .policy-intro { padding: 60px 40px; }
+    .commitment-section { padding: 80px 40px; }
+    
     footer { padding: 48px 40px 24px; }
     .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
     .sidebar-btn { width: 40px; height: 40px; font-size: 16px; }
@@ -215,14 +258,16 @@
     .logo-icon { height: 44px; margin-right: 8px; }
     .logo-text { font-size: 20px; }
     
-    .page-hero { padding: 0 20px; height: 220px; }
-    .page-hero h1 { font-size: clamp(32px, 9vw, 42px); }
-    .page-hero p { font-size: 14px; }
+    .page-hero { height: 300px; }
+    .hero-content { padding: 0 20px; }
     
-    .about-full { padding: 48px 20px; }
-    .about-full-grid { grid-template-columns: 1fr; gap: 40px; }
-    .about-highlights { grid-template-columns: 1fr; gap: 16px; }
-    .stats-section { padding: 0 20px 48px; grid-template-columns: 1fr; gap: 16px; }
+    .policy-intro { padding: 50px 20px; }
+    .commitment-section { padding: 60px 20px; }
+    .commitment-section p { font-size: 16px; }
+    
+    .pillars-grid { grid-template-columns: 1fr; }
+    .pillar-card { padding: 40px 20px; border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.15); align-items: center; text-align: center; }
+    .pillar-card:last-child { border-bottom: none; }
     
     footer { padding: 40px 16px 24px; }
     .footer-grid { grid-template-columns: 1fr; gap: 24px; }
@@ -237,9 +282,6 @@
   @media (max-width: 480px) {
     .logo-text { font-size: 17px; }
     .logo-icon { height: 38px; }
-    .page-hero h1 { font-size: 30px; }
-    .page-hero p { font-size: 13px; }
-    .about-full h2 { font-size: 32px; }
     
     footer h4 { font-size: 14px; }
     footer ul li { font-size: 13px; }
@@ -250,7 +292,7 @@
 <body>
 
 <header id="navbar">
-  <a class="logo" href="/racknspace/index.html">
+  <a class="logo" href="/racknspace/">
     <img src="/racknspace/racknspace.png" alt="RackNSpace Logo" class="logo-icon">
     <span class="logo-text">
       <span class="logo-rack">Rack </span>
@@ -260,7 +302,7 @@
   </a>
 
   <nav>
-    <a class="nav-item" href="index.html" id="nav-home">
+    <a class="nav-item" href="/racknspace/" id="nav-home">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
       Home
     </a>
@@ -292,7 +334,7 @@
 </header>
 
 <div class="mobile-nav" id="mobile-nav">
-  <a class="mobile-nav-item" href="index.html">
+  <a class="mobile-nav-item" href="/racknspace/">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
     Home
   </a>
@@ -331,12 +373,12 @@
     About Us <span class="mob-arrow">▾</span>
   </div>
   <div class="mobile-nav-sub" id="mob-about">
-    <a href="about.html">RackNSpace Group</a>
-	<a href="about.html">Culture</a>
-	<a href="about.html">Sustainability</a>
-    <a href="about.html">Partnership Opportunities</a>
+    <a href="/racknspace/about/racknspace-group/">RackNSpace Group</a>
+    <a href="/racknspace/about/culture/">Culture</a>
+    <a href="/racknspace/about/sustainability/">Sustainability</a>
+    <a href="/racknspace/about/partnership-opportunities/" style="color:var(--red);">Partnership Opportunities</a>
   </div>
-  <a class="mobile-nav-item contact" href="contact.html">
+  <a class="mobile-nav-item contact" href="/racknspace/contact/">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
     Contact Us
   </a>
@@ -370,10 +412,10 @@
 </div>
 <div class="dropdown-panel" id="dd-about" onmouseenter="clearHoverTimeout()" onmouseleave="closeDdHover()">
   <div class="wdx-grid">
-	<a href="about.html" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#fe5e00,#ff8c42);"></div><span class="wdx-title">RackNSpace Group</span></a>
-    <a href="about.html" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#e05300,#ff7b25);"></div><span class="wdx-title">Culture</span></a>
-    <a href="about.html" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#d44d00,#fc6e14);"></div><span class="wdx-title">Sustainability</span></a>
-    <a href="about.html" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#c74700,#ee6107);"></div><span class="wdx-title">Partnership Opportunities</span></a>
+    <a href="/racknspace/about/racknspace-group/" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#fe5e00,#ff8c42);"></div><span class="wdx-title">RackNSpace Group</span></a>
+    <a href="/racknspace/about/culture/" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#e05300,#ff7b25);"></div><span class="wdx-title">Culture</span></a>
+    <a href="/racknspace/about/sustainability/" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#d44d00,#fc6e14);"></div><span class="wdx-title">Sustainability</span></a>
+    <a href="/racknspace/about/partnership-opportunities/" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#c74700,#ee6107);"></div><span class="wdx-title">Partnership Opportunities</span></a>
   </div>
 </div>
 
@@ -381,7 +423,9 @@
   <button class="sidebar-btn" onclick="showContact('email')" title="Email Us">✉</button>
   <button class="sidebar-btn" onclick="showContact('phone')" title="Call Us">📞</button>
   <button class="sidebar-btn" onclick="showContact('whatsapp')" title="WhatsApp">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:24px;height:24px;filter:brightness(0) invert(1);">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+    </svg>
   </button>
 </div>
 
@@ -394,58 +438,66 @@
 <button class="scroll-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <div class="page-hero">
-  <div>
-    <h1>About Us</h1>
-    <p>Smart warehousing logistics — dedicated to intelligent manufacturing</p>
-  </div>
-</div>
-
-<div class="about-full">
-  <div class="about-full-grid">
-    <div>
-      <h2>RACK N SPACE Intelligent Logistics Technology</h2>
-      <p>RACK N SPACE Group is a smart warehousing logistics system and equipment integrator that is dedicated in the field of intelligent manufacturing and smart logistics. The company focuses on the R&D, planning & design, equipment integration, installation & commissioning, after-sales maintenance and other services of intralogistics system.</p>
-      <p>Currently, RACK N SPACE has established a robust global service network, including its headquarters, three R&D centers, three manufacturing bases, three overseas support centers and national wide after-sales service centers.</p>
-      <p>With over 1,000 clients benefiting from RACK N SPACE's logistics solutions and products, RACK N SPACE continues to drive innovation and deliver value through tailored solutions that optimize warehouse operations and logistics processes.</p>
-    </div>
-    <div class="about-highlights">
-      <div class="highlight-box">
-        <div class="highlight-num">1000+</div>
-        <div class="highlight-label">Clients served globally</div>
-      </div>
-      <div class="highlight-box">
-        <div class="highlight-num">100%</div>
-        <div class="highlight-label">Project acceptance rate</div>
-      </div>
-      <div class="highlight-box">
-        <div class="highlight-num">3</div>
-        <div class="highlight-label">Global R&D centers</div>
-      </div>
-      <div class="highlight-box">
-        <div class="highlight-num">7×24</div>
-        <div class="highlight-label">Remote support coverage</div>
-      </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>SUSTAINABILITY</h1>
+    <div class="breadcrumb">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+      <a href="/racknspace/">Home</a> > <a href="/racknspace/about/racknspace-group/">About us</a>
     </div>
   </div>
 </div>
 
-<section class="stats-section">
-  <div class="stat-box">
-    <div class="stat-num">1000+</div>
-    <div class="stat-label">Clients Worldwide</div>
+<section class="policy-intro">
+  <h2>Environmental Policy</h2>
+  <p>RackNSpace endeavors to conduct its business activities in an environmentally friendly and responsible manner in accordance with the following guidelines:</p>
+</section>
+
+<section class="pillars-section">
+  <div class="pillars-overlay"></div>
+  <div class="pillars-grid">
+    
+    <div class="pillar-card">
+      <div class="pillar-icon active">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><path d="M7 13s2-2 5-2 5 2 5 2"/></svg>
+      </div>
+      <p>Fully embody the business principle of environmental protection in the company's operations.</p>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="7.5 4.21 12 6.81 16.5 4.21"/><polyline points="7.5 19.79 7.5 14.6 3 12"/><polyline points="21 12 16.5 14.6 16.5 19.79"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+      </div>
+      <p>Dynamically identify environmental risks and take prudent and effective measures to prevent pollution and reduce the burden on the environment and resources in the company's production and operation processes.</p>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-icon">
+        <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><circle cx="12" cy="14" r="4"/><line x1="12" y1="6" x2="12.01" y2="6"/></svg>
+      </div>
+      <p>Comply with the laws and regulations applicable to the company's operations, and comply with relevant environmental protection regulations.</p>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-icon">
+        <svg viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="12" y1="6" x2="12" y2="10"/><line x1="6" y1="10" x2="18" y2="10"/><rect x="3" y="14" width="6" height="4" rx="1" ry="1"/><rect x="15" y="14" width="6" height="4" rx="1" ry="1"/><line x1="6" y1="10" x2="6" y2="14"/><line x1="18" y1="10" x2="18" y2="14"/></svg>
+      </div>
+      <p>Effectively implement and continuously improve our environmental management system, including the establishment of a sustainable operating model to achieve environmental goals and objectives.</p>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-icon">
+        <svg viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M9 14h6"/><path d="M9 18h6"/><path d="M12 10h3"/></svg>
+      </div>
+      <p>We are willing to receive and share appropriate training and guidance to meet our own and our partners' environmental requirements.</p>
+    </div>
+
   </div>
-  <div class="stat-box">
-    <div class="stat-num">100%</div>
-    <div class="stat-label">Delivery Rate</div>
-  </div>
-  <div class="stat-box">
-    <div class="stat-num">80%</div>
-    <div class="stat-label">AS/RS Automation</div>
-  </div>
-  <div class="stat-box">
-    <div class="stat-num">7*24</div>
-    <div class="stat-label">Remote Support</div>
-  </div>
+</section>
+
+<section class="commitment-section">
+  <h2>Our Commitment Is</h2>
+  <p>is to actively contribute to the conservation of air, water, soil, and natural resources, and to <span>integrate sustainability as a core element of our long-term business strategy.</span></p>
 </section>
 
 <footer>
@@ -453,10 +505,10 @@
     <div>
       <h4>About Us</h4>
       <ul>
-        <li><a href="about.html">RackNSpace Group</a></li><li><a href="about.html">R&D</a></li>
-        <li><a href="about.html">Events & Activities</a></li><li><a href="about.html">Sustainability</a></li>
-        <li><a href="about.html">Culture</a></li><li><a href="about.html">Join us</a></li>
-        <li><a href="about.html">Partnership Opportunities</a></li>
+        <li><a href="/racknspace/about/racknspace-group/">RackNSpace Group</a></li>
+        <li><a href="/racknspace/about/culture/">Culture</a></li>
+        <li><a href="/racknspace/about/sustainability/">Sustainability</a></li>
+        <li><a href="/racknspace/about/partnership-opportunities/">Partnership Opportunities</a></li>
       </ul>
     </div>
     <div>
