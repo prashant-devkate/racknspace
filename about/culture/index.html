@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RackNSpace – About Us</title>
+<title>RackNSpace – Our Culture</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
 <link href="https://fonts.cdnfonts.com/css/neuropol" rel="stylesheet">
 <link rel="icon" href="rns.png" type="image/png">
@@ -16,7 +16,7 @@
     --dark: #0F2A44;
     --dark2: #222222;
     --mid: #555555;
-    --light: #f5f5f5;
+    --light: #f9f9f9; /* Slightly softer light for culture section */
     --white: #ffffff;
     --border: #e0e0e0;
     --stat-red: #ff8c42;
@@ -38,7 +38,6 @@
     box-shadow:0 2px 16px rgba(0,0,0,.05);
   }
 
-  /* ── BRAND LOGO ── */
   .logo { display:flex; align-items:center; gap:0; text-decoration:none; cursor:pointer; }
   .logo-icon { height: 72px; width: auto; object-fit: contain; margin-right: 14px; }
   .logo-text {
@@ -155,28 +154,39 @@
   }
   .scroll-to-top:hover { background:var(--red-hover); transform:translateY(-4px); }
 
-  /* ═══════════════════════ ABOUT PAGE SPECIFIC CSS ═══════════════════════ */
+  /* ═══════════════════════ CULTURE PAGE SPECIFIC CSS ═══════════════════════ */
   .page-hero { height:320px; background:linear-gradient(135deg,#0F2A44,#1a2a44); display:flex; align-items:center; padding:0 80px; position:relative; overflow:hidden; }
   .page-hero::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(45deg,rgba(254,94,0,.05) 0,rgba(254,94,0,.05) 1px,transparent 1px,transparent 40px); }
   .page-hero h1 { font-family:'Barlow Condensed',sans-serif; font-size:clamp(42px, 5vw, 64px); font-weight:900; color:var(--white); position:relative; z-index:2; text-shadow:0 2px 12px rgba(0,0,0,.5); }
   .page-hero p { font-size:18px; font-weight:600; color:rgba(255,255,255,.88); margin-top:12px; position:relative; z-index:2; }
 
-  .about-full { padding:80px; background:var(--white); }
-  .about-full-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
-  .about-full h2 { font-family:'Barlow Condensed',sans-serif; font-size:42px; font-weight:900; margin-bottom:24px; color:var(--dark); line-height:1.2; }
-  .about-full p { font-size:16px; color:var(--mid); line-height:1.8; margin-bottom:20px; }
+  /* Brand Meaning Section */
+  .brand-meaning-section { padding: 100px 80px; background: var(--light); display: flex; flex-direction: column; align-items: center; }
+  .brand-meaning-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(36px, 4vw, 48px); font-weight: 900; color: var(--dark2); margin-bottom: 64px; text-align: center; }
   
-  .about-highlights { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:12px; }
-  .highlight-box { background:var(--light); padding:32px 24px; border-left:4px solid var(--red); border-radius:4px; transition:transform 0.3s; }
-  .highlight-box:hover { transform:translateX(5px); }
-  .highlight-num { font-family:'Barlow Condensed',sans-serif; font-size:48px; font-weight:900; color:var(--red); line-height:1; }
-  .highlight-label { font-size:15px; font-weight:700; color:var(--dark); margin-top:8px; }
+  .brand-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 80px; max-width: 1300px; width: 100%; align-items: center; }
+  .brand-text-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px 40px; }
+  
+  .brand-item { display: flex; flex-direction: column; align-items: flex-start; }
+  .brand-item-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .brand-icon { color: var(--red); display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; }
+  .brand-icon svg { width: 100%; height: 100%; stroke-width: 2; stroke: currentColor; fill: none; }
+  .brand-item h3 { font-size: 22px; font-weight: 800; color: var(--dark2); line-height: 1.2; }
+  .brand-item p { font-size: 15px; color: var(--mid); line-height: 1.7; font-weight: 500; }
 
-  .stats-section { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; padding:0 80px 80px; background:var(--white); }
-  .stat-box { background:var(--light); padding:40px 32px; border-radius:8px; text-align:center; border:1px solid var(--border); transition:transform 0.3s, box-shadow 0.3s; }
-  .stat-box:hover { transform:translateY(-5px); box-shadow:0 10px 30px rgba(0,0,0,0.08); }
-  .stat-num { font-family:'Barlow Condensed',sans-serif; font-size:52px; font-weight:900; color:var(--red); line-height:1; margin-bottom:12px; }
-  .stat-label { font-size:16px; font-weight:700; color:var(--dark); }
+  /* Circular Logo Wrap */
+  .brand-logo-wrap {
+    background: var(--white);
+    border-radius: 50%;
+    width: 420px; height: 420px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.06);
+    margin: 0 auto;
+  }
+  .brand-logo-inner {
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .brand-logo-inner img { width: 160px; object-fit: contain; margin-bottom: 15px; }
 
   /* ── FOOTER ── */
   footer { background:#0F2A44; color:rgba(255,255,255,.7); padding:64px 80px 32px; }
@@ -191,6 +201,11 @@
   .footer-bottom { border-top:1px solid rgba(255,255,255,.1); padding-top:24px; display:flex; justify-content:space-between; font-size:13px; color:rgba(255,255,255,.4); }
 
   /* ── RESPONSIVE STYLES ── */
+  @media (max-width: 1200px) {
+    .brand-grid { gap: 40px; }
+    .brand-logo-wrap { width: 340px; height: 340px; }
+  }
+
   @media (max-width: 1024px) {
     #navbar { padding: 0 24px; height: 70px; }
     .logo-icon { height: 52px; margin-right: 10px; }
@@ -200,9 +215,12 @@
     .dropdown-overlay, .dropdown-panel { display: none !important; }
     
     .page-hero { padding: 0 40px; }
-    .about-full { padding: 60px 40px; }
-    .about-full-grid { gap: 40px; }
-    .stats-section { padding: 0 40px 60px; grid-template-columns: repeat(2, 1fr); gap:20px; }
+    
+    /* Stack brand meaning section */
+    .brand-meaning-section { padding: 80px 40px; }
+    .brand-grid { grid-template-columns: 1fr; gap: 60px; text-align: center; }
+    .brand-item { align-items: center; text-align: center; }
+    .brand-logo-wrap { order: -1; width: 360px; height: 360px; } /* Move logo to top */
 
     footer { padding: 48px 40px 24px; }
     .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
@@ -219,10 +237,10 @@
     .page-hero h1 { font-size: clamp(32px, 9vw, 42px); }
     .page-hero p { font-size: 14px; }
     
-    .about-full { padding: 48px 20px; }
-    .about-full-grid { grid-template-columns: 1fr; gap: 40px; }
-    .about-highlights { grid-template-columns: 1fr; gap: 16px; }
-    .stats-section { padding: 0 20px 48px; grid-template-columns: 1fr; gap: 16px; }
+    .brand-meaning-section { padding: 60px 20px; }
+    .brand-text-grid { grid-template-columns: 1fr; gap: 40px; }
+    .brand-logo-wrap { width: 280px; height: 280px; }
+    .brand-logo-inner img { width: 120px; }
     
     footer { padding: 40px 16px 24px; }
     .footer-grid { grid-template-columns: 1fr; gap: 24px; }
@@ -239,8 +257,11 @@
     .logo-icon { height: 38px; }
     .page-hero h1 { font-size: 30px; }
     .page-hero p { font-size: 13px; }
-    .about-full h2 { font-size: 32px; }
     
+    .brand-meaning-title { font-size: 28px; margin-bottom: 40px; }
+    .brand-logo-wrap { width: 240px; height: 240px; }
+    .brand-logo-inner img { width: 100px; }
+
     footer h4 { font-size: 14px; }
     footer ul li { font-size: 13px; }
     .footer-contact p { font-size: 13px; }
@@ -250,8 +271,8 @@
 <body>
 
 <header id="navbar">
-  <a class="logo" href="/racknspace/index.html">
-    <img src="/racknspace/racknspace.png" alt="RackNSpace Logo" class="logo-icon">
+  <a class="logo" href="index.html">
+    <img src="racknspace.png" alt="RackNSpace Logo" class="logo-icon">
     <span class="logo-text">
       <span class="logo-rack">Rack </span>
       <span class="logo-n">N </span>
@@ -280,7 +301,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
       About Us <span class="arrow">▾</span>
     </div>
-    <a class="nav-item nav-contact" href="/racknspace/contact/" id="nav-contact">
+    <a class="nav-item nav-contact" href="contact.html" id="nav-contact">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
       Contact Us
     </a>
@@ -332,9 +353,9 @@
   </div>
   <div class="mobile-nav-sub" id="mob-about">
     <a href="about.html">RackNSpace Group</a>
-	<a href="about.html">Culture</a>
-	<a href="about.html">Sustainability</a>
-    <a href="about.html">Partnership Opportunities</a>
+    <a href="about.html">R&D Facilities</a>
+    <a href="about.html">Partnership</a>
+    <a href="culture.html" style="color:var(--red);">Brand Culture</a>
   </div>
   <a class="mobile-nav-item contact" href="contact.html">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
@@ -370,10 +391,10 @@
 </div>
 <div class="dropdown-panel" id="dd-about" onmouseenter="clearHoverTimeout()" onmouseleave="closeDdHover()">
   <div class="wdx-grid">
-	<a href="about.html" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#fe5e00,#ff8c42);"></div><span class="wdx-title">RackNSpace Group</span></a>
-    <a href="about.html" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#e05300,#ff7b25);"></div><span class="wdx-title">Culture</span></a>
-    <a href="about.html" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#d44d00,#fc6e14);"></div><span class="wdx-title">Sustainability</span></a>
-    <a href="about.html" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#c74700,#ee6107);"></div><span class="wdx-title">Partnership Opportunities</span></a>
+    <a href="about.html" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#fe5e00,#ff8c42);"></div><span class="wdx-title">RackNSpace Group</span></a>
+    <a href="about.html" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#e05300,#ff7b25);"></div><span class="wdx-title">R&D Facilities</span></a>
+    <a href="about.html" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#d44d00,#fc6e14);"></div><span class="wdx-title">Partnership</span></a>
+    <a href="culture.html" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#c74700,#ee6107);"></div><span class="wdx-title">Brand Culture</span></a>
   </div>
 </div>
 
@@ -395,56 +416,68 @@
 
 <div class="page-hero">
   <div>
-    <h1>About Us</h1>
-    <p>Smart warehousing logistics — dedicated to intelligent manufacturing</p>
+    <h1>Our Culture</h1>
+    <p>The vision and core principles driving smart intralogistics forward</p>
   </div>
 </div>
 
-<div class="about-full">
-  <div class="about-full-grid">
-    <div>
-      <h2>RACK N SPACE Intelligent Logistics Technology</h2>
-      <p>RACK N SPACE Group is a smart warehousing logistics system and equipment integrator that is dedicated in the field of intelligent manufacturing and smart logistics. The company focuses on the R&D, planning & design, equipment integration, installation & commissioning, after-sales maintenance and other services of intralogistics system.</p>
-      <p>Currently, RACK N SPACE has established a robust global service network, including its headquarters, three R&D centers, three manufacturing bases, three overseas support centers and national wide after-sales service centers.</p>
-      <p>With over 1,000 clients benefiting from RACK N SPACE's logistics solutions and products, RACK N SPACE continues to drive innovation and deliver value through tailored solutions that optimize warehouse operations and logistics processes.</p>
-    </div>
-    <div class="about-highlights">
-      <div class="highlight-box">
-        <div class="highlight-num">1000+</div>
-        <div class="highlight-label">Clients served globally</div>
+<section class="brand-meaning-section">
+  <h2 class="brand-meaning-title">What Does The Brand RackNSpace Mean?</h2>
+  
+  <div class="brand-grid">
+    <div class="brand-text-grid">
+      
+      <div class="brand-item">
+        <div class="brand-item-header">
+          <div class="brand-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8Z"/><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>
+          </div>
+          <h3>Core values</h3>
+        </div>
+        <p>The name RackNSpace reflects our core values. Each element embodies a fundamental principle of our company's dedication to automated warehousing and smart intralogistics.</p>
       </div>
-      <div class="highlight-box">
-        <div class="highlight-num">100%</div>
-        <div class="highlight-label">Project acceptance rate</div>
-      </div>
-      <div class="highlight-box">
-        <div class="highlight-num">3</div>
-        <div class="highlight-label">Global R&D centers</div>
-      </div>
-      <div class="highlight-box">
-        <div class="highlight-num">7×24</div>
-        <div class="highlight-label">Remote support coverage</div>
-      </div>
-    </div>
-  </div>
-</div>
 
-<section class="stats-section">
-  <div class="stat-box">
-    <div class="stat-num">1000+</div>
-    <div class="stat-label">Clients Worldwide</div>
-  </div>
-  <div class="stat-box">
-    <div class="stat-num">100%</div>
-    <div class="stat-label">Delivery Rate</div>
-  </div>
-  <div class="stat-box">
-    <div class="stat-num">80%</div>
-    <div class="stat-label">AS/RS Automation</div>
-  </div>
-  <div class="stat-box">
-    <div class="stat-num">7*24</div>
-    <div class="stat-label">Remote Support</div>
+      <div class="brand-item">
+        <div class="brand-item-header">
+          <div class="brand-icon">
+            <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          </div>
+          <h3>R for Reliability</h3>
+        </div>
+        <p>This represents our unwavering commitment to building robust, heavy-duty racking and AS/RS systems that form the dependable backbone of your warehouse infrastructure.</p>
+      </div>
+
+      <div class="brand-item">
+        <div class="brand-item-header">
+          <div class="brand-icon">
+            <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/><path d="M2 8c0-2.2.8-4.3 2.1-5.9"/><path d="M22 8c0-2.2-.8-4.3-2.1-5.9"/></svg>
+          </div>
+          <h3>N for Next-Gen</h3>
+        </div>
+        <p>This highlights our resolve to stay at the forefront of automation, integrating cutting-edge WMS/WCS software and automated networks to future-proof your operations.</p>
+      </div>
+
+      <div class="brand-item">
+        <div class="brand-item-header">
+          <div class="brand-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+          </div>
+          <h3>S for Space</h3>
+        </div>
+        <p>This symbolizes our core mission: maximizing your storage density and operational efficiency through intelligent, space-saving automated solutions tailored to your needs.</p>
+      </div>
+
+    </div>
+
+    <div class="brand-logo-wrap">
+      <div class="brand-logo-inner">
+        <img src="racknspace.png" alt="RackNSpace Brand Identity">
+        <span class="logo-text" style="font-size: 28px; border-bottom:none;">
+          <span class="logo-rack">Rack </span><span class="logo-n">N </span><span class="logo-space">Space</span>
+        </span>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -455,7 +488,7 @@
       <ul>
         <li><a href="about.html">RackNSpace Group</a></li><li><a href="about.html">R&D</a></li>
         <li><a href="about.html">Events & Activities</a></li><li><a href="about.html">Sustainability</a></li>
-        <li><a href="about.html">Culture</a></li><li><a href="about.html">Join us</a></li>
+        <li><a href="culture.html">Culture</a></li><li><a href="about.html">Join us</a></li>
         <li><a href="about.html">Partnership Opportunities</a></li>
       </ul>
     </div>
