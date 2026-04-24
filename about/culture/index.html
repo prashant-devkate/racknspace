@@ -117,8 +117,35 @@
   .dropdown-panel.open { display:block; }
   .wdx-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:32px; max-width:1400px; margin:0 auto; }
   .wdx-card { display:flex; flex-direction:column; gap:16px; cursor:pointer; text-decoration:none; }
-  .wdx-img { width:100%; height:160px; background-color:#f0f0f0; background-size:cover; background-position:center; border-radius:4px; transition:transform 0.3s ease; }
-  .wdx-card:hover .wdx-img { transform:scale(1.02); }
+  
+  /* Images in Nav */
+  .wdx-img-wrap { 
+		width: 100%; 
+		height: 160px; 
+		border-radius: 4px; 
+		overflow: hidden; 
+		position: relative; 
+		background-color: #f0f0f0; 
+	}
+	.wdx-img { 
+		width:100%; 
+		height: 100%;
+		object-fit: cover;
+		display: block;
+		transition: transform 0.3s ease;
+	}
+	
+	.wdx-img-overlay {
+		position: absolute;
+		inset: 0;
+		background: rgba(15, 42, 68, 0.2); /* Soft Navy Blue tint */
+		pointer-events: none;
+	}
+  
+  .wdx-card:hover .wdx-img { transform: scale(1.05); }
+  
+  /* Images in Nav */
+  
   .wdx-title { font-size:18px; font-weight:700; color:var(--dark); transition:color 0.2s; }
   .wdx-card:hover .wdx-title { color:var(--red); }
 
@@ -322,30 +349,30 @@
     Products <span class="mob-arrow">▾</span>
   </div>
   <div class="mobile-nav-sub" id="mob-products">
-    <a href="products.html">ASRS Equipment</a>
-    <a href="products.html">Conveying Equipment</a>
-    <a href="products.html">Automated Shuttles</a>
-    <a href="products.html">Software (WMS/WCS)</a>
+    <a href="/racknspace/products/">ASRS Equipment</a>
+    <a href="/racknspace/products/">Conveying Equipment</a>
+    <a href="/racknspace/products/">Automated Shuttles</a>
+    <a href="/racknspace/products/">Software (WMS/WCS)</a>
   </div>
   <div class="mobile-nav-item" onclick="toggleMobileSub('mob-services')">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
     Services <span class="mob-arrow">▾</span>
   </div>
   <div class="mobile-nav-sub" id="mob-services">
-    <a href="#">R&D & Planning</a>
-    <a href="#">Equipment Integration</a>
-    <a href="#">Installation & Setup</a>
-    <a href="#">Remote Support (7×24)</a>
+    <a href="/racknspace/services/">R&D & Planning</a>
+    <a href="/racknspace/services/">Equipment Integration</a>
+    <a href="/racknspace/services/">Installation & Setup</a>
+    <a href="/racknspace/services/">Remote Support</a>
   </div>
   <div class="mobile-nav-item" onclick="toggleMobileSub('mob-expertise')">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>
     Our Expertise <span class="mob-arrow">▾</span>
   </div>
   <div class="mobile-nav-sub" id="mob-expertise">
-    <a href="#">Smart Logistics Planning</a>
-    <a href="#">Equipment Engineering</a>
-    <a href="#">System Integration</a>
-    <a href="#">24/7 Remote Tech Support</a>
+    <a href="/racknspace/expertise/">Smart Logistics Planning</a>
+    <a href="/racknspace/expertise/">Equipment Engineering</a>
+    <a href="/racknspace/expertise/">System Integration</a>
+    <a href="/racknspace/expertise/">Remote Tech Support</a>
   </div>
   <div class="mobile-nav-item active" onclick="toggleMobileSub('mob-about')">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
@@ -367,34 +394,130 @@
 
 <div class="dropdown-panel" id="dd-products" onmouseenter="clearHoverTimeout()" onmouseleave="closeDdHover()">
   <div class="wdx-grid">
-    <a href="products.html" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#1a2a44,#3a5a84);"></div><span class="wdx-title">ASRS Equipment</span></a>
-    <a href="products.html" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#2a1010,#8a2020);"></div><span class="wdx-title">Conveying Equipment</span></a>
-    <a href="products.html" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#1a3a28,#2a6a48);"></div><span class="wdx-title">Automated Shuttles</span></a>
-    <a href="products.html" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#0a1020,#1a2850);"></div><span class="wdx-title">Software (WMS/WCS)</span></a>
+    <a href="/racknspace/products/" class="wdx-card">
+	  <div class="wdx-img-wrap">
+        <img src="/racknspace/images/asrs-equi.jpg" alt="ASRS Equipment" class="wdx-img">
+        <div class="wdx-img-overlay"></div>
+      </div>
+	<span class="wdx-title">ASRS Equipment</span>
+	</a>
+    <a href="/racknspace/products/" class="wdx-card">
+	  <div class="wdx-img-wrap">
+        <img src="/racknspace/images/conveying-equi.jpg" alt="Conveying Equipment" class="wdx-img">
+        <div class="wdx-img-overlay"></div>
+      </div>
+	<span class="wdx-title">Conveying Equipment</span>
+	</a>
+    <a href="/racknspace/products/" class="wdx-card">
+	  <div class="wdx-img-wrap">
+        <img src="/racknspace/images/auto-shuttles.jpg" alt="Automated Shuttles" class="wdx-img">
+        <div class="wdx-img-overlay"></div>
+      </div>
+	<span class="wdx-title">Automated Shuttles</span>
+	</a>
+    <a href="/racknspace/products/" class="wdx-card">
+	  <div class="wdx-img-wrap">
+        <img src="/racknspace/images/soft-wms.jpg" alt="Software (WMS/WCS)" class="wdx-img">
+        <div class="wdx-img-overlay"></div>
+      </div>
+	<span class="wdx-title">Software (WMS/WCS)</span>
+	</a>
   </div>
 </div>
 <div class="dropdown-panel" id="dd-services" onmouseenter="clearHoverTimeout()" onmouseleave="closeDdHover()">
   <div class="wdx-grid">
-    <a href="#" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(45deg,#333,#555);"></div><span class="wdx-title">R&D & Planning</span></a>
-    <a href="#" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(45deg,#444,#666);"></div><span class="wdx-title">Equipment Integration</span></a>
-    <a href="#" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(45deg,#555,#777);"></div><span class="wdx-title">Installation & Setup</span></a>
-    <a href="#" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(45deg,#666,#888);"></div><span class="wdx-title">Remote Support (7×24)</span></a>
+    <a href="/racknspace/services/" class="wdx-card">
+	  <div class="wdx-img-wrap">
+        <img src="/racknspace/images/rnd-planning.jpg" alt="R&D & Planning" class="wdx-img">
+        <div class="wdx-img-overlay"></div>
+      </div>	
+	<span class="wdx-title">R&D & Planning</span>
+	</a>
+    <a href="/racknspace/services/" class="wdx-card">
+	  <div class="wdx-img-wrap">
+        <img src="/racknspace/images/equipment-integration.jpg" alt="Equipment Integration" class="wdx-img">
+        <div class="wdx-img-overlay"></div>
+      </div>	
+	<span class="wdx-title">Equipment Integration</span>
+	</a>
+    <a href="/racknspace/services/" class="wdx-card">
+	  <div class="wdx-img-wrap">
+        <img src="/racknspace/images/installation-setup.jpg" alt="Installation & Setup" class="wdx-img">
+        <div class="wdx-img-overlay"></div>
+      </div>
+	<span class="wdx-title">Installation & Setup</span>
+	</a>
+    <a href="/racknspace/services/" class="wdx-card">
+	  <div class="wdx-img-wrap">
+        <img src="/racknspace/images/remote-support.jpg" alt="Remote Support" class="wdx-img">
+        <div class="wdx-img-overlay"></div>
+      </div>
+	<span class="wdx-title">Remote Support</span>
+	</a>
   </div>
 </div>
 <div class="dropdown-panel" id="dd-expertise" onmouseenter="clearHoverTimeout()" onmouseleave="closeDdHover()">
   <div class="wdx-grid">
-    <a href="#" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#168a3e,#2e9a55);"></div><span class="wdx-title">Smart Logistics Planning</span></a>
-    <a href="#" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#168a3e,#3aa866);"></div><span class="wdx-title">Equipment Engineering</span></a>
-    <a href="#" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#168a3e,#54b882);"></div><span class="wdx-title">System Integration</span></a>
-    <a href="#" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#168a3e,#72c89f);"></div><span class="wdx-title">24/7 Remote Tech Support</span></a>
+    <a href="/racknspace/expertise/" class="wdx-card">
+	  <div class="wdx-img-wrap">
+        <img src="/racknspace/images/smart-logi-planning.jpg" alt="Smart Logistics Planning" class="wdx-img">
+        <div class="wdx-img-overlay"></div>
+      </div>
+	  <span class="wdx-title">Smart Logistics Planning</span>
+	</a>
+    <a href="/racknspace/expertise/" class="wdx-card">
+	  <div class="wdx-img-wrap">
+        <img src="/racknspace/images/equipment-engg.jpg" alt="Equipment Engineering" class="wdx-img">
+        <div class="wdx-img-overlay"></div>
+      </div>
+	  <span class="wdx-title">Equipment Engineering</span>
+	</a>
+	<a href="/racknspace/expertise/" class="wdx-card">
+	  <div class="wdx-img-wrap">
+        <img src="/racknspace/images/sys-integration.jpg" alt="System Integration" class="wdx-img">
+        <div class="wdx-img-overlay"></div>
+      </div>
+	  <span class="wdx-title">System Integration</span>
+	</a>
+	<a href="/racknspace/expertise/" class="wdx-card">
+	  <div class="wdx-img-wrap">
+        <img src="/racknspace/images/tech-support.jpg" alt="Tech Support" class="wdx-img">
+        <div class="wdx-img-overlay"></div>
+      </div>
+	  <span class="wdx-title">Tech Support</span>
+	</a>
   </div>
 </div>
 <div class="dropdown-panel" id="dd-about" onmouseenter="clearHoverTimeout()" onmouseleave="closeDdHover()">
   <div class="wdx-grid">
-    <a href="/racknspace/about/racknspace-group/" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#fe5e00,#ff8c42);"></div><span class="wdx-title">RackNSpace Group</span></a>
-    <a href="/racknspace/about/culture/" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#e05300,#ff7b25);"></div><span class="wdx-title">Culture</span></a>
-    <a href="/racknspace/about/sustainability/" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#d44d00,#fc6e14);"></div><span class="wdx-title">Sustainability</span></a>
-    <a href="/racknspace/about/partnership-opportunities/" class="wdx-card"><div class="wdx-img" style="background:linear-gradient(135deg,#c74700,#ee6107);"></div><span class="wdx-title">Partnership Opportunities</span></a>
+    <a href="/racknspace/about/racknspace-group/" class="wdx-card">
+      <div class="wdx-img-wrap">
+        <img src="/racknspace/images/racknspace-group.jpeg" alt="RackNSpace Group Facility" class="wdx-img">
+        <div class="wdx-img-overlay"></div>
+      </div>
+      <span class="wdx-title">RackNSpace Group</span>
+    </a>
+    <a href="/racknspace/about/culture/" class="wdx-card">
+		<div class="wdx-img-wrap">
+        <img src="/racknspace/images/culture.jpg" alt="RackNSpace Brand Culture" class="wdx-img">
+        <div class="wdx-img-overlay"></div>
+      </div>
+      <span class="wdx-title">Culture</span>
+	</a>
+    <a href="/racknspace/about/sustainability/" class="wdx-card">
+		<div class="wdx-img-wrap">
+        <img src="/racknspace/images/sustainability.jpg" alt="Sustainability and Environment" class="wdx-img">
+        <div class="wdx-img-overlay"></div>
+      </div>
+      <span class="wdx-title">Sustainability</span>
+	</a>
+    <a href="/racknspace/about/partnership-opportunities/" class="wdx-card">
+	<div class="wdx-img-wrap">
+        <img src="/racknspace/images/partnership.jpg" alt="Partnership Opportunities" class="wdx-img">
+        <div class="wdx-img-overlay"></div>
+      </div>
+      <span class="wdx-title">Partnership Opportunities</span>
+	</a>
   </div>
 </div>
 

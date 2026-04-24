@@ -158,6 +158,8 @@
 
   .wdx-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:32px; max-width:1400px; margin:0 auto; }
   .wdx-card { display:flex; flex-direction:column; gap:16px; cursor:pointer; text-decoration:none; }
+  
+  /* Images in Nav */
   .wdx-img-wrap { 
 		width: 100%; 
 		height: 160px; 
@@ -166,20 +168,25 @@
 		position: relative; 
 		background-color: #f0f0f0; 
 	}
-  .wdx-img { 
+	.wdx-img { 
 		width:100%; 
 		height: 100%;
 		object-fit: cover;
 		display: block;
 		transition: transform 0.3s ease;
 	}
+	
 	.wdx-img-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(15, 42, 68, 0.2); /* Soft Navy Blue tint */
-  pointer-events: none;
-}
+		position: absolute;
+		inset: 0;
+		background: rgba(15, 42, 68, 0.2); /* Soft Navy Blue tint */
+		pointer-events: none;
+	}
+  
   .wdx-card:hover .wdx-img { transform: scale(1.05); }
+  
+  /* Images in Nav */
+    
   .wdx-title { font-size:18px; font-weight:700; color:var(--dark); transition:color 0.2s; }
   .wdx-card:hover .wdx-title { color:var(--red); }
 
@@ -861,6 +868,7 @@
         <div class="wdx-img-overlay"></div>
       </div>
       <span class="wdx-title">Partnership Opportunities</span>
+	</a>
   </div>
 </div>
 
