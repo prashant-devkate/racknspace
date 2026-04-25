@@ -6,7 +6,7 @@
 <title>RackNSpace – Partnership Opportunities</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
 <link href="https://fonts.cdnfonts.com/css/neuropol" rel="stylesheet">
-<link rel="icon" href="rns.png" type="image/png">
+<link rel="icon" href="/racknspace/rns.png" type="image/png">
 <style>
   :root {
     --red: #fe5e00;
@@ -16,10 +16,9 @@
     --dark: #0F2A44;
     --dark2: #222222;
     --mid: #555555;
-    --light: #f5f5f5;
+    --light: #f9f9f9;
     --white: #ffffff;
     --border: #e0e0e0;
-    --stat-red: #ff8c42;
     --leaf: #16db5a;
   }
 
@@ -118,36 +117,28 @@
   .wdx-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:32px; max-width:1400px; margin:0 auto; }
   .wdx-card { display:flex; flex-direction:column; gap:16px; cursor:pointer; text-decoration:none; }
   
-  
-  /* Images in Nav */
   .wdx-img-wrap { 
-		width: 100%; 
-		height: 160px; 
-		border-radius: 4px; 
-		overflow: hidden; 
-		position: relative; 
-		background-color: #f0f0f0; 
-	}
-	.wdx-img { 
-		width:100%; 
-		height: 100%;
-		object-fit: cover;
-		display: block;
-		transition: transform 0.3s ease;
-	}
-	
-	.wdx-img-overlay {
-		position: absolute;
-		inset: 0;
-		background: rgba(15, 42, 68, 0.2); /* Soft Navy Blue tint */
-		pointer-events: none;
-	}
-  
+    width: 100%; 
+    height: 160px; 
+    border-radius: 4px; 
+    overflow: hidden; 
+    position: relative; 
+    background-color: #f0f0f0; 
+  }
+  .wdx-img { 
+    width:100%; 
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  .wdx-img-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 42, 68, 0.2);
+    pointer-events: none;
+  }
   .wdx-card:hover .wdx-img { transform: scale(1.05); }
-  
-  /* Images in Nav */
-  
-  
   .wdx-title { font-size:18px; font-weight:700; color:var(--dark); transition:color 0.2s; }
   .wdx-card:hover .wdx-title { color:var(--red); }
 
@@ -183,66 +174,245 @@
   }
   .scroll-to-top:hover { background:var(--red-hover); transform:translateY(-4px); }
 
-  /* ═══════════════════════ PARTNERSHIP PAGE CSS ═══════════════════════ */
+  /* ═══════════════════════ PARTNERSHIP SPECIFIC CSS ═══════════════════════ */
   
   /* Hero Section */
-  .page-hero { 
-    height: 380px; 
-    background: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1600&q=80') center/cover; 
-    display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; 
+  .company-hero {
+    height: 480px;
+    background: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 80px;
+    color: var(--white);
+    overflow: hidden;
   }
-  .page-hero::before { content:''; position:absolute; inset:0; background: linear-gradient(to right, rgba(15, 42, 68, 0.9), rgba(15, 42, 68, 0.4)); }
-  .hero-content { position: relative; z-index: 2; text-align: center; color: var(--white); padding: 0 20px; }
-  .hero-content h1 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(42px, 6vw, 68px); font-weight: 900; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
-  .breadcrumb { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.7); display: flex; align-items: center; justify-content: center; gap: 8px; }
-  .breadcrumb a { color: var(--white); text-decoration: none; transition: color 0.2s; }
-  .breadcrumb a:hover { color: var(--red); }
-  .breadcrumb svg { width: 14px; height: 14px; fill: var(--red); }
+  .company-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(15, 42, 68, 0.95) 0%, rgba(15, 42, 68, 0.4) 100%);
+    z-index: 1;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    border-left: 5px solid var(--red);
+    padding-left: 32px;
+  }
+  .hero-tag {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--leaf);
+    margin-bottom: 12px;
+    display: block;
+  }
+  .company-hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(52px, 6vw, 84px);
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    line-height: 1.1;
+    color: var(--white);
+  }
+  .company-breadcrumb {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.7);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .company-breadcrumb a { color: var(--white); text-decoration: none; transition: color 0.2s; }
+  .company-breadcrumb a:hover { color: var(--red); }
+  .company-breadcrumb span.divider { color: var(--red); font-weight: 900; }
 
-  /* Business Partner Section */
-  .business-partner { padding: 80px; background: var(--light); display: flex; justify-content: center; }
-  .bp-content { max-width: 1000px; width: 100%; }
-  .bp-content h2 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(36px, 5vw, 48px); font-weight: 900; color: var(--dark2); margin-bottom: 16px; letter-spacing: 1px; }
-  .bp-content h4 { font-size: 20px; font-weight: 700; color: var(--dark); margin-bottom: 16px; }
-  .red-line { width: 48px; height: 3px; background: var(--red); margin-bottom: 24px; }
-  .bp-content p { font-size: 15px; color: var(--mid); line-height: 1.8; font-weight: 500; }
+  /* Partner Intro Section */
+  .policy-section {
+    padding: 100px 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-eyebrow::after {
+    content: ''; display: block; width: 40px; height: 2px; background: var(--red);
+  }
+  .policy-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 80px;
+    align-items: start;
+    margin-top: 20px;
+  }
+  .policy-title h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 52px;
+    font-weight: 900;
+    color: var(--dark);
+    line-height: 1.1;
+  }
+  .policy-title em {
+    font-style: normal;
+    color: var(--red);
+  }
+  .policy-desc {
+    font-size: 18px;
+    color: var(--mid);
+    line-height: 1.8;
+    font-weight: 500;
+    border-left: 3px solid var(--border);
+    padding-left: 40px;
+  }
 
-  /* Partner Empowerment Section (Tabs) */
-  .empower-section { 
-    position: relative; height: 650px; 
-    display: flex; flex-direction: column; justify-content: flex-end; 
-    background: url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80') center/cover; 
+  /* Partner Empowerment Grid Section */
+  .guidelines-section {
+    padding: 100px 80px;
+    background: var(--light);
   }
-  .empower-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(15, 42, 68, 0.9) 0%, rgba(10, 20, 35, 0.7) 100%); }
-  
-  .empower-content-area { position: relative; z-index: 2; padding: 60px 80px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
-  .empower-badge { background: var(--red); color: var(--white); display: inline-flex; align-items: center; padding: 8px 20px; font-size: 14px; font-weight: 800; border-radius: 4px 20px 20px 4px; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 1px; width: max-content; }
-  
-  .empower-content { display: none; animation: fadeIn 0.5s ease; }
-  .empower-content.active { display: block; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-  
-  .empower-content h3 { font-size: clamp(28px, 4vw, 42px); font-weight: 800; color: var(--white); margin-bottom: 16px; }
-  .empower-content p { font-size: 16px; color: rgba(255,255,255,0.85); max-width: 900px; line-height: 1.7; font-weight: 500; }
+  .guide-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .guide-header h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--dark);
+    text-transform: uppercase;
+  }
+  .guide-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .guide-card {
+    background: var(--white);
+    padding: 40px 32px;
+    border: 1px solid var(--border);
+    border-top: 4px solid transparent;
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .guide-card:hover {
+    transform: translateY(-5px);
+    border-top-color: var(--red);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.06);
+  }
+  .guide-num {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 100px;
+    line-height: 1;
+    color: #f4f4f4;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    z-index: 1;
+    user-select: none;
+    transition: color 0.3s ease;
+  }
+  .guide-card:hover .guide-num {
+    color: #ffebe0;
+  }
+  .guide-content {
+    position: relative;
+    z-index: 2;
+  }
+  .guide-icon {
+    width: 48px; height: 48px;
+    color: var(--red);
+    margin-bottom: 20px;
+  }
+  .guide-icon svg { width: 100%; height: 100%; stroke-width: 1.5; stroke: currentColor; fill: none; }
+  .guide-card h3 {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 12px;
+  }
+  .guide-card p {
+    font-size: 15px;
+    color: var(--mid);
+    line-height: 1.7;
+    font-weight: 600;
+    margin: 0;
+  }
+  .guide-card:nth-child(1), .guide-card:nth-child(2) {
+    grid-column: span 1;
+  }
 
-  /* Tab Grid */
-  .empower-tabs { 
-    display: flex; position: relative; z-index: 2; 
-    background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(8px); 
-    border-top: 1px solid rgba(255, 255, 255, 0.1); 
+  /* Commitment Section (Callout Box) */
+  .commitment-section { 
+    padding: 100px 80px; 
+    background: var(--white); 
+    display: flex; 
+    justify-content: center; 
   }
-  .empower-tab { 
-    flex: 1; padding: 24px 16px; text-align: center; color: rgba(255,255,255,0.7); 
-    cursor: pointer; transition: all 0.3s; border-right: 1px solid rgba(255, 255, 255, 0.1); 
-    display: flex; flex-direction: column; align-items: center; gap: 14px; justify-content: center;
+  .commitment-box { 
+    background: var(--light); 
+    max-width: 1100px; 
+    width: 100%; 
+    padding: 60px; 
+    border-radius: 12px; 
+    border-left: 8px solid var(--red); 
+    box-shadow: 0 15px 50px rgba(0,0,0,0.05); 
+    position: relative; 
   }
-  .empower-tab:last-child { border-right: none; }
-  .empower-tab.active { background: var(--red); color: var(--white); }
-  .empower-tab:hover:not(.active) { background: rgba(255, 255, 255, 0.1); color: var(--white); }
-  
-  .empower-tab svg { width: 32px; height: 32px; stroke-width: 1.5; stroke: currentColor; fill: none; transition: transform 0.3s; }
-  .empower-tab.active svg { transform: translateY(-3px); }
-  .empower-tab span { font-size: 14px; font-weight: 700; line-height: 1.4; max-width: 180px; }
+  .commitment-box::before { 
+    content: '"'; 
+    font-family: serif; 
+    font-size: 140px; 
+    color: rgba(254, 94, 0, 0.08); 
+    position: absolute; 
+    top: -10px; 
+    left: 40px; 
+    line-height: 1; 
+  }
+  .commitment-box h2 { 
+    font-family: 'Barlow Condensed', sans-serif; 
+    font-size: 36px; 
+    font-weight: 900; 
+    color: var(--dark); 
+    margin-bottom: 16px; 
+    text-transform: uppercase; 
+    position: relative; 
+    z-index: 2; 
+  }
+  .commitment-box p { 
+    font-size: 22px; 
+    color: var(--mid); 
+    line-height: 1.6; 
+    font-weight: 500; 
+    margin: 0; 
+    position: relative; 
+    z-index: 2; 
+  }
+  .commitment-box p span { 
+    color: var(--dark); 
+    font-weight: 800; 
+    border-bottom: 2px solid var(--leaf); 
+  }
 
   /* ── FOOTER ── */
   footer { background:#0F2A44; color:rgba(255,255,255,.7); padding:64px 80px 32px; }
@@ -265,9 +435,13 @@
     .hamburger { display: flex; }
     .dropdown-overlay, .dropdown-panel { display: none !important; }
     
-    .business-partner { padding: 60px 40px; }
-    .empower-content-area { padding: 40px; }
-    .empower-section { height: auto; min-height: 600px; }
+    .company-hero { padding: 0 40px; height: 400px; }
+    
+    .policy-section, .guidelines-section, .commitment-section { padding: 80px 40px; }
+    .policy-layout { grid-template-columns: 1fr; gap: 40px; }
+    .policy-desc { border-left: none; padding-left: 0; }
+    .guide-grid { grid-template-columns: repeat(2, 1fr); }
+    .commitment-box { padding: 40px; }
     
     footer { padding: 48px 40px 24px; }
     .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
@@ -280,13 +454,15 @@
     .logo-icon { height: 44px; margin-right: 8px; }
     .logo-text { font-size: 20px; }
     
-    .business-partner { padding: 48px 20px; }
-    .empower-content-area { padding: 40px 20px; }
+    .company-hero { padding: 0 20px; height: 360px; }
+    .hero-content { padding-left: 20px; border-width: 4px; }
     
-    /* Make tabs horizontal scroll on mobile */
-    .empower-tabs { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-    .empower-tabs::-webkit-scrollbar { display: none; }
-    .empower-tab { flex: 0 0 160px; padding: 20px 12px; }
+    .policy-section, .guidelines-section, .commitment-section { padding: 60px 20px; }
+    .guide-grid { grid-template-columns: 1fr; }
+    
+    .commitment-box { padding: 30px 20px; border-left-width: 4px; }
+    .commitment-box p { font-size: 18px; }
+    .commitment-box::before { font-size: 80px; left: 20px; top: -5px; }
     
     footer { padding: 40px 16px 24px; }
     .footer-grid { grid-template-columns: 1fr; gap: 24px; }
@@ -301,6 +477,8 @@
   @media (max-width: 480px) {
     .logo-text { font-size: 17px; }
     .logo-icon { height: 38px; }
+    .company-hero h1 { font-size: 40px; }
+    .policy-title h2 { font-size: 36px; }
     
     footer h4 { font-size: 14px; }
     footer ul li { font-size: 13px; }
@@ -552,81 +730,98 @@
 
 <button class="scroll-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
-<div class="page-hero">
+<div class="company-hero">
   <div class="hero-content">
-    <div class="breadcrumb">
-      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
-      <a href="/racknspace/">Home</a> > <a href="/racknspace/about/racknspace-group/">About us</a>
+    <span class="hero-tag">Join Our Network</span>
+    <h1>Partnership <span>Opportunities</span></h1>
+    <div class="company-breadcrumb">
+      <a href="/racknspace/">Home</a> <span class="divider">/</span> <a href="/racknspace/about/racknspace-group/">About Us</a> <span class="divider">/</span> Partnership
     </div>
-    <h1>Partnership Opportunities</h1>
   </div>
 </div>
 
-<section class="business-partner">
-  <div class="bp-content">
-    <h2>BUSINESS PARTNER</h2>
-    <h4>Become a RackNSpace channel partner: Co-create the future.</h4>
-    <div class="red-line"></div>
-    <p>RackNSpace is actively seeking strategic partnerships with like-minded companies to seize opportunities in today's market, collaborate on innovative strategies, and strengthen our market competitiveness. We are committed to mutual growth, benefit, and a win-win partnership, working together to create greater value for our clients and expand into international markets.</p>
+<section class="policy-section">
+  <div class="section-eyebrow">Business Partner</div>
+  <div class="policy-layout">
+    <div class="policy-title">
+      <h2>Co-Create the<br><em>FUTURE</em></h2>
+    </div>
+    <div class="policy-desc">
+      <p>RackNSpace is actively seeking strategic partnerships with like-minded companies to seize opportunities in today's market, collaborate on innovative strategies, and strengthen our market competitiveness. We are committed to mutual growth, benefit, and a win-win partnership, working together to create greater value for our clients and expand into international markets.</p>
+    </div>
   </div>
 </section>
 
-<section class="empower-section">
-  <div class="empower-overlay"></div>
-  
-  <div class="empower-content-area">
-    <div class="empower-content active" id="emp-content-1">
-      <div class="empower-badge">Partner Empowerment</div>
-      <h3>Trusted Brand Influence</h3>
-      <p>RackNSpace is a company specializing in intelligent manufacturing and intelligent logistics, offering integrated services in intelligent warehouse logistics systems and equipment. We have successfully applied our solutions in industries such as food, pharmaceuticals, cold chain, chemicals, new energy, and manufacturing, collaborating with over 1000 enterprises.</p>
-    </div>
-
-    <div class="empower-content" id="emp-content-2">
-      <div class="empower-badge">Partner Empowerment</div>
-      <h3>Full Range of Self-developed Products</h3>
-      <p>Gain access to our complete portfolio of industry-leading AS/RS equipment, multi-directional shuttle carriers, and proprietary WMS/WCS software. Our vertical integration ensures that you can offer your clients robust, seamlessly compatible systems without relying on third-party integrations.</p>
-    </div>
-
-    <div class="empower-content" id="emp-content-3">
-      <div class="empower-badge">Partner Empowerment</div>
-      <h3>Professional Project Support Team</h3>
-      <p>Our dedicated engineering and project management teams are ready to back you up at every stage. From initial warehouse layout design to technical consulting and on-site commissioning, we ensure your projects are delivered on time and right the first time.</p>
-    </div>
-
-    <div class="empower-content" id="emp-content-4">
-      <div class="empower-badge">Partner Empowerment</div>
-      <h3>Comprehensive Certification & Training</h3>
-      <p>We empower our partners through rigorous, hands-on training programs. You and your technical staff will receive detailed certifications covering equipment installation, software deployment, and ongoing system maintenance to guarantee top-tier service delivery.</p>
-    </div>
-
-    <div class="empower-content" id="emp-content-5">
-      <div class="empower-badge">Partner Empowerment</div>
-      <h3>Open and Professional Marketing Support</h3>
-      <p>Accelerate your business growth with our extensive marketing resources. As a certified partner, you'll receive co-branded promotional materials, localized lead generation support, and priority presence at global logistics and manufacturing exhibitions.</p>
-    </div>
+<section class="guidelines-section">
+  <div class="guide-header">
+    <div class="section-eyebrow" style="justify-content: center; margin-bottom: 20px;">Why Partner With Us</div>
+    <h2>Partner <em>Empowerment</em></h2>
   </div>
 
-  <div class="empower-tabs">
-    <div class="empower-tab active" id="emp-tab-1" onclick="switchEmpowerTab(1)">
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 1 0-16 0"/><polygon points="12 11 14 15 18 15 15 18 16 22 12 20 8 22 9 18 6 15 10 15"/></svg>
-      <span>Trusted Brand Influence</span>
+  <div class="guide-grid">
+    
+    <div class="guide-card">
+      <div class="guide-num">01</div>
+      <div class="guide-content">
+        <div class="guide-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 1 0-16 0"/><polygon points="12 11 14 15 18 15 15 18 16 22 12 20 8 22 9 18 6 15 10 15"/></svg>
+        </div>
+        <h3>Trusted Brand Influence</h3>
+        <p>RackNSpace is a company specializing in intelligent manufacturing and intelligent logistics, offering integrated services in intelligent warehouse logistics systems and equipment. We have successfully applied our solutions in industries such as food, pharmaceuticals, cold chain, chemicals, new energy, and manufacturing, collaborating with over 1000 enterprises.</p>
+      </div>
     </div>
-    <div class="empower-tab" id="emp-tab-2" onclick="switchEmpowerTab(2)">
-      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/><path d="M14 14h2v2h-2z"/></svg>
-      <span>Full Range of Self-developed and Produced Products</span>
+
+    <div class="guide-card">
+      <div class="guide-num">02</div>
+      <div class="guide-content">
+        <div class="guide-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/><path d="M14 14h2v2h-2z"/></svg>
+        </div>
+        <h3>Full Range of Products</h3>
+        <p>Gain access to our complete portfolio of self-developed and produced AS/RS equipment, multi-directional shuttle carriers, and proprietary WMS/WCS software. Our vertical integration ensures that you can offer your clients robust, seamlessly compatible systems without relying on third-party integrations.</p>
+      </div>
     </div>
-    <div class="empower-tab" id="emp-tab-3" onclick="switchEmpowerTab(3)">
-      <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="16" y1="11" x2="22" y2="11"/></svg>
-      <span>Professional Project Support Team</span>
+
+    <div class="guide-card">
+      <div class="guide-num">03</div>
+      <div class="guide-content">
+        <div class="guide-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="16" y1="11" x2="22" y2="11"/></svg>
+        </div>
+        <h3>Professional Support Team</h3>
+        <p>Our dedicated engineering and project management teams are ready to back you up at every stage. From initial warehouse layout design to technical consulting and on-site commissioning, we ensure your projects are delivered on time and right the first time.</p>
+      </div>
     </div>
-    <div class="empower-tab" id="emp-tab-4" onclick="switchEmpowerTab(4)">
-      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="16" y2="16"/><line x1="8" y1="8" x2="8.01" y2="8"/><line x1="12" y1="8" x2="12.01" y2="8"/><line x1="16" y1="8" x2="16.01" y2="8"/></svg>
-      <span>Comprehensive Certification and Training System</span>
+
+    <div class="guide-card">
+      <div class="guide-num">04</div>
+      <div class="guide-content">
+        <div class="guide-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="16" y2="16"/><line x1="8" y1="8" x2="8.01" y2="8"/><line x1="12" y1="8" x2="12.01" y2="8"/><line x1="16" y1="8" x2="16.01" y2="8"/></svg>
+        </div>
+        <h3>Comprehensive Training System</h3>
+        <p>We empower our partners through rigorous, hands-on training programs. You and your technical staff will receive detailed certifications covering equipment installation, software deployment, and ongoing system maintenance to guarantee top-tier service delivery.</p>
+      </div>
     </div>
-    <div class="empower-tab" id="emp-tab-5" onclick="switchEmpowerTab(5)">
-      <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-      <span>Open and Professional Marketing Promotion Support</span>
+
+    <div class="guide-card">
+      <div class="guide-num">05</div>
+      <div class="guide-content">
+        <div class="guide-icon">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <h3>Open Marketing Promotion</h3>
+        <p>Accelerate your business growth with our extensive, open marketing resources. As a certified partner, you'll receive professional co-branded promotional materials, localized lead generation support, and priority presence at global logistics and manufacturing exhibitions.</p>
+      </div>
     </div>
+
+  </div>
+</section>
+
+<section class="commitment-section">
+  <div class="commitment-box">
+    <h2>Ready to Partner?</h2>
+    <p>Connect with our channel management team today to explore how we can <span>build a profitable future together.</span></p>
   </div>
 </section>
 
@@ -672,7 +867,6 @@
 </footer>
 
 <script>
-  /* ── MOBILE NAV ── */
   function toggleMobileNav() {
     var nav = document.getElementById('mobile-nav');
     var burger = document.getElementById('hamburger');
@@ -690,7 +884,6 @@
     if (!isOpen) { sub.classList.add('open'); trigger.classList.add('open'); }
   }
   
-  // Close mobile nav when clicking outside
   document.addEventListener('click', function(e) {
     var nav = document.getElementById('mobile-nav');
     var burger = document.getElementById('hamburger');
@@ -701,7 +894,6 @@
     }
   });
 
-  /* ── DROPDOWN HOVER LOGIC ── */
   let ddHoverTimeout;
   function openDdHover(name){
     clearTimeout(ddHoverTimeout); closeAllDropdowns();
@@ -718,7 +910,6 @@
     document.getElementById('dropdown-overlay').classList.remove('open');
   }
 
-  /* ── SHOW CONTACT SIDEBAR LOGIC ── */
   function showContact(type) {
     const displayBox = document.getElementById('contact-display');
     const title = document.getElementById('contact-title');
@@ -735,21 +926,6 @@
       info.innerText = data[type].val;
       displayBox.style.display = 'block';
     }
-  }
-
-  /* ── EMPOWERMENT TABS LOGIC ── */
-  function switchEmpowerTab(index) {
-    // Remove active state from all tabs and contents
-    document.querySelectorAll('.empower-tab').forEach(tab => {
-      tab.classList.remove('active');
-    });
-    document.querySelectorAll('.empower-content').forEach(content => {
-      content.classList.remove('active');
-    });
-    
-    // Add active state to clicked tab and corresponding content
-    document.getElementById('emp-tab-' + index).classList.add('active');
-    document.getElementById('emp-content-' + index).classList.add('active');
   }
 </script>
 </body>
