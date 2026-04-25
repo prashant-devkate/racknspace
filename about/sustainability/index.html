@@ -19,7 +19,6 @@
     --light: #f5f5f5;
     --white: #ffffff;
     --border: #e0e0e0;
-    --stat-red: #ff8c42;
     --leaf: #16db5a;
   }
 
@@ -118,36 +117,28 @@
   .wdx-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:32px; max-width:1400px; margin:0 auto; }
   .wdx-card { display:flex; flex-direction:column; gap:16px; cursor:pointer; text-decoration:none; }
   
-  
-  /* Images in Nav */
   .wdx-img-wrap { 
-		width: 100%; 
-		height: 160px; 
-		border-radius: 4px; 
-		overflow: hidden; 
-		position: relative; 
-		background-color: #f0f0f0; 
-	}
-	.wdx-img { 
-		width:100%; 
-		height: 100%;
-		object-fit: cover;
-		display: block;
-		transition: transform 0.3s ease;
-	}
-	
-	.wdx-img-overlay {
-		position: absolute;
-		inset: 0;
-		background: rgba(15, 42, 68, 0.2); /* Soft Navy Blue tint */
-		pointer-events: none;
-	}
-  
+    width: 100%; 
+    height: 160px; 
+    border-radius: 4px; 
+    overflow: hidden; 
+    position: relative; 
+    background-color: #f0f0f0; 
+  }
+  .wdx-img { 
+    width:100%; 
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  .wdx-img-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 42, 68, 0.2);
+    pointer-events: none;
+  }
   .wdx-card:hover .wdx-img { transform: scale(1.05); }
-  
-  /* Images in Nav */
-  
-  
   .wdx-title { font-size:18px; font-weight:700; color:var(--dark); transition:color 0.2s; }
   .wdx-card:hover .wdx-title { color:var(--red); }
 
@@ -185,64 +176,204 @@
 
   /* ═══════════════════════ SUSTAINABILITY PAGE CSS ═══════════════════════ */
   
-  /* Hero Section */
-  .page-hero { 
-    height: 400px; 
-    background: url('https://images.unsplash.com/photo-1464938050520-ef2270bb8ce8?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; 
-    display: flex; align-items: center; position: relative; overflow: hidden; 
+  /* Hero Section (Redesigned to match "About Us") */
+  .company-hero {
+    height: 480px;
+    background: url('https://images.unsplash.com/photo-1464938050520-ef2270bb8ce8?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 80px;
+    color: var(--white);
+    overflow: hidden;
   }
-  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(15, 42, 68, 0.75) 0%, rgba(22, 219, 90, 0.25) 100%); }
-  .hero-content { position: relative; z-index: 2; width: 100%; padding: 0 80px; }
-  .hero-content h1 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(48px, 6vw, 72px); font-weight: 900; color: var(--white); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 2px 12px rgba(0,0,0,0.4); }
-  .breadcrumb { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.8); display: flex; align-items: center; gap: 8px; }
-  .breadcrumb a { color: var(--white); text-decoration: none; transition: color 0.2s; }
-  .breadcrumb a:hover { color: var(--leaf); }
-  .breadcrumb svg { width: 14px; height: 14px; fill: var(--leaf); }
+  .company-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(15, 42, 68, 0.95) 0%, rgba(15, 42, 68, 0.4) 100%);
+    z-index: 1;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    border-left: 5px solid var(--red);
+    padding-left: 32px;
+  }
+  .hero-tag {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--leaf); /* Green accent for sustainability */
+    margin-bottom: 12px;
+    display: block;
+  }
+  .company-hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(52px, 6vw, 84px);
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    line-height: 1.1;
+    color: var(--white);
+  }
+  .company-breadcrumb {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.7);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .company-breadcrumb a { color: var(--white); text-decoration: none; transition: color 0.2s; }
+  .company-breadcrumb a:hover { color: var(--red); }
+  .company-breadcrumb span.divider { color: var(--red); font-weight: 900; }
 
   /* Policy Intro Section */
-  .policy-intro { padding: 80px; text-align: center; background: var(--light); }
-  .policy-intro h2 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(36px, 4vw, 48px); font-weight: 900; color: var(--dark2); margin-bottom: 24px; }
-  .policy-intro p { font-size: 16px; color: var(--mid); max-width: 900px; margin: 0 auto; line-height: 1.8; font-weight: 500; }
+  .policy-section {
+    padding: 100px 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-eyebrow::after {
+    content: ''; display: block; width: 40px; height: 2px; background: var(--red);
+  }
+  .policy-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 80px;
+    align-items: start;
+    margin-top: 20px;
+  }
+  .policy-title h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 52px;
+    font-weight: 900;
+    color: var(--dark);
+    line-height: 1.1;
+  }
+  .policy-desc {
+    font-size: 18px;
+    color: var(--mid);
+    line-height: 1.8;
+    font-weight: 500;
+    border-left: 3px solid var(--border);
+    padding-left: 40px;
+  }
 
-  /* 5 Pillars Image Section */
-  .pillars-section { 
-    position: relative; 
-    min-height: 450px; 
-    display: flex; align-items: stretch;
-    background: url('https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; 
+  /* Pillars Grid Section */
+  .pillars-wrapper {
+    padding: 100px 80px;
+    background: var(--light);
+    position: relative;
   }
-  .pillars-overlay { position: absolute; inset: 0; background: rgba(15, 42, 68, 0.65); backdrop-filter: blur(2px); }
-  
-  .pillars-grid { 
-    position: relative; z-index: 2; width: 100%; 
-    display: grid; grid-template-columns: repeat(5, 1fr); 
+  .pillars-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+    justify-content: center;
   }
-  .pillar-card { 
-    padding: 60px 40px; 
-    display: flex; flex-direction: column; 
-    border-right: 1px solid rgba(255, 255, 255, 0.15);
-    transition: background 0.3s ease;
+  .pillar-card {
+    flex: 1 1 350px;
+    max-width: 450px;
+    background: var(--white);
+    padding: 48px 40px;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    border-top: 3px solid transparent;
   }
-  .pillar-card:last-child { border-right: none; }
-  .pillar-card:hover { background: rgba(255, 255, 255, 0.05); }
-  
-  .pillar-icon { 
-    width: 64px; height: 64px; border-radius: 50%; 
-    background: rgba(255, 255, 255, 0.15); 
-    display: flex; align-items: center; justify-content: center; 
-    margin-bottom: 24px; color: var(--white);
-    backdrop-filter: blur(4px); transition: background 0.3s;
+  .pillar-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    border-top-color: var(--red);
   }
-  .pillar-icon.active { background: rgba(254, 94, 0, 0.85); box-shadow: 0 4px 15px rgba(254, 94, 0, 0.4); }
-  .pillar-icon svg { width: 30px; height: 30px; stroke-width: 1.5; stroke: currentColor; fill: none; }
-  
-  .pillar-card p { font-size: 14px; color: rgba(255,255,255,0.9); line-height: 1.8; font-weight: 500; }
+  .pillar-icon {
+    width: 64px;
+    height: 64px;
+    background: rgba(15,42,68,0.05);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dark);
+    margin-bottom: 24px;
+    transition: all 0.3s ease;
+  }
+  .pillar-icon svg { width: 28px; height: 28px; stroke-width: 1.5; stroke: currentColor; fill: none; }
+  .pillar-card:hover .pillar-icon {
+    background: var(--red);
+    color: var(--white);
+    box-shadow: 0 8px 20px rgba(254, 94, 0, 0.25);
+  }
+  .pillar-card p {
+    font-size: 15px;
+    color: var(--mid);
+    line-height: 1.7;
+    font-weight: 500;
+  }
 
   /* Commitment Section */
-  .commitment-section { padding: 100px 80px; text-align: center; background: var(--white); }
-  .commitment-section h2 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(40px, 5vw, 56px); font-weight: 900; color: var(--dark2); margin-bottom: 20px; }
-  .commitment-section p { font-size: 18px; color: var(--mid); max-width: 800px; margin: 0 auto; line-height: 1.8; font-weight: 700; }
-  .commitment-section p span { color: var(--dark2); font-weight: 800; }
+  .commitment-section {
+    padding: 100px 80px;
+    background: linear-gradient(135deg, var(--dark), #1a2a44);
+    color: var(--white);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .commitment-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(45deg, rgba(254,94,0,.05) 0, rgba(254,94,0,.05) 1px, transparent 1px, transparent 40px);
+    pointer-events: none;
+  }
+  .commitment-content {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .commitment-content h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(36px, 5vw, 48px);
+    font-weight: 900;
+    color: var(--gold);
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .commitment-content p {
+    font-size: clamp(18px, 2.5vw, 24px);
+    line-height: 1.6;
+    font-weight: 400;
+    color: rgba(255,255,255,0.9);
+  }
+  .commitment-content p span {
+    font-weight: 700;
+    color: var(--white);
+    border-bottom: 2px solid var(--red);
+  }
 
   /* ── FOOTER ── */
   footer { background:#0F2A44; color:rgba(255,255,255,.7); padding:64px 80px 32px; }
@@ -257,13 +388,6 @@
   .footer-bottom { border-top:1px solid rgba(255,255,255,.1); padding-top:24px; display:flex; justify-content:space-between; font-size:13px; color:rgba(255,255,255,.4); }
 
   /* ── RESPONSIVE STYLES ── */
-  @media (max-width: 1200px) {
-    .pillars-grid { grid-template-columns: repeat(3, 1fr); }
-    .pillar-card:nth-child(3) { border-right: none; }
-    .pillar-card:nth-child(n+4) { border-top: 1px solid rgba(255, 255, 255, 0.15); }
-    .pillar-card:nth-child(5) { border-right: none; }
-  }
-
   @media (max-width: 1024px) {
     #navbar { padding: 0 24px; height: 70px; }
     .logo-icon { height: 52px; margin-right: 10px; }
@@ -272,8 +396,12 @@
     .hamburger { display: flex; }
     .dropdown-overlay, .dropdown-panel { display: none !important; }
     
-    .hero-content { padding: 0 40px; }
-    .policy-intro { padding: 60px 40px; }
+    .company-hero { padding: 0 40px; height: 400px; }
+    .policy-section { padding: 80px 40px; }
+    .policy-layout { grid-template-columns: 1fr; gap: 40px; }
+    .policy-desc { border-left: none; padding-left: 0; }
+    
+    .pillars-wrapper { padding: 80px 40px; }
     .commitment-section { padding: 80px 40px; }
     
     footer { padding: 48px 40px 24px; }
@@ -287,16 +415,13 @@
     .logo-icon { height: 44px; margin-right: 8px; }
     .logo-text { font-size: 20px; }
     
-    .page-hero { height: 300px; }
-    .hero-content { padding: 0 20px; }
+    .company-hero { padding: 0 20px; height: 360px; }
+    .hero-content { padding-left: 20px; border-width: 4px; }
     
-    .policy-intro { padding: 50px 20px; }
+    .policy-section { padding: 60px 20px; }
+    .pillars-wrapper { padding: 60px 20px; }
+    .pillar-card { padding: 30px 20px; }
     .commitment-section { padding: 60px 20px; }
-    .commitment-section p { font-size: 16px; }
-    
-    .pillars-grid { grid-template-columns: 1fr; }
-    .pillar-card { padding: 40px 20px; border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.15); align-items: center; text-align: center; }
-    .pillar-card:last-child { border-bottom: none; }
     
     footer { padding: 40px 16px 24px; }
     .footer-grid { grid-template-columns: 1fr; gap: 24px; }
@@ -404,8 +529,8 @@
   <div class="mobile-nav-sub" id="mob-about">
     <a href="/racknspace/about/racknspace-group/">RackNSpace Group</a>
     <a href="/racknspace/about/culture/">Culture</a>
-    <a href="/racknspace/about/sustainability/">Sustainability</a>
-    <a href="/racknspace/about/partnership-opportunities/" style="color:var(--red);">Partnership Opportunities</a>
+    <a href="/racknspace/about/sustainability/" style="color:var(--red);">Sustainability</a>
+    <a href="/racknspace/about/partnership-opportunities/">Partnership Opportunities</a>
   </div>
   <a class="mobile-nav-item contact" href="/racknspace/contact/">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
@@ -562,67 +687,74 @@
 
 <button class="scroll-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
-<div class="page-hero">
-  <div class="hero-overlay"></div>
+<div class="company-hero">
   <div class="hero-content">
+    <span class="hero-tag">Social Responsibility</span>
     <h1>SUSTAINABILITY</h1>
-    <div class="breadcrumb">
-      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
-      <a href="/racknspace/">Home</a> > <a href="/racknspace/about/racknspace-group/">About us</a>
+    <div class="company-breadcrumb">
+      <a href="/racknspace/">Home</a> <span class="divider">/</span> About Us <span class="divider">/</span> Sustainability
     </div>
   </div>
 </div>
 
-<section class="policy-intro">
-  <h2>Environmental Policy</h2>
-  <p>RackNSpace endeavors to conduct its business activities in an environmentally friendly and responsible manner in accordance with the following guidelines:</p>
+<section class="policy-section">
+  <div class="section-eyebrow">Our Principles</div>
+  <div class="policy-layout">
+    <div class="policy-title">
+      <h2>Environmental Policy</h2>
+    </div>
+    <div class="policy-desc">
+      <p>RackNSpace endeavors to conduct its business activities in an environmentally friendly and responsible manner. We recognize that sustainable operations are vital to the future of smart manufacturing and global logistics, and we strictly adhere to structural guidelines to minimize our footprint.</p>
+    </div>
+  </div>
 </section>
 
-<section class="pillars-section">
-  <div class="pillars-overlay"></div>
+<section class="pillars-wrapper">
   <div class="pillars-grid">
     
     <div class="pillar-card">
-      <div class="pillar-icon active">
+      <div class="pillar-icon">
         <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><path d="M7 13s2-2 5-2 5 2 5 2"/></svg>
       </div>
-      <p>Fully embody the business principle of environmental protection in the company's operations.</p>
+      <p>Fully embody the business principle of environmental protection in the company's daily operations and long-term strategic decisions.</p>
     </div>
 
     <div class="pillar-card">
       <div class="pillar-icon">
         <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="7.5 4.21 12 6.81 16.5 4.21"/><polyline points="7.5 19.79 7.5 14.6 3 12"/><polyline points="21 12 16.5 14.6 16.5 19.79"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
       </div>
-      <p>Dynamically identify environmental risks and take prudent and effective measures to prevent pollution and reduce the burden on the environment and resources in the company's production and operation processes.</p>
+      <p>Dynamically identify environmental risks and take prudent, effective measures to prevent pollution and reduce resource burden in manufacturing.</p>
     </div>
 
     <div class="pillar-card">
       <div class="pillar-icon">
         <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><circle cx="12" cy="14" r="4"/><line x1="12" y1="6" x2="12.01" y2="6"/></svg>
       </div>
-      <p>Comply with the laws and regulations applicable to the company's operations, and comply with relevant environmental protection regulations.</p>
+      <p>Comply rigorously with all applicable laws and regulations related to environmental protection and intelligent warehousing infrastructure.</p>
     </div>
 
     <div class="pillar-card">
       <div class="pillar-icon">
         <svg viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="12" y1="6" x2="12" y2="10"/><line x1="6" y1="10" x2="18" y2="10"/><rect x="3" y="14" width="6" height="4" rx="1" ry="1"/><rect x="15" y="14" width="6" height="4" rx="1" ry="1"/><line x1="6" y1="10" x2="6" y2="14"/><line x1="18" y1="10" x2="18" y2="14"/></svg>
       </div>
-      <p>Effectively implement and continuously improve our environmental management system, including the establishment of a sustainable operating model to achieve environmental goals and objectives.</p>
+      <p>Effectively implement and continuously improve our environmental management system to establish a sustainable operating model.</p>
     </div>
 
     <div class="pillar-card">
       <div class="pillar-icon">
         <svg viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M9 14h6"/><path d="M9 18h6"/><path d="M12 10h3"/></svg>
       </div>
-      <p>We are willing to receive and share appropriate training and guidance to meet our own and our partners' environmental requirements.</p>
+      <p>Willfully receive and share appropriate training and guidance to consistently meet our own and our partners' environmental requirements.</p>
     </div>
 
   </div>
 </section>
 
 <section class="commitment-section">
-  <h2>Our Commitment Is</h2>
-  <p>is to actively contribute to the conservation of air, water, soil, and natural resources, and to <span>integrate sustainability as a core element of our long-term business strategy.</span></p>
+  <div class="commitment-content">
+    <h2>Our Commitment</h2>
+    <p>To actively contribute to the conservation of air, water, soil, and natural resources, and to <span>integrate sustainability as a core element of our long-term business strategy.</span></p>
+  </div>
 </section>
 
 <footer>
