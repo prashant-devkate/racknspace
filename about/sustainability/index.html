@@ -36,7 +36,6 @@
     justify-content:space-between;
     box-shadow:0 2px 16px rgba(0,0,0,.05);
   }
-
   .logo { display:flex; align-items:center; gap:0; text-decoration:none; cursor:pointer; }
   .logo-icon { height: 72px; width: auto; object-fit: contain; margin-right: 14px; }
   .logo-text {
@@ -64,7 +63,6 @@
   .nav-item .arrow { font-size:11px; margin-top:1px; transition:transform .2s; }
   .nav-item.open .arrow { transform:rotate(180deg); }
 
-  /* ── HAMBURGER MENU ── */
   .hamburger {
     display: none; flex-direction: column; gap: 5px;
     cursor: pointer; padding: 8px; border: none;
@@ -79,7 +77,6 @@
   .hamburger.open span:nth-child(2) { opacity: 0; }
   .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-  /* ── MOBILE NAV DRAWER ── */
   .mobile-nav {
     display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
     background: var(--white); z-index: 1050;
@@ -98,14 +95,12 @@
   .mobile-nav-sub.open { display: flex; }
   .mobile-nav-sub a {
     padding: 12px 24px 12px 48px; font-size: 15px; font-weight: 600;
-    color: var(--mid); text-decoration: none;
-    border-bottom: 1px solid var(--border);
+    color: var(--mid); text-decoration: none; border-bottom: 1px solid var(--border);
   }
   .mobile-nav-sub a:hover { color: var(--red); }
   .mobile-nav-item .mob-arrow { margin-left: auto; font-size: 12px; transition: transform 0.2s; }
   .mobile-nav-item.open .mob-arrow { transform: rotate(180deg); }
 
-  /* ── MEGA DROPDOWN ── */
   .dropdown-overlay { display:none; position:fixed; top:90px; left:0; right:0; bottom:0; background:rgba(0,0,0,.45); z-index:900; }
   .dropdown-overlay.open { display:block; }
   .dropdown-panel {
@@ -116,33 +111,13 @@
   .dropdown-panel.open { display:block; }
   .wdx-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:32px; max-width:1400px; margin:0 auto; }
   .wdx-card { display:flex; flex-direction:column; gap:16px; cursor:pointer; text-decoration:none; }
-  
-  .wdx-img-wrap { 
-    width: 100%; 
-    height: 160px; 
-    border-radius: 4px; 
-    overflow: hidden; 
-    position: relative; 
-    background-color: #f0f0f0; 
-  }
-  .wdx-img { 
-    width:100%; 
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.3s ease;
-  }
-  .wdx-img-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(15, 42, 68, 0.2);
-    pointer-events: none;
-  }
+  .wdx-img-wrap { width: 100%; height: 160px; border-radius: 4px; overflow: hidden; position: relative; background-color: #f0f0f0; }
+  .wdx-img { width:100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; }
+  .wdx-img-overlay { position: absolute; inset: 0; background: rgba(15, 42, 68, 0.2); pointer-events: none; }
   .wdx-card:hover .wdx-img { transform: scale(1.05); }
   .wdx-title { font-size:18px; font-weight:700; color:var(--dark); transition:color 0.2s; }
   .wdx-card:hover .wdx-title { color:var(--red); }
 
-  /* ── FLOATING SIDEBAR ── */
   .sidebar { position:fixed; right:0; top:50%; transform:translateY(-50%); z-index:1000; display:flex; flex-direction:column; gap:0; }
   .sidebar-btn {
     width:48px; height:48px; border:none; cursor:pointer;
@@ -154,7 +129,6 @@
   .sidebar-btn:nth-child(2) { background: #1565C0; }
   .sidebar-btn:nth-child(3) { background: #25D366; }
   .sidebar-btn:hover { filter: brightness(1.18); transform: translateX(-3px); }
-
   .contact-box {
     position: fixed; right: 60px; top: 50%; transform: translateY(-50%);
     background: var(--white); padding: 20px; border-radius: 8px;
@@ -162,21 +136,15 @@
     border-left: 5px solid var(--red); min-width: 200px;
   }
   .close-btn { position:absolute; top:5px; right:10px; cursor:pointer; font-weight:bold; }
-
-  /* ── SCROLL TO TOP ── */
   .scroll-to-top {
     position:fixed; bottom:40px; right:40px; width:56px; height:56px;
-    background:var(--red); border:none; cursor:pointer;
-    display:flex; align-items:center; justify-content:center;
-    color:var(--white); font-size:24px; border-radius:50%;
-    box-shadow:0 4px 16px rgba(254,94,0,0.4); z-index:1000;
+    background:var(--red); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center;
+    color:var(--white); font-size:24px; border-radius:50%; box-shadow:0 4px 16px rgba(254,94,0,0.4); z-index:1000;
     transition:background .2s, transform .2s;
   }
   .scroll-to-top:hover { background:var(--red-hover); transform:translateY(-4px); }
 
-  /* ═══════════════════════ SUSTAINABILITY PAGE CSS ═══════════════════════ */
-  
-  /* Hero Section (Redesigned to match "About Us") */
+  /* ═══════════════════════ HERO ═══════════════════════ */
   .company-hero {
     height: 480px;
     background: url('https://images.unsplash.com/photo-1464938050520-ef2270bb8ce8?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
@@ -191,7 +159,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, rgba(15, 42, 68, 0.95) 0%, rgba(15, 42, 68, 0.4) 100%);
+    background: linear-gradient(90deg, rgba(15, 42, 68, 0.95) 0%, rgba(15, 42, 68, 0.6) 100%);
     z-index: 1;
   }
   .hero-content {
@@ -208,7 +176,7 @@
     font-weight: 700;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: var(--leaf); /* Green accent for sustainability */
+    color: var(--leaf);
     margin-bottom: 12px;
     display: block;
   }
@@ -231,11 +199,11 @@
     gap: 8px;
   }
   .company-breadcrumb a { color: var(--white); text-decoration: none; transition: color 0.2s; }
-  .company-breadcrumb a:hover { color: var(--red); }
+  .company-breadcrumb a:hover { color: var(--leaf); }
   .company-breadcrumb span.divider { color: var(--red); font-weight: 900; }
 
-  /* Policy Intro Section */
-  .policy-section {
+  /* ═══════════════════════ POLICY INTRO (Theme Matched) ═══════════════════════ */
+  .who-section {
     padding: 100px 80px;
     max-width: 1400px;
     margin: 0 auto;
@@ -254,129 +222,166 @@
   .section-eyebrow::after {
     content: ''; display: block; width: 40px; height: 2px; background: var(--red);
   }
-  .policy-layout {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 80px;
-    align-items: start;
-    margin-top: 20px;
-  }
-  .policy-title h2 {
+  .who-section h2 {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 52px;
     font-weight: 900;
     color: var(--dark);
-    line-height: 1.1;
+    margin-bottom: 10px;
+    line-height: 1;
   }
-  .policy-desc {
-    font-size: 18px;
+  .who-section h2 em {
+    font-style: normal;
+    color: var(--leaf); /* Green accent for sustainability */
+  }
+  .who-layout {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 80px;
+    margin-top: 48px;
+    align-items: center;
+  }
+  .who-text p {
+    font-size: 16px;
     color: var(--mid);
-    line-height: 1.8;
+    line-height: 1.85;
+    margin-bottom: 20px;
+    text-align: justify;
     font-weight: 500;
-    border-left: 3px solid var(--border);
-    padding-left: 40px;
+  }
+  .who-visual { display: flex; flex-direction: column; gap: 16px; }
+  .who-img-main {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
   }
 
-  /* Pillars Grid Section */
-  .pillars-wrapper {
+  /* ═══════════════════════ GUIDELINES / PILLARS ═══════════════════════ */
+  .guidelines-section {
     padding: 100px 80px;
     background: var(--light);
-    position: relative;
   }
-  .pillars-grid {
-    display: flex;
-    flex-wrap: wrap;
+  .guide-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .guide-header h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--dark);
+    text-transform: uppercase;
+  }
+  .guide-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     max-width: 1400px;
     margin: 0 auto;
-    justify-content: center;
   }
-  .pillar-card {
-    flex: 1 1 350px;
-    max-width: 450px;
+  .guide-card {
     background: var(--white);
-    padding: 48px 40px;
-    border-radius: 4px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-    position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    border-top: 3px solid transparent;
-  }
-  .pillar-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-    border-top-color: var(--red);
-  }
-  .pillar-icon {
-    width: 64px;
-    height: 64px;
-    background: rgba(15,42,68,0.05);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--dark);
-    margin-bottom: 24px;
-    transition: all 0.3s ease;
-  }
-  .pillar-icon svg { width: 28px; height: 28px; stroke-width: 1.5; stroke: currentColor; fill: none; }
-  .pillar-card:hover .pillar-icon {
-    background: var(--red);
-    color: var(--white);
-    box-shadow: 0 8px 20px rgba(254, 94, 0, 0.25);
-  }
-  .pillar-card p {
-    font-size: 15px;
-    color: var(--mid);
-    line-height: 1.7;
-    font-weight: 500;
-  }
-
-  /* Commitment Section */
-  .commitment-section {
-    padding: 100px 80px;
-    background: linear-gradient(135deg, var(--dark), #1a2a44);
-    color: var(--white);
-    text-align: center;
+    padding: 40px 32px;
+    border-top: 4px solid var(--dark);
     position: relative;
     overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   }
-  .commitment-section::before {
-    content: '';
+  .guide-card:hover {
+    transform: translateY(-5px);
+    border-top-color: var(--red);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+  }
+  /* Big Faint Numbers in Background */
+  .guide-num {
     position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(45deg, rgba(254,94,0,.05) 0, rgba(254,94,0,.05) 1px, transparent 1px, transparent 40px);
-    pointer-events: none;
+    right: 20px;
+    top: 10px;
+    font-size: 100px;
+    line-height: 1;
+    color: #f0f0f0;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    z-index: 1;
+    user-select: none;
+    transition: color 0.3s ease;
   }
-  .commitment-content {
-    max-width: 900px;
-    margin: 0 auto;
+  .guide-card:hover .guide-num {
+    color: #ffebe0; /* Faint red/orange on hover */
+  }
+  .guide-content {
     position: relative;
     z-index: 2;
   }
-  .commitment-content h2 {
+  .guide-icon {
+    width: 48px; height: 48px;
+    color: var(--red);
+    margin-bottom: 20px;
+  }
+  .guide-icon svg { width: 100%; height: 100%; stroke-width: 1.5; stroke: currentColor; fill: none; }
+  .guide-card p {
+    font-size: 15px;
+    color: var(--mid);
+    line-height: 1.7;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  /* Adjust grid for 5 items (2 on top, 3 on bottom) */
+  .guide-card:nth-child(1), .guide-card:nth-child(2) {
+    grid-column: span 1;
+  }
+  /* For a clean look with 5 items, we can make the first two span wider, or just let them wrap natively */
+  
+  /* ═══════════════════════ COMMITMENT (Separated from Footer) ═══════════════════════ */
+  .commitment-section {
+    padding: 100px 80px;
+    background: var(--white);
+    position: relative;
+  }
+  .commitment-box {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: var(--light);
+    border-left: 8px solid var(--red);
+    padding: 60px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+    position: relative;
+  }
+  .commitment-box::before {
+    content: '"';
+    font-family: serif;
+    font-size: 120px;
+    color: rgba(254, 94, 0, 0.1);
+    position: absolute;
+    top: -20px;
+    left: 30px;
+    line-height: 1;
+  }
+  .commitment-box h2 {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(36px, 5vw, 48px);
+    font-size: 36px;
     font-weight: 900;
-    color: var(--gold);
-    margin-bottom: 24px;
+    color: var(--dark);
+    margin-bottom: 16px;
     text-transform: uppercase;
-    letter-spacing: 1px;
   }
-  .commitment-content p {
-    font-size: clamp(18px, 2.5vw, 24px);
+  .commitment-box p {
+    font-size: 22px;
     line-height: 1.6;
-    font-weight: 400;
-    color: rgba(255,255,255,0.9);
+    color: var(--mid);
+    font-weight: 500;
   }
-  .commitment-content p span {
-    font-weight: 700;
-    color: var(--white);
-    border-bottom: 2px solid var(--red);
+  .commitment-box p span {
+    color: var(--dark);
+    font-weight: 800;
+    border-bottom: 2px solid var(--leaf);
   }
 
   /* ── FOOTER ── */
-  footer { background:#0F2A44; color:rgba(255,255,255,.7); padding:64px 80px 32px; }
+  footer { background:#0F2A44; color:rgba(255,255,255,.7); padding:64px 80px 32px; border-top: 5px solid var(--red); }
   .footer-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:48px; margin-bottom:48px; }
   footer h4 { font-size:16px; font-weight:800; color:var(--white); margin-bottom:20px; }
   footer ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
@@ -397,12 +402,11 @@
     .dropdown-overlay, .dropdown-panel { display: none !important; }
     
     .company-hero { padding: 0 40px; height: 400px; }
-    .policy-section { padding: 80px 40px; }
-    .policy-layout { grid-template-columns: 1fr; gap: 40px; }
-    .policy-desc { border-left: none; padding-left: 0; }
     
-    .pillars-wrapper { padding: 80px 40px; }
-    .commitment-section { padding: 80px 40px; }
+    .who-section, .guidelines-section, .commitment-section { padding: 80px 40px; }
+    .who-layout { grid-template-columns: 1fr; gap: 40px; }
+    .guide-grid { grid-template-columns: repeat(2, 1fr); }
+    .commitment-box { padding: 40px; }
     
     footer { padding: 48px 40px 24px; }
     .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
@@ -418,10 +422,11 @@
     .company-hero { padding: 0 20px; height: 360px; }
     .hero-content { padding-left: 20px; border-width: 4px; }
     
-    .policy-section { padding: 60px 20px; }
-    .pillars-wrapper { padding: 60px 20px; }
-    .pillar-card { padding: 30px 20px; }
-    .commitment-section { padding: 60px 20px; }
+    .who-section, .guidelines-section, .commitment-section { padding: 60px 20px; }
+    .guide-grid { grid-template-columns: 1fr; }
+    
+    .commitment-box { padding: 30px 20px; }
+    .commitment-box p { font-size: 18px; }
     
     footer { padding: 40px 16px 24px; }
     .footer-grid { grid-template-columns: 1fr; gap: 24px; }
@@ -436,6 +441,8 @@
   @media (max-width: 480px) {
     .logo-text { font-size: 17px; }
     .logo-icon { height: 38px; }
+    .company-hero h1 { font-size: 40px; }
+    .who-section h2 { font-size: 36px; }
     
     footer h4 { font-size: 14px; }
     footer ul li { font-size: 13px; }
@@ -697,61 +704,92 @@
   </div>
 </div>
 
-<section class="policy-section">
+<section class="who-section">
   <div class="section-eyebrow">Our Principles</div>
-  <div class="policy-layout">
-    <div class="policy-title">
-      <h2>Environmental Policy</h2>
+  <h2>Environmental <em>POLICY</em></h2>
+  
+  <div class="who-layout">
+    <div class="who-text">
+      <p>
+        RackNSpace endeavors to conduct its business activities in an environmentally friendly and responsible manner. We recognize that sustainable operations are vital to the future of smart manufacturing and global logistics.
+      </p>
+      <p>
+        Our intelligent warehousing systems are designed not only to optimize space and efficiency but also to minimize energy consumption and reduce the overall carbon footprint of our clients' operations. By integrating advanced software with energy-efficient hardware, we ensure that modern supply chains can scale responsibly.
+      </p>
+      <p>
+        From the materials we source for our heavy-duty racking to the software algorithms optimizing shuttle routes, environmental consciousness is built directly into our engineering process. We strictly adhere to structural guidelines and international standards to ensure a greener tomorrow.
+      </p>
     </div>
-    <div class="policy-desc">
-      <p>RackNSpace endeavors to conduct its business activities in an environmentally friendly and responsible manner. We recognize that sustainable operations are vital to the future of smart manufacturing and global logistics, and we strictly adhere to structural guidelines to minimize our footprint.</p>
+    
+    <div class="who-visual">
+      <img class="who-img-main" src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=800&q=80" alt="Sustainable Manufacturing">
     </div>
   </div>
 </section>
 
-<section class="pillars-wrapper">
-  <div class="pillars-grid">
+<section class="guidelines-section">
+  <div class="guide-header">
+    <div class="section-eyebrow" style="justify-content: center; margin-bottom: 20px;">The 5 Pillars</div>
+    <h2>Guiding Principles</h2>
+  </div>
+
+  <div class="guide-grid">
     
-    <div class="pillar-card">
-      <div class="pillar-icon">
-        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><path d="M7 13s2-2 5-2 5 2 5 2"/></svg>
+    <div class="guide-card">
+      <div class="guide-num">01</div>
+      <div class="guide-content">
+        <div class="guide-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><path d="M7 13s2-2 5-2 5 2 5 2"/></svg>
+        </div>
+        <p>Fully embody the business principle of environmental protection in the company's daily operations and long-term strategic decisions.</p>
       </div>
-      <p>Fully embody the business principle of environmental protection in the company's daily operations and long-term strategic decisions.</p>
     </div>
 
-    <div class="pillar-card">
-      <div class="pillar-icon">
-        <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="7.5 4.21 12 6.81 16.5 4.21"/><polyline points="7.5 19.79 7.5 14.6 3 12"/><polyline points="21 12 16.5 14.6 16.5 19.79"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+    <div class="guide-card">
+      <div class="guide-num">02</div>
+      <div class="guide-content">
+        <div class="guide-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="7.5 4.21 12 6.81 16.5 4.21"/><polyline points="7.5 19.79 7.5 14.6 3 12"/><polyline points="21 12 16.5 14.6 16.5 19.79"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        </div>
+        <p>Dynamically identify environmental risks and take prudent, effective measures to prevent pollution and reduce resource burden in manufacturing.</p>
       </div>
-      <p>Dynamically identify environmental risks and take prudent, effective measures to prevent pollution and reduce resource burden in manufacturing.</p>
     </div>
 
-    <div class="pillar-card">
-      <div class="pillar-icon">
-        <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><circle cx="12" cy="14" r="4"/><line x1="12" y1="6" x2="12.01" y2="6"/></svg>
+    <div class="guide-card">
+      <div class="guide-num">03</div>
+      <div class="guide-content">
+        <div class="guide-icon">
+          <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><circle cx="12" cy="14" r="4"/><line x1="12" y1="6" x2="12.01" y2="6"/></svg>
+        </div>
+        <p>Comply rigorously with all applicable laws and regulations related to environmental protection and intelligent warehousing infrastructure.</p>
       </div>
-      <p>Comply rigorously with all applicable laws and regulations related to environmental protection and intelligent warehousing infrastructure.</p>
     </div>
 
-    <div class="pillar-card">
-      <div class="pillar-icon">
-        <svg viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="12" y1="6" x2="12" y2="10"/><line x1="6" y1="10" x2="18" y2="10"/><rect x="3" y="14" width="6" height="4" rx="1" ry="1"/><rect x="15" y="14" width="6" height="4" rx="1" ry="1"/><line x1="6" y1="10" x2="6" y2="14"/><line x1="18" y1="10" x2="18" y2="14"/></svg>
+    <div class="guide-card">
+      <div class="guide-num">04</div>
+      <div class="guide-content">
+        <div class="guide-icon">
+          <svg viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="12" y1="6" x2="12" y2="10"/><line x1="6" y1="10" x2="18" y2="10"/><rect x="3" y="14" width="6" height="4" rx="1" ry="1"/><rect x="15" y="14" width="6" height="4" rx="1" ry="1"/><line x1="6" y1="10" x2="6" y2="14"/><line x1="18" y1="10" x2="18" y2="14"/></svg>
+        </div>
+        <p>Effectively implement and continuously improve our environmental management system to establish a sustainable operating model.</p>
       </div>
-      <p>Effectively implement and continuously improve our environmental management system to establish a sustainable operating model.</p>
     </div>
 
-    <div class="pillar-card">
-      <div class="pillar-icon">
-        <svg viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M9 14h6"/><path d="M9 18h6"/><path d="M12 10h3"/></svg>
+    <div class="guide-card">
+      <div class="guide-num">05</div>
+      <div class="guide-content">
+        <div class="guide-icon">
+          <svg viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M9 14h6"/><path d="M9 18h6"/><path d="M12 10h3"/></svg>
+        </div>
+        <p>Willfully receive and share appropriate training and guidance to consistently meet our own and our partners' environmental requirements.</p>
       </div>
-      <p>Willfully receive and share appropriate training and guidance to consistently meet our own and our partners' environmental requirements.</p>
     </div>
 
   </div>
 </section>
 
 <section class="commitment-section">
-  <div class="commitment-content">
+  <div class="commitment-box">
     <h2>Our Commitment</h2>
     <p>To actively contribute to the conservation of air, water, soil, and natural resources, and to <span>integrate sustainability as a core element of our long-term business strategy.</span></p>
   </div>
@@ -799,7 +837,6 @@
 </footer>
 
 <script>
-  /* ── MOBILE NAV ── */
   function toggleMobileNav() {
     var nav = document.getElementById('mobile-nav');
     var burger = document.getElementById('hamburger');
@@ -817,7 +854,6 @@
     if (!isOpen) { sub.classList.add('open'); trigger.classList.add('open'); }
   }
   
-  // Close mobile nav when clicking outside
   document.addEventListener('click', function(e) {
     var nav = document.getElementById('mobile-nav');
     var burger = document.getElementById('hamburger');
@@ -828,7 +864,6 @@
     }
   });
 
-  /* ── DROPDOWN HOVER LOGIC ── */
   let ddHoverTimeout;
   function openDdHover(name){
     clearTimeout(ddHoverTimeout); closeAllDropdowns();
@@ -845,7 +880,6 @@
     document.getElementById('dropdown-overlay').classList.remove('open');
   }
 
-  /* ── SHOW CONTACT SIDEBAR LOGIC ── */
   function showContact(type) {
     const displayBox = document.getElementById('contact-display');
     const title = document.getElementById('contact-title');
