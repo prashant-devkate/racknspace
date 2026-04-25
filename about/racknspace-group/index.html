@@ -19,7 +19,6 @@
     --light: #f5f5f5;
     --white: #ffffff;
     --border: #e0e0e0;
-    --stat-red: #ff8c42;
     --leaf: #16db5a;
   }
 
@@ -37,7 +36,6 @@
     justify-content:space-between;
     box-shadow:0 2px 16px rgba(0,0,0,.05);
   }
-
   .logo { display:flex; align-items:center; gap:0; text-decoration:none; cursor:pointer; }
   .logo-icon { height: 72px; width: auto; object-fit: contain; margin-right: 14px; }
   .logo-text {
@@ -65,7 +63,6 @@
   .nav-item .arrow { font-size:11px; margin-top:1px; transition:transform .2s; }
   .nav-item.open .arrow { transform:rotate(180deg); }
 
-  /* ── HAMBURGER MENU ── */
   .hamburger {
     display: none; flex-direction: column; gap: 5px;
     cursor: pointer; padding: 8px; border: none;
@@ -80,7 +77,6 @@
   .hamburger.open span:nth-child(2) { opacity: 0; }
   .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-  /* ── MOBILE NAV DRAWER ── */
   .mobile-nav {
     display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
     background: var(--white); z-index: 1050;
@@ -105,7 +101,6 @@
   .mobile-nav-item .mob-arrow { margin-left: auto; font-size: 12px; transition: transform 0.2s; }
   .mobile-nav-item.open .mob-arrow { transform: rotate(180deg); }
 
-  /* ── MEGA DROPDOWN ── */
   .dropdown-overlay { display:none; position:fixed; top:90px; left:0; right:0; bottom:0; background:rgba(0,0,0,.45); z-index:900; }
   .dropdown-overlay.open { display:block; }
   .dropdown-panel {
@@ -116,41 +111,13 @@
   .dropdown-panel.open { display:block; }
   .wdx-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:32px; max-width:1400px; margin:0 auto; }
   .wdx-card { display:flex; flex-direction:column; gap:16px; cursor:pointer; text-decoration:none; }
-  
-  
-  /* Images in Nav */
-  .wdx-img-wrap { 
-		width: 100%; 
-		height: 160px; 
-		border-radius: 4px; 
-		overflow: hidden; 
-		position: relative; 
-		background-color: #f0f0f0; 
-	}
-	.wdx-img { 
-		width:100%; 
-		height: 100%;
-		object-fit: cover;
-		display: block;
-		transition: transform 0.3s ease;
-	}
-	
-	.wdx-img-overlay {
-		position: absolute;
-		inset: 0;
-		background: rgba(15, 42, 68, 0.2); /* Soft Navy Blue tint */
-		pointer-events: none;
-	}
-  
+  .wdx-img-wrap { width: 100%; height: 160px; border-radius: 4px; overflow: hidden; position: relative; background-color: #f0f0f0; }
+  .wdx-img { width:100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; }
+  .wdx-img-overlay { position: absolute; inset: 0; background: rgba(15, 42, 68, 0.2); pointer-events: none; }
   .wdx-card:hover .wdx-img { transform: scale(1.05); }
-  
-  /* Images in Nav */
-  
-  
   .wdx-title { font-size:18px; font-weight:700; color:var(--dark); transition:color 0.2s; }
   .wdx-card:hover .wdx-title { color:var(--red); }
 
-  /* ── FLOATING SIDEBAR ── */
   .sidebar { position:fixed; right:0; top:50%; transform:translateY(-50%); z-index:1000; display:flex; flex-direction:column; gap:0; }
   .sidebar-btn {
     width:48px; height:48px; border:none; cursor:pointer;
@@ -162,7 +129,6 @@
   .sidebar-btn:nth-child(2) { background: #1565C0; }
   .sidebar-btn:nth-child(3) { background: #25D366; }
   .sidebar-btn:hover { filter: brightness(1.18); transform: translateX(-3px); }
-
   .contact-box {
     position: fixed; right: 60px; top: 50%; transform: translateY(-50%);
     background: var(--white); padding: 20px; border-radius: 8px;
@@ -170,8 +136,6 @@
     border-left: 5px solid var(--red); min-width: 200px;
   }
   .close-btn { position:absolute; top:5px; right:10px; cursor:pointer; font-weight:bold; }
-
-  /* ── SCROLL TO TOP ── */
   .scroll-to-top {
     position:fixed; bottom:40px; right:40px; width:56px; height:56px;
     background:var(--red); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center;
@@ -180,212 +144,436 @@
   }
   .scroll-to-top:hover { background:var(--red-hover); transform:translateY(-4px); }
 
-  /* ═══════════════════════ RACKNSPACE GROUP CSS ═══════════════════════ */
-  
-  /* Company Hero Section */
+  /* ═══════════════════════ HERO (REDESIGNED) ═══════════════════════ */
   .company-hero {
-    height: 400px;
-    background: linear-gradient(rgba(15,42,68,0.75), rgba(15,42,68,0.75)), url('https://images.unsplash.com/photo-1586528116311-ad8ed7c83a7f?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    height: 480px;
+    background: url('https://images.unsplash.com/photo-1586528116311-ad8ed7c83a7f?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    position: relative;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 0 40px;
+    align-items: center; /* Center content vertically */
+    padding: 0 80px; /* Match the padding of other sections */
     color: var(--white);
+    overflow: hidden;
+  }
+  .company-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    /* Sleek dark industrial overlay fading to the right */
+    background: linear-gradient(90deg, rgba(15, 42, 68, 0.95) 0%, rgba(15, 42, 68, 0.6) 100%);
+    z-index: 1;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    border-left: 5px solid var(--red);
+    padding-left: 32px;
+  }
+  .hero-tag {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+    display: block;
   }
   .company-hero h1 {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(48px, 6vw, 72px);
+    font-size: clamp(52px, 6vw, 84px);
     font-weight: 900;
     letter-spacing: 1px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     text-transform: uppercase;
+    line-height: 1.1;
+    color: var(--white);
   }
+  .company-hero h1 span { color: var(--red); }
   .company-breadcrumb {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
-    color: rgba(255,255,255,0.8);
+    color: rgba(255,255,255,0.7);
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
-  .company-breadcrumb a { color: var(--red); text-decoration: none; transition: color 0.2s; }
-  .company-breadcrumb a:hover { color: var(--gold); }
-  .company-breadcrumb span { margin: 0 8px; font-size: 12px; }
+  .company-breadcrumb a { color: var(--white); text-decoration: none; transition: color 0.2s; }
+  .company-breadcrumb a:hover { color: var(--red); }
+  .company-breadcrumb span.divider { color: var(--red); font-weight: 900; }
 
-  /* Who Is Section */
+  /* ═══════════════════════ WHO IS ═══════════════════════ */
   .who-section {
-    padding: 80px;
+    padding: 100px 80px;
     max-width: 1400px;
     margin: 0 auto;
-    background: var(--white);
+  }
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-eyebrow::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: var(--red);
   }
   .who-section h2 {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 42px;
+    font-size: 52px;
     font-weight: 900;
     color: var(--dark);
-    margin-bottom: 24px;
+    margin-bottom: 10px;
+    line-height: 1;
   }
-  .who-section p {
+  .who-section h2 em {
+    font-style: normal;
+    color: var(--red);
+  }
+  .who-layout {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 80px;
+    margin-top: 48px;
+    align-items: start;
+  }
+  .who-text p {
     font-size: 15px;
     color: var(--mid);
-    line-height: 1.8;
-    margin-bottom: 16px;
+    line-height: 1.85;
+    margin-bottom: 20px;
     text-align: justify;
   }
-  .who-gallery {
+  .who-stats {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-top: 48px;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    margin-top: 40px;
+    border: 1px solid var(--border);
   }
-  .who-gallery img {
+  .stat-cell {
+    background: var(--white);
+    padding: 28px 24px;
+    position: relative;
+  }
+  .stat-cell::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--red);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .stat-cell:hover::before { opacity: 1; }
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 44px;
+    font-weight: 900;
+    color: var(--dark);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-num span { color: var(--red); }
+  .stat-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #999;
+  }
+  .who-visual { display: flex; flex-direction: column; gap: 16px; }
+  .who-img-main {
     width: 100%;
-    height: 260px;
+    height: 280px;
     object-fit: cover;
     border-radius: 2px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  }
+  .who-img-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .who-img-row img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 2px;
     transition: transform 0.3s;
   }
-  .who-gallery img:hover { transform: scale(1.02); }
+  .who-img-row img:hover { transform: scale(1.03); }
 
-  /* History Timeline Section */
-  .history-section {
-    padding: 100px 0;
-    background: linear-gradient(rgba(10,20,40,0.85), rgba(10,20,40,0.85)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80') center/cover fixed;
-    color: var(--white);
+  /* ═══════════════════════ HISTORY CAROUSEL SECTION ═══════════════════════ */
+  .history-container {
     position: relative;
+    padding: 100px 0;
+    background-image: url('/racknspace/images/racknspace-group.jpeg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Added explicitly for strong parallax */
     overflow: hidden;
   }
-  .history-section h2 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 48px;
-    font-weight: 900;
-    text-align: center;
-    margin-bottom: 60px;
-    text-transform: uppercase;
+  .history-overlay {
+    position: absolute; inset: 0; background: rgba(30, 41, 59, 0.85);
   }
-  .timeline-container {
+  .history-content {
     position: relative;
-    display: flex;
-    align-items: center;
-    padding: 120px 40px;
     max-width: 1400px;
     margin: 0 auto;
-    overflow-x: auto;
-    scrollbar-width: thin;
-  }
-  .timeline-line {
-    position: absolute;
-    top: 50%;
-    left: 40px;
-    right: 40px;
-    height: 2px;
-    background: rgba(255,255,255,0.4);
-    z-index: 1;
-  }
-  .timeline-item {
-    position: relative;
+    color: var(--white);
     z-index: 2;
-    flex: 1;
-    min-width: 280px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
-  .timeline-dot {
-    width: 64px;
-    height: 64px;
-    background: var(--white);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    font-weight: 900;
-    color: var(--dark);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    border: 4px solid transparent;
-    transition: all 0.3s;
-    z-index: 3;
+  .history-header-row {
+    padding: 0 80px;
+    margin-bottom: 60px;
   }
-  .timeline-item:nth-child(even) .timeline-dot { border-color: var(--red); color: var(--red); }
-  .timeline-content {
-    background: var(--white);
-    color: var(--mid);
-    padding: 24px;
-    width: 250px;
-    position: absolute;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-    border-radius: 2px;
-  }
-  .timeline-item:nth-child(odd) .timeline-content { bottom: 85px; }
-  .timeline-item:nth-child(even) .timeline-content { top: 85px; }
-  .timeline-content h3 {
-    font-size: 24px;
-    font-weight: 900;
-    color: var(--dark);
-    margin-bottom: 12px;
+  .history-title {
     font-family: 'Barlow Condensed', sans-serif;
-  }
-  .timeline-content p { font-size: 13px; line-height: 1.6; }
-  
-  /* Connector Arrows */
-  .timeline-item:nth-child(odd) .timeline-content::after {
-    content:''; position:absolute; bottom:-12px; left:50%; transform:translateX(-50%);
-    border-width:12px 12px 0; border-style:solid; border-color:var(--white) transparent transparent transparent;
-  }
-  .timeline-item:nth-child(even) .timeline-content::after {
-    content:''; position:absolute; top:-12px; left:50%; transform:translateX(-50%);
-    border-width:0 12px 12px; border-style:solid; border-color:transparent transparent var(--white) transparent;
-  }
-  /* Red visual accent */
-  .timeline-content::before {
-    content:''; position:absolute; left:0; top:24px; bottom:24px; width:3px; background:var(--red);
+    font-size: 64px;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin: 0;
   }
 
-  /* Honors Section */
+  /* Controls */
+  .history-controls {
+    position: absolute;
+    top: 50%; left: 0; right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    z-index: 10;
+    padding: 0 20px;
+  }
+  .h-btn {
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    background: var(--white);
+    border: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    pointer-events: auto;
+    color: var(--dark);
+    transition: 0.3s ease;
+  }
+  .h-btn svg { width: 24px; height: 24px; stroke-width: 2; }
+  .h-btn:hover { background: var(--red); color: var(--white); }
+
+  /* Track Setup */
+  .history-track-wrap {
+    position: relative;
+    overflow: hidden;
+    padding: 220px 0; /* Creates space for alternating cards */
+    margin: 0 60px;
+  }
+  .history-line {
+    position: absolute;
+    top: 50%; left: 0; width: 100%; height: 2px;
+    background: rgba(255,255,255,0.4);
+    transform: translateY(-50%);
+    z-index: 1;
+  }
+  .history-track {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Timeline Node Items */
+  .history-item {
+    flex: 0 0 33.333%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* The Circular Date Node */
+  .hi-dot {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 4px solid #1a2436;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 18px; color: var(--dark);
+    position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    z-index: 3; transition: 0.4s;
+    box-shadow: 0 0 0 2px transparent;
+  }
+  .history-item.active .hi-dot {
+    background: var(--red);
+    color: var(--white);
+    border-color: var(--white);
+    box-shadow: 0 0 0 8px rgba(254, 94, 0, 0.2); /* matched to --red */
+  }
+
+  /* The Info Box */
+  .hi-box {
+    background: var(--white); color: var(--mid);
+    padding: 30px; border-radius: 2px;
+    width: 90%; max-width: 380px;
+    position: absolute;
+    left: 50%; transform: translateX(-50%);
+    opacity: 0.6; transition: 0.4s;
+  }
+  .history-item.active .hi-box {
+    opacity: 1;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+  }
+  .hi-year {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 26px; font-weight: 800;
+    color: var(--dark); margin-bottom: 12px;
+  }
+
+  /* Odd Items (Top Box) */
+  .history-item:nth-child(odd) .hi-box {
+    bottom: calc(50% + 45px); /* Position above line */
+  }
+  .history-item:nth-child(odd) .hi-box::after {
+    content: ''; position: absolute;
+    bottom: -12px; left: 50%; transform: translateX(-50%);
+    border-left: 14px solid transparent;
+    border-right: 14px solid transparent;
+    border-top: 14px solid var(--white);
+  }
+
+  /* Even Items (Bottom Box) */
+  .history-item:nth-child(even) .hi-box {
+    top: calc(50% + 45px); /* Position below line */
+  }
+  .history-item:nth-child(even) .hi-box::after {
+    content: ''; position: absolute;
+    top: -12px; left: 50%; transform: translateX(-50%);
+    border-left: 14px solid transparent;
+    border-right: 14px solid transparent;
+    border-bottom: 14px solid var(--white);
+  }
+
+  /* ═══════════════════════ HONORS ═══════════════════════ */
   .honors-section {
-    padding: 80px;
-    background: var(--light);
-    text-align: center;
+    padding: 100px 80px;
+    background: #fafafa;
+  }
+  .honors-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 64px;
+    gap: 40px;
   }
   .honors-section h2 {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 42px;
+    font-size: 52px;
     font-weight: 900;
     color: var(--dark);
     text-transform: uppercase;
-    margin-bottom: 10px;
+    line-height: 1;
   }
-  .honors-section h3 {
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--dark);
-    margin-bottom: 48px;
+  .honors-section h2 span { color: var(--red); }
+  .honors-section .honors-sub {
+    font-size: 15px;
+    color: var(--mid);
+    font-weight: 500;
+    line-height: 1.5;
+    max-width: 320px;
+    text-align: right;
   }
   .certs-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-    max-width: 1100px;
-    margin: 0 auto;
+    gap: 28px;
   }
   .cert-card {
-    background: transparent;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 28px;
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .cert-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+  }
+  .cert-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--red), var(--gold));
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+  .cert-card:hover::after { transform: scaleX(1); }
+  .cert-number {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #bbb;
+    margin-bottom: 16px;
   }
   .cert-img-wrapper {
-    background: var(--white);
-    padding: 10px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-    border: 1px solid var(--border);
+    background: #f8f8f8;
+    border: 1px solid #ebebeb;
     margin-bottom: 20px;
-    width: 100%;
+    overflow: hidden;
+    aspect-ratio: 4/3;
   }
-  .cert-img-wrapper img { width: 100%; height: auto; display: block; border: 1px solid #f0f0f0; }
-  .cert-title { font-size: 14px; color: var(--mid); font-weight: 600; line-height: 1.4; }
+  .cert-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(80%) contrast(1.1);
+    transition: filter 0.4s;
+  }
+  .cert-card:hover .cert-img-wrapper img { filter: grayscale(20%) contrast(1.05); }
+  .cert-title {
+    font-size: 15px;
+    color: var(--dark);
+    font-weight: 700;
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+  .cert-desc {
+    font-size: 13px;
+    color: #999;
+    line-height: 1.6;
+  }
+  .cert-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 36px;
+    height: 36px;
+    background: var(--light);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cert-badge svg {
+    width: 16px; height: 16px;
+    stroke: #aaa;
+    fill: none;
+  }
+  .cert-card:hover .cert-badge svg { stroke: var(--red); }
 
   /* ── FOOTER ── */
   footer { background:#0F2A44; color:rgba(255,255,255,.7); padding:64px 80px 32px; }
@@ -399,7 +587,7 @@
   .footer-contact strong { color:var(--white); }
   .footer-bottom { border-top:1px solid rgba(255,255,255,.1); padding-top:24px; display:flex; justify-content:space-between; font-size:13px; color:rgba(255,255,255,.4); }
 
-  /* ── RESPONSIVE STYLES ── */
+  /* ── RESPONSIVE ── */
   @media (max-width: 1024px) {
     #navbar { padding: 0 24px; height: 70px; }
     .logo-icon { height: 52px; margin-right: 10px; }
@@ -407,40 +595,51 @@
     nav { display: none; }
     .hamburger { display: flex; }
     .dropdown-overlay, .dropdown-panel { display: none !important; }
-    
-    .who-section, .history-section, .honors-section { padding: 60px 40px; }
-    
+    .company-hero { padding: 0 40px; height: 400px; }
+    .who-section, .honors-section { padding: 60px 40px; }
+    .history-header-row { padding: 0 40px; }
+    .who-layout { grid-template-columns: 1fr; gap: 48px; }
+    .who-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .who-img-main { height: 200px; }
+    .honors-header { flex-direction: column; align-items: flex-start; }
+    .honors-section .honors-sub { text-align: left; }
     footer { padding: 48px 40px 24px; }
     .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
-    .sidebar-btn { width: 40px; height: 40px; font-size: 16px; }
-  }
 
+    /* Timeline Adjustments */
+    .history-item { flex: 0 0 50%; }
+  }
   @media (max-width: 768px) {
     #navbar { padding: 0 16px; height: 64px; }
     .logo-icon { height: 44px; margin-right: 8px; }
     .logo-text { font-size: 20px; }
-    
-    .company-hero { height: 260px; padding: 0 20px; }
-    .who-section, .history-section, .honors-section { padding: 48px 20px; }
-    
-    .who-gallery { grid-template-columns: 1fr; gap: 16px; }
-    .who-gallery img { height: auto; aspect-ratio: 16/9; }
-    
-    .timeline-container { padding: 100px 20px; justify-content: flex-start; }
-    
-    .certs-grid { grid-template-columns: 1fr; gap: 32px; }
-    
+    .company-hero { padding: 0 20px; height: 360px; }
+    .hero-content { padding-left: 20px; border-width: 4px; }
+    .who-section, .honors-section { padding: 48px 20px; }
+    .history-header-row { padding: 0 20px; margin-bottom: 40px; }
+    .certs-grid { grid-template-columns: 1fr; }
     footer { padding: 40px 16px 24px; }
     .footer-grid { grid-template-columns: 1fr; gap: 24px; }
     .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
     .sidebar-btn { width: 36px; height: 36px; font-size: 14px; }
     .contact-box { right: 12px; left: 12px; transform: none; top: auto; bottom: 80px; min-width: unset; }
-  }
+    .who-visual { grid-template-columns: 1fr; }
 
+    /* Timeline Mobile Adjustments */
+    .history-item { flex: 0 0 100%; }
+    .history-track-wrap { margin: 0 40px; padding: 180px 0; }
+    .history-controls { padding: 0 5px; }
+    .h-btn { width: 40px; height: 40px; }
+    .hi-box { padding: 20px; width: 95%; }
+  }
   @media (max-width: 480px) {
     .logo-text { font-size: 17px; }
     .logo-icon { height: 38px; }
-    .company-hero h1 { font-size: 36px; }
+    .company-hero h1 { font-size: 40px; }
+    .who-section h2 { font-size: 36px; }
+    .honors-section h2 { font-size: 36px; }
+    .history-title { font-size: 44px; }
+    .history-track-wrap { padding: 150px 0; margin: 0 30px; }
   }
 </style>
 </head>
@@ -477,7 +676,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
       About Us <span class="arrow">▾</span>
     </div>
-    <a class="nav-item nav-contact" href="/racknspace/contact/" id="nav-contact">
+    <a class="nav-item" href="/racknspace/contact/" id="nav-contact">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
       Contact Us
     </a>
@@ -533,7 +732,7 @@
     <a href="/racknspace/about/sustainability/">Sustainability</a>
     <a href="/racknspace/about/partnership-opportunities/">Partnership Opportunities</a>
   </div>
-  <a class="mobile-nav-item contact" href="/racknspace/contact/">
+  <a class="mobile-nav-item" href="/racknspace/contact/">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
     Contact Us
   </a>
@@ -543,130 +742,34 @@
 
 <div class="dropdown-panel" id="dd-products" onmouseenter="clearHoverTimeout()" onmouseleave="closeDdHover()">
   <div class="wdx-grid">
-    <a href="/racknspace/products/" class="wdx-card">
-	  <div class="wdx-img-wrap">
-        <img src="/racknspace/images/asrs-equi.jpg" alt="ASRS Equipment" class="wdx-img">
-        <div class="wdx-img-overlay"></div>
-      </div>
-	<span class="wdx-title">ASRS Equipment</span>
-	</a>
-    <a href="/racknspace/products/" class="wdx-card">
-	  <div class="wdx-img-wrap">
-        <img src="/racknspace/images/conveying-equi.jpg" alt="Conveying Equipment" class="wdx-img">
-        <div class="wdx-img-overlay"></div>
-      </div>
-	<span class="wdx-title">Conveying Equipment</span>
-	</a>
-    <a href="/racknspace/products/" class="wdx-card">
-	  <div class="wdx-img-wrap">
-        <img src="/racknspace/images/auto-shuttles.jpg" alt="Automated Shuttles" class="wdx-img">
-        <div class="wdx-img-overlay"></div>
-      </div>
-	<span class="wdx-title">Automated Shuttles</span>
-	</a>
-    <a href="/racknspace/products/" class="wdx-card">
-	  <div class="wdx-img-wrap">
-        <img src="/racknspace/images/soft-wms.jpg" alt="Software (WMS/WCS)" class="wdx-img">
-        <div class="wdx-img-overlay"></div>
-      </div>
-	<span class="wdx-title">Software (WMS/WCS)</span>
-	</a>
+    <a href="/racknspace/products/" class="wdx-card"><div class="wdx-img-wrap"><img src="/racknspace/images/asrs-equi.jpg" alt="ASRS Equipment" class="wdx-img"><div class="wdx-img-overlay"></div></div><span class="wdx-title">ASRS Equipment</span></a>
+    <a href="/racknspace/products/" class="wdx-card"><div class="wdx-img-wrap"><img src="/racknspace/images/conveying-equi.jpg" alt="Conveying Equipment" class="wdx-img"><div class="wdx-img-overlay"></div></div><span class="wdx-title">Conveying Equipment</span></a>
+    <a href="/racknspace/products/" class="wdx-card"><div class="wdx-img-wrap"><img src="/racknspace/images/auto-shuttles.jpg" alt="Automated Shuttles" class="wdx-img"><div class="wdx-img-overlay"></div></div><span class="wdx-title">Automated Shuttles</span></a>
+    <a href="/racknspace/products/" class="wdx-card"><div class="wdx-img-wrap"><img src="/racknspace/images/soft-wms.jpg" alt="Software (WMS/WCS)" class="wdx-img"><div class="wdx-img-overlay"></div></div><span class="wdx-title">Software (WMS/WCS)</span></a>
   </div>
 </div>
 <div class="dropdown-panel" id="dd-services" onmouseenter="clearHoverTimeout()" onmouseleave="closeDdHover()">
   <div class="wdx-grid">
-    <a href="/racknspace/services/" class="wdx-card">
-	  <div class="wdx-img-wrap">
-        <img src="/racknspace/images/rnd-planning.jpg" alt="R&D & Planning" class="wdx-img">
-        <div class="wdx-img-overlay"></div>
-      </div>	
-	<span class="wdx-title">R&D & Planning</span>
-	</a>
-    <a href="/racknspace/services/" class="wdx-card">
-	  <div class="wdx-img-wrap">
-        <img src="/racknspace/images/equipment-integration.jpg" alt="Equipment Integration" class="wdx-img">
-        <div class="wdx-img-overlay"></div>
-      </div>	
-	<span class="wdx-title">Equipment Integration</span>
-	</a>
-    <a href="/racknspace/services/" class="wdx-card">
-	  <div class="wdx-img-wrap">
-        <img src="/racknspace/images/installation-setup.jpg" alt="Installation & Setup" class="wdx-img">
-        <div class="wdx-img-overlay"></div>
-      </div>
-	<span class="wdx-title">Installation & Setup</span>
-	</a>
-    <a href="/racknspace/services/" class="wdx-card">
-	  <div class="wdx-img-wrap">
-        <img src="/racknspace/images/remote-support.jpg" alt="Remote Support" class="wdx-img">
-        <div class="wdx-img-overlay"></div>
-      </div>
-	<span class="wdx-title">Remote Support</span>
-	</a>
+    <a href="/racknspace/services/" class="wdx-card"><div class="wdx-img-wrap"><img src="/racknspace/images/rnd-planning.jpg" alt="R&D & Planning" class="wdx-img"><div class="wdx-img-overlay"></div></div><span class="wdx-title">R&D & Planning</span></a>
+    <a href="/racknspace/services/" class="wdx-card"><div class="wdx-img-wrap"><img src="/racknspace/images/equipment-integration.jpg" alt="Equipment Integration" class="wdx-img"><div class="wdx-img-overlay"></div></div><span class="wdx-title">Equipment Integration</span></a>
+    <a href="/racknspace/services/" class="wdx-card"><div class="wdx-img-wrap"><img src="/racknspace/images/installation-setup.jpg" alt="Installation & Setup" class="wdx-img"><div class="wdx-img-overlay"></div></div><span class="wdx-title">Installation & Setup</span></a>
+    <a href="/racknspace/services/" class="wdx-card"><div class="wdx-img-wrap"><img src="/racknspace/images/remote-support.jpg" alt="Remote Support" class="wdx-img"><div class="wdx-img-overlay"></div></div><span class="wdx-title">Remote Support</span></a>
   </div>
 </div>
 <div class="dropdown-panel" id="dd-expertise" onmouseenter="clearHoverTimeout()" onmouseleave="closeDdHover()">
   <div class="wdx-grid">
-    <a href="/racknspace/expertise/" class="wdx-card">
-	  <div class="wdx-img-wrap">
-        <img src="/racknspace/images/smart-logi-planning.jpg" alt="Smart Logistics Planning" class="wdx-img">
-        <div class="wdx-img-overlay"></div>
-      </div>
-	  <span class="wdx-title">Smart Logistics Planning</span>
-	</a>
-    <a href="/racknspace/expertise/" class="wdx-card">
-	  <div class="wdx-img-wrap">
-        <img src="/racknspace/images/equipment-engg.jpg" alt="Equipment Engineering" class="wdx-img">
-        <div class="wdx-img-overlay"></div>
-      </div>
-	  <span class="wdx-title">Equipment Engineering</span>
-	</a>
-	<a href="/racknspace/expertise/" class="wdx-card">
-	  <div class="wdx-img-wrap">
-        <img src="/racknspace/images/sys-integration.jpg" alt="System Integration" class="wdx-img">
-        <div class="wdx-img-overlay"></div>
-      </div>
-	  <span class="wdx-title">System Integration</span>
-	</a>
-	<a href="/racknspace/expertise/" class="wdx-card">
-	  <div class="wdx-img-wrap">
-        <img src="/racknspace/images/tech-support.jpg" alt="Tech Support" class="wdx-img">
-        <div class="wdx-img-overlay"></div>
-      </div>
-	  <span class="wdx-title">Tech Support</span>
-	</a>
+    <a href="/racknspace/expertise/" class="wdx-card"><div class="wdx-img-wrap"><img src="/racknspace/images/smart-logi-planning.jpg" alt="Smart Logistics Planning" class="wdx-img"><div class="wdx-img-overlay"></div></div><span class="wdx-title">Smart Logistics Planning</span></a>
+    <a href="/racknspace/expertise/" class="wdx-card"><div class="wdx-img-wrap"><img src="/racknspace/images/equipment-engg.jpg" alt="Equipment Engineering" class="wdx-img"><div class="wdx-img-overlay"></div></div><span class="wdx-title">Equipment Engineering</span></a>
+    <a href="/racknspace/expertise/" class="wdx-card"><div class="wdx-img-wrap"><img src="/racknspace/images/sys-integration.jpg" alt="System Integration" class="wdx-img"><div class="wdx-img-overlay"></div></div><span class="wdx-title">System Integration</span></a>
+    <a href="/racknspace/expertise/" class="wdx-card"><div class="wdx-img-wrap"><img src="/racknspace/images/tech-support.jpg" alt="Tech Support" class="wdx-img"><div class="wdx-img-overlay"></div></div><span class="wdx-title">Tech Support</span></a>
   </div>
 </div>
 <div class="dropdown-panel" id="dd-about" onmouseenter="clearHoverTimeout()" onmouseleave="closeDdHover()">
   <div class="wdx-grid">
-    <a href="/racknspace/about/racknspace-group/" class="wdx-card">
-      <div class="wdx-img-wrap">
-        <img src="/racknspace/images/racknspace-group.jpeg" alt="RackNSpace Group Facility" class="wdx-img">
-        <div class="wdx-img-overlay"></div>
-      </div>
-      <span class="wdx-title">RackNSpace Group</span>
-    </a>
-    <a href="/racknspace/about/culture/" class="wdx-card">
-		<div class="wdx-img-wrap">
-        <img src="/racknspace/images/culture.jpg" alt="RackNSpace Brand Culture" class="wdx-img">
-        <div class="wdx-img-overlay"></div>
-      </div>
-      <span class="wdx-title">Culture</span>
-	</a>
-    <a href="/racknspace/about/sustainability/" class="wdx-card">
-		<div class="wdx-img-wrap">
-        <img src="/racknspace/images/sustainability.jpg" alt="Sustainability and Environment" class="wdx-img">
-        <div class="wdx-img-overlay"></div>
-      </div>
-      <span class="wdx-title">Sustainability</span>
-	</a>
-    <a href="/racknspace/about/partnership-opportunities/" class="wdx-card">
-	<div class="wdx-img-wrap">
-        <img src="/racknspace/images/partnership.jpg" alt="Partnership Opportunities" class="wdx-img">
-        <div class="wdx-img-overlay"></div>
-      </div>
-      <span class="wdx-title">Partnership Opportunities</span>
-	</a>
+    <a href="/racknspace/about/racknspace-group/" class="wdx-card"><div class="wdx-img-wrap"><img src="/racknspace/images/racknspace-group.jpeg" alt="RackNSpace Group" class="wdx-img"><div class="wdx-img-overlay"></div></div><span class="wdx-title">RackNSpace Group</span></a>
+    <a href="/racknspace/about/culture/" class="wdx-card"><div class="wdx-img-wrap"><img src="/racknspace/images/culture.jpg" alt="Culture" class="wdx-img"><div class="wdx-img-overlay"></div></div><span class="wdx-title">Culture</span></a>
+    <a href="/racknspace/about/sustainability/" class="wdx-card"><div class="wdx-img-wrap"><img src="/racknspace/images/sustainability.jpg" alt="Sustainability" class="wdx-img"><div class="wdx-img-overlay"></div></div><span class="wdx-title">Sustainability</span></a>
+    <a href="/racknspace/about/partnership-opportunities/" class="wdx-card"><div class="wdx-img-wrap"><img src="/racknspace/images/partnership.jpg" alt="Partnership Opportunities" class="wdx-img"><div class="wdx-img-overlay"></div></div><span class="wdx-title">Partnership Opportunities</span></a>
   </div>
 </div>
 
@@ -677,101 +780,210 @@
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:24px;height:24px;filter:brightness(0) invert(1);">
   </button>
 </div>
-
 <div id="contact-display" class="contact-box" style="display:none;">
   <span class="close-btn" onclick="this.parentElement.style.display='none'">✕</span>
-  <h4 id="contact-title" style="font-family:'Barlow Condensed', sans-serif; font-size:18px; margin-bottom:10px; border-bottom:1px solid #eee; padding-bottom:5px;">Contact</h4>
-  <p id="contact-info" style="font-size:14px; font-weight:600;"></p>
+  <h4 id="contact-title" style="font-family:'Barlow Condensed',sans-serif;font-size:18px;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px;">Contact</h4>
+  <p id="contact-info" style="font-size:14px;font-weight:600;"></p>
 </div>
-
 <button class="scroll-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <div class="company-hero">
-  <h1>RACKNSPACE GROUP</h1>
-  <div class="company-breadcrumb">
-    <a href="/racknspace/">Home</a> <span>></span> About Us <span>></span> RackNSpace Group
+  <div class="hero-content">
+    <span class="hero-tag">About Our Company</span>
+    <h1>RackN<span>Space</span> Group</h1>
+    <div class="company-breadcrumb">
+      <a href="/racknspace/">Home</a> <span class="divider">/</span> About Us <span class="divider">/</span> RackNSpace Group
+    </div>
   </div>
 </div>
 
 <section class="who-section">
-  <h2>Who Is RACKNSPACE?</h2>
-  <p>
-    RACKNSPACE Group is a leading intelligent warehousing logistics system and equipment manufacturer, dedicated to the fields of intelligent manufacturing and smart logistics. We focus on the R&D, planning and design, manufacturing and fabrication, installation and commissioning, after-sales maintenance, and other services for intralogistics systems. After more than 10 years of development, we have accumulated extensive experience in the fields of material storage, handling, line-side flexible warehousing logistics, and have provided intelligent warehousing software systems and high-quality shuttles, lifters, stacker cranes, AGVs, RGVs, AS/RS racks, conveyors, and other intelligent equipment for smart factories and the intelligent manufacturing industry. These products have been successfully applied in industries such as food and beverage, pharmaceuticals, cold chain, chemical engineering, chemical fibers, new energy, and other manufacturing sectors.
-  </p>
-  <p>
-    To date, we have built a strong matrix of "headquarters + 3 R&D centers + 3 manufacturing bases + 13 sales and after-sales service networks" globally. Adhering to the corporate mission of "high space utilization rate and management efficiency," we empower the intelligent logistics supply chain with science and technology, taking efficiency, traceability, and intelligence as our core values. We help enterprises improve storage density and management levels, achieve cost reduction and efficiency improvements, and drive intelligent transformation. Our intensive storage solutions, integrating automation, informatization, and intelligence, have been successfully applied to over 1,000 customers worldwide.
-  </p>
-  
-  <div class="who-gallery">
-    <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=800&q=80" alt="High density warehouse storage">
-    <img src="https://images.unsplash.com/photo-1586528116311-ad8ed7c83a7f?auto=format&fit=crop&w=800&q=80" alt="Automated logistics shuttles">
-    <img src="https://images.unsplash.com/photo-1565439399-1d48c08ce01d?auto=format&fit=crop&w=800&q=80" alt="Manufacturing and fabrication">
+  <div class="section-eyebrow">Our Identity</div>
+  <h2>Who Is <em>RACKNSPACE?</em></h2>
+
+  <div class="who-layout">
+    <div class="who-text">
+      <p>
+        RACKNSPACE Group is a leading intelligent warehousing logistics system and equipment manufacturer, dedicated to the fields of intelligent manufacturing and smart logistics. We focus on the R&D, planning and design, manufacturing and fabrication, installation and commissioning, after-sales maintenance, and other services for intralogistics systems.
+      </p>
+      <p>
+        After more than 10 years of development, we have accumulated extensive experience in the fields of material storage, handling, line-side flexible warehousing logistics, and have provided intelligent warehousing software systems and high-quality shuttles, lifters, stacker cranes, AGVs, RGVs, AS/RS racks, conveyors, and other intelligent equipment for smart factories and the intelligent manufacturing industry. These products have been successfully applied in food and beverage, pharmaceuticals, cold chain, chemical engineering, chemical fibers, new energy, and other manufacturing sectors.
+      </p>
+      <p>
+        To date, we have built a strong matrix of "headquarters + 3 R&D centers + 3 manufacturing bases + 13 sales and after-sales service networks" globally. Adhering to the corporate mission of "high space utilization rate and management efficiency," we empower the intelligent logistics supply chain with science and technology, taking efficiency, traceability, and intelligence as our core values.
+      </p>
+
+      <div class="who-stats">
+        <div class="stat-cell">
+          <div class="stat-num">10<span>+</span></div>
+          <div class="stat-label">Years of Excellence</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">1000<span>+</span></div>
+          <div class="stat-label">Global Customers</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">13</div>
+          <div class="stat-label">Service Networks</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Manufacturing Bases</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="who-visual">
+      <img class="who-img-main" src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=800&q=80" alt="High density warehouse storage">
+      <div class="who-img-row">
+        <img src="https://images.unsplash.com/photo-1586528116311-ad8ed7c83a7f?auto=format&fit=crop&w=400&q=80" alt="Automated logistics">
+        <img src="https://images.unsplash.com/photo-1565439399-1d48c08ce01d?auto=format&fit=crop&w=400&q=80" alt="Manufacturing">
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="history-section">
-  <h2>History</h2>
-  <div class="timeline-container">
-    <div class="timeline-line"></div>
-    
-    <div class="timeline-item">
-      <div class="timeline-dot">2013</div>
-      <div class="timeline-content">
-        <h3>2013</h3>
-        <p>The first regional branch was established, laying the foundation for expanded market development and strategic growth.</p>
-      </div>
+<section class="history-container">
+  <div class="history-overlay"></div>
+  <div class="history-content">
+    <div class="history-header-row">
+      <h2 class="history-title">History</h2>
     </div>
-    
-    <div class="timeline-item">
-      <div class="timeline-dot">2015</div>
-      <div class="timeline-content">
-        <h3>2015</h3>
-        <p>Our main production base was officially opened, delivering self-manufactured and quality-assured AS/RS rackings to the market.</p>
-      </div>
+
+    <div class="history-controls">
+      <button class="h-btn" id="hist-prev" aria-label="Previous">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+      <button class="h-btn" id="hist-next" aria-label="Next">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
     </div>
-    
-    <div class="timeline-item">
-      <div class="timeline-dot">2016</div>
-      <div class="timeline-content">
-        <h3>2016</h3>
-        <p>The first full-scale AS/RS project was officially launched, marking an important turning point in the development of the Group.</p>
-      </div>
-    </div>
-    
-    <div class="timeline-item">
-      <div class="timeline-dot">2018</div>
-      <div class="timeline-content">
-        <h3>2018</h3>
-        <p>The automation department was established, starting our ongoing journey of independent R&D and intelligent software systems.</p>
+
+    <div class="history-track-wrap">
+      <div class="history-line"></div>
+      <div class="history-track" id="hist-track">
+        
+        <div class="history-item">
+          <div class="hi-dot">2013</div>
+          <div class="hi-box">
+            <div class="hi-year">2013</div>
+            <div class="hi-desc">The Chengdu branch was established, laying the foundation for market development in the southwest of China.</div>
+          </div>
+        </div>
+
+        <div class="history-item">
+          <div class="hi-dot">2014</div>
+          <div class="hi-box">
+            <div class="hi-year">2014</div>
+            <div class="hi-desc">Our first regional branch office was launched to expand localized sales and dedicated support operations.</div>
+          </div>
+        </div>
+
+        <div class="history-item">
+          <div class="hi-dot">2015</div>
+          <div class="hi-box">
+            <div class="hi-year">2015</div>
+            <div class="hi-desc">Zhengzhou's production base was officially opened, with self-manufactured and quality-assured AS/RS rackings.</div>
+          </div>
+        </div>
+
+        <div class="history-item">
+          <div class="hi-dot">2016</div>
+          <div class="hi-box">
+            <div class="hi-year">2016</div>
+            <div class="hi-desc">The first AS/RS project is officially launched, becoming an important turning point in the development of the DELI Group.</div>
+          </div>
+        </div>
+
+        <div class="history-item">
+          <div class="hi-dot">2017</div>
+          <div class="hi-box">
+            <div class="hi-year">2017</div>
+            <div class="hi-desc">The engineering workforce surpassed 100 specialists, formalizing dedicated departments for integrated software development.</div>
+          </div>
+        </div>
+
+        <div class="history-item">
+          <div class="hi-dot">2018</div>
+          <div class="hi-box">
+            <div class="hi-year">2018</div>
+            <div class="hi-desc">The automation department was established, starting the road of independent R&D; Ningxia Branch was established.</div>
+          </div>
+        </div>
+
+        <div class="history-item">
+          <div class="hi-dot">2020</div>
+          <div class="hi-box">
+            <div class="hi-year">2020</div>
+            <div class="hi-desc">International presence expanded rapidly as we acquired CE certifications and delivered our first projects in Southeast Asia.</div>
+          </div>
+        </div>
+
+        <div class="history-item">
+          <div class="hi-dot">2022</div>
+          <div class="hi-box">
+            <div class="hi-year">2022</div>
+            <div class="hi-desc">Achieved the milestone of 500+ global clients. The third manufacturing base was commissioned to meet global demand.</div>
+          </div>
+        </div>
+
+        <div class="history-item">
+          <div class="hi-dot">2024</div>
+          <div class="hi-box">
+            <div class="hi-year">2024</div>
+            <div class="hi-desc">Celebrating 1,000+ satisfied customers worldwide while pushing the boundaries of AI-driven intralogistics systems.</div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
 </section>
 
 <section class="honors-section">
-  <h2>OUR HONORS & QUALIFICATIONS</h2>
-  <h3>Honors</h3>
-  
+  <div class="honors-header">
+    <div>
+      <div class="section-eyebrow">Certifications & Awards</div>
+      <h2>Our Honors & <span>Qualifications</span></h2>
+    </div>
+    <p class="honors-sub">Internationally certified and globally trusted — our qualifications speak to a relentless commitment to quality.</p>
+  </div>
+
   <div class="certs-grid">
     <div class="cert-card">
-      <div class="cert-img-wrapper">
-        <img src="https://images.unsplash.com/photo-1605152276897-4f618f831968?auto=format&fit=crop&w=600&q=80" alt="CE Certificate - Shuttle Robot RGV" style="filter: grayscale(100%) opacity(0.8);">
+      <div class="cert-number">01 / 03</div>
+      <div class="cert-badge">
+        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
       </div>
-      <div class="cert-title">CE certificate (Netherlands):<br>Shuttle robot RGV</div>
+      <div class="cert-img-wrapper">
+        <img src="https://images.unsplash.com/photo-1605152276897-4f618f831968?auto=format&fit=crop&w=600&q=80" alt="CE Certificate - Shuttle Robot RGV">
+      </div>
+      <div class="cert-title">CE Certificate (Netherlands)</div>
+      <div class="cert-desc">Shuttle Robot RGV — European Conformity certification verifying safety and performance standards compliance for automated rail-guided vehicles.</div>
     </div>
-    
+
     <div class="cert-card">
-      <div class="cert-img-wrapper">
-        <img src="https://images.unsplash.com/photo-1589828135894-39046b0a1682?auto=format&fit=crop&w=600&q=80" alt="CE Certificate - Shelf" style="filter: grayscale(100%) opacity(0.8);">
+      <div class="cert-number">02 / 03</div>
+      <div class="cert-badge">
+        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
       </div>
-      <div class="cert-title">CE certificate - shelf</div>
+      <div class="cert-img-wrapper">
+        <img src="https://images.unsplash.com/photo-1589828135894-39046b0a1682?auto=format&fit=crop&w=600&q=80" alt="CE Certificate - Shelf">
+      </div>
+      <div class="cert-title">CE Certificate — Shelf Systems</div>
+      <div class="cert-desc">Structural rack and shelving systems certified under European EN standards for load-bearing capacity, structural integrity, and warehouse safety.</div>
     </div>
-    
+
     <div class="cert-card">
-      <div class="cert-img-wrapper">
-        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=600&q=80" alt="CE Certificate - Hoist" style="filter: grayscale(100%) opacity(0.8);">
+      <div class="cert-number">03 / 03</div>
+      <div class="cert-badge">
+        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
       </div>
-      <div class="cert-title">CE Certificate - Hoist</div>
+      <div class="cert-img-wrapper">
+        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=600&q=80" alt="CE Certificate - Hoist">
+      </div>
+      <div class="cert-title">CE Certificate — Hoist Equipment</div>
+      <div class="cert-desc">Lifting and hoist machinery certified to the European Machinery Directive, ensuring safe operation under full dynamic load conditions in demanding environments.</div>
     </div>
   </div>
 </section>
@@ -790,9 +1002,12 @@
     <div>
       <h4>Case</h4>
       <ul>
-        <li>Unit-load Crane AS/RS</li><li>Unit-load Crane & Four-way Shuttle AS/RS</li>
-        <li>Unit-load Crane & Tote Four-Way Shuttle AS/RS</li><li>Unit-load Crane AS/RS</li>
-        <li>Unit-load Crane & Four-way Shuttle AS/RS</li><li>Unit-load Crane AS/RS</li>
+        <li>Unit-load Crane AS/RS</li>
+        <li>Unit-load Crane & Four-way Shuttle AS/RS</li>
+        <li>Unit-load Crane & Tote Four-Way Shuttle AS/RS</li>
+        <li>Unit-load Crane AS/RS</li>
+        <li>Unit-load Crane & Four-way Shuttle AS/RS</li>
+        <li>Unit-load Crane AS/RS</li>
       </ul>
     </div>
     <div>
@@ -809,7 +1024,7 @@
       <p>Tel: <strong>+91 XXXXXXXXXX</strong></p>
       <p>Unit 1 : <strong>C-17, MIDC Baramati, Dist. Pune - Maharashtra (INDIA) - 413133</strong></p>
       <p>Unit 2 : <strong>G-90, MIDC Baramati, Dist. Pune - Maharashtra (INDIA) - 413133</strong></p>
-      <p>Branch Office : <strong>B2 - 202, Nandanvan Condominiums, New D P Road, Vishal Nagar,<br>Pimple Nilakh, Pune - Maharashtra (INDIA) - 411027</strong></p>
+      <p>Branch Office : <strong>B2 - 202, Nandanvan Condominiums, New D P Road, Vishal Nagar, Pimple Nilakh, Pune - Maharashtra (INDIA) - 411027</strong></p>
     </div>
   </div>
   <div class="footer-bottom">
@@ -818,7 +1033,6 @@
 </footer>
 
 <script>
-  /* ── MOBILE NAV ── */
   function toggleMobileNav() {
     var nav = document.getElementById('mobile-nav');
     var burger = document.getElementById('hamburger');
@@ -834,7 +1048,6 @@
     document.querySelectorAll('.mobile-nav-item.open').forEach(t => t.classList.remove('open'));
     if (!isOpen) { sub.classList.add('open'); trigger.classList.add('open'); }
   }
-  // Close mobile nav when clicking outside
   document.addEventListener('click', function(e) {
     var nav = document.getElementById('mobile-nav');
     var burger = document.getElementById('hamburger');
@@ -845,7 +1058,6 @@
     }
   });
 
-  /* ── DROPDOWN HOVER LOGIC ── */
   let ddHoverTimeout;
   function openDdHover(name){
     clearTimeout(ddHoverTimeout); closeAllDropdowns();
@@ -862,24 +1074,104 @@
     document.getElementById('dropdown-overlay').classList.remove('open');
   }
 
-  /* ── SHOW CONTACT SIDEBAR LOGIC ── */
   function showContact(type) {
     const displayBox = document.getElementById('contact-display');
     const title = document.getElementById('contact-title');
     const info = document.getElementById('contact-info');
-    
     const data = {
       email: { title: "Email Us", val: "racknspace@gmail.com" },
       phone: { title: "Office Phone", val: "+91 XXXXXXXXXX" },
       whatsapp: { title: "WhatsApp", val: "+91 XXXXXXXXXX" }
     };
-
     if (data[type]) {
       title.innerText = data[type].title;
       info.innerText = data[type].val;
       displayBox.style.display = 'block';
     }
   }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const track = document.getElementById('hist-track');
+    const items = track.querySelectorAll('.history-item');
+    const prevBtn = document.getElementById('hist-prev');
+    const nextBtn = document.getElementById('hist-next');
+    const container = document.querySelector('.history-container');
+    let currentIndex = 0;
+    const totalItems = items.length;
+    let autoPlayInterval;
+
+    function getVisibleItems() {
+      if (window.innerWidth <= 768) return 1;
+      if (window.innerWidth <= 1024) return 2;
+      return 3;
+    }
+
+    function updateCarousel() {
+      const visible = getVisibleItems();
+      const maxIndex = totalItems - visible;
+      
+      if (currentIndex > maxIndex) currentIndex = 0;
+      if (currentIndex < 0) currentIndex = maxIndex;
+
+      const percentage = (currentIndex * 100) / visible;
+      track.style.transform = `translateX(-${percentage}%)`;
+
+      const activeIdx = visible === 3 ? currentIndex + 1 : currentIndex;
+
+      items.forEach((item, idx) => {
+        if (idx === activeIdx) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+    }
+
+    function nextSlide() {
+      const maxIndex = totalItems - getVisibleItems();
+      if (currentIndex < maxIndex) {
+        currentIndex++;
+      } else {
+        currentIndex = 0;
+      }
+      updateCarousel();
+    }
+
+    function prevSlide() {
+      const maxIndex = totalItems - getVisibleItems();
+      if (currentIndex > 0) {
+        currentIndex--;
+      } else {
+        currentIndex = maxIndex;
+      }
+      updateCarousel();
+    }
+
+    function startAutoPlay() {
+      autoPlayInterval = setInterval(nextSlide, 3500); 
+    }
+
+    function stopAutoPlay() {
+      clearInterval(autoPlayInterval);
+    }
+
+    nextBtn.addEventListener('click', () => {
+      nextSlide();
+      stopAutoPlay(); startAutoPlay(); 
+    });
+
+    prevBtn.addEventListener('click', () => {
+      prevSlide();
+      stopAutoPlay(); startAutoPlay(); 
+    });
+
+    container.addEventListener('mouseenter', stopAutoPlay);
+    container.addEventListener('mouseleave', startAutoPlay);
+
+    window.addEventListener('resize', updateCarousel);
+    updateCarousel();
+    startAutoPlay();
+  });
 </script>
 </body>
 </html>
