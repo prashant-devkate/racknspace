@@ -121,36 +121,16 @@
   .wdx-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:32px; max-width:1400px; margin:0 auto; }
   .wdx-card { display:flex; flex-direction:column; gap:16px; cursor:pointer; text-decoration:none; }
   
-  
-  /* Images in Nav */
   .wdx-img-wrap { 
-		width: 100%; 
-		height: 160px; 
-		border-radius: 4px; 
-		overflow: hidden; 
-		position: relative; 
-		background-color: #f0f0f0; 
-	}
-	.wdx-img { 
-		width:100%; 
-		height: 100%;
-		object-fit: cover;
-		display: block;
-		transition: transform 0.3s ease;
-	}
-	
-	.wdx-img-overlay {
-		position: absolute;
-		inset: 0;
-		background: rgba(15, 42, 68, 0.2); /* Soft Navy Blue tint */
-		pointer-events: none;
-	}
-  
+    width: 100%; height: 160px; border-radius: 4px; overflow: hidden; position: relative; background-color: #f0f0f0; 
+  }
+  .wdx-img { 
+    width:100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease;
+  }
+  .wdx-img-overlay {
+    position: absolute; inset: 0; background: rgba(15, 42, 68, 0.2); pointer-events: none;
+  }
   .wdx-card:hover .wdx-img { transform: scale(1.05); }
-  
-  /* Images in Nav */
-  
-  
   .wdx-title { font-size:18px; font-weight:700; color:var(--dark); transition:color 0.2s; }
   .wdx-card:hover .wdx-title { color:var(--red); }
 
@@ -166,7 +146,6 @@
   .sidebar-btn:nth-child(2) { background: #1565C0; }
   .sidebar-btn:nth-child(3) { background: #25D366; }
   .sidebar-btn:hover { filter: brightness(1.18); transform: translateX(-3px); }
-
   .contact-box {
     position: fixed; right: 60px; top: 50%; transform: translateY(-50%);
     background: var(--white); padding: 20px; border-radius: 8px;
@@ -174,41 +153,121 @@
     border-left: 5px solid var(--red); min-width: 200px;
   }
   .close-btn { position:absolute; top:5px; right:10px; cursor:pointer; font-weight:bold; }
-
-  /* ── SCROLL TO TOP ── */
   .scroll-to-top {
     position:fixed; bottom:40px; right:40px; width:56px; height:56px;
-    background:var(--red); border:none; cursor:pointer;
-    display:flex; align-items:center; justify-content:center;
-    color:var(--white); font-size:24px; border-radius:50%;
-    box-shadow:0 4px 16px rgba(254,94,0,0.4); z-index:1000;
+    background:var(--red); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center;
+    color:var(--white); font-size:24px; border-radius:50%; box-shadow:0 4px 16px rgba(254,94,0,0.4); z-index:1000;
     transition:background .2s, transform .2s;
   }
   .scroll-to-top:hover { background:var(--red-hover); transform:translateY(-4px); }
 
-  /* ═══════════════════════ CONTACT PAGE CONTENT ═══════════════════════ */
-  .page-hero { height:320px; background:linear-gradient(135deg,#0F2A44,#1a2a44); display:flex; align-items:center; padding:0 80px; position:relative; overflow:hidden; }
-  .page-hero::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(45deg,rgba(254,94,0,.05) 0,rgba(254,94,0,.05) 1px,transparent 1px,transparent 40px); }
-  .page-hero h1 { font-family:'Barlow Condensed',sans-serif; font-size:clamp(42px, 5vw, 64px); font-weight:900; color:var(--white); position:relative; z-index:2; text-shadow:0 2px 12px rgba(0,0,0,.5); }
-  .page-hero p { font-size:18px; font-weight:600; color:rgba(255,255,255,.88); margin-top:12px; position:relative; z-index:2; }
+  /* ═══════════════════════ HERO (Aligned to other pages) ═══════════════════════ */
+  .company-hero {
+    height: 480px;
+    background: url('https://images.unsplash.com/photo-1596524430615-b46475ddff6e?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    background-attachment: fixed;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 80px;
+    color: var(--white);
+    overflow: hidden;
+  }
+  .company-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(15, 42, 68, 0.95) 0%, rgba(15, 42, 68, 0.4) 100%);
+    z-index: 1;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    border-left: 5px solid var(--red);
+    padding-left: 32px;
+  }
+  .hero-tag {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--leaf);
+    margin-bottom: 12px;
+    display: block;
+  }
+  .company-hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(52px, 6vw, 84px);
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    line-height: 1.1;
+    color: var(--white);
+  }
+  .company-breadcrumb {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.7);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .company-breadcrumb a { color: var(--white); text-decoration: none; transition: color 0.2s; }
+  .company-breadcrumb a:hover { color: var(--red); }
+  .company-breadcrumb span.divider { color: var(--red); font-weight: 900; }
 
-  .contact-container { padding:80px; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; background:var(--white); }
-  .contact-info h2 { font-family:'Barlow Condensed',sans-serif; font-size:42px; font-weight:900; margin-bottom:32px; color:var(--dark); }
-  .contact-detail { display:flex; gap:16px; margin-bottom:24px; align-items:flex-start; }
-  .contact-icon { font-size:24px; color:var(--red); margin-top:2px; flex-shrink:0; }
-  .contact-detail-text h4 { font-size:16px; font-weight:800; margin-bottom:6px; color:var(--dark); }
-  .contact-detail-text p { font-size:15px; color:var(--mid); line-height:1.6; margin-bottom:8px; }
+  /* ═══════════════════════ CONTACT PAGE CONTENT ═══════════════════════ */
+  .contact-container { padding:100px 80px; display:grid; grid-template-columns:1fr 1.2fr; gap:80px; align-items:start; background:var(--white); max-width: 1400px; margin: 0 auto; }
+  .contact-info h2 { font-family:'Barlow Condensed',sans-serif; font-size:48px; font-weight:900; margin-bottom:40px; color:var(--dark); text-transform: uppercase; line-height: 1.1; }
   
-  .contact-form { background:var(--light); padding:40px; border-radius:4px; border:1px solid var(--border); }
-  .contact-form h3 { font-size:22px; font-weight:800; margin-bottom:28px; color:var(--dark); }
-  .form-group { margin-bottom:20px; }
-  .form-group label { display:block; font-size:13px; font-weight:700; color:var(--mid); margin-bottom:6px; text-transform:uppercase; letter-spacing:.5px; }
-  .form-group input, .form-group textarea, .form-group select { width:100%; padding:12px 16px; border:1px solid var(--border); font-family:'Barlow',sans-serif; font-size:14px; color:var(--dark); background:var(--white); outline:none; transition:border .2s; border-radius:2px; }
-  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color:var(--red); }
-  .form-group textarea { resize:vertical; min-height:120px; }
-  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-  .submit-btn { width:100%; background:var(--red); color:var(--white); border:none; padding:16px; font-size:15px; font-weight:700; cursor:pointer; font-family:'Barlow',sans-serif; transition:background .2s, box-shadow .2s; letter-spacing:.3px; border-radius:2px; box-shadow:0 4px 18px rgba(254,94,0,0.4); }
-  .submit-btn:hover { background:var(--red-hover); box-shadow:0 6px 24px rgba(254,94,0,0.55); }
+  /* Interactive Contact Cards */
+  .contact-detail { 
+    display:flex; gap:20px; margin-bottom:24px; align-items:flex-start; 
+    padding: 24px; background: var(--light); border-radius: 6px;
+    border-left: 4px solid transparent; transition: all 0.3s ease;
+  }
+  .contact-detail:hover {
+    background: var(--white);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    border-left-color: var(--red);
+    transform: translateX(5px);
+  }
+  .contact-icon { 
+    width: 32px; height: 32px; color: var(--red); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .contact-icon svg { width: 100%; height: 100%; stroke-width: 1.5; stroke: currentColor; fill: none; }
+  .contact-detail-text h4 { font-size:18px; font-weight:800; margin-bottom:8px; color:var(--dark); }
+  .contact-detail-text p { font-size:15px; color:var(--mid); line-height:1.6; margin-bottom:0; font-weight: 500; }
+  
+  /* Form Improvements */
+  .contact-form { background:var(--light); padding:50px; border-radius:6px; border:1px solid var(--border); box-shadow: 0 15px 40px rgba(0,0,0,0.03); }
+  .contact-form h3 { font-family: 'Barlow Condensed', sans-serif; font-size:36px; font-weight:900; margin-bottom:32px; color:var(--dark); text-transform: uppercase; }
+  .form-group { margin-bottom:24px; }
+  .form-group label { display:block; font-size:13px; font-weight:700; color:var(--mid); margin-bottom:8px; text-transform:uppercase; letter-spacing:1px; }
+  .form-group input, .form-group textarea, .form-group select { 
+    width:100%; padding:14px 18px; border:1px solid #dcdcdc; font-family:'Barlow',sans-serif; 
+    font-size:15px; font-weight: 500; color:var(--dark); background:var(--white); outline:none; 
+    transition:all .3s ease; border-radius:4px; 
+  }
+  /* Enhanced Focus State */
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { 
+    border-color:var(--red); 
+    box-shadow: 0 0 0 4px rgba(254, 94, 0, 0.1);
+  }
+  .form-group textarea { resize:vertical; min-height:140px; }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .submit-btn { 
+    width:100%; background:var(--red); color:var(--white); border:none; padding:18px; 
+    font-size:16px; font-weight:800; cursor:pointer; font-family:'Barlow',sans-serif; 
+    transition:all .3s ease; letter-spacing:1px; border-radius:4px; text-transform: uppercase;
+    box-shadow:0 4px 15px rgba(254,94,0,0.3); 
+  }
+  .submit-btn:hover { background:var(--red-hover); box-shadow:0 8px 25px rgba(254,94,0,0.4); transform: translateY(-2px); }
 
   /* ── FOOTER ── */
   footer { background:#0F2A44; color:rgba(255,255,255,.7); padding:64px 80px 32px; }
@@ -222,7 +281,7 @@
   .footer-contact strong { color:var(--white); }
   .footer-bottom { border-top:1px solid rgba(255,255,255,.1); padding-top:24px; display:flex; justify-content:space-between; font-size:13px; color:rgba(255,255,255,.4); }
 
-  /* ── RESPONSIVE STYLES (Matched to home-index) ── */
+  /* ── RESPONSIVE STYLES ── */
   @media (max-width: 1024px) {
     #navbar { padding: 0 24px; height: 70px; }
     .logo-icon { height: 52px; margin-right: 10px; }
@@ -230,8 +289,10 @@
     nav { display: none; }
     .hamburger { display: flex; }
     .dropdown-overlay, .dropdown-panel { display: none !important; }
-    .page-hero { padding: 0 40px; }
-    .contact-container { padding: 60px 40px; gap: 40px; }
+    
+    .company-hero { padding: 0 40px; height: 400px; }
+    .contact-container { padding: 80px 40px; gap: 60px; }
+    
     footer { padding: 48px 40px 24px; }
     .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
     .sidebar-btn { width: 40px; height: 40px; font-size: 16px; }
@@ -243,14 +304,13 @@
     .logo-icon { height: 44px; margin-right: 8px; }
     .logo-text { font-size: 20px; }
     
-    .page-hero { padding: 0 20px; height: 220px; }
-    .page-hero h1 { font-size: clamp(32px, 9vw, 42px); }
-    .page-hero p { font-size: 14px; }
+    .company-hero { padding: 0 20px; height: 360px; }
+    .hero-content { padding-left: 20px; border-width: 4px; }
     
-    .contact-container { grid-template-columns: 1fr; padding: 48px 20px; gap: 48px; }
-    .contact-info h2 { font-size: 32px; }
-    .contact-form { padding: 24px; }
-    .form-row { grid-template-columns: 1fr; }
+    .contact-container { grid-template-columns: 1fr; padding: 60px 20px; gap: 48px; }
+    .contact-info h2 { font-size: 36px; margin-bottom: 30px; }
+    .contact-form { padding: 30px 20px; }
+    .form-row { grid-template-columns: 1fr; gap: 24px; }
     
     footer { padding: 40px 16px 24px; }
     .footer-grid { grid-template-columns: 1fr; gap: 24px; }
@@ -265,8 +325,7 @@
   @media (max-width: 480px) {
     .logo-text { font-size: 17px; }
     .logo-icon { height: 38px; }
-    .page-hero h1 { font-size: 30px; }
-    .page-hero p { font-size: 13px; }
+    .company-hero h1 { font-size: 40px; }
     footer h4 { font-size: 14px; }
     footer ul li { font-size: 13px; }
     .footer-contact p { font-size: 13px; }
@@ -358,8 +417,8 @@
   </div>
   <div class="mobile-nav-sub" id="mob-about">
     <a href="/racknspace/about/racknspace-group/">RackNSpace Group</a>
-	<a href="/racknspace/about/culture/">Culture</a>
-	<a href="/racknspace/about/sustainability/">Sustainability</a>
+    <a href="/racknspace/about/culture/">Culture</a>
+    <a href="/racknspace/about/sustainability/">Sustainability</a>
     <a href="/racknspace/about/partnership-opportunities/">Partnership Opportunities</a>
   </div>
   <a class="mobile-nav-item contact active" href="/racknspace/contact/">
@@ -468,7 +527,7 @@
 </div>
 <div class="dropdown-panel" id="dd-about" onmouseenter="clearHoverTimeout()" onmouseleave="closeDdHover()">
   <div class="wdx-grid">
-	<a href="/racknspace/about/racknspace-group/" class="wdx-card">
+    <a href="/racknspace/about/racknspace-group/" class="wdx-card">
       <div class="wdx-img-wrap">
         <img src="/racknspace/images/racknspace-group.jpeg" alt="RackNSpace Group Facility" class="wdx-img">
         <div class="wdx-img-overlay"></div>
@@ -503,7 +562,9 @@
   <button class="sidebar-btn" onclick="showContact('email')" title="Email Us">✉</button>
   <button class="sidebar-btn" onclick="showContact('phone')" title="Call Us">📞</button>
   <button class="sidebar-btn" onclick="showContact('whatsapp')" title="WhatsApp">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:24px;height:24px;filter:brightness(0) invert(1);">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+    </svg>
   </button>
 </div>
 
@@ -515,32 +576,44 @@
 
 <button class="scroll-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
-<div class="page-hero">
-  <div>
-    <h1>Contact Us</h1>
-    <p>Get in touch — let's discuss your warehouse automation needs</p>
+<div class="company-hero">
+  <div class="hero-content">
+    <span class="hero-tag">Get In Touch</span>
+    <h1>Contact <span>Us</span></h1>
+    <div class="company-breadcrumb">
+      <a href="/racknspace/">Home</a> <span class="divider">/</span> Contact Us
+    </div>
   </div>
 </div>
 
 <div class="contact-container">
   <div class="contact-info">
     <h2>Let's Talk About Your Warehouse Challenge</h2>
+    
     <div class="contact-detail">
-      <div class="contact-icon">✉</div>
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+      </div>
       <div class="contact-detail-text">
         <h4>Email</h4>
         <p>racknspace@gmail.com</p>
       </div>
     </div>
+
     <div class="contact-detail">
-      <div class="contact-icon">📞</div>
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+      </div>
       <div class="contact-detail-text">
         <h4>Telephone / WhatsApp</h4>
         <p>+91 XXXXXXXXXX</p>
       </div>
     </div>
+
     <div class="contact-detail">
-      <div class="contact-icon">📍</div>
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+      </div>
       <div class="contact-detail-text">
         <h4>Unit 1</h4>
         <p>C-17, MIDC Baramati, Dist. Pune - Maharashtra (INDIA) - 413133</p>
@@ -557,15 +630,15 @@
   <div class="contact-form">
     <h3>Send Us a Message</h3>
     <div class="form-row">
-      <div class="form-group"><label>First Name</label><input type="text" placeholder="John"/></div>
-      <div class="form-group"><label>Last Name</label><input type="text" placeholder="Smith"/></div>
+      <div class="form-group"><label for="fname">First Name</label><input id="fname" type="text" placeholder="John" required/></div>
+      <div class="form-group"><label for="lname">Last Name</label><input id="lname" type="text" placeholder="Smith" required/></div>
     </div>
-    <div class="form-group"><label>Email</label><input type="email" placeholder="john@company.com"/></div>
-    <div class="form-group"><label>Company</label><input type="text" placeholder="Your company name"/></div>
+    <div class="form-group"><label for="email">Email</label><input id="email" type="email" placeholder="john@company.com" required/></div>
+    <div class="form-group"><label for="company">Company</label><input id="company" type="text" placeholder="Your company name"/></div>
     <div class="form-group">
-      <label>Industry</label>
-      <select>
-        <option>Select your industry</option>
+      <label for="industry">Industry</label>
+      <select id="industry" required>
+        <option value="" disabled selected>Select your industry</option>
         <option>AutoMobile</option>
         <option>Pharma</option>
         <option>Chemical</option>
@@ -588,8 +661,8 @@
         <option>Document Storage</option>
       </select>
     </div>
-    <div class="form-group"><label>Message</label><textarea placeholder="Tell us about your warehousing challenge…"></textarea></div>
-    <button class="submit-btn">Send Message</button>
+    <div class="form-group"><label for="message">Message</label><textarea id="message" placeholder="Tell us about your warehousing challenge…" required></textarea></div>
+    <button class="submit-btn" type="submit">Send Message</button>
   </div>
 </div>
 
@@ -635,7 +708,6 @@
 </footer>
 
 <script>
-  /* ── MOBILE NAV ── */
   function toggleMobileNav() {
     var nav = document.getElementById('mobile-nav');
     var burger = document.getElementById('hamburger');
@@ -653,7 +725,6 @@
     if (!isOpen) { sub.classList.add('open'); trigger.classList.add('open'); }
   }
   
-  // Close mobile nav when clicking outside
   document.addEventListener('click', function(e) {
     var nav = document.getElementById('mobile-nav');
     var burger = document.getElementById('hamburger');
@@ -664,7 +735,6 @@
     }
   });
 
-  /* ── DROPDOWN HOVER LOGIC ── */
   let ddHoverTimeout;
   function openDdHover(name){
     clearTimeout(ddHoverTimeout); closeAllDropdowns();
@@ -681,7 +751,6 @@
     document.getElementById('dropdown-overlay').classList.remove('open');
   }
 
-  /* ── SHOW CONTACT SIDEBAR LOGIC ── */
   function showContact(type) {
     const displayBox = document.getElementById('contact-display');
     const title = document.getElementById('contact-title');
