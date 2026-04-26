@@ -143,6 +143,36 @@
     transition:background .2s, transform .2s;
   }
   .scroll-to-top:hover { background:var(--red-hover); transform:translateY(-4px); }
+  
+  /* Plain text for non-linked mobile items */
+  .mob-no-link {
+    padding: 12px 24px 12px 48px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--mid);
+    border-bottom: 1px solid var(--border);
+    display: block;
+  }
+
+  /* Minimalist Explore Card in Dropdown */
+  .explore-card .wdx-img-wrap {
+    background: var(--light);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .explore-icon {
+    width: 32px; height: 32px;
+    stroke: var(--mid);
+    stroke-width: 1.5;
+    fill: none;
+    transition: all 0.3s ease;
+  }
+  .explore-card:hover .explore-icon {
+    stroke: var(--red);
+    transform: translateX(6px);
+  }
 
   /* ═══════════════════════ HERO (REDESIGNED) ═══════════════════════ */
   .company-hero {
@@ -609,16 +639,7 @@
     /* Timeline Adjustments */
     .history-item { flex: 0 0 50%; }
   }
-  
-  .mob-no-link {
-    padding: 12px 24px 12px 48px;
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--mid);
-    border-bottom: 1px solid var(--border);
-    display: block;
-  }
-  
+    
   @media (max-width: 768px) {
     #navbar { padding: 0 16px; height: 64px; }
     .logo-icon { height: 44px; margin-right: 8px; }
@@ -643,25 +664,7 @@
     .hi-box { padding: 20px; width: 95%; }
   }
   
-  .explore-card .wdx-img-wrap {
-    background: var(--light);
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .explore-icon {
-    width: 32px; height: 32px;
-    stroke: var(--mid);
-    stroke-width: 1.5;
-    fill: none;
-    transition: all 0.3s ease;
-  }
-  .explore-card:hover .explore-icon {
-    stroke: var(--red);
-    transform: translateX(6px);
-  }
-  
+ 
   @media (max-width: 480px) {
     .logo-text { font-size: 17px; }
     .logo-icon { height: 38px; }

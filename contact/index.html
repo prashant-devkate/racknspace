@@ -160,6 +160,36 @@
     transition:background .2s, transform .2s;
   }
   .scroll-to-top:hover { background:var(--red-hover); transform:translateY(-4px); }
+  
+  /* Plain text for non-linked mobile items */
+  .mob-no-link {
+    padding: 12px 24px 12px 48px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--mid);
+    border-bottom: 1px solid var(--border);
+    display: block;
+  }
+
+  /* Minimalist Explore Card in Dropdown */
+  .explore-card .wdx-img-wrap {
+    background: var(--light);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .explore-icon {
+    width: 32px; height: 32px;
+    stroke: var(--mid);
+    stroke-width: 1.5;
+    fill: none;
+    transition: all 0.3s ease;
+  }
+  .explore-card:hover .explore-icon {
+    stroke: var(--red);
+    transform: translateX(6px);
+  }
 
   /* ═══════════════════════ HERO (Aligned to other pages) ═══════════════════════ */
   .company-hero {
@@ -321,16 +351,7 @@
     .contact-box { right: 12px; left: 12px; transform: none; top: auto; bottom: 80px; min-width: unset; }
     .scroll-to-top { width: 42px; height: 42px; font-size: 18px; bottom: 16px; right: 16px; }
   }
-  
-  .mob-no-link {
-    padding: 12px 24px 12px 48px;
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--mid);
-    border-bottom: 1px solid var(--border);
-    display: block;
-  }
-
+    
   @media (max-width: 480px) {
     .logo-text { font-size: 17px; }
     .logo-icon { height: 38px; }
