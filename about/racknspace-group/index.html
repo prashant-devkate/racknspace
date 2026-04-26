@@ -642,6 +642,26 @@
     .h-btn { width: 40px; height: 40px; }
     .hi-box { padding: 20px; width: 95%; }
   }
+  
+  .explore-card .wdx-img-wrap {
+    background: var(--light);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .explore-icon {
+    width: 32px; height: 32px;
+    stroke: var(--mid);
+    stroke-width: 1.5;
+    fill: none;
+    transition: all 0.3s ease;
+  }
+  .explore-card:hover .explore-icon {
+    stroke: var(--red);
+    transform: translateX(6px);
+  }
+  
   @media (max-width: 480px) {
     .logo-text { font-size: 17px; }
     .logo-icon { height: 38px; }
