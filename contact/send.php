@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message = htmlspecialchars($_POST['message']);
 
     // Email config
-    $to = "racknspace@gmail.com"; // change if needed
+    $to = "meetprashant1234@gmail.com";
     $subject = "New Enquiry - Rack N Space";
 
     $body = "
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message
     ";
 
-    $headers = "From: noreply@yourdomain.com\r\n";
+    $headers = "From: noreply@racknspace.com\r\n";
     $headers .= "Reply-To: $email\r\n";
 
     if (mail($to, $subject, $body, $headers)) {
