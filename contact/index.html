@@ -688,44 +688,72 @@
     </div>
   </div>
   
-  <div class="contact-form">
-    <h3>Send Us a Message</h3>
-    <div class="form-row">
-      <div class="form-group"><label for="fname">First Name</label><input id="fname" type="text" placeholder="Shri" required/></div>
-      <div class="form-group"><label for="lname">Last Name</label><input id="lname" type="text" placeholder="Ram" required/></div>
-    </div>
-    <div class="form-group"><label for="email">Email</label><input id="email" type="email" placeholder="Shriram@company.com" required/></div>
-    <div class="form-group"><label for="company">Company</label><input id="company" type="text" placeholder="Your company name"/></div>
+  <form action="send.php" method="POST">
+
+<div class="contact-form">
+  <h3>Send Us a Message</h3>
+
+  <div class="form-row">
     <div class="form-group">
-      <label for="industry">Industry</label>
-      <select id="industry" required>
-        <option value="" disabled selected>Select your industry</option>
-        <option>AutoMobile</option>
-        <option>Pharma</option>
-        <option>Chemical</option>
-        <option>Fertilizers</option>
-        <option>Beverages</option>
-        <option>Cold Warehouses</option>
-        <option>Defense</option>
-        <option>Textile</option>
-        <option>Food & Dairy Products</option>
-        <option>Energy & Power</option>
-        <option>E-Commerce</option>
-        <option>Precision Manufacturing</option>
-        <option>FMCG</option>
-        <option>Engineering</option>
-        <option>Infrastructure</option>
-        <option>Liquor</option>
-        <option>Mushroom Cultivation</option>
-        <option>Cement</option>
-        <option>Railways</option>
-        <option>Document Storage</option>
-      </select>
+      <label for="fname">First Name</label>
+      <input id="fname" name="first_name" type="text" placeholder="Shri" required/>
     </div>
-    <div class="form-group"><label for="message">Message</label><textarea id="message" placeholder="Tell us about your warehousing challenge…" required></textarea></div>
-    <button class="submit-btn" type="submit">Send Message</button>
+
+    <div class="form-group">
+      <label for="lname">Last Name</label>
+      <input id="lname" name="last_name" type="text" placeholder="Ram" required/>
+    </div>
   </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" placeholder="Shriram@company.com" required/>
+  </div>
+
+  <div class="form-group">
+    <label for="company">Company</label>
+    <input id="company" name="company" type="text" placeholder="Your company name"/>
+  </div>
+
+  <div class="form-group">
+    <label for="industry">Industry</label>
+    <select id="industry" name="industry" required>
+      <option value="" disabled selected>Select your industry</option>
+      <option>AutoMobile</option>
+      <option>Pharma</option>
+      <option>Chemical</option>
+      <option>Fertilizers</option>
+      <option>Beverages</option>
+      <option>Cold Warehouses</option>
+      <option>Defense</option>
+      <option>Textile</option>
+      <option>Food & Dairy Products</option>
+      <option>Energy & Power</option>
+      <option>E-Commerce</option>
+      <option>Precision Manufacturing</option>
+      <option>FMCG</option>
+      <option>Engineering</option>
+      <option>Infrastructure</option>
+      <option>Liquor</option>
+      <option>Mushroom Cultivation</option>
+      <option>Cement</option>
+      <option>Railways</option>
+      <option>Document Storage</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="message">Message</label>
+    <textarea id="message" name="message" placeholder="Tell us about your warehousing challenge…" required></textarea>
+  </div>
+
+  <!-- spam protection -->
+  <input type="text" name="honeypot" style="display:none">
+
+  <button class="submit-btn" type="submit">Send Message</button>
 </div>
+
+</form>
 
 <footer>
   <div class="footer-grid">
